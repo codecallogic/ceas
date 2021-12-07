@@ -4,19 +4,33 @@
     align-items: center;
     margin-top: 10rem;
     padding: 0 3rem;
+
+    @media only screen and (max-width: $large-medium) {
+      flex-direction: column;
+    }
   }
 
   &-left {
     svg {
-      width: 70rem;
-      height: 70rem;
+      width: 60rem;
+      height: 60rem;
+
+      @media only screen and (max-width: $large-medium) {
+        height: 30rem;
+      }
     }
   }
 
   &-right {
     width: 100%;
     align-self: flex-start;
-    margin: 0 2rem;
     margin: 8rem 0;
+    padding: 0 5rem;
+
+    &-options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
   }
 }

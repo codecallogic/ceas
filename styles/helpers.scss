@@ -11,6 +11,51 @@ p {
   font-size: 1.4rem;
 }
 
-.mb4 {
-  margin-bottom: 4rem;
+a {
+  font-size: 1.4rem;
+  color: $color-scheme-1;
+}
+
+button {
+  font-size: 1.4rem;
+}
+
+.mb {
+  &4 {
+    margin-bottom: 4rem;
+  }
+}
+
+.topBorders {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+.bottomBorders {
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+.showPassword {
+  -webkit-text-security: none;
+}
+
+.hidePassword {
+  -webkit-text-security: disc;
+}
+
+.labelHover {
+  top: 5% !important;
+}
+
+#rememberMe {
+  display: none;
+}
+
+.checked {
+  background-color: $color-scheme-1 !important;
+
+  svg {
+    fill: white !important;
+  }
 }

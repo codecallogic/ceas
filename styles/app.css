@@ -33,15 +33,45 @@ p {
   font-weight: 300;
   font-size: 1.4rem; }
 
+a {
+  font-size: 1.4rem;
+  color: #e63946; }
+
+button {
+  font-size: 1.4rem; }
+
 .mb4 {
   margin-bottom: 4rem; }
+
+.topBorders {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem; }
+
+.bottomBorders {
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem; }
+
+.showPassword {
+  -webkit-text-security: none; }
+
+.hidePassword {
+  -webkit-text-security: disc; }
+
+.labelHover {
+  top: 5% !important; }
+
+#rememberMe {
+  display: none; }
+
+.checked {
+  background-color: #e63946 !important; }
+  .checked svg {
+    fill: white !important; }
 
 .form-group-100-field {
   display: flex;
   align-items: center;
   width: 100%;
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
   resize: none;
   padding: 2rem 1.5rem;
   box-sizing: border-box;
@@ -65,6 +95,45 @@ p {
       outline: none; }
       .form-group-100-field div:focus ~ label {
         top: 5%; }
+  .form-group-100-field svg {
+    width: 2rem;
+    height: 2rem;
+    fill: #b3b3b3; }
+    .form-group-100-field svg:hover {
+      cursor: pointer; }
+
+.form-group-checkbox {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+  font-size: 1.2rem; }
+  .form-group-checkbox-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border: 0.2rem solid #edf2f5;
+    border-radius: 0.5rem;
+    margin-right: 1rem;
+    transition: all 0.3s ease-in-out; }
+    .form-group-checkbox-box:hover {
+      cursor: pointer; }
+    .form-group-checkbox-box svg {
+      width: 2rem;
+      height: 2rem;
+      fill: #e63946; }
+
+.form-group-button-100 {
+  width: 100%;
+  outline: none;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #e63946;
+  color: white;
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0; }
 
 .home {
   display: flex;
@@ -81,13 +150,23 @@ p {
   align-items: center;
   margin-top: 10rem;
   padding: 0 3rem; }
+  @media only screen and (max-width: 1050px) {
+    .adminLogin-container {
+      flex-direction: column; } }
 
 .adminLogin-left svg {
-  width: 70rem;
-  height: 70rem; }
+  width: 60rem;
+  height: 60rem; }
+  @media only screen and (max-width: 1050px) {
+    .adminLogin-left svg {
+      height: 30rem; } }
 
 .adminLogin-right {
   width: 100%;
   align-self: flex-start;
-  margin: 0 2rem;
-  margin: 8rem 0; }
+  margin: 8rem 0;
+  padding: 0 5rem; }
+  .adminLogin-right-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; }
