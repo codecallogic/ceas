@@ -1,0 +1,48 @@
+.form-group {
+  &-100 {
+    &-field {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      border-top-left-radius: 1rem;
+      border-top-right-radius: 1rem;
+      resize: none;
+      padding: 2rem 1.5rem;
+      box-sizing: border-box;
+      outline: none;
+      font-size: 1.4rem;
+      font-family: inherit;
+      border: none;
+      background-color: $color-light-grey-2;
+      color: $color-light-grey-3;
+      position: relative;
+
+      // &[contenteditable='true']:empty:not(:focus):before {
+      //   content: attr(placeholder);
+      //   pointer-events: none;
+      //   display: block; /* For Firefox */
+      // }
+
+      label {
+        position: absolute;
+        display: flex;
+        top: 40%;
+        transition: all 0.3s ease-in-out;
+        font-size: 1.2rem;
+      }
+
+      div {
+        width: 100%;
+        z-index: 2;
+
+        &:focus {
+          outline: none;
+
+          ~ label {
+            top: 5%;
+          }
+        }
+      }
+    }
+  }
+}

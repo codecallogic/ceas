@@ -16,11 +16,55 @@ body {
   overflow-x: hidden; }
 
 body {
-  font-family: 'Roboto';
+  font-family: 'Roboto', sans-serif;
   font-style: normal;
   color: black;
   font-weight: 300;
   line-height: 1.6; }
+
+h3 {
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 0.5rem; }
+
+p {
+  color: #b3b3b3;
+  font-weight: 300;
+  font-size: 1.4rem; }
+
+.mb4 {
+  margin-bottom: 4rem; }
+
+.form-group-100-field {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  resize: none;
+  padding: 2rem 1.5rem;
+  box-sizing: border-box;
+  outline: none;
+  font-size: 1.4rem;
+  font-family: inherit;
+  border: none;
+  background-color: #edf2f5;
+  color: #b3b3b3;
+  position: relative; }
+  .form-group-100-field label {
+    position: absolute;
+    display: flex;
+    top: 40%;
+    transition: all 0.3s ease-in-out;
+    font-size: 1.2rem; }
+  .form-group-100-field div {
+    width: 100%;
+    z-index: 2; }
+    .form-group-100-field div:focus {
+      outline: none; }
+      .form-group-100-field div:focus ~ label {
+        top: 5%; }
 
 .home {
   display: flex;
@@ -43,7 +87,7 @@ body {
   height: 70rem; }
 
 .adminLogin-right {
-  background-color: #1d3557;
   width: 100%;
-  height: 5rem;
-  margin: 0 2rem; }
+  align-self: flex-start;
+  margin: 0 2rem;
+  margin: 8rem 0; }

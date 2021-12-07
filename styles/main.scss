@@ -1,5 +1,9 @@
 // BASE
 @import './base.scss';
+@import './helpers.scss';
+
+// COMPONENTS
+@import './components/forms.scss';
 
 // CLIENT PAGES
 @import './client/home.scss';

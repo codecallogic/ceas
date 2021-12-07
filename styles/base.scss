@@ -5,6 +5,11 @@ $color-scheme-3: #a8dadc;
 $color-scheme-4: #457b9d;
 $color-scheme-5: #1d3557;
 
+// SHADES
+$color-light-grey-1: #b3b3b3;
+$color-light-grey-2: #edf2f5;
+$color-light-grey-3: #b3b3b3;
+
 //BREAKPOINTS
 $wide-large: 1800px;
 $wide: 1500px;
@@ -38,7 +43,7 @@ body {
 }
 
 body {
-  font-family: 'Roboto';
+  font-family: 'Roboto', sans-serif;
   font-style: normal;
   color: black;
   font-weight: 300;
