@@ -1,5 +1,7 @@
 import SVG from '../../files/svg'
 import {useState, useEffect} from 'react'
+import axios from 'axios'
+import {API} from '../../config'
 
 const AdminLogin = ({}) => {
 
@@ -7,6 +9,21 @@ const AdminLogin = ({}) => {
   const [password, setPassword] = useState('')
   const [displayPassword, setDisplayPassword] = useState(false)
   const [rememberMe, setRememberMe] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [message, setMessage] = useState('')
+
+  const login = async () => {
+    setLoading(true)
+    setMessage('')
+    try {
+      const responseLogin = await axios.post(`${API}/auth/login`, {username, password})
+      // window.location.href = '/account'
+      setLoading(false)
+    } catch (error) {
+      setLoading(false)
+      if(error) error.response.data.error ? setMessage(error.response.data.error) : error.response ? setMessage(error.response.data) : setMessage('Error ocurred with login, please try again later.')
+    }
+  }
   
   return (
     <div className="adminLogin">
@@ -21,13 +38,13 @@ const AdminLogin = ({}) => {
           <form className="form-group">
             <div className="form-group-100">
               <div className="form-group-100-field topBorders">
-                <div id="username" contentEditable="true" onInput={(e) => setUsername(e.target.innerText)}></div>
+                <div id="username" contentEditable="true" onInput={(e) => (setMessage(''), setUsername(e.target.innerText))}></div>
                 <label htmlFor="username" className={username.length > 0 ? ' labelHover' : ''}>Username</label>
               </div>
             </div>
             <div className="form-group-100">
               <div className="form-group-100-field bottomBorders">
-                <div id="password" className={displayPassword ? 'showPassword' : 'hidePassword'} contentEditable="true" onInput={(e) => setPassword(e.target.innerText)}></div>
+                <div id="password" className={displayPassword ? 'showPassword' : 'hidePassword'} contentEditable="true" onInput={(e) => (setMessage(''), setPassword(e.target.innerText))}></div>
                 <label htmlFor="password" className={password.length > 0 ? ' labelHover' : ''}>Password</label>
                 <span onClick={() => displayPassword ? setDisplayPassword(false) : setDisplayPassword(true)}>
                   {displayPassword ? <SVG svg={'eye-closed'}></SVG> : <SVG svg={'eye'}></SVG>}
@@ -36,7 +53,7 @@ const AdminLogin = ({}) => {
             </div>
           </form>
 
-          <div className="adminLogin-right-options mb4">
+          <div className="adminLogin-right-options mb2">
             <div className="adminLogin-right-options-rememberMe">
               <div className="form-group-checkbox" onClick={() => rememberMe ? setRememberMe(false) : setRememberMe(true)}>
                 <div className={`form-group-checkbox-box` + (rememberMe ? ' checked' : '')}>{rememberMe ? <SVG svg={'checkmark'}></SVG> : null}</div> Remember Me
@@ -44,7 +61,8 @@ const AdminLogin = ({}) => {
             </div>
             <a href="#">Forgot password</a>
           </div>
-          <button className="form-group-button-100">Log in</button>
+          {message.length > 0 ? <div className="form-group-message">{message}</div> : null}
+          <button className="form-group-button-100" onClick={() => login()}>{!loading && <span>Log in</span>} {loading && <div className="loading"><span></span><span></span><span></span></div>}</button>
         </div>
       </div>
     </div>
