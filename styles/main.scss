@@ -1,10 +1,12 @@
 // BASE
 @import './base.scss';
 @import './helpers.scss';
+@import './admin/account.scss';
 
 // COMPONENTS
 @import './components/forms.scss';
 @import './components/animations.scss';
+@import './components/modals.scss';
 
 // CLIENT PAGES
 @import './client/home.scss';

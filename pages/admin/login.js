@@ -16,12 +16,12 @@ const AdminLogin = ({}) => {
     setLoading(true)
     setMessage('')
     try {
-      const responseLogin = await axios.post(`${API}/auth/login`, {username, password})
-      // window.location.href = '/account'
+      const responseLogin = await axios.post(`${API}/auth/login`, {username, password}, {withCredentials: true})
       setLoading(false)
+      window.location.href = '/admin'
     } catch (error) {
       setLoading(false)
-      if(error) error.response.data.error ? setMessage(error.response.data.error) : error.response ? setMessage(error.response.data) : setMessage('Error ocurred with login, please try again later.')
+      if(error) error.response.data ? error.response.data.error ? setMessage(error.response.data.error) : error.response ? setMessage(error.response.data) : setMessage('Error ocurred with login, please try again later.') : setMessage('Error ocurred with login, please try again later.')
     }
   }
   
@@ -38,13 +38,13 @@ const AdminLogin = ({}) => {
           <form className="form-group">
             <div className="form-group-100">
               <div className="form-group-100-field topBorders">
-                <div id="username" contentEditable="true" onInput={(e) => (setMessage(''), setUsername(e.target.innerText))}></div>
+                <div id="username" contentEditable="true" onInput={(e) => (setMessage(''), setUsername(e.target.innerHTML))}></div>
                 <label htmlFor="username" className={username.length > 0 ? ' labelHover' : ''}>Username</label>
               </div>
             </div>
             <div className="form-group-100">
               <div className="form-group-100-field bottomBorders">
-                <div id="password" className={displayPassword ? 'showPassword' : 'hidePassword'} contentEditable="true" onInput={(e) => (setMessage(''), setPassword(e.target.innerText))}></div>
+                <div id="password" className={displayPassword ? 'showPassword' : 'hidePassword'} contentEditable="true" onInput={(e) => (setMessage(''), setPassword(e.target.innerHTML))}></div>
                 <label htmlFor="password" className={password.length > 0 ? ' labelHover' : ''}>Password</label>
                 <span onClick={() => displayPassword ? setDisplayPassword(false) : setDisplayPassword(true)}>
                   {displayPassword ? <SVG svg={'eye-closed'}></SVG> : <SVG svg={'eye'}></SVG>}

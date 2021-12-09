@@ -71,6 +71,66 @@ button {
   .checked svg {
     fill: white !important; }
 
+.account {
+  width: 100%;
+  padding: 8rem; }
+  .account-breadcrumbs {
+    display: flex; }
+    .account-breadcrumbs-item {
+      display: flex;
+      align-items: center;
+      font-size: 1.8rem;
+      color: #b3b3b3; }
+      .account-breadcrumbs-item-title {
+        font-size: 2.2rem;
+        font-weight: 700; }
+        .account-breadcrumbs-item-title:hover {
+          cursor: pointer;
+          text-decoration: underline; }
+      .account-breadcrumbs-item svg {
+        width: 2rem;
+        height: 2rem;
+        fill: #e63946; }
+      .account-breadcrumbs-item-subtitle {
+        display: flex;
+        align-items: center; }
+  .account-dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 3rem 1rem; }
+    @media only screen and (max-width: 768px) {
+      .account-dashboard {
+        justify-content: center; } }
+    .account-dashboard-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 18rem;
+      height: 15rem;
+      border-radius: 1.2rem;
+      font-size: 1.8rem;
+      font-weight: 300;
+      margin-right: 5rem;
+      background-color: #e63946;
+      color: white;
+      flex-wrap: wrap;
+      text-align: center;
+      box-shadow: 0.2rem 0.5rem 0.5rem 0.2rem rgba(0, 0, 0, 0.2);
+      transition: all 0.5s; }
+      @media only screen and (max-width: 768px) {
+        .account-dashboard-item {
+          margin-bottom: 2rem; } }
+      .account-dashboard-item svg {
+        width: 4rem;
+        height: 4rem;
+        margin: 1rem;
+        fill: white; }
+      .account-dashboard-item:hover {
+        cursor: pointer;
+        background-color: #e63946; }
+
 .form-group-100-field {
   display: flex;
   align-items: center;
@@ -167,6 +227,56 @@ button {
   50% {
     opacity: 0;
     transform: scale(0.7) translateY(0.1rem); } }
+
+.accountUpdateProfile-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  .accountUpdateProfile-modal-box {
+    background-color: #edf2f5;
+    width: 40%;
+    max-height: 80rem;
+    padding: 0 0 2rem 0;
+    border-radius: 1.2rem; }
+    @media only screen and (max-width: 1250px) {
+      .accountUpdateProfile-modal-box {
+        width: 70%; } }
+    @media only screen and (max-width: 600px) {
+      .accountUpdateProfile-modal-box {
+        width: 90%; } }
+    .accountUpdateProfile-modal-box-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 2.2rem;
+      padding: 1rem 3rem;
+      background-color: #e63946;
+      color: white;
+      border-top-right-radius: 1.2rem;
+      border-top-left-radius: 1.2rem; }
+      .accountUpdateProfile-modal-box-header svg {
+        width: 2rem;
+        height: 2rem;
+        fill: white;
+        transition: all 0.2s ease-in-out; }
+        .accountUpdateProfile-modal-box-header svg:hover {
+          cursor: pointer;
+          fill: #a8dadc; }
+    .accountUpdateProfile-modal-box-form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 1rem 2rem; }
+      .accountUpdateProfile-modal-box-form-title {
+        font-size: 2.4rem;
+        text-align: center;
+        margin: 1rem 0; }
 
 .home {
   display: flex;
