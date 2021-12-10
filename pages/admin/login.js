@@ -2,6 +2,7 @@ import SVG from '../../files/svg'
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 import {API} from '../../config'
+import withAdmin from '../withAdmin'
 
 const AdminLogin = ({}) => {
 
@@ -75,4 +76,4 @@ const AdminLogin = ({}) => {
   )
 }
 
-export default AdminLogin
+export default withAdmin(AdminLogin)

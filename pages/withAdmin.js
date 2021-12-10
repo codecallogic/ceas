@@ -29,9 +29,15 @@ const withAdmin = Page => {
     } catch(err){
       console.log(err)
       serverMessage = err.response ? err.response.data : 'Error ocurred, getting account data.'
-    }    
+    }  
+
   
-    if(account === null){
+    if(account !== null && context.req.url === '/admin/login'){
+        context.res.writeHead(302, {
+          Location: '/admin'
+        });
+        context.res.end();
+    }else if(account === null && context.req.url !== '/admin/login'){
       context.res.writeHead(302, {
         Location: '/admin/login'
       });
