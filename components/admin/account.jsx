@@ -18,6 +18,8 @@ const Account = ({
   admin
   }) => {
 
+  const [displayPassword, setDisplayPassword] = useState(false)
+
   useEffect(() => {
    for(let key in account){createAdmin(key, account[key])}
   }, [])
@@ -32,6 +34,12 @@ const Account = ({
     document.getElementById(id).addEventListener('keydown', (evt) => {
       if (evt.keyCode === 13) {evt.preventDefault()}
     })
+  }
+
+  const validateIsEmail = (type) => {
+    const input = document.getElementById(String(type))
+    const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/g
+    return regex.test(input.innerHTML)
   }
 
   const updateProfile = async (e) => {
@@ -56,6 +64,29 @@ const Account = ({
       if(error) error.response ? setMessage(error.response.data) : setMessage('Error ocurred updating profile, please try again later')
     }
   }
+
+  const changeEmail = async (e) => {
+    e.preventDefault()
+    setLoading('email')
+    setMessage('')
+    if(!validateIsEmail('email')) setMessage('Invalid email')
+
+    try {
+      const responseChange = await axios.post(`${API}/auth/send-change-admin-email`, {account: account, user: admin}, { 
+        headers: {
+        Authorization: `Bearer ${accessToken}`,
+        contentType: `application/json`
+      }})
+      setLoading('')
+      window.localStorage.setItem('component', 'account')
+      window.localStorage.setItem('modal', 'changeEmail')
+      window.location.href = `/admin`
+      
+    } catch (error) {
+      setLoading('')
+      if(error) error.response ? setMessage(error.response.data) : setMessage('Error ocurred updating profile, please try again later')
+    }
+  }
     
   return (
     <>
@@ -64,11 +95,7 @@ const Account = ({
           <SVG svg={'user'}></SVG>
           <span>Profile</span>
         </div>
-        <div className="account-dashboard-item" onClick={() => (resetUI(),setModal('change_password'))}>
-          <SVG svg={'password'}></SVG>
-          <span>Change Password</span>
-        </div>
-        <div className="account-dashboard-item" onClick={() => (resetUI(),setModal('change_email'))}>
+        <div className="account-dashboard-item" onClick={() => (resetUI(),setModal('changeEmail'))}>
           <SVG svg={'email'}></SVG>
           <span>Change Email</span>
         </div>
@@ -78,10 +105,10 @@ const Account = ({
           <div className="accountUpdateProfile-modal-box">
             <div className="accountUpdateProfile-modal-box-header">
               <div className="accountUpdateProfile-modal-box-header-title">Update Profile</div>
-              <div className="accountUpdateProfile-modal-box-header-svg" onClick={() => (setModal(''), setMessage(''))}><SVG svg={'close'}></SVG></div>
+              <div className="accountUpdateProfile-modal-box-header-svg" onClick={() => (resetUI(), setModal(''), setMessage(''))}><SVG svg={'close'}></SVG></div>
             </div>
             <div className="accountUpdateProfile-modal-box-content">
-              <form action="" className="form-group" onSubmit={(e) => updateProfile(e)}>
+              <form action="" className="form-group">
               <div className="form-group-100">
                 <div className="form-group-100-field">
                   <div 
@@ -132,48 +159,37 @@ const Account = ({
           </div>
         </div>
       }
-      {/* {modal == 'change_password' &&
+      {modal == 'changeEmail' &&
         <div className="accountUpdateProfile-modal">
           <div className="accountUpdateProfile-modal-box">
             <div className="accountUpdateProfile-modal-box-header">
-              <div className="accountUpdateProfile-modal-form-title">Change Password</div>
-              <div onClick={() => (setModal(''), setError(''), setMessage(''))}><SVG svg={'close'}></SVG></div>
+              <div className="accountUpdateProfile-modal-form-title">Change Email</div>
+              <div className="accountUpdateProfile-modal-box-header-svg" onClick={() => (resetUI(), setModal(''), setMessage(''))}><SVG svg={'close'}></SVG></div>
             </div>
-            <form action="" className="accountUpdateProfile-modal-box-form" onSubmit={(e) => sendResetPasswordLink(e)}>
-              <div className="form-group-single">
-                <label htmlFor="email">Email</label>
-                <input type="text" name="email" value={administrator.email} onChange={(e) => createAdministrator('email', e.target.value)} readOnly required/>
+            <div className="accountUpdateProfile-modal-box-content">
+              <form className="form-group">
+                <div className="form-group-100">
+                <div className="form-group-100">
+                <div className="form-group-100-field">
+                  <div 
+                  id="email" 
+                  contentEditable="true" 
+                  onInput={(e) => (preventEvent('email'), setMessage(''), createAdmin('email', e.target.innerHTML))}
+                  />
+                  <label 
+                  className={admin.email.length > 0 ? ' labelHover' : ''}>
+                    Email
+                  </label>
+                </div>
               </div>
-              <button type="submit" className="submit-item">{!loading && <span>Change Password</span>} {loading && <div className="loading"><span></span><span></span><span></span></div>}</button>
-              {error && <span className="form-errorMessage">{error}</span>}
-              {message && <span className="form-successMessage">{message}</span>}
-            </form>
+                </div>
+                {message.length > 0 ? <div className="form-group-message">{message}</div> : null}
+                <button className="form-group-button-100" onClick={(e) => changeEmail(e)}>{!loading && <span>Change Email</span>} {loading == 'email' && <div className="loading"><span></span><span></span><span></span></div>}</button>
+              </form>
+            </div>
           </div>
         </div>
       }
-      {modal == 'change_email' &&
-        <div className="accountUpdateProfile-modal">
-          <div className="accountUpdateProfile-modal-box">
-            <div className="accountUpdateProfile-modal-box-header">
-              <div className="accountUpdateProfile-modal-form-title">Change Password</div>
-              <div onClick={() => (setModal(''), setError(''), setMessage(''))}><SVG svg={'close'}></SVG></div>
-            </div>
-            <form action="" className="accountUpdateProfile-modal-box-form" onSubmit={(e) => sendChangeEmailConfirmation(e)}>
-              <div className="form-group-single">
-                <label htmlFor="email">Email</label>
-                <input type="email" name="email" value={administrator.email} readOnly required/>
-              </div>
-              <div className="form-group-single">
-                <label htmlFor="email">New Email</label>
-                <input type="email" name="email" value={newEmail} onChange={(e) => setNewEmail(e.target.value)} required/>
-              </div>
-              <button type="submit" className="submit-item">{!loading && <span>Save</span>} {loading && <div className="loading"><span></span><span></span><span></span></div>}</button>
-              {error && <span className="form-errorMessage">{error}</span>}
-              {message && <span className="form-successMessage">{message}</span>}
-            </form>
-          </div>
-        </div>
-      } */}
     </>
   )
 }

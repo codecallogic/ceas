@@ -201,9 +201,9 @@ button {
     cursor: pointer; }
 
 .form-group-message {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: #e63946;
-  margin: 1rem 0; }
+  margin: 0.5rem 1rem 1rem 1rem; }
 
 .loading span {
   width: 0.5rem;
@@ -284,7 +284,7 @@ button {
           .accountUpdateProfile-modal-box-header-svg svg:hover {
             cursor: pointer; }
     .accountUpdateProfile-modal-box-content {
-      padding: 0 3rem; }
+      padding: 1.5rem 3rem; }
     .accountUpdateProfile-modal-box-form {
       display: flex;
       flex-direction: column;

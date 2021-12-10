@@ -52,7 +52,7 @@ const AdminLogin = ({}) => {
             <div className="form-group-100">
               <div className="form-group-100-field bottomBorders">
                 <div id="password" className={displayPassword ? 'showPassword' : 'hidePassword'} contentEditable="true" onInput={(e) => (preventEvent('password'), setMessage(''), setPassword(e.target.innerHTML))}></div>
-                <label htmlFor="password" className={password.length > 0 ? ' labelHover' : ''}>Password</label>
+                <label className={password.length > 0 ? ' labelHover' : ''}>Password</label>
                 <span onClick={() => displayPassword ? setDisplayPassword(false) : setDisplayPassword(true)}>
                   {displayPassword ? <SVG svg={'eye-closed'}></SVG> : <SVG svg={'eye'}></SVG>}
                 </span>
