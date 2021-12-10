@@ -12,6 +12,12 @@ const AdminLogin = ({}) => {
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
 
+  const preventEvent = (id) => {
+    document.getElementById(id).addEventListener('keydown', (evt) => {
+      if (evt.keyCode === 13) {evt.preventDefault()}
+    })
+  }
+
   const login = async () => {
     setLoading(true)
     setMessage('')
@@ -38,13 +44,13 @@ const AdminLogin = ({}) => {
           <form className="form-group">
             <div className="form-group-100">
               <div className="form-group-100-field topBorders">
-                <div id="username" contentEditable="true" onInput={(e) => (setMessage(''), setUsername(e.target.innerHTML))}></div>
-                <label htmlFor="username" className={username.length > 0 ? ' labelHover' : ''}>Username</label>
+                <div id="username" contentEditable="true" onInput={(e) => (preventEvent('username'), setMessage(''), setUsername(e.target.innerHTML))}></div>
+                <label className={username.length > 0 ? ' labelHover' : ''}>Username</label>
               </div>
             </div>
             <div className="form-group-100">
               <div className="form-group-100-field bottomBorders">
-                <div id="password" className={displayPassword ? 'showPassword' : 'hidePassword'} contentEditable="true" onInput={(e) => (setMessage(''), setPassword(e.target.innerHTML))}></div>
+                <div id="password" className={displayPassword ? 'showPassword' : 'hidePassword'} contentEditable="true" onInput={(e) => (preventEvent('password'), setMessage(''), setPassword(e.target.innerHTML))}></div>
                 <label htmlFor="password" className={password.length > 0 ? ' labelHover' : ''}>Password</label>
                 <span onClick={() => displayPassword ? setDisplayPassword(false) : setDisplayPassword(true)}>
                   {displayPassword ? <SVG svg={'eye-closed'}></SVG> : <SVG svg={'eye'}></SVG>}

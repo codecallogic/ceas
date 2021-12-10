@@ -1,5 +1,11 @@
 import '../styles/app.css'
 import Head from 'next/head'
+import rootReducer from '../reducers/index'
+import {createStore} from 'redux'
+import {Provider} from 'react-redux'
+import {composeWithDevTools} from 'redux-devtools-extension'
+
+const store = createStore(rootReducer, composeWithDevTools())
 
 function MyApp({ Component, pageProps }) {
   return <>
@@ -11,7 +17,9 @@ function MyApp({ Component, pageProps }) {
       <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet" />
       </>
     </Head>
-    <Component {...pageProps} />
+    <Provider store={store}>
+      <Component {...pageProps} />
+    </Provider>    
   </>
 }
 

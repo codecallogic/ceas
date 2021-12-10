@@ -40,6 +40,7 @@ const withAdmin = Page => {
       return {
         ...(Page.getInitialProps ? await Page.getInitialProps(context) : {}),
         account,
+        accessToken,
         serverMessage
       }
     }
