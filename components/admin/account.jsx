@@ -67,9 +67,11 @@ const Account = ({
 
   const changeEmail = async (e) => {
     e.preventDefault()
+    if(!validateIsEmail('email')) return setMessage('Invalid email')
+    if(account.email == admin.email) return setMessage('Cannot be the same email')
+
     setLoading('email')
     setMessage('')
-    if(!validateIsEmail('email')) setMessage('Invalid email')
 
     try {
       const responseChange = await axios.post(`${API}/auth/send-change-admin-email`, {account: account, user: admin}, { 
@@ -78,9 +80,7 @@ const Account = ({
         contentType: `application/json`
       }})
       setLoading('')
-      window.localStorage.setItem('component', 'account')
-      window.localStorage.setItem('modal', 'changeEmail')
-      window.location.href = `/admin`
+      setMessage(`Email change request was sent to ${admin.email}, please confirm to make changes.`)
       
     } catch (error) {
       setLoading('')

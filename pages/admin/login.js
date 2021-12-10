@@ -45,15 +45,32 @@ const AdminLogin = ({}) => {
           <form className="form-group">
             <div className="form-group-100">
               <div className="form-group-100-field topBorders">
-                <div id="username" contentEditable="true" onInput={(e) => (preventEvent('username'), setMessage(''), setUsername(e.target.innerHTML))}></div>
-                <label className={username.length > 0 ? ' labelHover' : ''}>Username</label>
+                <div 
+                id="username" 
+                contentEditable="true" 
+                onInput={(e) => (preventEvent('username'), setMessage(''), setUsername(e.target.innerHTML))}
+                />
+                <label 
+                  className={username.length > 0 ? ' labelHover' : ''}
+                >
+                Username
+                </label>
               </div>
             </div>
             <div className="form-group-100">
               <div className="form-group-100-field bottomBorders">
-                <div id="password" className={displayPassword ? 'showPassword' : 'hidePassword'} contentEditable="true" onInput={(e) => (preventEvent('password'), setMessage(''), setPassword(e.target.innerHTML))}></div>
-                <label className={password.length > 0 ? ' labelHover' : ''}>Password</label>
-                <span onClick={() => displayPassword ? setDisplayPassword(false) : setDisplayPassword(true)}>
+                <div 
+                id="password" 
+                className={displayPassword ? 'showPassword' : 'hidePassword'} 
+                contentEditable="true" 
+                onInput={(e) => (preventEvent('password'), setMessage(''), setPassword(e.target.innerHTML))} 
+                onKeyUp={(e) => e.keyCode == 13 ? login() : null}></div>
+                <label 
+                className={password.length > 0 ? ' labelHover' : ''}>
+                  Password
+                </label>
+                <span 
+                onClick={() => displayPassword ? setDisplayPassword(false) : setDisplayPassword(true)}>
                   {displayPassword ? <SVG svg={'eye-closed'}></SVG> : <SVG svg={'eye'}></SVG>}
                 </span>
               </div>
