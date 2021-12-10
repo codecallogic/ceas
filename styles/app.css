@@ -20,7 +20,13 @@ body {
   font-style: normal;
   color: black;
   font-weight: 300;
-  line-height: 1.6; }
+  line-height: 1.6;
+  overflow-y: 'scroll'; }
+  body::-webkit-scrollbar {
+    width: 0.5rem;
+    background-color: #757575; }
+  body::-webkit-scrollbar-thumb {
+    background-color: #e63946; }
 
 h3 {
   font-size: 2rem;
