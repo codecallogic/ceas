@@ -84,7 +84,7 @@ button {
     display: flex; }
     .account-breadcrumbs-item {
       display: flex;
-      align-items: center;
+      align-items: baseline;
       font-size: 1.8rem;
       color: #b3b3b3; }
       .account-breadcrumbs-item-title {
@@ -99,7 +99,7 @@ button {
         fill: #e63946; }
       .account-breadcrumbs-item-subtitle {
         display: flex;
-        align-items: center; }
+        align-items: baseline; }
   .account-dashboard {
     display: flex;
     flex-wrap: wrap;
@@ -137,39 +137,80 @@ button {
         cursor: pointer;
         background-color: #e63946; }
 
-.form-group-100-field {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  resize: none;
-  padding: 2rem 1.5rem;
-  box-sizing: border-box;
-  outline: none;
-  font-size: 1.4rem;
-  font-family: inherit;
-  border: none;
-  background-color: #edf2f5;
-  color: #b3b3b3;
+.form-group-100 {
   position: relative; }
-  .form-group-100-field label {
-    position: absolute;
+  .form-group-100-field {
     display: flex;
-    top: 40%;
-    transition: all 0.3s ease-in-out;
-    font-size: 1.2rem; }
-  .form-group-100-field div {
+    align-items: center;
     width: 100%;
-    z-index: 2; }
-    .form-group-100-field div:focus {
-      outline: none; }
-      .form-group-100-field div:focus ~ label {
-        top: 5%; }
-  .form-group-100-field svg {
-    width: 2rem;
-    height: 2rem;
-    fill: #b3b3b3; }
-    .form-group-100-field svg:hover {
-      cursor: pointer; }
+    resize: none;
+    padding: 2rem 1.5rem;
+    box-sizing: border-box;
+    outline: none;
+    font-size: 1.4rem;
+    font-family: inherit;
+    border: none;
+    background-color: #edf2f5;
+    margin: 0.5rem 0;
+    color: #b3b3b3;
+    text-transform: lowercase;
+    position: relative; }
+    .form-group-100-field label {
+      position: absolute;
+      display: flex;
+      top: 40%;
+      transition: all 0.3s ease-in-out;
+      font-size: 1.2rem; }
+    .form-group-100-field-label-dropdown {
+      width: 95%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between; }
+      .form-group-100-field-label-dropdown:hover {
+        cursor: pointer; }
+      .form-group-100-field-label-dropdown svg {
+        width: 2rem !important;
+        height: 2rem !important;
+        fill: #e63946 !important; }
+    .form-group-100-field div {
+      width: 100%;
+      z-index: 2; }
+      .form-group-100-field div:focus {
+        outline: none; }
+        .form-group-100-field div:focus ~ label {
+          top: 5%; }
+    .form-group-100-field svg {
+      width: 2rem;
+      height: 2rem;
+      fill: #b3b3b3; }
+      .form-group-100-field svg:hover {
+        cursor: pointer; }
+    .form-group-100-field-dropdown {
+      position: absolute;
+      top: 100%;
+      max-height: 10rem;
+      width: 95%;
+      margin: 0 0 0 5%;
+      background-color: #edf2f5;
+      box-shadow: 2rem 4rem 3rem 1rem rgba(0, 0, 0, 0.3);
+      border-bottom-left-radius: 1.2rem;
+      overflow-y: scroll;
+      z-index: 1000; }
+      .form-group-100-field-dropdown::-webkit-scrollbar {
+        width: 0.3rem; }
+      .form-group-100-field-dropdown::-webkit-scrollbar-thumb {
+        background-color: #e63946;
+        border-radius: 20%; }
+      .form-group-100-field-dropdown-item {
+        padding: 1rem 1rem;
+        width: 100%;
+        text-align: center;
+        font-size: 1.4rem; }
+        .form-group-100-field-dropdown-item:hover {
+          cursor: pointer;
+          background-color: #a8dadc;
+          color: white;
+          font-weight: 700; }
 
 .form-group-checkbox {
   display: flex;

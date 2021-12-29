@@ -14,6 +14,8 @@ const Account = ({
   setMessage,
   loading,
   setLoading,
+  preventEvent,
+  validateIsEmail,
   createAdmin,
   admin
   }) => {
@@ -26,22 +28,10 @@ const Account = ({
 
   useEffect(() => {
     for(let key in account){
-      if(document.getElementById(String(key))) document.getElementById(String(key)).innerHTML = account[key]
+      if(document.getElementById(String(key))) document.getElementById(String(key)).innerText = account[key]
     }
   }, [modal])
   
-  const preventEvent = (id) => {
-    document.getElementById(id).addEventListener('keydown', (evt) => {
-      if (evt.keyCode === 13) {evt.preventDefault()}
-    })
-  }
-
-  const validateIsEmail = (type) => {
-    const input = document.getElementById(String(type))
-    const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/g
-    return regex.test(input.innerHTML)
-  }
-
   const updateProfile = async (e) => {
     e.preventDefault()
     setLoading('profile')
@@ -114,7 +104,7 @@ const Account = ({
                   <div 
                   id="username" 
                   contentEditable="true" 
-                  onInput={(e) => (preventEvent('username'), setMessage(''), createAdmin('username', e.target.innerHTML))}
+                  onInput={(e) => (preventEvent('username'), setMessage(''), createAdmin('username', e.target.innerText))}
                   />
                   <label 
                   className={admin.username.length > 0 ? ' labelHover' : ''}>
@@ -127,8 +117,7 @@ const Account = ({
                 <div 
                   id="firstName" 
                   contentEditable="true"
-                  onInput={(e) => 
-                  (preventEvent('firstName'), setMessage(''), createAdmin('firstName', e.target.innerHTML))}
+                  onInput={(e) => (preventEvent('firstName'), setMessage(''), createAdmin('firstName', e.target.innerText))}
                 />
                 <label 
                   className={admin.firstName.length > 0 ? ' labelHover' : ''}
@@ -143,7 +132,7 @@ const Account = ({
                   id="lastName" 
                   contentEditable="true"
                   onInput={(e) => 
-                  (preventEvent('lastName'), setMessage(''), createAdmin('lastName', e.target.innerHTML))}
+                  (preventEvent('lastName'), setMessage(''), createAdmin('lastName', e.target.innerText))}
                 />
                 <label 
                   className={admin.lastName.length > 0 ? ' labelHover' : ''}
@@ -174,7 +163,7 @@ const Account = ({
                   <div 
                   id="email" 
                   contentEditable="true" 
-                  onInput={(e) => (preventEvent('email'), setMessage(''), createAdmin('email', e.target.innerHTML))}
+                  onInput={(e) => (preventEvent('email'), setMessage(''), createAdmin('email', e.target.innerText))}
                   />
                   <label 
                   className={admin.email.length > 0 ? ' labelHover' : ''}>

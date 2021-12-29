@@ -26,10 +26,10 @@ UpdateEmail.getInitialProps = async ({res, query}) => {
     res.setHeader("Set-Cookie", 'userAdmin=deleted; path=/; Max-Age=0');
     res.setHeader("Set-Cookie", 'accessTokenAdmin=deleted; path=/; Max-Age=0');
 
-    res.writeHead(302, {
-      Location: '/admin/login'
-    });
-    res.end();
+    // res.writeHead(302, {
+    //   Location: '/admin/login'
+    // });
+    // res.end();
 
   } catch (err) {
     console.log(err)

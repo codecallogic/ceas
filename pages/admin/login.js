@@ -14,9 +14,13 @@ const AdminLogin = ({}) => {
   const [message, setMessage] = useState('')
 
   const preventEvent = (id) => {
-    document.getElementById(id).addEventListener('keydown', (evt) => {
-      if (evt.keyCode === 13) {evt.preventDefault()}
-    })
+    if(document.getElementById(id).innerHTML.includes('<div><br></div>')){
+      document.getElementById(id).removeChild(document.getElementById(id).childNodes[1])
+    }else{
+      document.getElementById(id).addEventListener('keydown', (evt) => {
+        if (evt.keyCode === 13) {evt.preventDefault()}
+      })
+    }
   }
 
   const login = async () => {
@@ -42,13 +46,13 @@ const AdminLogin = ({}) => {
           <h3 className="adminLogin-right-title">Sign In</h3>
           <p className="adminLogin-right-sub_title mb4">Only authorized personal can login. If you'd like access please visit or contact our tech team for help.</p>
 
-          <form className="form-group">
+          <form className="form-group mb2">
             <div className="form-group-100">
               <div className="form-group-100-field topBorders">
                 <div 
                 id="username" 
                 contentEditable="true" 
-                onInput={(e) => (preventEvent('username'), setMessage(''), setUsername(e.target.innerHTML))}
+                onInput={(e) => (preventEvent('username'), setMessage(''), setUsername(e.target.innerText))}
                 />
                 <label 
                   className={username.length > 0 ? ' labelHover' : ''}

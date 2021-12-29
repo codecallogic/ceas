@@ -1,5 +1,7 @@
 .form-group {
   &-100 {
+    position: relative;
+
     &-field {
       display: flex;
       align-items: center;
@@ -12,7 +14,9 @@
       font-family: inherit;
       border: none;
       background-color: $color-light-grey-2;
+      margin: 0.5rem 0;
       color: $color-light-grey-3;
+      text-transform: lowercase;
       position: relative;
 
       // &[contenteditable='true']:empty:not(:focus):before {
@@ -27,6 +31,23 @@
         top: 40%;
         transition: all 0.3s ease-in-out;
         font-size: 1.2rem;
+      }
+
+      &-label-dropdown {
+        width: 95%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        svg {
+          width: 2rem !important;
+          height: 2rem !important;
+          fill: $color-scheme-1 !important;
+        }
       }
 
       div {
@@ -50,6 +71,42 @@
 
         &:hover {
           cursor: pointer;
+        }
+      }
+
+      &-dropdown {
+        position: absolute;
+        top: 100%;
+        max-height: 10rem;
+        width: 95%;
+        margin: 0 0 0 5%;
+        background-color: $color-light-grey-2;
+        box-shadow: 2rem 4rem 3rem 1rem rgba(0, 0, 0, 0.3);
+        border-bottom-left-radius: 1.2rem;
+        overflow-y: scroll;
+        z-index: 1000;
+
+        &::-webkit-scrollbar {
+          width: 0.3rem;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: $color-scheme-1;
+          border-radius: 20%;
+        }
+
+        &-item {
+          padding: 1rem 1rem;
+          width: 100%;
+          text-align: center;
+          font-size: 1.4rem;
+
+          &:hover {
+            cursor: pointer;
+            background-color: $color-scheme-3;
+            color: white;
+            font-weight: 700;
+          }
         }
       }
     }
