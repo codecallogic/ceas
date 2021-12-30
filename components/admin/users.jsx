@@ -32,13 +32,17 @@ const Users = ({
     setMessage('')
 
     try {
-      const responseAdmin = await axios.post(`${API}/auth/create-admin`, admin, { 
+      const responseAdmin = await axios.post(`${API}/auth/invite-admin`, admin, { 
         headers: {
         Authorization: `Bearer ${accessToken}`,
         contentType: `application/json`
       }})
       setLoading('')
-      setMessage(`Admin created`)
+      setMessage(responseAdmin.data)
+      for(let key in admin){
+        if(document.getElementById(key)) document.getElementById(key).innerHTML = ''
+      }
+      resetAdministrator()
       
     } catch (error) {
       setLoading('')
@@ -176,7 +180,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     createAdmin: (name, value) => dispatch({type: 'CREATE_ADMIN', name: name, value: value}),
-    resetAdministrator: () => dispatch({type: 'RESET_STATE'})
+    resetAdministrator: () => dispatch({type: 'RESET_ADMIN'})
   }
 }
 

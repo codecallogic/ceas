@@ -14,6 +14,9 @@ export const adminReducer = (state = initialState, action) => {
         ...state,
         [action.name]: action.value
       }
+
+    case 'RESET_ADMIN':
+      return initialState
     
     default:
       return state

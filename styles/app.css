@@ -397,3 +397,54 @@ button {
     color: white; }
     .message-subtitle a {
       color: white; }
+
+.activate-admin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 10rem 0;
+  padding: 0 3rem;
+  width: 100%; }
+  .activate-admin-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem 0; }
+    @media only screen and (max-width: 992px) {
+      .activate-admin-title {
+        flex-direction: column; } }
+    .activate-admin-title span {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-left: 5rem; }
+      @media only screen and (max-width: 992px) {
+        .activate-admin-title span {
+          margin-top: 5rem; } }
+  .activate-admin-svg {
+    margin: 3rem 0 0 0; }
+    .activate-admin-svg svg {
+      width: 25rem;
+      height: 25rem; }
+  .activate-admin-button {
+    display: flex;
+    align-items: center;
+    margin: 3rem 0;
+    padding: 1rem 2rem;
+    border-radius: 1.2rem;
+    box-shadow: 1rem 0.3rem 2rem 0.4rem rgba(0, 0, 0, 0.3);
+    transition: all 0.5s ease-in-out; }
+    .activate-admin-button:hover {
+      cursor: pointer;
+      box-shadow: 1rem 0.5rem 2rem 1rem rgba(0, 0, 0, 0.3); }
+    .activate-admin-button svg {
+      width: 4rem;
+      height: 4rem; }
+    .activate-admin-button span {
+      font-weight: 700;
+      font-size: 2.2rem;
+      margin-left: 2rem; }
+  .activate-admin-error {
+    font-size: 1.8rem;
+    font-size: 400;
+    color: red; }

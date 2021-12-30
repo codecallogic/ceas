@@ -1,0 +1,74 @@
+.activate {
+  &-admin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 10rem 0;
+    padding: 0 3rem;
+    width: 100%;
+
+    &-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 2rem 0;
+
+      @media only screen and (max-width: $large) {
+        flex-direction: column;
+      }
+
+      span {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-left: 5rem;
+
+        @media only screen and (max-width: $large) {
+          margin-top: 5rem;
+        }
+      }
+    }
+
+    &-svg {
+      margin: 3rem 0 0 0;
+
+      svg {
+        width: 25rem;
+        height: 25rem;
+      }
+    }
+
+    &-button {
+      display: flex;
+      align-items: center;
+      margin: 3rem 0;
+      padding: 1rem 2rem;
+      border-radius: 1.2rem;
+      box-shadow: 1rem 0.3rem 2rem 0.4rem rgba(0, 0, 0, 0.3);
+      // border: 0.1rem dashed $color-scheme-5;
+      transition: all 0.5s ease-in-out;
+
+      &:hover {
+        cursor: pointer;
+        box-shadow: 1rem 0.5rem 2rem 1rem rgba(0, 0, 0, 0.3);
+      }
+
+      svg {
+        width: 4rem;
+        height: 4rem;
+      }
+
+      span {
+        font-weight: 700;
+        font-size: 2.2rem;
+        margin-left: 2rem;
+      }
+    }
+
+    &-error {
+      font-size: 1.8rem;
+      font-size: 400;
+      color: red;
+    }
+  }
+}

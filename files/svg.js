@@ -4,6 +4,45 @@ const SVG = ({svg, classprop, color}) => {
   const selectSVG = (svg) => {
     switch(svg){
 
+      case 'arrow-up':
+        return <svg version="1.1" className={classprop} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+          <title>Arrow Up</title>
+          <path fill={color} d="M64 .3C28.7.3 0 28.8 0 64s28.7 63.7 64 63.7 64-28.5 64-63.7S99.3.3 64 .3zm0 121C32.2 121.3 6.4 95.7 6.4 64 6.4 32.3 32.2 6.7 64 6.7s57.6 25.7 57.6 57.3c0 31.7-25.8 57.3-57.6 57.3zM38.4 58.9V66c0 2.2 1.8 3.9 3.9 3.9l15.3-12.2v28.7c0 2.2 2.3 3.2 4.4 3.2h4c2.2 0 3.9-1.8 3.9-3.9V57.2l15.8 12.7c2.2 0 3.9-1.8 3.9-3.9v-7.1L64 32.2 38.4 58.9z"/>
+        </svg>  
+        break;
+
+      case 'admins':
+        return <svg version="1.1" className={classprop} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+          <title>Admins</title>
+          <g id="Business_Team">
+            <path style={{ fill: 'transparent', stroke: '#37474f',strokeLinecap: 'round', strokeLinejoin: 'round', strokeMiterlimit: 3}} className="st0" d="M50.5 15.5h5M57.5 15.5h1M13.5 15.5h-5M6.5 15.5h-1"/>
+            <circle style={{ fill: 'transparent', stroke: '#37474f',strokeLinecap: 'round', strokeLinejoin: 'round', strokeMiterlimit: 3}} className="st0" cx="32" cy="8.5" r="8"/>
+            <path style={{ fill: color, stroke: '#37474f',strokeLinecap: 'round', strokeLinejoin: 'round', strokeMiterlimit: 3}}  className="st1" d="m37.5 3.9.6-.5C36.6 1.6 34.4.5 32 .5c-4.4 0-8 3.6-8 8h.8c4.6 0 9.2-1.6 12.7-4.6z"/>
+            <path style={{ fill: 'white', stroke: '#37474f',strokeLinecap: 'round', strokeLinejoin: 'round', strokeMiterlimit: 3}}  className="st0" d="M32 16.5c-1.1 0-2.1-.2-3-.6v1.6l3 4.5 3-4.5v-1.6c-.9.4-1.9.6-3 .6zM39 27.5v7M25 27.5v7"/>
+            <path style={{ fill: 'white', stroke: '#37474f',strokeLinecap: 'round', strokeLinejoin: 'round', strokeMiterlimit: 3}}  className="st0" d="m29 17.5-.5 4.5h7l-.5-4.5-3 4.5z"/>
+            <path style={{ fill: 'transparent', stroke: '#37474f',strokeLinecap: 'round', strokeLinejoin: 'round', strokeMiterlimit: 3}} className="st0" d="M44 28.9v-4.2c0-2-1.2-3.8-3-4.6l-6-2.7-3 4.6-3-4.5-6 2.7c-1.8.8-3 2.6-3 4.6v4.1"/><g>
+              
+            <circle style={{ fill: 'white', stroke: '#37474f',strokeLinecap: 'round', strokeLinejoin: 'round', strokeMiterlimit: 3}} className="st0" cx="12.5" cy="35.5" r="8"/>
+            <path style={{ fill: color, stroke: '#37474f',strokeLinecap: 'round', strokeLinejoin: 'round', strokeMiterlimit: 3}} className="st1" d="m18 30.9.6-.5c-1.5-1.8-3.7-2.9-6.1-2.9-4.4 0-8 3.6-8 8h.8c4.6 0 9.2-1.6 12.7-4.6z"/><g>
+            <path style={{ fill: 'white', stroke: '#37474f',strokeLinecap: 'round', strokeLinejoin: 'round', strokeMiterlimit: 3}} className="st0" d="M12.5 43.5c-1.1 0-2.1-.2-3-.6v1.6l3 4.5 3-4.5v-1.6c-.9.4-1.9.6-3 .6zM19.5 54.5v7M5.5 54.5v7"/>
+            <path style={{ fill: 'white', stroke: '#37474f',strokeLinecap: 'round', strokeLinejoin: 'round', strokeMiterlimit: 3}} className="st0" d="M9.5 44.5 9 49h7l-.5-4.5-3 4.5z"/>
+            <path style={{ fill: 'transparent', stroke: '#37474f',strokeLinecap: 'round', strokeLinejoin: 'round', strokeMiterlimit: 3}} className="st0" d="M24.5 61.5v-9.8c0-2-1.2-3.8-3-4.6l-6-2.7-3 4.5-3-4.5-6 2.7c-1.8.8-3 2.6-3 4.6v9.8"/></g></g><g>
+              
+            <circle style={{ fill: 'white', stroke: '#37474f',strokeLinecap: 'round', strokeLinejoin: 'round', strokeMiterlimit: 3}} className="st0" cx="51.5" cy="35.5" r="8"/>
+            <path style={{ fill: color, stroke: '#37474f',strokeLinecap: 'round', strokeLinejoin: 'round', strokeMiterlimit: 3}} className="st1" d="m57 30.9.6-.5c-1.5-1.8-3.7-2.9-6.1-2.9-4.4 0-8 3.6-8 8h.8c4.6 0 9.2-1.6 12.7-4.6z"/><g>
+            <path style={{ fill: 'white', stroke: '#37474f',strokeLinecap: 'round', strokeLinejoin: 'round', strokeMiterlimit: 3}} className="st0" d="M48.5 44.5 48 49h7l-.5-4.5-3 4.5z"/>
+            <path style={{ fill: 'white', stroke: '#37474f',strokeLinecap: 'round', strokeLinejoin: 'round', strokeMiterlimit: 3}} className="st0" d="M63.5 61.5v-9.8c0-2-1.2-3.8-3-4.6l-6-2.7-3 4.5-3-4.5-6 2.7c-1.8.8-3 2.6-3 4.6v9.8"/></g></g><g>
+            <path style={{ fill: 'white', stroke: '#37474f',strokeLinecap: 'round', strokeLinejoin: 'round', strokeMiterlimit: 3}} className="st0" d="M32 39v6"/></g>
+            <path style={{ fill: 'transparent', stroke: '#37474f',strokeLinecap: 'round', strokeLinejoin: 'round', strokeMiterlimit: 3}} className="st0" d="M26.4 48.6 32 45l5.6 3.6"/>
+
+            <path style={{ fill: 'transparent', stroke: '#37474f',strokeLinecap: 'round', strokeLinejoin: 'round', strokeMiterlimit: 3}}className="st0" d="M51.5 43.5c-1.1 0-2.1-.2-3-.6v1.6l3 4.5 3-4.5v-1.6c-.9.4-1.9.6-3 .6zM58.5 54.5v7M44.5 54.5v7"/>
+            <path  style={{ fill: color, stroke: '#37474f',strokeLinecap: 'round', strokeLinejoin: 'round', strokeMiterlimit: 10}} d="m15 61-2.5 2.5L10 61l1.5-12h2z"/>
+            <path style={{ fill: color, stroke: '#37474f',strokeLinecap: 'round', strokeLinejoin: 'round', strokeMiterlimit: 10, zIndex: '5000 !important'}} d="M34.5 34 32 36.5 29.5 34 31 22h2z"/>
+            <path  style={{ fill: color, stroke: '#37474f',strokeLinecap: 'round', strokeLinejoin: 'round', strokeMiterlimit: 10}} d="m54 61-2.5 2.5L49 61l1.5-12h2z"/>
+          </g>
+        </svg>  
+        break;
+
       case 'dropdown':
         return <svg version="1.1" className={classprop} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <title>Dropdown</title>
