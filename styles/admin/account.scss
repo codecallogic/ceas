@@ -2,6 +2,21 @@
   width: 100%;
   padding: 8rem;
 
+  &-user {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    margin: 2rem 0;
+    font-weight: 700;
+    color: $color-light-grey-1;
+
+    svg {
+      width: 4rem;
+      height: 4rem;
+      margin-right: 1rem;
+    }
+  }
+
   &-breadcrumbs {
     display: flex;
 

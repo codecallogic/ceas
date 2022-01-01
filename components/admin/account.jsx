@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {useState, useEffect} from 'react'
 import {API} from '../../config'
 import axios from 'axios'
+import AdminModals from '../modals/AdminModals'
 
 const Account = ({
   account,
@@ -19,8 +20,6 @@ const Account = ({
   createAdmin,
   admin
   }) => {
-
-  const [displayPassword, setDisplayPassword] = useState(false)
 
   useEffect(() => {
    for(let key in account){createAdmin(key, account[key])}
@@ -91,93 +90,32 @@ const Account = ({
         </div>
       </div>
       {modal == 'profile' &&
-        <div className="accountUpdateProfile-modal">
-          <div className="accountUpdateProfile-modal-box">
-            <div className="accountUpdateProfile-modal-box-header">
-              <div className="accountUpdateProfile-modal-box-header-title">Update Profile</div>
-              <div className="accountUpdateProfile-modal-box-header-svg" onClick={() => (resetUI(), setModal(''), setMessage(''))}><SVG svg={'close'}></SVG></div>
-            </div>
-            <div className="accountUpdateProfile-modal-box-content">
-              <form action="" className="form-group">
-              <div className="form-group-100">
-                <div className="form-group-100-field">
-                  <div 
-                  id="username" 
-                  contentEditable="true" 
-                  onInput={(e) => (preventEvent('username'), setMessage(''), createAdmin('username', e.target.innerText))}
-                  />
-                  <label 
-                  className={admin.username.length > 0 ? ' labelHover' : ''}>
-                    Username
-                  </label>
-                </div>
-              </div>
-              <div className="form-group-100">
-                <div className="form-group-100-field">
-                <div 
-                  id="firstName" 
-                  contentEditable="true"
-                  onInput={(e) => (preventEvent('firstName'), setMessage(''), createAdmin('firstName', e.target.innerText))}
-                />
-                <label 
-                  className={admin.firstName.length > 0 ? ' labelHover' : ''}
-                >
-                  First Name
-                </label>
-                </div>
-              </div>
-              <div className="form-group-100">
-                <div className="form-group-100-field">
-                <div 
-                  id="lastName" 
-                  contentEditable="true"
-                  onInput={(e) => 
-                  (preventEvent('lastName'), setMessage(''), createAdmin('lastName', e.target.innerText))}
-                />
-                <label 
-                  className={admin.lastName.length > 0 ? ' labelHover' : ''}
-                >
-                  Last Name
-                </label>
-                </div>
-              </div>
-              {message.length > 0 ? <div className="form-group-message">{message}</div> : null}
-              <button className="form-group-button-100" onClick={(e) => updateProfile(e)}>{!loading && <span>Save</span>} {loading == 'profile' && <div className="loading"><span></span><span></span><span></span></div>}</button>
-              </form>
-            </div>
-          </div>
-        </div>
+        <AdminModals
+          type={'update_admin'}
+          title={'Update Profile'}
+          updateProfile={updateProfile}
+          resetUI={resetUI}
+          setModal={setModal}
+          setMessage={setMessage}
+          message={message}
+          loading={loading}
+          preventEvent={preventEvent}
+        >
+        </AdminModals>
       }
       {modal == 'changeEmail' &&
-        <div className="accountUpdateProfile-modal">
-          <div className="accountUpdateProfile-modal-box">
-            <div className="accountUpdateProfile-modal-box-header">
-              <div className="accountUpdateProfile-modal-form-title">Change Email</div>
-              <div className="accountUpdateProfile-modal-box-header-svg" onClick={() => (resetUI(), setModal(''), setMessage(''))}><SVG svg={'close'}></SVG></div>
-            </div>
-            <div className="accountUpdateProfile-modal-box-content">
-              <form className="form-group">
-                <div className="form-group-100">
-                <div className="form-group-100">
-                <div className="form-group-100-field">
-                  <div 
-                  id="email" 
-                  contentEditable="true" 
-                  onInput={(e) => (preventEvent('email'), setMessage(''), createAdmin('email', e.target.innerText))}
-                  />
-                  <label 
-                  className={admin.email.length > 0 ? ' labelHover' : ''}>
-                    Email
-                  </label>
-                </div>
-              </div>
-                </div>
-                {message.length > 0 ? <div className="form-group-message">{message}</div> : null}
-                <button className="form-group-button-100" onClick={(e) => changeEmail(e)}>{!loading && <span>Change Email</span>} {loading == 'email' && <div className="loading"><span></span><span></span><span></span></div>}</button>
-              </form>
-            </div>
-          </div>
-        </div>
+        <AdminModals
+          type={'change_email'}
+          title={'Change Email'}
+          changeEmail={changeEmail}
+          resetUI={resetUI}
+          setModal={setModal}
+          setMessage={setMessage}
+          message={message}
+          loading={loading}
+          preventEvent={preventEvent}
+        >
+        </AdminModals>
       }
     </>
   )

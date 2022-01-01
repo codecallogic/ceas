@@ -1,6 +1,8 @@
 import withAdmin from '../withAdmin'
 import {useState, useEffect} from 'react'
 import SVG from '../../files/svg'
+import {tableData} from '../../helpers/tables'
+import { getToken } from '../../helpers/auth'
 
 // COMPONENTS
 import Account from '../../components/admin/account'
@@ -11,7 +13,7 @@ const AdminDashboard = ({account, accessToken, params, serverMessage}) => {
   const [modal, setModal] = useState('')
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState('')
-  const [component, setComponent] = useState('')
+  const [component, setComponent] = useState('users')
 
   useEffect(() => {
     if(window.localStorage.getItem('component')) setComponent(window.localStorage.getItem('component'))
@@ -45,6 +47,7 @@ const AdminDashboard = ({account, accessToken, params, serverMessage}) => {
 
   return (
     <div className="account">
+      <div className="account-user"><SVG svg={'user_2'} color={'#e63946'}></SVG> Welcome, {account ? account.username : null}</div>
       <div className="account-breadcrumbs">
         <div className="account-breadcrumbs-item">
           <span className="account-breadcrumbs-item-title" onClick={() => ( resetUILocalStorage(), setComponent(''), setModal(''))}>Dashboard</span>
@@ -109,6 +112,19 @@ const AdminDashboard = ({account, accessToken, params, serverMessage}) => {
       }
     </div>
   )
+}
+
+AdminDashboard.getInitialProps = async (context) => {
+   
+  const token = getToken('accessTokenAdmin', context.req)
+  let accessToken = null
+  if(token){accessToken = token.split('=')[1]}
+
+  console.log(await tableData(accessToken))
+
+  return {
+    data: null
+  }
 }
 
 export default withAdmin(AdminDashboard)

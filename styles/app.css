@@ -80,6 +80,17 @@ button {
 .account {
   width: 100%;
   padding: 8rem; }
+  .account-user {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    margin: 2rem 0;
+    font-weight: 700;
+    color: #b3b3b3; }
+    .account-user svg {
+      width: 4rem;
+      height: 4rem;
+      margin-right: 1rem; }
   .account-breadcrumbs {
     display: flex; }
     .account-breadcrumbs-item {
@@ -337,6 +348,48 @@ button {
       flex-direction: column;
       justify-content: center;
       padding: 1rem 2rem; }
+
+.table {
+  margin: 2rem 0; }
+  .table-header {
+    width: 100%;
+    padding: 1rem 2rem;
+    background-color: #e63946;
+    border-top-right-radius: 2rem;
+    border-top-left-radius: 2rem; }
+    .table-header-title {
+      font-size: 2.2rem;
+      color: #f1faee;
+      font-weight: 700; }
+  .table-headers {
+    display: flex;
+    padding: 1rem 0;
+    background-color: blue;
+    overflow-x: scroll;
+    overflow-y: hidden; }
+    .table-headers::-webkit-scrollbar {
+      height: 0.3rem;
+      width: 0.5rem;
+      background-color: #e63946; }
+    .table-headers::-webkit-scrollbar-thumb {
+      background-color: #f1faee; }
+    .table-headers-item {
+      overflow: hidden;
+      text-align: center;
+      font-size: 1.4rem;
+      padding: 0 1rem;
+      min-width: 11rem;
+      max-width: 11rem;
+      background-color: red;
+      word-break: break-word;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2; }
+      .table-headers-item:first-child {
+        width: 3rem;
+        min-width: 5rem;
+        max-width: 5rem;
+        background-color: green; }
 
 .home {
   display: flex;
