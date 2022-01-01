@@ -8,8 +8,7 @@ import { getToken } from '../../helpers/auth'
 import Account from '../../components/admin/account'
 import Users from '../../components/admin/users'
 
-const AdminDashboard = ({account, accessToken, params, serverMessage}) => {
-
+const AdminDashboard = ({data, account, accessToken, params, serverMessage}) => {
   const [modal, setModal] = useState('')
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState('')
@@ -96,6 +95,7 @@ const AdminDashboard = ({account, accessToken, params, serverMessage}) => {
       }
       { component == 'users' &&
         <Users
+          data={data}
           account={account}
           accessToken={accessToken}
           resetUI={resetUILocalStorage}
@@ -115,15 +115,17 @@ const AdminDashboard = ({account, accessToken, params, serverMessage}) => {
 }
 
 AdminDashboard.getInitialProps = async (context) => {
+
+  let data = new Object()
    
   const token = getToken('accessTokenAdmin', context.req)
   let accessToken = null
   if(token){accessToken = token.split('=')[1]}
 
-  console.log(await tableData(accessToken))
+  data.adminUsers = await tableData(accessToken)
 
   return {
-    data: null
+    data: Object.keys(data).length > 0 ? data : null
   }
 }
 

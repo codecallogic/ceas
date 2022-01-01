@@ -1,8 +1,10 @@
+import {filterTable} from '../helpers/tables'
 
 const Table = ({
-  title
+  title,
+  adminUsers
 }) => {
-  
+  console.log(adminUsers)
   return (
     <div className="table">
       <div className="table-header">
@@ -10,16 +12,13 @@ const Table = ({
       </div>
       <div className="table-headers">
         <div className="table-headers-item">&nbsp;</div>
-        <div className="table-headers-item">First Name</div>
-        <div className="table-headers-item">Last Name</div>
-        <div className="table-headers-item">Username</div>
-        <div className="table-headers-item">Role</div>
-        <div className="table-headers-item">This is a long header</div>
-        <div className="table-headers-item">This a new header</div>
-        <div className="table-headers-item">This another header</div>
-        <div className="table-headers-item">This another header</div>
-        <div className="table-headers-item">This another header</div>
-        <div className="table-headers-item">This another header This another header This another header This another header This another header</div>
+        { 
+          filterTable(adminUsers).length > 0 && filterTable(adminUsers, ['_id', 'createdAt', 'updatedAt', '__v'], 1).map((item, idx, array) => 
+            Object.keys(array[0]).map((key, idx) => 
+              <div key={idx} className="table-headers-item">{key}</div>
+            )
+          )
+        }
       </div>
     </div>
   )

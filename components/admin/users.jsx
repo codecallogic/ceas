@@ -7,6 +7,7 @@ import AdminModals from '../modals/AdminModals'
 import AdminTables from '../table'
 
 const Users = ({
+  data,
   accessToken,
   resetUI,
   modal,
@@ -68,10 +69,10 @@ const Users = ({
       {view == 'all_admin' &&
         <AdminTables
           title={'Admin Users'}
+          adminUsers={data ? data.adminUsers : null}
         >
         </AdminTables>
       }
-
 
       {/* //// MODALS //// */}
       {modal == 'create-admin' &&
