@@ -80,6 +80,9 @@ button {
 .account {
   width: 100%;
   padding: 8rem; }
+  @media only screen and (max-width: 992px) {
+    .account {
+      padding: 2rem; } }
   .account-user {
     display: flex;
     align-items: center;
@@ -87,12 +90,18 @@ button {
     margin: 2rem 0;
     font-weight: 700;
     color: #b3b3b3; }
+    @media only screen and (max-width: 992px) {
+      .account-user {
+        padding: 0 3rem; } }
     .account-user svg {
       width: 4rem;
       height: 4rem;
       margin-right: 1rem; }
   .account-breadcrumbs {
     display: flex; }
+    @media only screen and (max-width: 992px) {
+      .account-breadcrumbs {
+        padding: 0 3rem; } }
     .account-breadcrumbs-item {
       display: flex;
       align-items: baseline;
@@ -350,10 +359,19 @@ button {
       padding: 1rem 2rem; }
 
 .table {
-  margin: 2rem 0; }
+  margin: 2rem 0;
+  padding-bottom: 2rem;
+  border: 0.2rem solid #edf2f5;
+  border-bottom-left-radius: 1.2rem;
+  border-bottom-right-radius: 1.2rem;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem; }
   .table-header {
+    display: flex;
+    align-items: center;
     width: 100%;
     padding: 1rem 2rem;
+    height: 6rem;
     background-color: #e63946;
     border-top-right-radius: 2rem;
     border-top-left-radius: 2rem; }
@@ -361,11 +379,26 @@ button {
       font-size: 2.2rem;
       color: #f1faee;
       font-weight: 700; }
+    .table-header-controls {
+      display: flex;
+      margin-left: 1rem; }
+      .table-header-controls-item {
+        width: max-content;
+        padding: 1rem 2rem;
+        border-radius: 2rem;
+        background-color: #f1faee;
+        color: #e63946;
+        font-weight: 700;
+        font-size: 1.4rem;
+        margin-right: 1rem;
+        transition: all 0.3s ease-in-out; }
+        .table-header-controls-item:hover {
+          cursor: pointer;
+          box-shadow: 0rem 0.3rem 0.5rem 0.5rem rgba(0, 0, 0, 0.2); }
   .table-headers {
     display: flex;
     padding: 1rem 0;
-    background-color: blue;
-    overflow-x: scroll;
+    overflow-x: auto;
     overflow-y: hidden; }
     .table-headers::-webkit-scrollbar {
       height: 0.3rem;
@@ -377,19 +410,88 @@ button {
       overflow: hidden;
       text-align: center;
       font-size: 1.4rem;
+      font-weight: 700;
       padding: 0 1rem;
       min-width: 11rem;
       max-width: 11rem;
-      background-color: red;
+      word-break: break-word;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      text-transform: capitalize; }
+      .table-headers-item:first-child {
+        width: 3rem;
+        min-width: 5rem;
+        max-width: 5rem; }
+  .table-rows {
+    padding: 1rem 0;
+    display: flex;
+    padding: 1rem 0; }
+    .table-rows-container {
+      width: 100%;
+      overflow-x: auto; }
+      .table-rows-container::-webkit-scrollbar {
+        height: 0.3rem;
+        width: 0.5rem;
+        background-color: #e63946; }
+      .table-rows-container::-webkit-scrollbar-thumb {
+        background-color: #f1faee; }
+    .table-rows-checkbox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 3rem;
+      min-width: 5rem;
+      max-width: 5rem; }
+      .table-rows-checkbox label {
+        display: grid;
+        font-size: 1.6rem;
+        position: relative;
+        background-color: white;
+        border-radius: 0.5rem; }
+        .table-rows-checkbox label input[type='checkbox'] {
+          height: 2.5rem;
+          width: 2.5rem;
+          border-radius: 0.5rem;
+          border: 0.1rem solid #e63946;
+          cursor: pointer;
+          opacity: 0;
+          z-index: 10; }
+          .table-rows-checkbox label input[type='checkbox']:checked ~ div > svg {
+            display: block; }
+        .table-rows-checkbox label span {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 2.5rem;
+          width: 2.5rem;
+          border-radius: 0.8rem;
+          border: 0.2rem solid #e63946; }
+        .table-rows-checkbox label div {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 2.5rem;
+          width: 2.5rem;
+          display: flex;
+          justify-content: center;
+          align-items: center; }
+          .table-rows-checkbox label div svg {
+            height: 2rem;
+            width: 2rem;
+            fill: #e63946;
+            display: none; }
+    .table-rows-item {
+      overflow: hidden;
+      text-align: center;
+      font-size: 1.4rem;
+      padding: 0 1rem;
+      min-width: 11rem;
+      max-width: 11rem;
       word-break: break-word;
       display: -webkit-box;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 2; }
-      .table-headers-item:first-child {
-        width: 3rem;
-        min-width: 5rem;
-        max-width: 5rem;
-        background-color: green; }
 
 .home {
   display: flex;
