@@ -12,7 +12,6 @@ const filterTable = (data, includes, slice) => {
   })
 
   if(slice) return data.slice(0, slice)
-
   return data
 }
 
@@ -23,6 +22,7 @@ const tableData = async (accessToken) => {
       Authorization: `Bearer ${accessToken}`,
       contentType: `application/json`
     }})
+
     return responseTable.data
   } catch (error) {
     console.log(error)

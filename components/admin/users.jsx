@@ -8,6 +8,7 @@ import AdminTables from '../table'
 
 const Users = ({
   data,
+  originalData,
   accessToken,
   resetUI,
   modal,
@@ -69,7 +70,8 @@ const Users = ({
       {view == 'all_admin' &&
         <AdminTables
           title={'Admin Users'}
-          adminUsers={data ? data.adminUsers : null}
+          adminUsers={data ? data : null}
+          originalData={originalData}
         >
         </AdminTables>
       }

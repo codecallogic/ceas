@@ -4,10 +4,12 @@ import {useEffect, useState, useRef} from 'react'
 
 const Table = ({
   title,
-  adminUsers
+  adminUsers,
+  originalData
 }) => {
 
   const myRefs = useRef([])
+  const [allUsers, setAllUsers] = useState(adminUsers)
   const [selectID, setSelectID] = useState('')
   const [controls, setControls] = useState(false)
 
@@ -15,6 +17,7 @@ const Table = ({
     if(myRefs.current){
       myRefs.current.forEach((item) => {
         if(item){
+       
           if(item.contains(event.target)) return
           if(event.target == document.getElementById('delete-job')) return
           if(event.target == document.getElementById('edit-job')) return
@@ -24,25 +27,27 @@ const Table = ({
 
           setControls(false)
           setSelectID('')
-
         }
       })
     }
   }
 
   useEffect(() => {
+    console.log(selectID)
     document.addEventListener("click", handleClickOutside, true);
 
     return () => {
       document.removeEventListener("click", handleClickOutside, true);
     };
+
   }, [selectID])
 
   const handleSelect = (e, id) => {
     const els = document.querySelectorAll('.table-rows-checkbox-input')
     els.forEach( (el) => { el.checked = false })
+    
     e.target.checked = true
-
+  
     setControls(true)
     setSelectID(id)
   }
@@ -61,8 +66,8 @@ const Table = ({
       <div className="table-headers">
         <div className="table-headers-item">&nbsp;</div>
         { 
-          filterTable(adminUsers).length > 0 && 
-          filterTable(adminUsers, ['_id', 'createdAt', 'updatedAt', '__v'], 1).map((item, idx, array) => 
+          filterTable(originalData.adminUsers).length > 0 && 
+          filterTable(originalData.adminUsers, ['_id', 'createdAt', 'updatedAt', '__v'], 1).map((item, idx, array) => 
             Object.keys(array[0]).map((key, idx) => 
               <div key={idx} className="table-headers-item">
                 {key.replace( /([a-z])([A-Z])/g, "$1 $2")}
@@ -73,8 +78,8 @@ const Table = ({
       </div>
       <div className="table-rows-container">
       { 
-        filterTable(adminUsers).length > 0 && 
-        filterTable(adminUsers, ['createdAt', 'updatedAt', '__v']).map((item, idx) => 
+        filterTable(allUsers).length > 0 && 
+        filterTable(allUsers, ['createdAt', 'updatedAt', '__v']).map((item, idx) => 
           <div key={idx} className="table-rows">
             <div className="table-rows-checkbox" 
               ref={(el) => (myRefs.current[idx] = el)}

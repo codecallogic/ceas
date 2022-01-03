@@ -3,16 +3,18 @@ import {useState, useEffect} from 'react'
 import SVG from '../../files/svg'
 import {tableData} from '../../helpers/tables'
 import { getToken } from '../../helpers/auth'
+import _ from 'lodash'
 
 // COMPONENTS
 import Account from '../../components/admin/account'
 import Users from '../../components/admin/users'
 
-const AdminDashboard = ({data, account, accessToken, params, serverMessage}) => {
+const AdminDashboard = ({data, originalData, account, accessToken, params, serverMessage}) => {
   const [modal, setModal] = useState('')
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState('')
   const [component, setComponent] = useState('users')
+  const [adminUsers, setAdminUsers] = useState([...data.adminUsers])
 
   useEffect(() => {
     if(window.localStorage.getItem('component')) setComponent(window.localStorage.getItem('component'))
@@ -95,7 +97,8 @@ const AdminDashboard = ({data, account, accessToken, params, serverMessage}) => 
       }
       { component == 'users' &&
         <Users
-          data={data}
+          data={adminUsers}
+          originalData={originalData}
           account={account}
           accessToken={accessToken}
           resetUI={resetUILocalStorage}
@@ -117,15 +120,18 @@ const AdminDashboard = ({data, account, accessToken, params, serverMessage}) => 
 AdminDashboard.getInitialProps = async (context) => {
 
   let data = new Object()
+  let deepClone
    
   const token = getToken('accessTokenAdmin', context.req)
   let accessToken = null
   if(token){accessToken = token.split('=')[1]}
 
   data.adminUsers = await tableData(accessToken)
+  deepClone= _.cloneDeep(data)
 
   return {
-    data: Object.keys(data).length > 0 ? data : null
+    data: Object.keys(data).length > 0 ? data : null,
+    originalData: Object.keys(deepClone).length > 0 ? deepClone : null
   }
 }
 
