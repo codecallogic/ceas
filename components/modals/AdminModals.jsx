@@ -4,6 +4,7 @@ import SVG from '../../files/svg'
 
 const Modal = ({
   type,
+  functionType,
   title,
   resetUI,
   setModal,
@@ -18,9 +19,9 @@ const Modal = ({
   //// CRUD FUNCTIONS
   createNewAdmin,
   updateProfile,
-  changeEmail
+  changeEmail,
+  updateAdmin
 }) => {
-
   const [dropdown, setDropdown] = useState('')
   
   return (
@@ -124,7 +125,27 @@ const Modal = ({
                 
               </div>
               {message.length > 0 ? <div className="form-group-message">{message}</div> : null}
-              <button className="form-group-button-100" onClick={(e) => createNewAdmin(e)}>{!loading && <span>Save</span>} {loading == 'admin' && <div className="loading"><span></span><span></span><span></span></div>}</button>
+              {functionType == 'update_admin' &&
+                <button 
+                className="form-group-button-100" 
+                onClick={(e) => updateAdmin(e)}
+                >
+                  {!loading && <span>Update</span>} 
+                  {loading == 'update_admin' && 
+                    <div className="loading"><span></span><span></span><span></span></div>
+                  }
+                </button>
+              }
+              {functionType == undefined &&
+                <button 
+                className="form-group-button-100" 
+                onClick={(e) => createNewAdmin(e)}>
+                  {!loading && <span>Save</span>} 
+                  {loading == 'admin' && 
+                  <div className="loading"><span></span><span></span><span></span></div>
+                  }
+                </button>
+              }
             </form>
           </div>
         </div>

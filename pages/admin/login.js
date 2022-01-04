@@ -13,6 +13,16 @@ const AdminLogin = ({}) => {
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
 
+  useEffect(() => {
+    let passwordElement = document.getElementById('password')
+    passwordElement.addEventListener('paste', (e) => {
+      e.preventDefault()
+      let text =  (e.originalEvent || e).clipboardData.getData('text/plain')
+      passwordElement.innerHTML = text
+      setPassword(text)
+    })
+  }, [])
+
   const preventEvent = (id) => {
     if(document.getElementById(id).innerHTML.includes('<div><br></div>')){
       document.getElementById(id).removeChild(document.getElementById(id).childNodes[1])

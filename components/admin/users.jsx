@@ -9,10 +9,13 @@ import AdminTables from '../table'
 const Users = ({
   data,
   originalData,
+  account,
   accessToken,
   resetUI,
   modal,
   setModal,
+  view,
+  setView,
   message,
   setMessage,
   loading,
@@ -20,11 +23,14 @@ const Users = ({
   preventEvent,
   validateIsEmail,
   setElementText,
+  createAdmin,
   resetAdministrator,
   admin
 }) => {
 
-  const [view, setView] = useState('all_admin')
+  const [allUsers, setAllUsers] = useState(data ? data : [])
+  const [selectID, setSelectID] = useState('')
+  const [controls, setControls] = useState(false)
 
   const createNewAdmin = async (e) => {
     e.preventDefault()
@@ -47,16 +53,80 @@ const Users = ({
       resetAdministrator()
       
     } catch (error) {
+      console.log(error)
       setLoading('')
       if(error) error.response ? setMessage(error.response.data) : setMessage('Error ocurred creating admin, please try again later')
     }
   }
+
+  const deleteAdmin = async (e) => {
+    e.preventDefault()
+    setLoading('delete_admin')
+    setMessage('')
+    
+    try {
+      const responseDelete = await axios.post(`${API}/auth/delete-admin`, {id: selectID}, { 
+        headers: {
+        Authorization: `Bearer ${accessToken}`,
+        contentType: `application/json`
+      }})
+      setLoading('')
+      setAllUsers(responseDelete.data)
+      setControls(false)
+
+    } catch (error) {
+      console.log(error.response)
+      setLoading('')
+      if(error) error.response ? setMessage(error.response.data.substr(0, 200)) : setMessage('Error ocurred creating admin, please try again later')
+    }
+  }
+
+  const updateAdmin = async (e) => {
+    e.preventDefault()
+    setLoading('update_admin')
+    setMessage('')
+
+    try {
+      const responseUpdate = await axios.post(`${API}/auth/update-admin-profile`, {user: admin}, { 
+        headers: {
+        Authorization: `Bearer ${accessToken}`,
+        contentType: `application/json`
+      }})
+      setLoading('')
+      window.localStorage.setItem('view', 'all_admin')
+      window.location.href = `/admin`
+      
+    } catch (error) {
+      console.log(error)
+      setLoading('')
+      if(error) error.response ? setMessage(error.response.data.substr(0, 200)) : setMessage('Error ocurred updating admin, please try again later')
+    }
+  }
+
+  const setModalData = (type, reducer) => {
+    for(let key in originalData[type]){
+      if(reducer == 'createAdmin'){
+
+        if(originalData[type][key]._id == selectID){
+          let object = originalData[type][key]
+          for(let keyOfObject in object){
+            createAdmin(keyOfObject, object[keyOfObject])
+          }
+        }
+
+      }
+    }
+  }
+
+  useEffect(() => {
+    for(let key in admin){setElementText(key, admin[key])}
+  }, [modal])
   
   return (
     <>
       {view == '' && 
       <div className="account-dashboard">
-        <div className="account-dashboard-item" onClick={() => (resetUI())}>
+        <div className="account-dashboard-item" onClick={() => (resetUI(), setView('all_admin'))}>
           <SVG svg={'user'}></SVG>
           <span>View All Admin</span>
         </div>
@@ -70,8 +140,16 @@ const Users = ({
       {view == 'all_admin' &&
         <AdminTables
           title={'Admin Users'}
-          adminUsers={data ? data : null}
+          adminUsers={allUsers}
           originalData={originalData}
+          account={account}
+          selectID={selectID}
+          setSelectID={setSelectID}
+          controls={controls}
+          setControls={setControls}
+          deleteAdmin={deleteAdmin}
+          setModalData={setModalData}
+          setModal={setModal}
         >
         </AdminTables>
       }
@@ -89,6 +167,22 @@ const Users = ({
           loading={loading}
           preventEvent={preventEvent}
           setElementText={setElementText}
+        >
+        </AdminModals>
+      }
+      {modal == 'create_admin' &&
+        <AdminModals
+          type={'create_admin'}
+          functionType={'update_admin'}
+          title={'Update Admin'}
+          resetUI={resetUI}
+          setModal={setModal}
+          setMessage={setMessage}
+          message={message}
+          loading={loading}
+          preventEvent={preventEvent}
+          setElementText={setElementText}
+          updateAdmin={updateAdmin}
         >
         </AdminModals>
       }

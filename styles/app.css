@@ -304,13 +304,15 @@ button {
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
-  justify-content: center; }
+  justify-content: center;
+  z-index: 100; }
   .accountUpdateProfile-modal-box {
     background-color: #edf2f5;
     width: 40%;
     max-height: 80rem;
     padding: 0 0 2rem 0;
-    border-radius: 1.2rem; }
+    border-radius: 1.2rem;
+    z-index: 100; }
     @media only screen and (max-width: 1250px) {
       .accountUpdateProfile-modal-box {
         width: 70%; } }
@@ -425,8 +427,7 @@ button {
         max-width: 5rem; }
   .table-rows {
     padding: 1rem 0;
-    display: flex;
-    padding: 1rem 0; }
+    display: flex; }
     .table-rows-container {
       width: 100%;
       overflow-x: auto; }
@@ -447,7 +448,6 @@ button {
         display: grid;
         font-size: 1.6rem;
         position: relative;
-        background-color: white;
         border-radius: 0.5rem; }
         .table-rows-checkbox label input[type='checkbox'] {
           height: 2.5rem;
@@ -465,7 +465,7 @@ button {
           left: 0;
           height: 2.5rem;
           width: 2.5rem;
-          border-radius: 0.8rem;
+          border-radius: 1rem;
           border: 0.2rem solid #e63946; }
         .table-rows-checkbox label div {
           position: absolute;
@@ -485,6 +485,7 @@ button {
       overflow: hidden;
       text-align: center;
       font-size: 1.4rem;
+      font-weight: 300;
       padding: 0 1rem;
       min-width: 11rem;
       max-width: 11rem;
@@ -492,6 +493,12 @@ button {
       display: -webkit-box;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 2; }
+
+.row-odd {
+  background-color: #edf2f5; }
+
+.row-even {
+  background-color: white; }
 
 .home {
   display: flex;

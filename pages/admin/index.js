@@ -10,15 +10,18 @@ import Account from '../../components/admin/account'
 import Users from '../../components/admin/users'
 
 const AdminDashboard = ({data, originalData, account, accessToken, params, serverMessage}) => {
-  const [modal, setModal] = useState('')
+  
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState('')
+  const [modal, setModal] = useState('')
   const [component, setComponent] = useState('users')
+  const [view, setView] = useState('')
   const [adminUsers, setAdminUsers] = useState([...data.adminUsers])
 
   useEffect(() => {
     if(window.localStorage.getItem('component')) setComponent(window.localStorage.getItem('component'))
     if(window.localStorage.getItem('modal')) setModal(window.localStorage.getItem('modal'))
+    if(window.localStorage.getItem('view')) setView(window.localStorage.getItem('view'))
   }, [])
 
   const resetUILocalStorage = () => {
@@ -37,7 +40,7 @@ const AdminDashboard = ({data, originalData, account, accessToken, params, serve
   }
 
   const setElementText = (id, text) => {
-    document.getElementById(id).innerText = text
+    if(document.getElementById(id)) document.getElementById(id).innerText = text
   }
 
   const validateIsEmail = (type) => {
@@ -104,6 +107,8 @@ const AdminDashboard = ({data, originalData, account, accessToken, params, serve
           resetUI={resetUILocalStorage}
           modal={modal} 
           setModal={setModal}
+          view={view}
+          setView={setView}
           message={message}
           setMessage={setMessage}
           loading={loading}

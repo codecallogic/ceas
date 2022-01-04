@@ -5,22 +5,26 @@ import {useEffect, useState, useRef} from 'react'
 const Table = ({
   title,
   adminUsers,
-  originalData
+  originalData,
+  account,
+  selectID,
+  setSelectID,
+  controls,
+  setControls,
+  deleteAdmin,
+  setModalData,
+  setModal
 }) => {
 
   const myRefs = useRef([])
-  const [allUsers, setAllUsers] = useState(adminUsers)
-  const [selectID, setSelectID] = useState('')
-  const [controls, setControls] = useState(false)
 
   const handleClickOutside = (event) => {
     if(myRefs.current){
       myRefs.current.forEach((item) => {
         if(item){
-       
           if(item.contains(event.target)) return
-          if(event.target == document.getElementById('delete-job')) return
-          if(event.target == document.getElementById('edit-job')) return
+          if(event.target == document.getElementById('delete')) return
+          if(event.target == document.getElementById('edit')) return
 
           const els = document.querySelectorAll('.table-rows-checkbox-input')
           els.forEach( (el) => { el.checked = false })
@@ -33,7 +37,6 @@ const Table = ({
   }
 
   useEffect(() => {
-    console.log(selectID)
     document.addEventListener("click", handleClickOutside, true);
 
     return () => {
@@ -58,16 +61,30 @@ const Table = ({
         <div className="table-header-title">{title}</div>
         {controls &&
           <div className="table-header-controls">
-            <div className="table-header-controls-item">Edit</div>
-            <div className="table-header-controls-item">Delete</div>
+            <div 
+            id="edit" 
+            className="table-header-controls-item" 
+            onClick={() => (setModal('create_admin'), setModalData('adminUsers', 'createAdmin'))}
+            >
+              Edit
+            </div>
+            {account.role == 'admin' && 
+            <div 
+            id="delete" 
+            className="table-header-controls-item" 
+            onClick={deleteAdmin}
+            >
+              Delete
+            </div>
+            }
           </div>
         }
       </div>
       <div className="table-headers">
         <div className="table-headers-item">&nbsp;</div>
         { 
-          filterTable(originalData.adminUsers).length > 0 && 
-          filterTable(originalData.adminUsers, ['_id', 'createdAt', 'updatedAt', '__v'], 1).map((item, idx, array) => 
+          filterTable(adminUsers).length > 0 && 
+          filterTable(adminUsers, ['_id', 'createdAt', 'updatedAt', '__v'], 1).map((item, idx, array) => 
             Object.keys(array[0]).map((key, idx) => 
               <div key={idx} className="table-headers-item">
                 {key.replace( /([a-z])([A-Z])/g, "$1 $2")}
@@ -78,9 +95,10 @@ const Table = ({
       </div>
       <div className="table-rows-container">
       { 
-        filterTable(allUsers).length > 0 && 
-        filterTable(allUsers, ['createdAt', 'updatedAt', '__v']).map((item, idx) => 
-          <div key={idx} className="table-rows">
+        filterTable(originalData.adminUsers).length > 0 && 
+        filterTable(originalData.adminUsers, ['createdAt', 'updatedAt', '__v']).map((item, idx) => 
+          account.id !== item._id &&
+          <div key={idx} className={`table-rows ` + (idx % 2 == 1 ? ' row-odd' : ' row-even')}>
             <div className="table-rows-checkbox" 
               ref={(el) => (myRefs.current[idx] = el)}
             >
@@ -92,16 +110,13 @@ const Table = ({
                 </div>
               </label>
             </div>
-            <div className="table-rows-item">{item.firstName}</div>
-            <div className="table-rows-item">{item.lastName}</div>
-            <div className="table-rows-item">{item.email}</div>
-            <div className="table-rows-item">{item.username}</div>
-            <div className="table-rows-item">{item.role}</div>
+            {Object.keys(item).map((key, idx, array) => 
+              key !== '_id' && <div key={idx} className="table-rows-item">{item[key]}</div>
+            )}
           </div>
         )
       }
       </div>
-     
     </div>
   )
 }
