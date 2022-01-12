@@ -41,8 +41,9 @@ const AdminLogin = ({}) => {
       setLoading(false)
       window.location.href = '/admin'
     } catch (error) {
+      console.log(error)
       setLoading(false)
-      if(error) error.response.data ? error.response.data.error ? setMessage(error.response.data.error) : error.response ? setMessage(error.response.data) : setMessage('Error ocurred with login, please try again later.') : setMessage('Error ocurred with login, please try again later.')
+      if(error) error.response ? error.response.data.error ? setMessage(error.response.data.error) : error.response ? setMessage(error.response.data) : setMessage('Error ocurred with login, please try again later.') : setMessage('Error ocurred with login, please try again later.')
     }
   }
   

@@ -8,7 +8,8 @@ import AdminTables from '../table'
 
 const Users = ({
   data,
-  originalData,
+  allData,
+  setAllData,
   account,
   accessToken,
   resetUI,
@@ -21,16 +22,18 @@ const Users = ({
   loading,
   setLoading,
   preventEvent,
+  selectID,
+  setSelectID,
+  controls,
+  setControls,
   validateIsEmail,
   setElementText,
-  createAdmin,
+  setModalData,
   resetAdministrator,
   admin
 }) => {
 
   const [allUsers, setAllUsers] = useState(data ? data : [])
-  const [selectID, setSelectID] = useState('')
-  const [controls, setControls] = useState(false)
 
   const createNewAdmin = async (e) => {
     e.preventDefault()
@@ -47,6 +50,7 @@ const Users = ({
       }})
       setLoading('')
       setMessage(responseAdmin.data)
+      
       for(let key in admin){
         if(document.getElementById(key)) document.getElementById(key).innerHTML = ''
       }
@@ -71,13 +75,14 @@ const Users = ({
         contentType: `application/json`
       }})
       setLoading('')
-      setAllUsers(responseDelete.data)
+      allData.adminUsers = responseDelete.data
+      setAllData(allData)
       setControls(false)
 
     } catch (error) {
       console.log(error.response)
       setLoading('')
-      if(error) error.response ? setMessage(error.response.data.substr(0, 200)) : setMessage('Error ocurred creating admin, please try again later')
+      if(error) error.response ? setMessage(error.response.data.substr(0, 200)) : setMessage('Error ocurred deleting admin, please try again later')
     }
   }
 
@@ -93,28 +98,15 @@ const Users = ({
         contentType: `application/json`
       }})
       setLoading('')
-      window.localStorage.setItem('view', 'all_admin')
-      window.location.href = `/admin`
+      allData.adminUsers = responseUpdate.data
+      setAllData(allData)
+      setModal('')
+      resetAdministrator()
       
     } catch (error) {
       console.log(error)
       setLoading('')
       if(error) error.response ? setMessage(error.response.data.substr(0, 200)) : setMessage('Error ocurred updating admin, please try again later')
-    }
-  }
-
-  const setModalData = (type, reducer) => {
-    for(let key in originalData[type]){
-      if(reducer == 'createAdmin'){
-
-        if(originalData[type][key]._id == selectID){
-          let object = originalData[type][key]
-          for(let keyOfObject in object){
-            createAdmin(keyOfObject, object[keyOfObject])
-          }
-        }
-
-      }
     }
   }
 
@@ -140,14 +132,17 @@ const Users = ({
       {view == 'all_admin' &&
         <AdminTables
           title={'Admin Users'}
-          adminUsers={allUsers}
-          originalData={originalData}
+          typeOfData={'adminUsers'}
+          modalType={'update_admin'}
+          modalDataType={{key: 'adminUsers', method: 'createAdmin'}}
+          componentData={allUsers}
+          originalData={allData}
           account={account}
           selectID={selectID}
           setSelectID={setSelectID}
           controls={controls}
           setControls={setControls}
-          deleteAdmin={deleteAdmin}
+          deleteRow={deleteAdmin}
           setModalData={setModalData}
           setModal={setModal}
         >
@@ -170,7 +165,7 @@ const Users = ({
         >
         </AdminModals>
       }
-      {modal == 'create_admin' &&
+      {modal == 'update_admin' &&
         <AdminModals
           type={'create_admin'}
           functionType={'update_admin'}

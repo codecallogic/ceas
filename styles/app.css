@@ -21,10 +21,10 @@ body {
   color: black;
   font-weight: 300;
   line-height: 1.6;
-  overflow-y: 'scroll'; }
+  overflow-y: auto; }
   body::-webkit-scrollbar {
     width: 0.5rem;
-    background-color: #757575; }
+    background-color: #e63946; }
   body::-webkit-scrollbar-thumb {
     background-color: #e63946; }
 
@@ -49,8 +49,14 @@ button {
 .mb4 {
   margin-bottom: 4rem; }
 
+.mb3 {
+  margin-bottom: 3rem; }
+
 .mb2 {
   margin-bottom: 2rem; }
+
+.mb1 {
+  margin-bottom: 1rem; }
 
 .topBorders {
   border-top-left-radius: 1rem;
@@ -231,6 +237,52 @@ button {
           background-color: #a8dadc;
           color: white;
           font-weight: 700; }
+        .form-group-100-field-dropdown-item div {
+          width: 100%;
+          z-index: 2; }
+          .form-group-100-field-dropdown-item div:focus {
+            outline: none; }
+            .form-group-100-field-dropdown-item div:focus ~ label {
+              top: 5%; }
+        .form-group-100-field-dropdown-item svg {
+          width: 2rem;
+          height: 2rem;
+          fill: #b3b3b3; }
+          .form-group-100-field-dropdown-item svg:hover {
+            cursor: pointer; }
+    .form-group-100-field-textarea {
+      color: #b3b3b3;
+      text-transform: lowercase;
+      padding: 0.5rem 1.5rem; }
+      .form-group-100-field-textarea textarea {
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: auto;
+        resize: none;
+        padding: 2rem 1.5rem;
+        outline: none;
+        box-sizing: border-box;
+        font-size: 1.4rem;
+        font-family: inherit;
+        color: #b3b3b3;
+        border: none;
+        border-radius: 1.2rem;
+        text-transform: lowercase;
+        overflow-y: auto; }
+        .form-group-100-field-textarea textarea::-webkit-scrollbar {
+          width: 0.2rem;
+          background-color: #e63946; }
+        .form-group-100-field-textarea textarea::-webkit-scrollbar-thumb {
+          background-color: #e63946; }
+      .form-group-100-field-textarea label {
+        position: absolute;
+        display: flex;
+        top: 15%;
+        transition: all 0.3s ease-in-out;
+        padding: 0 1rem;
+        font-size: 1.2rem; }
 
 .form-group-checkbox {
   display: flex;
@@ -305,20 +357,53 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 100; }
+  z-index: 100;
+  overflow-y: auto; }
+  .accountUpdateProfile-modal::-webkit-scrollbar {
+    width: 0.5rem;
+    background-color: #e63946; }
+  .accountUpdateProfile-modal::-webkit-scrollbar-thumb {
+    background-color: #e63946; }
   .accountUpdateProfile-modal-box {
     background-color: #edf2f5;
     width: 40%;
     max-height: 80rem;
     padding: 0 0 2rem 0;
     border-radius: 1.2rem;
-    z-index: 100; }
+    z-index: 100;
+    position: relative;
+    overflow-y: auto; }
+    .accountUpdateProfile-modal-box::-webkit-scrollbar {
+      width: 0.5rem;
+      background-color: #e63946; }
+    .accountUpdateProfile-modal-box::-webkit-scrollbar-thumb {
+      background-color: #e63946; }
     @media only screen and (max-width: 1250px) {
       .accountUpdateProfile-modal-box {
-        width: 70%; } }
+        width: 70%;
+        height: 80%; } }
     @media only screen and (max-width: 600px) {
       .accountUpdateProfile-modal-box {
         width: 90%; } }
+    .accountUpdateProfile-modal-box-svg {
+      position: absolute;
+      top: 1%;
+      right: 1%;
+      width: 3rem;
+      height: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #1d3557;
+      border-radius: 50%;
+      z-index: 5000 !important; }
+      .accountUpdateProfile-modal-box-svg svg {
+        width: 1.8rem;
+        height: 1.8rem;
+        fill: #f1faee;
+        transition: all 0.2s ease-in-out; }
+        .accountUpdateProfile-modal-box-svg svg:hover {
+          cursor: pointer; }
     .accountUpdateProfile-modal-box-header {
       display: flex;
       justify-content: space-between;
@@ -328,30 +413,11 @@ button {
       background-color: #e63946;
       color: white;
       border-top-right-radius: 1.2rem;
-      border-top-left-radius: 1.2rem;
-      position: relative; }
+      border-top-left-radius: 1.2rem; }
       .accountUpdateProfile-modal-box-header-title {
         font-size: 2.2rem;
         text-align: center;
         margin: 1rem 0; }
-      .accountUpdateProfile-modal-box-header-svg {
-        position: absolute;
-        top: -15%;
-        right: -1%;
-        width: 3rem;
-        height: 3rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #1d3557;
-        border-radius: 50%; }
-        .accountUpdateProfile-modal-box-header-svg svg {
-          width: 1.8rem;
-          height: 1.8rem;
-          fill: #f1faee;
-          transition: all 0.2s ease-in-out; }
-          .accountUpdateProfile-modal-box-header-svg svg:hover {
-            cursor: pointer; }
     .accountUpdateProfile-modal-box-content {
       padding: 1.5rem 3rem; }
     .accountUpdateProfile-modal-box-form {
@@ -397,6 +463,18 @@ button {
         .table-header-controls-item:hover {
           cursor: pointer;
           box-shadow: 0rem 0.3rem 0.5rem 0.5rem rgba(0, 0, 0, 0.2); }
+    .table-header-error {
+      display: flex;
+      align-items: center;
+      margin-left: 2rem;
+      font-size: 1.4rem;
+      color: white; }
+      .table-header-error svg {
+        width: 3rem;
+        height: 3rem;
+        fill: white; }
+      .table-header-error span {
+        margin-left: 1rem; }
   .table-headers {
     display: flex;
     padding: 1rem 0;

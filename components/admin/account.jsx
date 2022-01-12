@@ -8,6 +8,8 @@ import AdminModals from '../modals/AdminModals'
 const Account = ({
   account,
   accessToken,
+  allData,
+  setAllData,
   resetUI,
   modal,
   setModal,

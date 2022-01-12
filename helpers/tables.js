@@ -15,18 +15,35 @@ const filterTable = (data, includes, slice) => {
   return data
 }
 
-const tableData = async (accessToken) => {
-  try {
-    const responseTable = await axios.get(`${API}/auth/all-admin`,  { 
-      headers: {
-      Authorization: `Bearer ${accessToken}`,
-      contentType: `application/json`
-    }})
-
-    return responseTable.data
-  } catch (error) {
-    console.log(error)
-    if(error) return error.response.data
+const tableData = async (accessToken, type) => {
+  if(type == 'admin_users'){
+    try {
+      const responseTable = await axios.get(`${API}/auth/all-admin`,  { 
+        headers: {
+        Authorization: `Bearer ${accessToken}`,
+        contentType: `application/json`
+      }})
+  
+      return responseTable.data
+    } catch (error) {
+      console.log(error)
+      if(error) return error.response.data
+    }
+  }
+  
+  if(type == 'components'){
+    try {
+      const responseTable = await axios.get(`${API}/component/all-components`,  { 
+        headers: {
+        Authorization: `Bearer ${accessToken}`,
+        contentType: `application/json`
+      }})
+  
+      return responseTable.data
+    } catch (error) {
+      console.log(error)
+      if(error) return error.response.data
+    }
   }
 }
 

@@ -4,31 +4,40 @@ import {useEffect, useState, useRef} from 'react'
 
 const Table = ({
   title,
-  adminUsers,
+  typeOfData,
+  modalType,
+  modalDataType,
+  componentData,
   originalData,
   account,
   selectID,
   setSelectID,
   controls,
   setControls,
-  deleteAdmin,
+  deleteRow,
   setModalData,
-  setModal
+  setModal,
+  message
 }) => {
 
   const myRefs = useRef([])
+
+  const resetCheckboxes = () => {
+    const els = document.querySelectorAll('.table-rows-checkbox-input')
+    els.forEach( (el) => { el.checked = false })
+  }
 
   const handleClickOutside = (event) => {
     if(myRefs.current){
       myRefs.current.forEach((item) => {
         if(item){
+          
+          if(event.target.id == 'checkbox') return
           if(item.contains(event.target)) return
           if(event.target == document.getElementById('delete')) return
           if(event.target == document.getElementById('edit')) return
-
-          const els = document.querySelectorAll('.table-rows-checkbox-input')
-          els.forEach( (el) => { el.checked = false })
-
+          
+          resetCheckboxes()
           setControls(false)
           setSelectID('')
         }
@@ -36,7 +45,7 @@ const Table = ({
     }
   }
 
-  useEffect(() => {
+  useEffect(() => {    
     document.addEventListener("click", handleClickOutside, true);
 
     return () => {
@@ -48,9 +57,9 @@ const Table = ({
   const handleSelect = (e, id) => {
     const els = document.querySelectorAll('.table-rows-checkbox-input')
     els.forEach( (el) => { el.checked = false })
-    
+
     e.target.checked = true
-  
+   
     setControls(true)
     setSelectID(id)
   }
@@ -64,7 +73,7 @@ const Table = ({
             <div 
             id="edit" 
             className="table-header-controls-item" 
-            onClick={() => (setModal('create_admin'), setModalData('adminUsers', 'createAdmin'))}
+            onClick={() => (setModal(modalType), setModalData(modalDataType.key, modalDataType.method), setControls(false), resetCheckboxes())}
             >
               Edit
             </div>
@@ -72,19 +81,22 @@ const Table = ({
             <div 
             id="delete" 
             className="table-header-controls-item" 
-            onClick={deleteAdmin}
+            onClick={deleteRow}
             >
               Delete
             </div>
             }
           </div>
         }
+        { message && 
+          <div className="table-header-error"><SVG svg={'notification'}></SVG> <span>{message.substr(0, 200)}</span></div>
+        }
       </div>
       <div className="table-headers">
         <div className="table-headers-item">&nbsp;</div>
         { 
-          filterTable(adminUsers).length > 0 && 
-          filterTable(adminUsers, ['_id', 'createdAt', 'updatedAt', '__v'], 1).map((item, idx, array) => 
+          filterTable(componentData).length > 0 && 
+          filterTable(componentData, ['_id', 'createdAt', 'updatedAt', '__v'], 1).map((item, idx, array) => 
             Object.keys(array[0]).map((key, idx) => 
               <div key={idx} className="table-headers-item">
                 {key.replace( /([a-z])([A-Z])/g, "$1 $2")}
@@ -95,15 +107,15 @@ const Table = ({
       </div>
       <div className="table-rows-container">
       { 
-        filterTable(originalData.adminUsers).length > 0 && 
-        filterTable(originalData.adminUsers, ['createdAt', 'updatedAt', '__v']).map((item, idx) => 
+        filterTable(originalData[typeOfData]).length > 0 && 
+        filterTable(originalData[typeOfData], ['createdAt', 'updatedAt', '__v']).map((item, idx) => 
           account.id !== item._id &&
           <div key={idx} className={`table-rows ` + (idx % 2 == 1 ? ' row-odd' : ' row-even')}>
             <div className="table-rows-checkbox" 
               ref={(el) => (myRefs.current[idx] = el)}
             >
-              <label>
-                <input className="table-rows-checkbox-input" type="checkbox" onClick={(e) => handleSelect(e, item._id)}/>
+              <label htmlFor={`checkbox`}>
+                <input id={`checkbox`} className="table-rows-checkbox-input" type="checkbox" onClick={(e) => e.target.checked == true ?  handleSelect(e, item._id) : (setControls(false), setSelectID(''))}/>
                 <span></span>
                 <div>
                   <SVG svg={'checkmark'}></SVG>
