@@ -23,20 +23,23 @@
   &-box {
     background-color: $color-light-grey-2;
     width: 40%;
-    max-height: 80rem;
+    min-height: min-content;
+    max-height: 85%;
+    height: max-content;
     padding: 0 0 2rem 0;
     border-radius: 1.2rem;
     z-index: 100;
+    overflow: hidden;
     position: relative;
     overflow-y: auto;
 
     &::-webkit-scrollbar {
-      width: 0.5rem;
+      width: 0.2rem;
       background-color: $color-scheme-1;
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: $color-scheme-1;
+      background-color: $color-scheme-3;
     }
 
     @media only screen and (max-width: $extra-large) {
@@ -92,7 +95,7 @@
     }
 
     &-content {
-      padding: 1.5rem 3rem;
+      padding: 1rem 3rem;
     }
 
     &-form {

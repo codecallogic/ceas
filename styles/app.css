@@ -269,7 +269,6 @@ button {
         color: #b3b3b3;
         border: none;
         border-radius: 1.2rem;
-        text-transform: lowercase;
         overflow-y: auto; }
         .form-group-100-field-textarea textarea::-webkit-scrollbar {
           width: 0.2rem;
@@ -283,6 +282,34 @@ button {
         transition: all 0.3s ease-in-out;
         padding: 0 1rem;
         font-size: 1.2rem; }
+    .form-group-100-field-input input {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: 2rem 1.5rem;
+      box-sizing: border-box;
+      outline: none;
+      font-weight: 300;
+      font-size: 1.4rem;
+      font-family: inherit;
+      border: none;
+      background-color: #edf2f5;
+      margin: 0.5rem 0;
+      color: #b3b3b3;
+      text-transform: lowercase; }
+      .form-group-100-field-input input:focus + .input-label {
+        top: 5%; }
+    .form-group-100-field-input label {
+      position: absolute;
+      padding: 0rem 1.5rem;
+      box-sizing: border-box;
+      outline: none;
+      font-size: 1.4rem;
+      color: #b3b3b3;
+      top: 40%;
+      transition: all 0.3s ease-in-out;
+      font-size: 1.2rem;
+      text-transform: lowercase; }
 
 .form-group-checkbox {
   display: flex;
@@ -307,7 +334,8 @@ button {
       fill: #e63946; }
 
 .form-group-button-100 {
-  width: 100%;
+  margin: 0 auto;
+  width: 80%;
   outline: none;
   border: none;
   border-radius: 0.5rem;
@@ -320,9 +348,18 @@ button {
     cursor: pointer; }
 
 .form-group-message {
+  width: 80%;
+  margin: 0 auto;
   font-size: 1.4rem;
   color: #e63946;
-  margin: 0.5rem 1rem 1rem 1rem; }
+  padding: 0.5rem 0; }
+
+.outlineNone {
+  border: none;
+  color: transparent;
+  text-shadow: 0 0 0 gray; }
+  .outlineNone:focus {
+    outline: none !important; }
 
 .loading span {
   width: 0.5rem;
@@ -367,17 +404,20 @@ button {
   .accountUpdateProfile-modal-box {
     background-color: #edf2f5;
     width: 40%;
-    max-height: 80rem;
+    min-height: min-content;
+    max-height: 85%;
+    height: max-content;
     padding: 0 0 2rem 0;
     border-radius: 1.2rem;
     z-index: 100;
+    overflow: hidden;
     position: relative;
     overflow-y: auto; }
     .accountUpdateProfile-modal-box::-webkit-scrollbar {
-      width: 0.5rem;
+      width: 0.2rem;
       background-color: #e63946; }
     .accountUpdateProfile-modal-box::-webkit-scrollbar-thumb {
-      background-color: #e63946; }
+      background-color: #a8dadc; }
     @media only screen and (max-width: 1250px) {
       .accountUpdateProfile-modal-box {
         width: 70%;
@@ -419,7 +459,7 @@ button {
         text-align: center;
         margin: 1rem 0; }
     .accountUpdateProfile-modal-box-content {
-      padding: 1.5rem 3rem; }
+      padding: 1rem 3rem; }
     .accountUpdateProfile-modal-box-form {
       display: flex;
       flex-direction: column;

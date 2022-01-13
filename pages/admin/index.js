@@ -12,6 +12,7 @@ import {useRouter} from 'next/router'
 import Account from '../../components/admin/account'
 import Users from '../../components/admin/users'
 import Components from '../../components/admin/components'
+import Faculty from '../../components/admin/faculty'
 
 const AdminDashboard = ({
   data, 
@@ -101,6 +102,11 @@ const AdminDashboard = ({
               <SVG svg={'keyboard-right'}></SVG> Components
             </span>
           }
+          { component == 'faculty' &&
+            <span className="account-breadcrumbs-item-subtitle">
+              <SVG svg={'keyboard-right'}></SVG> Faculty
+            </span>
+          }
         </div>
       </div>
       { component == '' &&
@@ -128,7 +134,7 @@ const AdminDashboard = ({
           </div>
           <div 
           className="account-dashboard-item" 
-          // onClick={() => (setComponent('components'), setView(''))}
+          onClick={() => (setComponent('faculty'), setView(''))}
           >
             <SVG svg={'staff'}></SVG>
             <span>Faculty</span>
@@ -151,31 +157,6 @@ const AdminDashboard = ({
           preventEvent={preventEvent}
           validateIsEmail={validateIsEmail}
         ></Account>
-      }
-      { component == 'components' &&
-        <Components
-          data={data.components}
-          allData={allData}
-          setAllData={setAllData}
-          account={account}
-          accessToken={accessToken}
-          resetUI={resetUILocalStorage}
-          modal={modal} 
-          setModal={setModal}
-          view={view}
-          setView={setView}
-          message={message}
-          setMessage={setMessage}
-          loading={loading}
-          setLoading={setLoading}
-          selectID={selectID}
-          setSelectID={setSelectID}
-          controls={controls}
-          setControls={setControls}
-          preventEvent={preventEvent}
-          setElementText={setElementText}
-          setModalData={setModalData}
-        ></Components>
       }
       { component == 'admin_users' &&
         <Users
@@ -202,6 +183,56 @@ const AdminDashboard = ({
           setElementText={setElementText}
           setModalData={setModalData}
         ></Users>
+      }
+      { component == 'components' &&
+        <Components
+          data={data.components}
+          allData={allData}
+          setAllData={setAllData}
+          account={account}
+          accessToken={accessToken}
+          resetUI={resetUILocalStorage}
+          modal={modal} 
+          setModal={setModal}
+          view={view}
+          setView={setView}
+          message={message}
+          setMessage={setMessage}
+          loading={loading}
+          setLoading={setLoading}
+          selectID={selectID}
+          setSelectID={setSelectID}
+          controls={controls}
+          setControls={setControls}
+          preventEvent={preventEvent}
+          setElementText={setElementText}
+          setModalData={setModalData}
+        ></Components>
+      }
+      { component == 'faculty' &&
+        <Faculty
+          data={data.components}
+          allData={allData}
+          setAllData={setAllData}
+          account={account}
+          accessToken={accessToken}
+          resetUI={resetUILocalStorage}
+          modal={modal} 
+          setModal={setModal}
+          view={view}
+          setView={setView}
+          message={message}
+          setMessage={setMessage}
+          loading={loading}
+          setLoading={setLoading}
+          selectID={selectID}
+          setSelectID={setSelectID}
+          controls={controls}
+          setControls={setControls}
+          preventEvent={preventEvent}
+          setElementText={setElementText}
+          setModalData={setModalData}
+        ></Faculty>
       }
     </div>
   )

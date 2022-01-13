@@ -155,7 +155,7 @@
           color: $color-light-grey-3;
           border: none;
           border-radius: 1.2rem;
-          text-transform: lowercase;
+          // text-transform: lowercase;
           overflow-y: auto;
 
           &::-webkit-scrollbar {
@@ -175,6 +175,42 @@
           transition: all 0.3s ease-in-out;
           padding: 0 1rem;
           font-size: 1.2rem;
+        }
+      }
+
+      &-input {
+        input {
+          display: flex;
+          align-items: center;
+          width: 100%;
+          padding: 2rem 1.5rem;
+          box-sizing: border-box;
+          outline: none;
+          font-weight: 300;
+          font-size: 1.4rem;
+          font-family: inherit;
+          border: none;
+          background-color: $color-light-grey-2;
+          margin: 0.5rem 0;
+          color: $color-light-grey-3;
+          text-transform: lowercase;
+
+          &:focus + .input-label {
+            top: 5%;
+          }
+        }
+
+        label {
+          position: absolute;
+          padding: 0rem 1.5rem;
+          box-sizing: border-box;
+          outline: none;
+          font-size: 1.4rem;
+          color: $color-light-grey-3;
+          top: 40%;
+          transition: all 0.3s ease-in-out;
+          font-size: 1.2rem;
+          text-transform: lowercase;
         }
       }
     }
@@ -211,7 +247,8 @@
 
   &-button {
     &-100 {
-      width: 100%;
+      margin: 0 auto;
+      width: 80%;
       outline: none;
       border: none;
       border-radius: 0.5rem;
@@ -228,8 +265,20 @@
   }
 
   &-message {
+    width: 80%;
+    margin: 0 auto;
     font-size: 1.4rem;
     color: $color-scheme-1;
-    margin: 0.5rem 1rem 1rem 1rem;
+    padding: 0.5rem 0;
+  }
+}
+
+.outlineNone {
+  border: none;
+  color: transparent;
+  text-shadow: 0 0 0 gray;
+
+  &:focus {
+    outline: none !important;
   }
 }
