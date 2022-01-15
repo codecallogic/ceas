@@ -26,9 +26,11 @@ const AdminDashboard = ({
   createAdmin,
   admin,
   createComponent,
-  componentData
+  componentData,
+  faculty,
+  createFaculty
 }) => {
-  
+  // console.log(data)
   const router = useRouter()
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState('')
@@ -47,6 +49,11 @@ const AdminDashboard = ({
   useEffect(() => {
     if(modal == 'update_admin'){for(let key in componentData){setElementText(key, admin[key])}}
     if(modal == 'update_component'){for(let key in componentData){setElementText(key, componentData[key])}}
+    if(modal == 'update_faculty'){for(let key in faculty){
+      // console.log(key)
+      if(Array.isArray(faculty[key]) && faculty[key].length > 0) return setElementText(key, faculty[key][0].name)
+      setElementText(key, faculty[key])
+    }}
   }, [modal])
 
   const resetUILocalStorage = () => {
@@ -78,6 +85,7 @@ const AdminDashboard = ({
     let objectMethods = new Object()
     objectMethods.createAdmin = createAdmin
     objectMethods.createComponent = createComponent
+    objectMethods.createFaculty = createFaculty
     populateModal(originalData, dataType, reducerMethod, objectMethods, selectID, setElementText)
   }
 
@@ -93,19 +101,41 @@ const AdminDashboard = ({
             </span>
           }
           { component == 'admin_users' &&
-            <span className="account-breadcrumbs-item-subtitle">
+            <>
+            <span className="account-breadcrumbs-item-subtitle" onClick={() => (setComponent('admin_users'), setView(''))}>
               <SVG svg={'keyboard-right'}></SVG> Users
             </span>
+            {view == 'all_admin' && 
+            <span className="account-breadcrumbs-item-subtitle">
+              <SVG svg={'keyboard-right'}></SVG> View All
+            </span>
+            }
+            </>
           }
           { component == 'components' &&
-            <span className="account-breadcrumbs-item-subtitle">
+            <>
+           
+            <span className="account-breadcrumbs-item-subtitle" onClick={() => (setComponent('components'), setView(''))}>
               <SVG svg={'keyboard-right'}></SVG> Components
             </span>
+            {view == 'all_components' && 
+            <span className="account-breadcrumbs-item-subtitle">
+              <SVG svg={'keyboard-right'}></SVG> View All
+            </span>
+            }
+            </>
           }
           { component == 'faculty' &&
-            <span className="account-breadcrumbs-item-subtitle">
+            <>
+            <span className="account-breadcrumbs-item-subtitle" onClick={() => (setComponent('faculty'), setView(''))}>
               <SVG svg={'keyboard-right'}></SVG> Faculty
             </span>
+            {view == 'all_faculty' && 
+            <span className="account-breadcrumbs-item-subtitle">
+              <SVG svg={'keyboard-right'}></SVG> View All
+            </span>
+            }
+            </>
           }
         </div>
       </div>
@@ -211,7 +241,7 @@ const AdminDashboard = ({
       }
       { component == 'faculty' &&
         <Faculty
-          data={data.components}
+          data={data.faculty}
           allData={allData}
           setAllData={setAllData}
           account={account}
@@ -232,6 +262,7 @@ const AdminDashboard = ({
           preventEvent={preventEvent}
           setElementText={setElementText}
           setModalData={setModalData}
+          validateIsEmail={validateIsEmail}
         ></Faculty>
       }
     </div>
@@ -241,7 +272,8 @@ const AdminDashboard = ({
 const mapStateToProps = state => {
   return {
     admin: state.admin,
-    componentData: state.component
+    componentData: state.component,
+    faculty: state.faculty
   }
 }
 
@@ -249,6 +281,7 @@ const mapDispatchToProps = dispatch => {
   return {
     createAdmin: (name, value) => dispatch({type: 'CREATE_ADMIN', name: name, value: value}),
     createComponent: (name, value) => dispatch({type: 'CREATE_COMPONENT', name: name, value: value}),
+    createFaculty: (name, value) => dispatch({type: 'CREATE_FACULTY', name: name, value: value}),
   }
 }
 
@@ -263,6 +296,7 @@ AdminDashboard.getInitialProps = async (context) => {
 
   data.adminUsers = await tableData(accessToken, 'admin_users')
   data.components = await tableData(accessToken, 'components')
+  data.faculty = await tableData(accessToken, 'faculty')
   deepClone= _.cloneDeep(data)
 
   return {

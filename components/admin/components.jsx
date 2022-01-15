@@ -59,10 +59,11 @@ const Components = ({
       
     } catch (error) {
       console.log(error)
-      for(let key in component){setElementText(key, '')}
-      resetComponent()
+      // for(let key in component){setElementText(key, '')}
+      // resetComponent()
       setLoading('')
       if(error) error.response ? setMessage(error.response.data) : setMessage('Error ocurred creating a component, please try again later')
+      if(error){ if(error.response) error.response.status == 406 ? window.location.href = '/admin/login' : null }
     }
   }
 

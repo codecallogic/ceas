@@ -20,6 +20,18 @@ const populateModal = (originalData, dataType, methodType, methods, selectID, se
       }
     }
   }
+
+  if(methodType == 'createFaculty'){
+    for(let key in originalData[dataType]){
+      if(originalData[dataType][key]._id == selectID){
+        let object = originalData[dataType][key]
+        for(let keyOfObject in object){
+          methods.createFaculty(keyOfObject, object[keyOfObject])
+          if(Array.isArray(object[keyOfObject]) && object[keyOfObject].length > 0) methods.createFaculty(keyOfObject, object[keyOfObject][0].name)
+        }
+      }
+    }
+  }
 }
 
 export {

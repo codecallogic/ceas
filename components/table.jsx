@@ -123,7 +123,9 @@ const Table = ({
               </label>
             </div>
             {Object.keys(item).map((key, idx, array) => 
-              key !== '_id' && <div key={idx} className="table-rows-item">{item[key]}</div>
+              key !== '_id' && <div key={idx} className="table-rows-item">
+                {Array.isArray(item[key]) && item[key].length > 0 ? item[key][0].name : item[key]}
+              </div>
             )}
           </div>
         )

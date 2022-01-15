@@ -2,6 +2,7 @@ import {connect} from 'react-redux'
 import {useState, useEffect} from 'react'
 import SVG from '../../files/svg'
 import {facultyTitles, centerAssociation} from '../../utilities/dropdowns'
+import {PUBLIC_FILES} from '../../config'
 
 const Modal = ({
   type,
@@ -32,7 +33,8 @@ const Modal = ({
   changeEmail,
   updateAdmin,
   submitComponent,
-  updateComponent
+  updateComponent,
+  submitFaculty
 }) => {
   const [dropdown, setDropdown] = useState('')
 
@@ -44,7 +46,7 @@ const Modal = ({
   const validateIsPhoneNumber = (type, reducerKey, method) => {
     const input = document.getElementById(type)
     const cleanNum = input.value.toString().replace(/\D/g, '');
-    console.log(cleanNum)
+
     input.onkeydown = function(event){
       if(event.keyCode == 8){
         if(cleanNum.length == 1) return method(reducerKey, '')
@@ -73,6 +75,24 @@ const Modal = ({
           <div className="accountUpdateProfile-modal-box-content">
             <form action="" className="form-group">
               <div className="form-group-100 mb1">
+              <div className="form-group-100">
+                <div className="form-group-100-field-input-file">
+                  { functionType == 'update_faculty' ?
+                    <label htmlFor="profileImage">
+                      {faculty.profileImage ? <img src={`${PUBLIC_FILES}/faculty/${faculty.profileImage}`}></img> : <SVG svg={'cloud-upload'}></SVG>} {faculty.profileImage ? faculty.profileImage : 'Upload Image'}
+                    </label>
+                    :
+                    <label htmlFor="profileImage">
+                      {faculty.profileImage ? <img src={URL.createObjectURL(faculty.profileImage)}></img> : <SVG svg={'cloud-upload'}></SVG>} {faculty.profileImage ? faculty.profileImage.name : 'Upload Image'}
+                    </label>
+                  }
+                  <input 
+                  type="file"
+                  id="profileImage" 
+                  onChange={(e) => (setMessage(''), createFaculty('profileImage', e.target.files[0]))}
+                  />
+                </div>
+              </div>
                 <div className="form-group-100-field">
                   <div 
                     id="title" 
@@ -180,9 +200,9 @@ const Modal = ({
               <div className="form-group-100">
                 <div className="form-group-100-field">
                   <div 
-                  id="location" 
+                  id="officeLocation" 
                   contentEditable="true" 
-                  onInput={(e) => (preventEvent('location'), setMessage(''), createFaculty('officeLocation', e.target.innerText))}
+                  onInput={(e) => (preventEvent('officeLocation'), setMessage(''), createFaculty('officeLocation', e.target.innerText))}
                   />
                   <label 
                   className={faculty.officeLocation.length > 0 ? ' labelHover' : ''}>
@@ -250,7 +270,7 @@ const Modal = ({
                     id="componentTwo" 
                   />
                   <label 
-                    className={(faculty.componentOne.length > 0 ? ' labelHover' : '') + ` form-group-100-field-label-dropdown`}
+                    className={(faculty.componentTwo.length > 0 ? ' labelHover' : '') + ` form-group-100-field-label-dropdown`}
                     onClick={() => dropdown == 'componentTwo' ? setDropdown('') : setDropdown('componentTwo')}
                   >
                     Component Two
@@ -277,7 +297,7 @@ const Modal = ({
                     id="componentThree" 
                   />
                   <label 
-                    className={(faculty.componentOne.length > 0 ? ' labelHover' : '') + ` form-group-100-field-label-dropdown`}
+                    className={(faculty.componentThree.length > 0 ? ' labelHover' : '') + ` form-group-100-field-label-dropdown`}
                     onClick={() => dropdown == 'componentThree' ? setDropdown('') : setDropdown('componentThree')}
                   >
                     Component Three
@@ -320,7 +340,7 @@ const Modal = ({
             </form>
           </div>
           {message.length > 0 ? <div className="form-group-message">{message}</div> : null}
-              {functionType == 'update_component' &&
+              {functionType == 'update_faculty' &&
                 <button 
                 className="form-group-button-100" 
                 onClick={(e) => updateComponent(e)}
@@ -334,9 +354,9 @@ const Modal = ({
               {functionType == undefined &&
                 <button 
                 className="form-group-button-100" 
-                onClick={(e) => submitComponent(e)}>
+                onClick={(e) => submitFaculty(e)}>
                   {!loading && <span>Save</span>} 
-                  {loading == 'component' && 
+                  {loading == 'create_faculty' && 
                   <div className="loading"><span></span><span></span><span></span></div>
                   }
                 </button>

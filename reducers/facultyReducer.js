@@ -1,4 +1,5 @@
 const initialState = {
+  profileImage: '',
   title: '',
   name: '',
   profession: '',

@@ -45,6 +45,21 @@ const tableData = async (accessToken, type) => {
       if(error) return error.response.data
     }
   }
+
+  if(type == 'faculty'){
+    try {
+      const responseTable = await axios.get(`${API}/faculty/get-all-faculty`,  { 
+        headers: {
+        Authorization: `Bearer ${accessToken}`,
+        contentType: `application/json`
+      }})
+  
+      return responseTable.data
+    } catch (error) {
+      console.log(error)
+      if(error) return error.response.data
+    }
+  }
 }
 
 export {

@@ -212,6 +212,48 @@
           font-size: 1.2rem;
           text-transform: lowercase;
         }
+
+        &-file {
+          input {
+            display: none;
+          }
+
+          label {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 1rem 2rem;
+            box-sizing: border-box;
+            outline: none;
+            font-weight: 300;
+            font-size: 1.4rem;
+            font-family: inherit;
+            border: 0.1rem solid $color-light-grey-2;
+            border-radius: 1.2rem;
+            background-color: $color-light-grey-2;
+            margin: 0.5rem 0;
+            color: $color-light-grey-1;
+
+            img {
+              width: 5rem;
+              height: 5rem;
+              border-radius: 50%;
+              object-fit: cover;
+              margin-right: 1rem;
+            }
+
+            svg {
+              width: 3rem;
+              height: 3rem;
+              fill: $color-scheme-3;
+              margin-right: 1rem;
+            }
+
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
       }
     }
   }
@@ -265,8 +307,8 @@
   }
 
   &-message {
-    width: 80%;
-    margin: 0 auto;
+    width: 100%;
+    text-align: center;
     font-size: 1.4rem;
     color: $color-scheme-1;
     padding: 0.5rem 0;

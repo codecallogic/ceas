@@ -58,6 +58,9 @@ button {
 .mb1 {
   margin-bottom: 1rem; }
 
+.w-100 {
+  width: 100% !important; }
+
 .topBorders {
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem; }
@@ -104,13 +107,13 @@ button {
       height: 4rem;
       margin-right: 1rem; }
   .account-breadcrumbs {
-    display: flex; }
+    display: flex;
+    align-items: center; }
     @media only screen and (max-width: 992px) {
       .account-breadcrumbs {
         padding: 0 3rem; } }
     .account-breadcrumbs-item {
       display: flex;
-      align-items: baseline;
       font-size: 1.8rem;
       color: #b3b3b3; }
       .account-breadcrumbs-item-title {
@@ -125,7 +128,10 @@ button {
         fill: #e63946; }
       .account-breadcrumbs-item-subtitle {
         display: flex;
-        align-items: baseline; }
+        align-items: center; }
+        .account-breadcrumbs-item-subtitle:hover {
+          cursor: pointer;
+          text-decoration: underline; }
   .account-dashboard {
     display: flex;
     flex-wrap: wrap;
@@ -310,6 +316,36 @@ button {
       transition: all 0.3s ease-in-out;
       font-size: 1.2rem;
       text-transform: lowercase; }
+    .form-group-100-field-input-file input {
+      display: none; }
+    .form-group-100-field-input-file label {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: 1rem 2rem;
+      box-sizing: border-box;
+      outline: none;
+      font-weight: 300;
+      font-size: 1.4rem;
+      font-family: inherit;
+      border: 0.1rem solid #edf2f5;
+      border-radius: 1.2rem;
+      background-color: #edf2f5;
+      margin: 0.5rem 0;
+      color: #b3b3b3; }
+      .form-group-100-field-input-file label img {
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 1rem; }
+      .form-group-100-field-input-file label svg {
+        width: 3rem;
+        height: 3rem;
+        fill: #a8dadc;
+        margin-right: 1rem; }
+      .form-group-100-field-input-file label:hover {
+        cursor: pointer; }
 
 .form-group-checkbox {
   display: flex;
@@ -348,8 +384,8 @@ button {
     cursor: pointer; }
 
 .form-group-message {
-  width: 80%;
-  margin: 0 auto;
+  width: 100%;
+  text-align: center;
   font-size: 1.4rem;
   color: #e63946;
   padding: 0.5rem 0; }
@@ -613,6 +649,7 @@ button {
       -webkit-line-clamp: 2; }
 
 .row-odd {
+  width: 100%;
   background-color: #edf2f5; }
 
 .row-even {

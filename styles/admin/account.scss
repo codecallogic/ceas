@@ -27,6 +27,7 @@
 
   &-breadcrumbs {
     display: flex;
+    align-items: center;
 
     @media only screen and (max-width: $large) {
       padding: 0 3rem;
@@ -34,7 +35,6 @@
 
     &-item {
       display: flex;
-      align-items: baseline;
       font-size: 1.8rem;
       color: $color-light-grey-1;
 
@@ -56,7 +56,12 @@
 
       &-subtitle {
         display: flex;
-        align-items: baseline;
+        align-items: center;
+
+        &:hover {
+          cursor: pointer;
+          text-decoration: underline;
+        }
       }
     }
   }

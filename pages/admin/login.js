@@ -101,7 +101,7 @@ const AdminLogin = ({}) => {
             <a href="#">Forgot password</a>
           </div>
           {message.length > 0 ? <div className="form-group-message">{message}</div> : null}
-          <button className="form-group-button-100" onClick={() => login()}>{!loading && <span>Log in</span>} {loading && <div className="loading"><span></span><span></span><span></span></div>}</button>
+          <button className="form-group-button-100 w-100" onClick={() => login()}>{!loading && <span>Log in</span>} {loading && <div className="loading"><span></span><span></span><span></span></div>}</button>
         </div>
       </div>
     </div>

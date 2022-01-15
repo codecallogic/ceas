@@ -5,6 +5,7 @@ import {API} from '../../config'
 import axios from 'axios'
 import AdminModals from '../modals/AdminModals'
 import AdminTable from '../table'
+import {nanoid} from 'nanoid'
 
 const Components = ({
   data,
@@ -28,45 +29,55 @@ const Components = ({
   setControls,
   setElementText,
   setModalData,
+  validateIsEmail,
+  
   //// REDUX
-  component,
-  resetComponent
+  faculty,
+  resetFaculty
   }) => {
 
   const [allFaculty, setAllFaculty] = useState(data ? data : [])
 
-  const createComponent = async (e) => {
+  const createFaculty= async (e) => {
     e.preventDefault()
-    if(!component.name) return setMessage('Please fill out name field')
-    if(!component.active) return setMessage('Please choose active setate')
-    if(!component.shortDescription) return setMessage('Please add a short description')
-    if(!component.longDescription) return setMessage('Please add a long description')
-    setLoading('component')
+    if(!validateIsEmail('email')) return setMessage('Invalid email address')
+    if(!faculty.title) return setMessage('Please select a title')
+    if(!faculty.name) return setMessage('Please add a name')
+    if(!faculty.profession) return setMessage('Please add a profession')
+    if(!faculty.department) return setMessage('Please add a department')
+    if(!faculty.email) return setMessage('Please add an email')
+    setLoading('create_faculty')
     setMessage('')
 
+    let fileID    = nanoid()
+    let data      = new FormData()
+
+    for(let key in faculty){
+      if(key !== 'profileImage') data.append(key, faculty[key])
+      if(key == 'profileImage') faculty.profileImage ? data.append('file', faculty.profileImage, `faculty-${fileID}.${faculty.profileImage.name.split('.'[1])}`) : null
+    }
+    
     try {
-      const responseCreate = await axios.post(`${API}/component/create-component`, component, { 
+      const responseCreate = await axios.post(`${API}/faculty/create-faculty`, data, { 
         headers: {
         Authorization: `Bearer ${accessToken}`,
-        contentType: `application/json`
+        contentType: `multipart/form-data`
       }})
       setLoading('')
-      allData.components = responseCreate.data
+      allData.faculty = responseCreate.data
       setAllData(allData)
-      setMessage('Component was created')
-      for(let key in component){setElementText(key, '')}
-      resetComponent()
+      setMessage('Faculty was created')
+      for(let key in faculty){setElementText(key, '')}
+      resetFaculty()
       
     } catch (error) {
-      console.log(error)
-      for(let key in component){setElementText(key, '')}
-      resetComponent()
+      console.log(error.response)
       setLoading('')
-      if(error) error.response ? setMessage(error.response.data) : setMessage('Error ocurred creating a component, please try again later')
+      if(error) error.response ? error.response.statusText == 'Unauthorized' ? (setMessage(error.response.statusText), window.location.href = '/admin/login') : setMessage(error.response.data) : setMessage('Error ocurred creating a faculty, please try again later')
     }
   }
 
-  const updateComponent = async (e) => {
+  const updateFaculty = async (e) => {
     e.preventDefault()
     if(!component.name) return setMessage('Please fill out name field')
     if(!component.active) return setMessage('Please choose active setate')
@@ -134,8 +145,8 @@ const Components = ({
       }
       { view == 'all_faculty' &&
       <AdminTable
-        title={'Components'}
-        typeOfData={'components'}
+        title={'Faculty'}
+        typeOfData={'faculty'}
         modalType={'update_faculty'}
         modalDataType={{key: 'faculty', method: 'createFaculty'}}
         componentData={allFaculty}
@@ -157,7 +168,7 @@ const Components = ({
         type={'create_faculty'}
         title={'Create Faculty Member'}
         data={allData}
-        submitComponent={createComponent}
+        submitFaculty={createFaculty}
         resetUI={resetUI}
         setModal={setModal}
         setMessage={setMessage}
@@ -171,10 +182,11 @@ const Components = ({
       }
       {modal == 'update_faculty' &&
       <AdminModals
-        type={'create_component'}
+        type={'create_faculty'}
         functionType={'update_faculty'}
         title={'Update Faculty Member'}
-        updateComponent={updateComponent}
+        data={allData}
+        updateFaculty={updateFaculty}
         resetUI={resetUI}
         setModal={setModal}
         setMessage={setMessage}
@@ -192,13 +204,13 @@ const Components = ({
 
 const mapStateToProps = state => {
   return {
-    component: state.component
+    faculty: state.faculty
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    resetComponent: () => dispatch({type: 'RESET_COMPONENT'})
+    resetFaculty: () => dispatch({type: 'RESET_FACULTY'})
   }
 }
 
