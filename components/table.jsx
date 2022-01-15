@@ -17,9 +17,9 @@ const Table = ({
   deleteRow,
   setModalData,
   setModal,
-  message
+  message,
+  sortOrder
 }) => {
-
   const myRefs = useRef([])
 
   const resetCheckboxes = () => {
@@ -97,7 +97,8 @@ const Table = ({
         { 
           filterTable(componentData).length > 0 && 
           filterTable(componentData, ['_id', 'createdAt', 'updatedAt', '__v'], 1).map((item, idx, array) => 
-            Object.keys(array[0]).map((key, idx) => 
+          // Object.keys(array[0]).sort((a, b) => console.log(sortOrder.indexOf(a)))
+            Object.keys(array[0]).sort((a, b) => sortOrder.indexOf(b) - sortOrder.indexOf(a)).map((key, idx) => 
               <div key={idx} className="table-headers-item">
                 {key.replace( /([a-z])([A-Z])/g, "$1 $2")}
               </div>
@@ -122,7 +123,7 @@ const Table = ({
                 </div>
               </label>
             </div>
-            {Object.keys(item).map((key, idx, array) => 
+            {Object.keys(item).sort((a, b) => sortOrder.indexOf(b) - sortOrder.indexOf(a)).map((key, idx, array) => 
               key !== '_id' && <div key={idx} className="table-rows-item">
                 {Array.isArray(item[key]) && item[key].length > 0 ? item[key][0].name : item[key]}
               </div>

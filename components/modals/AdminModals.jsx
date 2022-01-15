@@ -15,6 +15,9 @@ const Modal = ({
   loading,
   preventEvent,
   setElementText,
+  
+  //// REDUX
+  resetFaculty,
 
   //// DATA
   data,
@@ -34,7 +37,8 @@ const Modal = ({
   updateAdmin,
   submitComponent,
   updateComponent,
-  submitFaculty
+  submitFaculty,
+  updateFaculty,
 }) => {
   const [dropdown, setDropdown] = useState('')
 
@@ -68,7 +72,7 @@ const Modal = ({
     {type == 'create_faculty' &&
       <div className="accountUpdateProfile-modal">
         <div className="accountUpdateProfile-modal-box">
-          <div className="accountUpdateProfile-modal-box-svg" onClick={() => (resetUI(), setModal(''), setMessage(''))}><SVG svg={'close'}></SVG></div>
+          <div className="accountUpdateProfile-modal-box-svg" onClick={() => (resetUI(), setModal(''), setMessage(''), resetFaculty())}><SVG svg={'close'}></SVG></div>
           <div className="accountUpdateProfile-modal-box-header">
             <div className="accountUpdateProfile-modal-box-header-title">{title}</div>
           </div>
@@ -77,7 +81,7 @@ const Modal = ({
               <div className="form-group-100 mb1">
               <div className="form-group-100">
                 <div className="form-group-100-field-input-file">
-                  { functionType == 'update_faculty' ?
+                  { functionType == 'update_faculty' && (typeof faculty.profileImage !== 'object' && faculty.profileImage !== null) ?
                     <label htmlFor="profileImage">
                       {faculty.profileImage ? <img src={`${PUBLIC_FILES}/faculty/${faculty.profileImage}`}></img> : <SVG svg={'cloud-upload'}></SVG>} {faculty.profileImage ? faculty.profileImage : 'Upload Image'}
                     </label>
@@ -89,7 +93,11 @@ const Modal = ({
                   <input 
                   type="file"
                   id="profileImage" 
-                  onChange={(e) => (setMessage(''), createFaculty('profileImage', e.target.files[0]))}
+                  onChange={(e) => (
+                    setMessage(''), 
+                    typeof faculty.profileImage !== 'object' && faculty.profileImage !== null ? createFaculty('previousProfileImage', faculty.profileImage) : null,
+                    createFaculty('profileImage', e.target.files[0])
+                  )}
                   />
                 </div>
               </div>
@@ -343,10 +351,10 @@ const Modal = ({
               {functionType == 'update_faculty' &&
                 <button 
                 className="form-group-button-100" 
-                onClick={(e) => updateComponent(e)}
+                onClick={(e) => updateFaculty(e)}
                 >
                   {!loading && <span>Update</span>} 
-                  {loading == 'update_component' && 
+                  {loading == 'update_faculty' && 
                     <div className="loading"><span></span><span></span><span></span></div>
                   }
                 </button>

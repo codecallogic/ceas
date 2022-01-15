@@ -33,6 +33,7 @@ const Components = ({
   resetComponent
   }) => {
 
+  const sortOrder = ['longDescription', 'shortDescription', 'active', 'leader', 'name']
   const [allComponents, setAllComponents] = useState(data ? data : [])
 
   const createComponent = async (e) => {
@@ -150,6 +151,7 @@ const Components = ({
         setModalData={setModalData}
         deleteRow={deleteComponent}
         message={message}
+        sortOrder={sortOrder}
       >
       </AdminTable>
       }

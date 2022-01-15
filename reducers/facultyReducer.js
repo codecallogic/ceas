@@ -1,4 +1,5 @@
 const initialState = {
+  previousProfileImage: '',
   profileImage: '',
   title: '',
   name: '',

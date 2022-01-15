@@ -47,13 +47,28 @@ const AdminDashboard = ({
   }, [])
 
   useEffect(() => {
-    if(modal == 'update_admin'){for(let key in componentData){setElementText(key, admin[key])}}
+
+    if(modal == 'update_admin'){for(let key in admin){setElementText(key, admin[key])}}
+
     if(modal == 'update_component'){for(let key in componentData){setElementText(key, componentData[key])}}
-    if(modal == 'update_faculty'){for(let key in faculty){
-      // console.log(key)
-      if(Array.isArray(faculty[key]) && faculty[key].length > 0) return setElementText(key, faculty[key][0].name)
-      setElementText(key, faculty[key])
-    }}
+
+    if(modal == 'update_faculty'){
+
+      for(let key in faculty){
+        if(Array.isArray(faculty[key]) && faculty[key].length > 0) return setElementText(key, faculty[key][0].name)
+        setElementText(key, faculty[key])
+      }
+
+      allData.faculty.forEach((item) => {
+        if(item._id == selectID){
+          for(let key in item){
+            if(Array.isArray(item[key]) && item[key].length > 0) createFaculty(key, item[key][0]._id)
+          }
+        }
+      })
+      
+    }
+
   }, [modal])
 
   const resetUILocalStorage = () => {
@@ -298,7 +313,7 @@ AdminDashboard.getInitialProps = async (context) => {
   data.components = await tableData(accessToken, 'components')
   data.faculty = await tableData(accessToken, 'faculty')
   deepClone= _.cloneDeep(data)
-
+  
   return {
     data: Object.keys(data).length > 0 ? data : null,
     originalData: Object.keys(deepClone).length > 0 ? deepClone : null

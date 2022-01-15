@@ -33,6 +33,7 @@ const Users = ({
   admin
 }) => {
 
+  const sortOrder = ['role', 'email', 'lastName', 'firstName', 'username']
   const [allUsers, setAllUsers] = useState(data ? data : [])
 
   const createNewAdmin = async (e) => {
@@ -145,6 +146,7 @@ const Users = ({
           deleteRow={deleteAdmin}
           setModalData={setModalData}
           setModal={setModal}
+          sortOrder={sortOrder}
         >
         </AdminTables>
       }

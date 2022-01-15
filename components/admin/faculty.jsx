@@ -36,6 +36,8 @@ const Components = ({
   resetFaculty
   }) => {
 
+
+  const sortOrder = ['profileImage', 'department', 'email', 'profession', 'name', 'title']
   const [allFaculty, setAllFaculty] = useState(data ? data : [])
 
   const createFaculty= async (e) => {
@@ -79,30 +81,41 @@ const Components = ({
 
   const updateFaculty = async (e) => {
     e.preventDefault()
-    if(!component.name) return setMessage('Please fill out name field')
-    if(!component.active) return setMessage('Please choose active setate')
-    if(!component.shortDescription) return setMessage('Please add a short description')
-    if(!component.longDescription) return setMessage('Please add a long description')
-    setLoading('update_component')
+    if(!validateIsEmail('email')) return setMessage('Invalid email address')
+    if(!faculty.title) return setMessage('Please select a title')
+    if(!faculty.name) return setMessage('Please add a name')
+    if(!faculty.profession) return setMessage('Please add a profession')
+    if(!faculty.department) return setMessage('Please add a department')
+    if(!faculty.email) return setMessage('Please add an email')
+    setLoading('update_faculty')
     setMessage('')
 
+    let fileID    = nanoid()
+    let data      = new FormData()
+
+    for(let key in faculty){
+      if(key !== 'profileImage') data.append(key, faculty[key])
+
+      if(key == 'profileImage' && (typeof faculty.profileImage === 'object' && faculty.profileImage !== null)) faculty.profileImage ? data.append('file', faculty.profileImage, `faculty-${fileID}.${faculty.profileImage.name.split('.'[1])}`) : null
+
+      if(key == 'profileImage' && (typeof faculty.profileImage !== 'object' && faculty.profileImage !== null)) data.append(key, faculty[key])
+    }
+
     try {
-      const responseUpdate = await axios.post(`${API}/component/update-component`, component, { 
+      const responseUpdate = await axios.post(`${API}/faculty/update-faculty`, data, { 
         headers: {
         Authorization: `Bearer ${accessToken}`,
         contentType: `application/json`
       }})
       setLoading('')
-      allData.components = responseUpdate.data
+      allData.faculty = responseUpdate.data
       setAllData(allData)
       setModal('')
       
     } catch (error) {
       console.log(error)
-      for(let key in component){setElementText(key, '')}
-      resetComponent()
       setLoading('')
-      if(error) error.response ? setMessage(error.response.data) : setMessage('Error ocurred updating the component, please try again later')
+      if(error) error.response ? setMessage(error.response.data) : setMessage('Error ocurred updating faculty member, please try again later')
     }
   }
 
@@ -137,7 +150,7 @@ const Components = ({
           <SVG svg={'list'}></SVG>
           <span>View Faculty</span>
         </div>
-        <div className="account-dashboard-item" onClick={() => (resetUI(), setModal('create_faculty'))}>
+        <div className="account-dashboard-item" onClick={() => (resetUI(), resetFaculty(), setModal('create_faculty'))}>
           <SVG svg={'add-staff'}></SVG>
           <span>Create Faculty Member</span>
         </div>
@@ -160,6 +173,7 @@ const Components = ({
         setModalData={setModalData}
         deleteRow={deleteComponent}
         message={message}
+        sortOrder={sortOrder}
       >
       </AdminTable>
       }
@@ -195,6 +209,7 @@ const Components = ({
         setLoading={setLoading}
         setElementText={setElementText}
         preventEvent={preventEvent}
+        resetFaculty={resetFaculty}
       >
       </AdminModals>
       }
