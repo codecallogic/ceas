@@ -580,7 +580,9 @@ button {
         min-width: 5rem;
         max-width: 5rem; }
   .table-rows {
-    display: flex; }
+    display: flex;
+    background-color: #edf2f5;
+    padding: 0 !important; }
     .table-rows-container {
       width: 100%;
       overflow-x: auto; }

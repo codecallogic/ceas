@@ -104,6 +104,8 @@
 
   &-rows {
     display: flex;
+    background-color: $color-light-grey-2;
+    padding: 0 !important;
 
     &-container {
       width: 100%;

@@ -29,6 +29,9 @@ const Users = ({
   validateIsEmail,
   setElementText,
   setModalData,
+  resetCheckboxes,
+
+  //// REDUX
   resetAdministrator,
   admin
 }) => {
@@ -147,6 +150,7 @@ const Users = ({
           setModalData={setModalData}
           setModal={setModal}
           sortOrder={sortOrder}
+          resetCheckboxes={resetCheckboxes}
         >
         </AdminTables>
       }

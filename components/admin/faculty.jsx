@@ -30,6 +30,7 @@ const Components = ({
   setElementText,
   setModalData,
   validateIsEmail,
+  resetCheckboxes,
   
   //// REDUX
   faculty,
@@ -116,7 +117,7 @@ const Components = ({
     } catch (error) {
       console.log(error)
       setLoading('')
-      if(error) error.response ? setMessage(error.response.data) : setMessage('Error ocurred updating faculty member, please try again later')
+      if(error) error.response ? error.response.statusText == 'Unauthorized' ? (setMessage(error.response.statusText), window.location.href = '/admin/login') : setMessage(error.response.data) : setMessage('Error ocurred updating faculty member, please try again later')
     }
   }
 
@@ -175,6 +176,7 @@ const Components = ({
         deleteRow={deleteFaculty}
         message={message}
         sortOrder={sortOrder}
+        resetCheckboxes={resetCheckboxes}
       >
       </AdminTable>
       }

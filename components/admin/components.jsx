@@ -28,9 +28,12 @@ const Components = ({
   setControls,
   setElementText,
   setModalData,
+  resetCheckboxes,
+
   //// REDUX
   component,
   resetComponent
+
   }) => {
 
   const sortOrder = ['longDescription', 'shortDescription', 'active', 'leader', 'name']
@@ -40,6 +43,7 @@ const Components = ({
     e.preventDefault()
     if(!component.name) return setMessage('Please fill out name field')
     if(!component.active) return setMessage('Please choose active setate')
+    if(!component.leader) return setMessage('Please add a leader associated')
     if(!component.shortDescription) return setMessage('Please add a short description')
     if(!component.longDescription) return setMessage('Please add a long description')
     setLoading('component')
@@ -109,6 +113,7 @@ const Components = ({
         contentType: `application/json`
       }})
       setLoading('')
+      resetCheckboxes()
       allData.components = responseDelete.data
       setAllData(allData)
       setControls(false)
@@ -128,7 +133,7 @@ const Components = ({
           <SVG svg={'list'}></SVG>
           <span>View Components</span>
         </div>
-        <div className="account-dashboard-item" onClick={() => (resetUI(), setModal('create_component'))}>
+        <div className="account-dashboard-item" onClick={() => (resetUI(), resetComponent(), setModal('create_component'))}>
           <SVG svg={'item-added'}></SVG>
           <span>Create Component</span>
         </div>
@@ -152,6 +157,7 @@ const Components = ({
         deleteRow={deleteComponent}
         message={message}
         sortOrder={sortOrder}
+        resetCheckboxes={resetCheckboxes}
       >
       </AdminTable>
       }
@@ -159,6 +165,7 @@ const Components = ({
       <AdminModals
         type={'create_component'}
         title={'Create Component'}
+        data={allData}
         submitComponent={createComponent}
         resetUI={resetUI}
         setModal={setModal}
@@ -168,6 +175,7 @@ const Components = ({
         setLoading={setLoading}
         setElementText={setElementText}
         preventEvent={preventEvent}
+        resetComponent={resetComponent}
       >
       </AdminModals>
       }
@@ -176,6 +184,7 @@ const Components = ({
         type={'create_component'}
         functionType={'update_component'}
         title={'Update Component'}
+        data={allData}
         updateComponent={updateComponent}
         resetUI={resetUI}
         setModal={setModal}
@@ -185,6 +194,7 @@ const Components = ({
         setLoading={setLoading}
         setElementText={setElementText}
         preventEvent={preventEvent}
+        resetComponent={resetComponent}
       >
       </AdminModals>
       }

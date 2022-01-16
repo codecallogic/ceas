@@ -18,14 +18,10 @@ const Table = ({
   setModalData,
   setModal,
   message,
-  sortOrder
+  sortOrder,
+  resetCheckboxes
 }) => {
   const myRefs = useRef([])
-
-  const resetCheckboxes = () => {
-    const els = document.querySelectorAll('.table-rows-checkbox-input')
-    els.forEach( (el) => { el.checked = false })
-  }
 
   const handleClickOutside = (event) => {
     if(myRefs.current){

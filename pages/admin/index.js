@@ -2,11 +2,14 @@ import withAdmin from '../withAdmin'
 import {useState, useEffect} from 'react'
 import SVG from '../../files/svg'
 import {tableData} from '../../helpers/tables'
-import {populateModal} from '../../helpers/modals'
+import {populateModal, manageFormSubmission} from '../../helpers/modals'
 import { getToken } from '../../helpers/auth'
 import _ from 'lodash'
 import {connect} from 'react-redux'
 import {useRouter} from 'next/router'
+
+
+// TODO: When deleting a component remove from faculty members and vice versa
 
 // COMPONENTS
 import Account from '../../components/admin/account'
@@ -30,7 +33,7 @@ const AdminDashboard = ({
   faculty,
   createFaculty
 }) => {
-  // console.log(data)
+  // console.log(originalData)
   const router = useRouter()
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState('')
@@ -48,25 +51,14 @@ const AdminDashboard = ({
 
   useEffect(() => {
 
-    if(modal == 'update_admin'){for(let key in admin){setElementText(key, admin[key])}}
+    if(modal == 'update_admin'){manageFormSubmission('update_admin', admin, null, setElementText)}
 
-    if(modal == 'update_component'){for(let key in componentData){setElementText(key, componentData[key])}}
-
+    if(modal == 'update_component'){
+      manageFormSubmission('update_component', componentData, allData, setElementText, selectID, createComponent)
+    }
+    
     if(modal == 'update_faculty'){
-
-      for(let key in faculty){
-        if(Array.isArray(faculty[key]) && faculty[key].length > 0) return setElementText(key, faculty[key][0].name)
-        setElementText(key, faculty[key])
-      }
-
-      allData.faculty.forEach((item) => {
-        if(item._id == selectID){
-          for(let key in item){
-            if(Array.isArray(item[key]) && item[key].length > 0) createFaculty(key, item[key][0]._id)
-          }
-        }
-      })
-      
+      manageFormSubmission('update_faculty', faculty, allData, setElementText, selectID, createFaculty)
     }
 
   }, [modal])
@@ -75,6 +67,12 @@ const AdminDashboard = ({
     window.localStorage.removeItem('component')
     window.localStorage.removeItem('modal')
   }
+
+  const resetCheckboxes = () => {
+    const els = document.querySelectorAll('.table-rows-checkbox-input')
+    els.forEach( (el) => { el.checked = false })
+  }
+
 
   const preventEvent = (id) => {
     if(document.getElementById(id).innerHTML.includes('<div><br></div>')){
@@ -227,6 +225,7 @@ const AdminDashboard = ({
           validateIsEmail={validateIsEmail}
           setElementText={setElementText}
           setModalData={setModalData}
+          resetCheckboxes={resetCheckboxes}
         ></Users>
       }
       { component == 'components' &&
@@ -252,6 +251,7 @@ const AdminDashboard = ({
           preventEvent={preventEvent}
           setElementText={setElementText}
           setModalData={setModalData}
+          resetCheckboxes={resetCheckboxes}
         ></Components>
       }
       { component == 'faculty' &&
@@ -278,6 +278,7 @@ const AdminDashboard = ({
           setElementText={setElementText}
           setModalData={setModalData}
           validateIsEmail={validateIsEmail}
+          resetCheckboxes={resetCheckboxes}
         ></Faculty>
       }
     </div>
