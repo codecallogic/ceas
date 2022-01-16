@@ -580,7 +580,6 @@ button {
         min-width: 5rem;
         max-width: 5rem; }
   .table-rows {
-    padding: 1rem 0;
     display: flex; }
     .table-rows-container {
       width: 100%;
@@ -610,7 +609,7 @@ button {
           border: 0.1rem solid #e63946;
           cursor: pointer;
           opacity: 0;
-          z-index: 10; }
+          z-index: 100; }
           .table-rows-checkbox label input[type='checkbox']:checked ~ div > svg {
             display: block; }
         .table-rows-checkbox label span {
@@ -650,10 +649,15 @@ button {
 
 .row-odd {
   width: 100%;
-  background-color: #edf2f5; }
+  padding: 1rem 0; }
+  .row-odd > div {
+    background-color: #edf2f5;
+    padding: 1rem 0;
+    height: 5.5rem; }
 
 .row-even {
-  background-color: white; }
+  background-color: white;
+  padding: 1rem 0; }
 
 .home {
   display: flex;

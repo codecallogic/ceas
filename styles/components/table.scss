@@ -103,7 +103,6 @@
   }
 
   &-rows {
-    padding: 1rem 0;
     display: flex;
 
     &-container {
@@ -143,7 +142,7 @@
           border: 0.1rem solid $color-scheme-1;
           cursor: pointer;
           opacity: 0;
-          z-index: 10;
+          z-index: 100;
 
           &:checked ~ div > svg {
             display: block;
@@ -198,9 +197,17 @@
 
 .row-odd {
   width: 100%;
-  background-color: $color-light-grey-2;
+  padding: 1rem 0;
+  // background-color: $color-light-grey-2;
+
+  & > div {
+    background-color: $color-light-grey-2;
+    padding: 1rem 0;
+    height: 5.5rem;
+  }
 }
 
 .row-even {
   background-color: white;
+  padding: 1rem 0;
 }

@@ -35,9 +35,10 @@ const Components = ({
   faculty,
   resetFaculty
   }) => {
+  console.log(allData)
 
+  const sortOrder = ['componentThree', 'componentTwo', 'componentOne', 'researchInterests', 'officeLocation', 'centerAssociation', 'website', 'officePhone', 'profileImage', 'department', 'email', 'profession', 'name', 'title']
 
-  const sortOrder = ['profileImage', 'department', 'email', 'profession', 'name', 'title']
   const [allFaculty, setAllFaculty] = useState(data ? data : [])
 
   const createFaculty= async (e) => {
@@ -119,19 +120,19 @@ const Components = ({
     }
   }
 
-  const deleteComponent = async (e) => {
+  const deleteFaculty = async (e) => {
     e.preventDefault()
-    setLoading('delete_component')
+    setLoading('delete_faculty')
     setMessage('')
     
     try {
-      const responseDelete = await axios.post(`${API}/component/delete-component`, {id: selectID}, { 
+      const responseDelete = await axios.post(`${API}/faculty/delete-faculty`, {id: selectID}, { 
         headers: {
         Authorization: `Bearer ${accessToken}`,
         contentType: `application/json`
       }})
       setLoading('')
-      allData.components = responseDelete.data
+      allData.faculty = responseDelete.data
       setAllData(allData)
       setControls(false)
 
@@ -171,7 +172,7 @@ const Components = ({
         setControls={setControls}
         setModal={setModal}
         setModalData={setModalData}
-        deleteRow={deleteComponent}
+        deleteRow={deleteFaculty}
         message={message}
         sortOrder={sortOrder}
       >
@@ -191,6 +192,7 @@ const Components = ({
         setLoading={setLoading}
         setElementText={setElementText}
         preventEvent={preventEvent}
+        resetFaculty={resetFaculty}
       >
       </AdminModals>
       }
