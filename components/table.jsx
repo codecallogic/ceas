@@ -59,7 +59,7 @@ const Table = ({
     setControls(true)
     setSelectID(id)
   }
-
+  
   return (
     <div className="table">
       <div className="table-header">

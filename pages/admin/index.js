@@ -16,6 +16,7 @@ import Account from '../../components/admin/account'
 import Users from '../../components/admin/users'
 import Components from '../../components/admin/components'
 import Faculty from '../../components/admin/faculty'
+import Students from '../../components/admin/students'
 
 const AdminDashboard = ({
   data, 
@@ -31,7 +32,9 @@ const AdminDashboard = ({
   createComponent,
   componentData,
   faculty,
-  createFaculty
+  createFaculty,
+  student,
+  createStudent
 }) => {
   // console.log(originalData)
   const router = useRouter()
@@ -59,6 +62,10 @@ const AdminDashboard = ({
     
     if(modal == 'update_faculty'){
       manageFormSubmission('update_faculty', faculty, allData, setElementText, selectID, createFaculty)
+    }
+    
+    if(modal == 'update_student'){
+      manageFormSubmission('update_student', student, allData, setElementText, selectID, createStudent)
     }
 
   }, [modal])
@@ -99,6 +106,7 @@ const AdminDashboard = ({
     objectMethods.createAdmin = createAdmin
     objectMethods.createComponent = createComponent
     objectMethods.createFaculty = createFaculty
+    objectMethods.createStudent = createStudent
     populateModal(originalData, dataType, reducerMethod, objectMethods, selectID, setElementText)
   }
 
@@ -150,6 +158,18 @@ const AdminDashboard = ({
             }
             </>
           }
+          { component == 'students' &&
+            <>
+            <span className="account-breadcrumbs-item-subtitle" onClick={() => (setComponent('students'), setView(''))}>
+              <SVG svg={'keyboard-right'}></SVG> Students
+            </span>
+            {view == 'all_students' && 
+            <span className="account-breadcrumbs-item-subtitle">
+              <SVG svg={'keyboard-right'}></SVG> View All
+            </span>
+            }
+            </>
+          }
         </div>
       </div>
       { component == '' &&
@@ -182,6 +202,13 @@ const AdminDashboard = ({
             <SVG svg={'staff'}></SVG>
             <span>Faculty</span>
           </div>
+          <div 
+          className="account-dashboard-item" 
+          onClick={() => (setComponent('students'), setView(''))}
+          >
+            <SVG svg={'staff'}></SVG>
+            <span>Students</span>
+          </div>
         </div>
       }
       { component == 'account' &&
@@ -203,7 +230,7 @@ const AdminDashboard = ({
       }
       { component == 'admin_users' &&
         <Users
-          data={data.adminUsers}
+          data={allData.adminUsers}
           allData={allData}
           setAllData={setAllData}
           account={account}
@@ -230,7 +257,7 @@ const AdminDashboard = ({
       }
       { component == 'components' &&
         <Components
-          data={data.components}
+          data={allData.components}
           allData={allData}
           setAllData={setAllData}
           account={account}
@@ -256,7 +283,7 @@ const AdminDashboard = ({
       }
       { component == 'faculty' &&
         <Faculty
-          data={data.faculty}
+          data={allData.faculty}
           allData={allData}
           setAllData={setAllData}
           account={account}
@@ -281,6 +308,33 @@ const AdminDashboard = ({
           resetCheckboxes={resetCheckboxes}
         ></Faculty>
       }
+      { component == 'students' &&
+        <Students
+          data={allData.students}
+          allData={allData}
+          setAllData={setAllData}
+          account={account}
+          accessToken={accessToken}
+          resetUI={resetUILocalStorage}
+          modal={modal} 
+          setModal={setModal}
+          view={view}
+          setView={setView}
+          message={message}
+          setMessage={setMessage}
+          loading={loading}
+          setLoading={setLoading}
+          selectID={selectID}
+          setSelectID={setSelectID}
+          controls={controls}
+          setControls={setControls}
+          preventEvent={preventEvent}
+          setElementText={setElementText}
+          setModalData={setModalData}
+          validateIsEmail={validateIsEmail}
+          resetCheckboxes={resetCheckboxes}
+        ></Students>
+      }
     </div>
   )
 }
@@ -289,7 +343,8 @@ const mapStateToProps = state => {
   return {
     admin: state.admin,
     componentData: state.component,
-    faculty: state.faculty
+    faculty: state.faculty,
+    student: state.student
   }
 }
 
@@ -298,6 +353,7 @@ const mapDispatchToProps = dispatch => {
     createAdmin: (name, value) => dispatch({type: 'CREATE_ADMIN', name: name, value: value}),
     createComponent: (name, value) => dispatch({type: 'CREATE_COMPONENT', name: name, value: value}),
     createFaculty: (name, value) => dispatch({type: 'CREATE_FACULTY', name: name, value: value}),
+    createStudent: (name, value) => dispatch({type: 'CREATE_STUDENT', name: name, value: value}),
   }
 }
 
@@ -313,6 +369,7 @@ AdminDashboard.getInitialProps = async (context) => {
   data.adminUsers = await tableData(accessToken, 'admin_users')
   data.components = await tableData(accessToken, 'components')
   data.faculty = await tableData(accessToken, 'faculty')
+  data.students = await tableData(accessToken, 'students')
   deepClone= _.cloneDeep(data)
   
   return {

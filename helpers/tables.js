@@ -60,6 +60,21 @@ const tableData = async (accessToken, type) => {
       if(error) return error.response.data
     }
   }
+
+  if(type == 'students'){
+    try {
+      const responseTable = await axios.get(`${API}/student/get-all-students`,  { 
+        headers: {
+        Authorization: `Bearer ${accessToken}`,
+        contentType: `application/json`
+      }})
+  
+      return responseTable.data
+    } catch (error) {
+      console.log(error)
+      if(error) return error.response.data
+    }
+  }
 }
 
 export {

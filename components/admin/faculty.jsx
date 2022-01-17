@@ -36,7 +36,6 @@ const Components = ({
   faculty,
   resetFaculty
   }) => {
-  console.log(allData)
 
   const sortOrder = ['componentThree', 'componentTwo', 'componentOne', 'researchInterests', 'officeLocation', 'centerAssociation', 'website', 'officePhone', 'profileImage', 'department', 'email', 'profession', 'name', 'title']
 

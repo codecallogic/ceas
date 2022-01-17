@@ -150,7 +150,8 @@ button {
       border-radius: 1.2rem;
       font-size: 1.8rem;
       font-weight: 300;
-      margin-right: 5rem;
+      margin-right: 3rem;
+      margin-bottom: 5rem;
       background-color: #e63946;
       color: white;
       flex-wrap: wrap;
@@ -302,7 +303,8 @@ button {
       background-color: #edf2f5;
       margin: 0.5rem 0;
       color: #b3b3b3;
-      text-transform: lowercase; }
+      text-transform: lowercase;
+      transition: all 0.5s ease-in-out; }
       .form-group-100-field-input input:focus + .input-label {
         top: 5%; }
     .form-group-100-field-input label {
@@ -334,11 +336,11 @@ button {
       margin: 0.5rem 0;
       color: #b3b3b3; }
       .form-group-100-field-input-file label img {
-        width: 5rem;
-        height: 5rem;
+        width: 8rem;
+        height: 8rem;
         border-radius: 50%;
         object-fit: cover;
-        margin-right: 1rem; }
+        margin-right: 2rem; }
       .form-group-100-field-input-file label svg {
         width: 3rem;
         height: 3rem;
@@ -397,6 +399,9 @@ button {
   .outlineNone:focus {
     outline: none !important; }
 
+88.field-red {
+  border-bottom: 0.1rem solid #e63946 !important; }
+
 .loading span {
   width: 0.5rem;
   height: 0.5rem;
@@ -453,7 +458,7 @@ button {
       width: 0.2rem;
       background-color: #e63946; }
     .accountUpdateProfile-modal-box::-webkit-scrollbar-thumb {
-      background-color: #a8dadc; }
+      background-color: #1d3557; }
     @media only screen and (max-width: 1250px) {
       .accountUpdateProfile-modal-box {
         width: 70%;

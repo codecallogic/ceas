@@ -1,7 +1,8 @@
 import {connect} from 'react-redux'
 import {useState, useEffect} from 'react'
-import FacultyForm from '../modals/modalForms/facultyForm'
 import ComponentForm from '../modals/modalForms/componentForm'
+import FacultyForm from '../modals/modalForms/facultyForm'
+import StudentForm from '../modals/modalForms/studentForm'
 import SVG from '../../files/svg'
 
 const Modal = ({
@@ -28,6 +29,9 @@ const Modal = ({
   createFaculty,
   faculty,
   resetFaculty,
+  student,
+  createStudent,
+  resetStudent,
 
   //// CRUD FUNCTIONS
   createNewAdmin,
@@ -38,6 +42,9 @@ const Modal = ({
   updateComponent,
   submitFaculty,
   updateFaculty,
+  submitStudent,
+  updateStudent
+  
 }) => {
 
   const [dropdown, setDropdown] = useState('')
@@ -59,7 +66,7 @@ const Modal = ({
     }
 
     const match = cleanNum.match(/^(\d{3})(\d{0,3})(\d{0,4})$/);
-    console.log(match)
+
     if (match) {
       return  method(reducerKey, ('(' + match[1] + ') ' + (match[2] ? match[2] + "-" : "") + match[3]));
     }
@@ -69,6 +76,30 @@ const Modal = ({
   
   return (
     <>
+     {type == 'create_student' &&
+      <StudentForm
+        data={data}
+        resetUI={resetUI}
+        setModal={setModal}
+        setMessage={setMessage}
+        resetStudent={resetStudent}
+        title={title}
+        student={student}
+        createStudent={createStudent}
+        dropdown={dropdown}
+        setDropdown={setDropdown}
+        setElementText={setElementText}
+        preventEvent={preventEvent}
+        isNumber={isNumber}
+        validateIsPhoneNumber={validateIsPhoneNumber}
+        updateStudent={updateStudent}
+        submitStudent={submitStudent}
+        functionType={functionType}
+        message={message}
+        loading={loading}
+      >
+      </StudentForm>
+    }
     {type == 'create_faculty' &&
       <FacultyForm
         data={data}
@@ -93,8 +124,6 @@ const Modal = ({
       >
       </FacultyForm>
     }
-
-    
     {type == 'create_component' &&
       <ComponentForm
         data={data}
@@ -348,7 +377,8 @@ const mapStateToProps = state => {
   return {
     admin: state.admin,
     component: state.component,
-    faculty: state.faculty
+    faculty: state.faculty,
+    student: state.student
   }
 }
 
@@ -357,6 +387,7 @@ const mapDispatchToProps = dispatch => {
     createAdmin: (name, value) => dispatch({type: 'CREATE_ADMIN', name: name, value: value}),
     createComponent: (name, value) => dispatch({type: 'CREATE_COMPONENT', name: name, value: value}),
     createFaculty: (name, value) => dispatch({type: 'CREATE_FACULTY', name: name, value: value}),
+    createStudent: (name, value) => dispatch({type: 'CREATE_STUDENT', name: name, value: value}),
   }
 }
 
