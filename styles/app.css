@@ -399,7 +399,7 @@ button {
   .outlineNone:focus {
     outline: none !important; }
 
-88.field-red {
+.field-red {
   border-bottom: 0.1rem solid #e63946 !important; }
 
 .loading span {
