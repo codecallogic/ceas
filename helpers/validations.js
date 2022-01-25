@@ -1,3 +1,10 @@
+export {
+  validateDate,
+  validateIsEmail,
+  isNumber,
+  validateIsPhoneNumber
+}
+
 const checkValue = (str, max) => {
   if (str.charAt(0) !== '0' || str == '00') {
     var num = parseInt(str);
@@ -7,7 +14,7 @@ const checkValue = (str, max) => {
   return str;
 }
 
-const handleDate = (e, key, reduxMethod) => {
+const validateDate = (e, key, reduxMethod) => {
   let name = document.getElementById(e.target.name)
   let input = e.target.value
 
@@ -42,6 +49,33 @@ const handleDate = (e, key, reduxMethod) => {
   }
 }
 
-export {
-  handleDate
+const validateIsEmail = (type) => {
+  const input = document.getElementById(type)
+  const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/g
+  return regex.test(input.value)
+}
+
+const isNumber = (data) => {
+  let reg = new RegExp(/[0-9\-\(\)\+\s]+/gm)
+  return reg.test(data)
+}
+
+const validateIsPhoneNumber = (type, reducerKey, method) => {
+  const input = document.getElementById(type)
+  const cleanNum = input.value.toString().replace(/\D/g, '');
+
+  input.onkeydown = function(event){
+    if(event.keyCode == 8){
+      if(cleanNum.length == 1) return method(reducerKey, '')
+      return method(reducerKey, cleanNum.substr(0, cleanNum.length - 0))
+    }
+  }
+
+  const match = cleanNum.match(/^(\d{3})(\d{0,3})(\d{0,4})$/);
+
+  if (match) {
+    return  method(reducerKey, ('(' + match[1] + ') ' + (match[2] ? match[2] + "-" : "") + match[3]));
+  }
+
+  return null;
 }

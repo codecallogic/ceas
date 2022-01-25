@@ -1,15 +1,10 @@
 import SVG from '../../files/svg'
-import {connect} from 'react-redux'
-import {useState, useEffect} from 'react'
 import {API} from '../../config'
 import axios from 'axios'
 import AdminModals from '../modals/AdminModals'
 
 const Account = ({
   account,
-  accessToken,
-  allData,
-  setAllData,
   resetUI,
   modal,
   setModal,
@@ -17,123 +12,105 @@ const Account = ({
   setMessage,
   loading,
   setLoading,
-  preventEvent,
+  
+  //// VALIDATIONS
   validateIsEmail,
-  createAdmin,
-  admin
+
+  //// DATA
+  editDataType,
+  setModalData,
+
+  //// REDUX
+  stateData,
+  stateMethod,
+  resetMethod,
+
   }) => {
 
-  useEffect(() => {
-   for(let key in account){createAdmin(key, account[key])}
-  }, [])
-
-  useEffect(() => {
-    for(let key in account){
-      if(document.getElementById(String(key))) document.getElementById(String(key)).innerText = account[key]
-    }
-  }, [modal])
-  
   const updateProfile = async (e) => {
     e.preventDefault()
-    setLoading('profile')
+    setLoading(modal)
     setMessage('')
 
     try {
-      const responseUpdate = await axios.post(`${API}/auth/update-admin-profile`, {account: account, user: admin}, { 
+      const responseUpdate = await axios.post(`${API}/auth/update-admin-profile`, {account: account, user: stateData}, { 
         headers: {
         Authorization: `Bearer ${accessToken}`,
         contentType: `application/json`
       }})
       setLoading('')
       window.localStorage.setItem('component', 'account')
-      window.localStorage.setItem('modal', 'profile')
       window.location.href = `/admin`
       
     } catch (error) {
       console.log(error)
       setLoading('')
-      if(error) error.response ? setMessage(error.response.data) : setMessage('Error ocurred updating profile, please try again later')
+      if(error) error.response ? error.response.statusText == 'Unauthorized' ? (setMessage(error.response.statusText), window.location.href = 'admin/login') : setMessage(error.response.data) : setMessage('Error ocurred updating profile, please try again later')
     }
   }
 
   const changeEmail = async (e) => {
     e.preventDefault()
     if(!validateIsEmail('email')) return setMessage('Invalid email')
-    if(account.email == admin.email) return setMessage('Cannot be the same email')
+    if(account.email == stateData.email) return setMessage('Cannot be the same email')
 
-    setLoading('email')
+    setLoading(modal)
     setMessage('')
 
     try {
-      const responseChange = await axios.post(`${API}/auth/send-change-admin-email`, {account: account, user: admin}, { 
+      const responseChange = await axios.post(`${API}/auth/send-change-admin-email`, {account: account, user: stateData}, { 
         headers: {
         Authorization: `Bearer ${accessToken}`,
         contentType: `application/json`
       }})
       setLoading('')
-      setMessage(`Email change request was sent to ${admin.email}, please confirm to make changes.`)
+      setMessage(`Email change request was sent to ${stateData.email}, please confirm to make changes.`)
       
     } catch (error) {
       setLoading('')
-      if(error) error.response ? setMessage(error.response.data) : setMessage('Error ocurred updating profile, please try again later')
+      if(error) error.response ? error.response.statusText == 'Unauthorized' ? (setMessage(error.response.statusText), window.location.href = 'admin/login') : setMessage(error.response.data) : setMessage('Error ocurred updating profile, please try again later')
     }
   }
     
   return (
     <>
       <div className="account-dashboard">
-        <div className="account-dashboard-item" onClick={() => (resetUI(), setModal('profile'))}>
+        <div className="account-dashboard-item" onClick={() => (
+          resetUI(), 
+          setModalData(null, editDataType.caseType, account),
+          setModal('update_profile')
+          )}>
           <SVG svg={'user'}></SVG>
           <span>Profile</span>
         </div>
-        <div className="account-dashboard-item" onClick={() => (resetUI(),setModal('changeEmail'))}>
+        <div className="account-dashboard-item" onClick={() => (
+          resetUI(), 
+          setModalData(null, editDataType.caseType, account),
+          setModal('change_email')
+          )}>
           <SVG svg={'email'}></SVG>
           <span>Change Email</span>
         </div>
       </div>
-      {modal == 'profile' &&
-        <AdminModals
-          type={'update_admin'}
-          title={'Update Profile'}
+      <AdminModals
+          resetUI={resetUI}
+          modal={modal}
+          setModal={setModal}
+          setMessage={setMessage}
+          message={message}
+          loading={loading}
+          setLoading={setLoading}
+          stateData={stateData}
+          stateMethod={stateMethod}
+          caseType={'CREATE_ADMIN'}
+          resetMethod={resetMethod}
+          resetType={'RESET_ADMIN'}
           updateProfile={updateProfile}
-          resetUI={resetUI}
-          setModal={setModal}
-          setMessage={setMessage}
-          message={message}
-          loading={loading}
-          preventEvent={preventEvent}
-        >
-        </AdminModals>
-      }
-      {modal == 'changeEmail' &&
-        <AdminModals
-          type={'change_email'}
-          title={'Change Email'}
           changeEmail={changeEmail}
-          resetUI={resetUI}
-          setModal={setModal}
-          setMessage={setMessage}
-          message={message}
-          loading={loading}
-          preventEvent={preventEvent}
         >
-        </AdminModals>
-      }
+      </AdminModals>
     </>
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    admin: state.admin
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    createAdmin: (name, value) => dispatch({type: 'CREATE_ADMIN', name: name, value: value}),
-    resetAdministrator: () => dispatch({type: 'RESET_STATE'})
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Account)
+export default Account

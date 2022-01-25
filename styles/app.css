@@ -69,12 +69,6 @@ button {
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem; }
 
-.showPassword {
-  -webkit-text-security: none; }
-
-.hidePassword {
-  -webkit-text-security: disc; }
-
 .labelHover {
   top: 5% !important; }
 
@@ -170,227 +164,195 @@ button {
         cursor: pointer;
         background-color: #e63946; }
 
-.form-group-100 {
-  position: relative; }
-  .form-group-100-field {
+.form-group {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center; }
+  .form-group input {
     display: flex;
     align-items: center;
     width: 100%;
-    resize: none;
     padding: 2rem 1.5rem;
     box-sizing: border-box;
     outline: none;
+    font-weight: 300;
     font-size: 1.4rem;
     font-family: inherit;
     border: none;
-    background-color: #edf2f5;
     margin: 0.5rem 0;
-    color: #b3b3b3;
     text-transform: lowercase;
+    background-color: transparent;
+    transition: all 0.5s ease-in-out; }
+    .form-group input:focus + .input-label {
+      top: 5%; }
+  .form-group label {
+    position: absolute;
+    padding: 0rem 1.5rem;
+    box-sizing: border-box;
+    outline: none;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #e63946;
+    top: 40%;
+    transition: all 0.3s ease-in-out;
+    font-size: 1.2rem;
+    text-transform: lowercase; }
+  .form-group svg {
+    position: absolute;
+    top: 25%;
+    right: 1rem;
+    width: 3rem;
+    height: 3rem;
+    fill: #e63946; }
+    .form-group svg:hover {
+      cursor: pointer; }
+  .form-group-list {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    font-size: 1.4rem;
+    border-top: 0.1rem solid #b3b3b3;
+    border: 0.1rem solid #edf2f5;
+    border-bottom-right-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    box-shadow: 0rem 0.5rem 0.3rem 0.3rem rgba(0, 0, 0, 0.2);
+    z-index: 500; }
+    .form-group-list-item {
+      display: flex;
+      align-items: center;
+      padding: 0.8rem 2rem;
+      font-size: inherit;
+      background-color: white;
+      text-transform: lowercase; }
+      .form-group-list-item:last-child {
+        border-bottom-right-radius: 0.5rem;
+        border-bottom-left-radius: 0.5rem;
+        padding-bottom: 1.5rem; }
+      .form-group-list-item svg {
+        width: 2rem;
+        height: 2rem;
+        fill: #f1faee;
+        margin-right: 1rem; }
+      .form-group-list-item:hover {
+        cursor: pointer;
+        background-color: #edf2f5; }
+  .form-group-button {
+    width: 100%;
+    padding: 1rem 2rem;
+    margin: 0.5rem 0;
+    border: none;
+    outline: none;
+    color: white;
+    background-color: #e63946;
+    transition: all 0.5s ease-in-out; }
+    .form-group-button:hover {
+      cursor: pointer; }
+  .form-group-textarea {
+    text-transform: lowercase;
+    padding: 0.5rem 1.5rem;
     position: relative; }
-    .form-group-100-field label {
-      position: absolute;
-      display: flex;
-      top: 40%;
-      transition: all 0.3s ease-in-out;
-      font-size: 1.2rem; }
-    .form-group-100-field-label-dropdown {
-      width: 95%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between; }
-      .form-group-100-field-label-dropdown:hover {
-        cursor: pointer; }
-      .form-group-100-field-label-dropdown svg {
-        width: 2rem !important;
-        height: 2rem !important;
-        fill: #e63946 !important; }
-    .form-group-100-field div {
-      width: 100%;
-      z-index: 2; }
-      .form-group-100-field div:focus {
-        outline: none; }
-        .form-group-100-field div:focus ~ label {
-          top: 5%; }
-    .form-group-100-field svg {
-      width: 2rem;
-      height: 2rem;
-      fill: #b3b3b3; }
-      .form-group-100-field svg:hover {
-        cursor: pointer; }
-    .form-group-100-field-dropdown {
-      position: absolute;
-      top: 100%;
-      max-height: 10rem;
-      width: 95%;
-      margin: 0 0 0 5%;
-      background-color: #edf2f5;
-      box-shadow: 2rem 4rem 3rem 1rem rgba(0, 0, 0, 0.3);
-      border-bottom-left-radius: 1.2rem;
-      overflow-y: scroll;
-      z-index: 1000; }
-      .form-group-100-field-dropdown::-webkit-scrollbar {
-        width: 0.3rem; }
-      .form-group-100-field-dropdown::-webkit-scrollbar-thumb {
-        background-color: #e63946;
-        border-radius: 20%; }
-      .form-group-100-field-dropdown-item {
-        padding: 1rem 1rem;
-        width: 100%;
-        text-align: center;
-        font-size: 1.4rem; }
-        .form-group-100-field-dropdown-item:hover {
-          cursor: pointer;
-          background-color: #a8dadc;
-          color: white;
-          font-weight: 700; }
-        .form-group-100-field-dropdown-item div {
-          width: 100%;
-          z-index: 2; }
-          .form-group-100-field-dropdown-item div:focus {
-            outline: none; }
-            .form-group-100-field-dropdown-item div:focus ~ label {
-              top: 5%; }
-        .form-group-100-field-dropdown-item svg {
-          width: 2rem;
-          height: 2rem;
-          fill: #b3b3b3; }
-          .form-group-100-field-dropdown-item svg:hover {
-            cursor: pointer; }
-    .form-group-100-field-textarea {
-      color: #b3b3b3;
-      text-transform: lowercase;
-      padding: 0.5rem 1.5rem; }
-      .form-group-100-field-textarea textarea {
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        width: 100%;
-        height: auto;
-        resize: none;
-        padding: 2rem 1.5rem;
-        outline: none;
-        box-sizing: border-box;
-        font-size: 1.4rem;
-        font-family: inherit;
-        color: #b3b3b3;
-        border: none;
-        border-radius: 1.2rem;
-        overflow-y: auto; }
-        .form-group-100-field-textarea textarea::-webkit-scrollbar {
-          width: 0.2rem;
-          background-color: #e63946; }
-        .form-group-100-field-textarea textarea::-webkit-scrollbar-thumb {
-          background-color: #e63946; }
-      .form-group-100-field-textarea label {
-        position: absolute;
-        display: flex;
-        top: 15%;
-        transition: all 0.3s ease-in-out;
-        padding: 0 1rem;
-        font-size: 1.2rem; }
-    .form-group-100-field-input input {
+    .form-group-textarea textarea {
+      overflow: hidden;
       display: flex;
       align-items: center;
       width: 100%;
+      height: auto;
+      resize: none;
       padding: 2rem 1.5rem;
-      box-sizing: border-box;
       outline: none;
-      font-weight: 300;
+      box-sizing: border-box;
       font-size: 1.4rem;
       font-family: inherit;
       border: none;
-      background-color: #edf2f5;
-      margin: 0.5rem 0;
-      color: #b3b3b3;
-      text-transform: lowercase;
-      transition: all 0.5s ease-in-out; }
-      .form-group-100-field-input input:focus + .input-label {
-        top: 5%; }
-    .form-group-100-field-input label {
+      border-radius: 1.2rem;
+      overflow-y: auto; }
+      .form-group-textarea textarea::-webkit-scrollbar {
+        width: 0.2rem;
+        background-color: #e63946; }
+      .form-group-textarea textarea::-webkit-scrollbar-thumb {
+        background-color: #e63946; }
+    .form-group-textarea label {
       position: absolute;
-      padding: 0rem 1.5rem;
-      box-sizing: border-box;
-      outline: none;
-      font-size: 1.4rem;
-      color: #b3b3b3;
-      top: 40%;
+      display: flex;
+      top: 15%;
       transition: all 0.3s ease-in-out;
-      font-size: 1.2rem;
-      text-transform: lowercase; }
-    .form-group-100-field-input-file input {
-      display: none; }
-    .form-group-100-field-input-file label {
+      padding: 0 1rem;
+      color: #e63946;
+      font-size: 1.2rem; }
+  .form-group-checkbox {
+    display: flex;
+    align-items: center;
+    margin: 1rem 0;
+    font-size: 1.2rem; }
+    .form-group-checkbox-box {
       display: flex;
       align-items: center;
-      width: 100%;
-      padding: 1rem 2rem;
-      box-sizing: border-box;
-      outline: none;
-      font-weight: 300;
-      font-size: 1.4rem;
-      font-family: inherit;
-      border: 0.1rem solid #edf2f5;
-      border-radius: 1.2rem;
-      background-color: #edf2f5;
-      margin: 0.5rem 0;
-      color: #b3b3b3; }
-      .form-group-100-field-input-file label img {
-        width: 8rem;
-        height: 8rem;
-        border-radius: 50%;
-        object-fit: cover;
-        margin-right: 2rem; }
-      .form-group-100-field-input-file label svg {
-        width: 3rem;
-        height: 3rem;
-        fill: #a8dadc;
-        margin-right: 1rem; }
-      .form-group-100-field-input-file label:hover {
+      justify-content: center;
+      width: 3rem;
+      height: 3rem;
+      border: 0.2rem solid #edf2f5;
+      border-radius: 0.5rem;
+      margin-right: 1rem;
+      transition: all 0.3s ease-in-out; }
+      .form-group-checkbox-box:hover {
         cursor: pointer; }
-
-.form-group-checkbox {
-  display: flex;
-  align-items: center;
-  margin: 1rem 0;
-  font-size: 1.2rem; }
-  .form-group-checkbox-box {
+      .form-group-checkbox-box svg {
+        width: 2rem;
+        height: 2rem;
+        fill: #e63946; }
+  .form-group-message {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 3rem;
-    height: 3rem;
-    border: 0.2rem solid #edf2f5;
-    border-radius: 0.5rem;
-    margin-right: 1rem;
-    transition: all 0.3s ease-in-out; }
-    .form-group-checkbox-box:hover {
-      cursor: pointer; }
-    .form-group-checkbox-box svg {
+    width: 100%;
+    font-size: 1.4rem;
+    color: #e63946;
+    padding: 0.5rem 0; }
+    .form-group-message svg {
       width: 2rem;
       height: 2rem;
-      fill: #e63946; }
+      margin-right: 1rem; }
+  .form-group-file input {
+    display: none; }
+  .form-group-file label {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 1rem 2rem;
+    box-sizing: border-box;
+    outline: none;
+    font-weight: 300;
+    font-size: 1.4rem;
+    font-family: inherit;
+    border: 0.1rem solid #edf2f5;
+    border-radius: 1.2rem;
+    background-color: #edf2f5;
+    margin: 0.5rem 0;
+    color: #b3b3b3; }
+    .form-group-file label img {
+      width: 8rem;
+      height: 8rem;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 2rem; }
+    .form-group-file label svg {
+      width: 3rem;
+      height: 3rem;
+      fill: #a8dadc;
+      margin-right: 1rem; }
+    .form-group-file label:hover {
+      cursor: pointer; }
 
-.form-group-button-100 {
-  margin: 0 auto;
-  width: 80%;
-  outline: none;
-  border: none;
-  border-radius: 0.5rem;
-  background-color: #e63946;
-  color: white;
-  display: flex;
-  justify-content: center;
-  padding: 1rem 0; }
-  .form-group-button-100:hover {
-    cursor: pointer; }
+.alt-group-top {
+  background-color: #edf2f5;
+  border-top-left-radius: 1.2rem;
+  border-top-right-radius: 1.2rem; }
 
-.form-group-message {
-  width: 100%;
-  text-align: center;
-  font-size: 1.4rem;
-  color: #e63946;
-  padding: 0.5rem 0; }
+.alt-group-bottom {
+  background-color: #edf2f5;
+  border-bottom-left-radius: 1.2rem;
+  border-bottom-right-radius: 1.2rem; }
 
 .outlineNone {
   border: none;
@@ -425,7 +387,7 @@ button {
     opacity: 0;
     transform: scale(0.7) translateY(0.1rem); } }
 
-.accountUpdateProfile-modal {
+.modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -437,12 +399,12 @@ button {
   justify-content: center;
   z-index: 100;
   overflow-y: auto; }
-  .accountUpdateProfile-modal::-webkit-scrollbar {
+  .modal::-webkit-scrollbar {
     width: 0.5rem;
     background-color: #e63946; }
-  .accountUpdateProfile-modal::-webkit-scrollbar-thumb {
+  .modal::-webkit-scrollbar-thumb {
     background-color: #e63946; }
-  .accountUpdateProfile-modal-box {
+  .modal-box {
     background-color: #edf2f5;
     width: 40%;
     min-height: min-content;
@@ -454,19 +416,19 @@ button {
     overflow: hidden;
     position: relative;
     overflow-y: auto; }
-    .accountUpdateProfile-modal-box::-webkit-scrollbar {
+    .modal-box::-webkit-scrollbar {
       width: 0.2rem;
       background-color: #e63946; }
-    .accountUpdateProfile-modal-box::-webkit-scrollbar-thumb {
+    .modal-box::-webkit-scrollbar-thumb {
       background-color: #1d3557; }
     @media only screen and (max-width: 1250px) {
-      .accountUpdateProfile-modal-box {
+      .modal-box {
         width: 70%;
         height: 80%; } }
     @media only screen and (max-width: 600px) {
-      .accountUpdateProfile-modal-box {
+      .modal-box {
         width: 90%; } }
-    .accountUpdateProfile-modal-box-svg {
+    .modal-box-svg {
       position: absolute;
       top: 1%;
       right: 1%;
@@ -478,14 +440,14 @@ button {
       background-color: #1d3557;
       border-radius: 50%;
       z-index: 5000 !important; }
-      .accountUpdateProfile-modal-box-svg svg {
+      .modal-box-svg svg {
         width: 1.8rem;
         height: 1.8rem;
         fill: #f1faee;
         transition: all 0.2s ease-in-out; }
-        .accountUpdateProfile-modal-box-svg svg:hover {
+        .modal-box-svg svg:hover {
           cursor: pointer; }
-    .accountUpdateProfile-modal-box-header {
+    .modal-box-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -495,17 +457,24 @@ button {
       color: white;
       border-top-right-radius: 1.2rem;
       border-top-left-radius: 1.2rem; }
-      .accountUpdateProfile-modal-box-header-title {
+      .modal-box-header-title {
         font-size: 2.2rem;
         text-align: center;
         margin: 1rem 0; }
-    .accountUpdateProfile-modal-box-content {
+    .modal-box-content {
       padding: 1rem 3rem; }
-    .accountUpdateProfile-modal-box-form {
+    .modal-box-form {
       display: flex;
       flex-direction: column;
       justify-content: center;
       padding: 1rem 2rem; }
+    .modal-box-footer {
+      width: 100%;
+      padding: 0 5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center; }
 
 .table {
   margin: 2rem 0;

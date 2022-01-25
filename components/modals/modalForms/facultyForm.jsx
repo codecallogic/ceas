@@ -1,339 +1,225 @@
 import SVG from '../../../files/svg'
+import { useEffect, useRef, useState } from 'react'
+import { manageFormFields } from '../../../helpers/forms'
 import {facultyTitles, centerAssociation} from '../../../utilities/dropdowns'
 import {PUBLIC_FILES} from '../../../config'
+import { isNumber, validateIsPhoneNumber } from '../../../helpers/validations'
 
-const facultyForm = ({
-    data,
+const ComponentForm = ({
+    accessToken,
+    title,
     resetUI,
+    modal,
     setModal,
     setMessage,
-    title,
-    dropdown,
-    setDropdown,
-    setElementText,
-    preventEvent,
-    functionType,
     message,
     loading,
+    setLoading,
+    edit,
+    setEdit, 
 
-    //// VALIDATION
-    isNumber,
-    validateIsPhoneNumber,
+    // DATA
+    allData,
+    setAllData,
     
-    //// REDUX    
-    resetFaculty,
-    faculty,
-    createFaculty,
+    // REDUX
+    stateData,
+    stateMethod,
+    caseType,
+    resetMethod,
+    resetType,
 
-    //// CRUD
-    updateFaculty,
-    submitFaculty
+    // CRUD
+    submitCreate,
+    submitUpdate
     
   }) => {
-  
+
+  const myRefs = useRef(null)
+  const [input_dropdown, setInputDropdown] = useState('')
+
+  const handleClickOutside = (event) => {
+    if(myRefs.current){
+      if(!myRefs.current.contains(event.target)){
+        setInputDropdown('')
+      }
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside, true);
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  }, [])
+    
   return (
-      <div className="accountUpdateProfile-modal">
-        <div className="accountUpdateProfile-modal-box">
-          <div className="accountUpdateProfile-modal-box-svg" onClick={() => (resetUI(), setModal(''), setMessage(''), resetFaculty())}><SVG svg={'close'}></SVG></div>
-          <div className="accountUpdateProfile-modal-box-header">
-            <div className="accountUpdateProfile-modal-box-header-title">{title}</div>
+    <div className="modal">
+      <div className="modal-box">
+        <div className="modal-box-header">
+          <div 
+          className="modal-box-svg" 
+          onClick={() => (resetUI(), setModal(''), setMessage(''), setEdit(''), resetMethod(resetType))}
+          >
+            <SVG svg={'close'}></SVG>
           </div>
-          <div className="accountUpdateProfile-modal-box-content">
-            <form action="" className="form-group">
-              <div className="form-group-100 mb1">
-              <div className="form-group-100">
-                <div className="form-group-100-field-input-file">
-                  { functionType == 'update_faculty' && (typeof faculty.profileImage !== 'object' && faculty.profileImage !== null) ?
-                    <label htmlFor="profileImage">
-                      {faculty.profileImage ? <img src={`${PUBLIC_FILES}/faculty/${faculty.profileImage}`}></img> : <SVG svg={'cloud-upload'}></SVG>} {faculty.profileImage ? faculty.profileImage : 'Upload Image'}
-                    </label>
-                    :
-                    <label htmlFor="profileImage">
-                      {faculty.profileImage ? <img src={URL.createObjectURL(faculty.profileImage)}></img> : <SVG svg={'cloud-upload'}></SVG>} {faculty.profileImage ? faculty.profileImage.name : 'Upload Image'}
-                    </label>
-                  }
-                  <input 
-                  type="file"
-                  id="profileImage" 
-                  onChange={(e) => (
-                    setMessage(''), 
-                    typeof faculty.profileImage !== 'object' && faculty.profileImage !== null ? createFaculty('previousProfileImage', faculty.profileImage) : null,
-                    createFaculty('profileImage', e.target.files[0])
-                  )}
-                  />
-                </div>
-              </div>
-                <div className="form-group-100-field">
-                  <div 
-                    id="title" 
-                  />
-                  <label 
-                    className={(faculty.title.length > 0 ? ' labelHover' : '') + ` form-group-100-field-label-dropdown`}
-                    onClick={() => dropdown == 'title' ? setDropdown('') : setDropdown('title')}
-                  >
-                    Title
-                    <SVG svg={'dropdown'}></SVG>
-                  </label>
-                </div>
-                { dropdown == 'title' &&
-                <div className="form-group-100-field-dropdown">
-                  {facultyTitles && facultyTitles.map((item, idx) => 
-                    <div key={idx}
-                    className="form-group-100-field-dropdown-item" 
-                    onClick={() => (setElementText('title', item.title), createFaculty('title', item.title), setDropdown(''))}
-                    >
-                      {item.title}
-                    </div>
-                  )
-                  }
-                </div>
-                }
-              </div>
-              <div className="form-group-100">
-                <div className="form-group-100-field">
-                  <div 
-                  id="name" 
-                  contentEditable="true" 
-                  onInput={(e) => (preventEvent('name'), setMessage(''), createFaculty('name', e.target.innerText))}
-                  />
-                  <label 
-                  className={faculty.name.length > 0 ? ' labelHover' : ''}>
-                    Name
-                  </label>
-                </div>
-              </div>
-              <div className="form-group-100">
-                <div className="form-group-100-field">
-                  <div 
-                  id="profession" 
-                  contentEditable="true" 
-                  onInput={(e) => (preventEvent('profession'), setMessage(''), createFaculty('profession', e.target.innerText))}
-                  />
-                  <label 
-                  className={faculty.name.length > 0 ? ' labelHover' : ''}>
-                    Profession
-                  </label>
-                </div>
-              </div>
-              <div className="form-group-100">
-                <div className="form-group-100-field">
-                  <div 
-                  id="department" 
-                  contentEditable="true" 
-                  onInput={(e) => (preventEvent('department'), setMessage(''), createFaculty('department', e.target.innerText))}
-                  />
-                  <label 
-                  className={faculty.department.length > 0 ? ' labelHover' : ''}>
-                    Department
-                  </label>
-                </div>
-              </div>
-              <div className="form-group-100">
-                <div className="form-group-100-field">
-                  <div 
-                  id="email" 
-                  contentEditable="true" 
-                  onInput={(e) => (preventEvent('email'), setMessage(''), createFaculty('email', e.target.innerText))}
-                  />
-                  <label 
-                  className={faculty.email.length > 0 ? ' labelHover' : ''}>
-                    Email
-                  </label>
-                </div>
-              </div>
-              <div className="form-group-100">
-                <div className="form-group-100-field">
-                  <div 
-                  id="website" 
-                  contentEditable="true" 
-                  onInput={(e) => (preventEvent('website'), setMessage(''), createFaculty('website', e.target.innerText))}
-                  />
-                  <label 
-                  className={faculty.website.length > 0 ? ' labelHover' : ''}>
-                    Website
-                  </label>
-                </div>
-              </div>
-              <div className="form-group-100">
-                <div className="form-group-100-field-input">
-                  <input 
-                  id="phone" 
-                  value={faculty.officePhone}
-                  onChange={(e) => (setMessage(''), e.target.value.length < 15 ? isNumber(e.target.value) ? (createFaculty('officePhone', e.target.value), validateIsPhoneNumber('phone', 'officePhone', createFaculty)): null : null)}
-                  />
-                  <label 
-                  className={`input-label ` + (faculty.officePhone.length > 0 ? ' labelHover' : '')}>
-                    Office Phone
-                  </label>
-                </div>
-              </div>
-              <div className="form-group-100">
-                <div className="form-group-100-field">
-                  <div 
-                  id="officeLocation" 
-                  contentEditable="true" 
-                  onInput={(e) => (preventEvent('officeLocation'), setMessage(''), createFaculty('officeLocation', e.target.innerText))}
-                  />
-                  <label 
-                  className={faculty.officeLocation.length > 0 ? ' labelHover' : ''}>
-                    Office Location
-                  </label>
-                </div>
-              </div>
-              <div className="form-group-100 mb1">
-                <div className="form-group-100-field">
-                  <div 
-                    id="centerAssociation" 
-                  />
-                  <label 
-                    className={(faculty.centerAssociation.length > 0 ? ' labelHover' : '') + ` form-group-100-field-label-dropdown`}
-                    onClick={() => dropdown == 'centerAssociation' ? setDropdown('') : setDropdown('centerAssociation')}
-                  >
-                    Center Association
-                    <SVG svg={'dropdown'}></SVG>
-                  </label>
-                </div>
-                { dropdown == 'centerAssociation' &&
-                <div className="form-group-100-field-dropdown">
-                  {centerAssociation && centerAssociation.map((item, idx) => 
-                    <div key={idx}
-                    className="form-group-100-field-dropdown-item" 
-                    onClick={() => (setElementText('centerAssociation', item.association), createFaculty('centerAssociation', item.association), setDropdown(''))}
-                    >
-                      {item.association}
-                    </div>
-                  )
-                  }
-                </div>
-                }
-              </div>
-              <div className="form-group-100 mb1">
-                <div className="form-group-100-field">
-                  <div 
-                    id="componentOne" 
-                  />
-                  <label 
-                    className={(faculty.componentOne.length > 0 ? ' labelHover' : '') + ` form-group-100-field-label-dropdown`}
-                    onClick={() => dropdown == 'componentOne' ? setDropdown('') : setDropdown('componentOne')}
-                  >
-                    Component One
-                    <SVG svg={'dropdown'}></SVG>
-                  </label>
-                </div>
-                { dropdown == 'componentOne' &&
-                <div className="form-group-100-field-dropdown">
-                  {data.components && data.components.map((item, idx) => 
-                    <div key={idx}
-                    className="form-group-100-field-dropdown-item" 
-                    onClick={() => (setElementText('componentOne', item.name), createFaculty('componentOne', item._id), setDropdown(''))}
-                    >
-                      {item.name}
-                    </div>
-                  )
-                  }
-                </div>
-                }
-              </div>
-              <div className="form-group-100 mb1">
-                <div className="form-group-100-field">
-                  <div 
-                    id="componentTwo" 
-                  />
-                  <label 
-                    className={(faculty.componentTwo.length > 0 ? ' labelHover' : '') + ` form-group-100-field-label-dropdown`}
-                    onClick={() => dropdown == 'componentTwo' ? setDropdown('') : setDropdown('componentTwo')}
-                  >
-                    Component Two
-                    <SVG svg={'dropdown'}></SVG>
-                  </label>
-                </div>
-                { dropdown == 'componentTwo' &&
-                <div className="form-group-100-field-dropdown">
-                  {data.components && data.components.map((item, idx) => 
-                    <div key={idx}
-                    className="form-group-100-field-dropdown-item" 
-                    onClick={() => (setElementText('componentTwo', item.name), createFaculty('componentTwo', item._id), setDropdown(''))}
-                    >
-                      {item.name}
-                    </div>
-                  )
-                  }
-                </div>
-                }
-              </div>
-              <div className="form-group-100 mb1">
-                <div className="form-group-100-field">
-                  <div 
-                    id="componentThree" 
-                  />
-                  <label 
-                    className={(faculty.componentThree.length > 0 ? ' labelHover' : '') + ` form-group-100-field-label-dropdown`}
-                    onClick={() => dropdown == 'componentThree' ? setDropdown('') : setDropdown('componentThree')}
-                  >
-                    Component Three
-                    <SVG svg={'dropdown'}></SVG>
-                  </label>
-                </div>
-                { dropdown == 'componentThree' &&
-                <div className="form-group-100-field-dropdown">
-                  {data.components && data.components.map((item, idx) => 
-                    <div key={idx}
-                    className="form-group-100-field-dropdown-item" 
-                    onClick={() => (setElementText('componentThree', item.name), createFaculty('componentThree', item._id), setDropdown(''))}
-                    >
-                      {item.name}
-                    </div>
-                  )
-                  }
-                </div>
-                }
-              </div>
-              <div className="form-group-100">
-                <div className="form-group-100-field-textarea">
-                  <label 
-                  className={faculty.researchInterests.length > 0 ? ' labelHover' : ''}>
-                    Research Interests
-                  </label>
-                  <textarea 
-                    id="researchInterests" 
-                    rows="12" 
-                    wrap="hard" 
-                    maxLength="1500"
-                    name="researchInterests" 
-                    value={faculty.researchInterests} 
-                    onChange={(e) => createFaculty('researchInterests', e.target.value)} 
-                    onFocus={(e) => e.target.placeholder = ''} 
-                    onKeyDown={(e) => e.keyCode == 13 ? e.preventDefault() : null}
-                  />
-                </div>
-              </div>
-            </form>
+          <div className="modal-box-header-title">{title}</div>
+        </div>
+        <div className="modal-box-content">
+          <div className="form-group-file">
+            { edit == 'update_faculty' && (typeof stateData.image !== 'object' && stateData.image !== null) ?
+              <label htmlFor="image">
+                {stateData.image ? <img src={`${PUBLIC_FILES}/faculty/${stateData.image}`}></img> : <SVG svg={'cloud-upload'}></SVG>} {stateData.image ? stateData.image : 'Upload Image'}
+              </label>
+              :
+              <label htmlFor="image">
+                {stateData.image ? <img src={URL.createObjectURL(stateData.image)}></img> : <SVG svg={'cloud-upload'}></SVG>} {stateData.image ? stateData.image.name : 'Upload Image'}
+              </label>
+            }
+            <input 
+              type="file"
+              id="image" 
+              onChange={(e) => (
+                setMessage(''), 
+                typeof stateData.image !== 'object' && stateData.image !== null ? stateMethod(caseType, 'previousImage', stateData.image) : null,
+                stateMethod(caseType, 'image', e.target.files[0])
+              )}
+            />
           </div>
-          {message.length > 0 ? <div className="form-group-message">{message}</div> : null}
-              {functionType == 'update_faculty' &&
-                <button 
-                className="form-group-button-100" 
-                onClick={(e) => updateFaculty(e)}
-                >
-                  {!loading && <span>Update</span>} 
-                  {loading == 'update_faculty' && 
-                    <div className="loading"><span></span><span></span><span></span></div>
-                  }
-                </button>
+          {/* <div className="form-group">
+            <input
+            onClick={() => setInputDropdown('component_leader')} 
+            value={manageFormFields(stateData.leader, 'name')} 
+            onChange={(e) => (setInputDropdown(''), stateMethod(caseType, 'leader', e.target.value))}/>
+            <label 
+            className={`input-label ` + (
+              stateData.leader.length > 0 || 
+              typeof stateData.leader == 'object' 
+              ? ' labelHover' 
+              : ''
+            )}
+            htmlFor="leader">
+              Leader
+            </label>
+            <div 
+            onClick={() => setInputDropdown('component_leader')}><SVG svg={'dropdown'}></SVG>
+            </div>
+            { input_dropdown == 'component_leader' &&
+              <div 
+              className="form-group-list" 
+              ref={myRefs}>
+                {allData && allData.faculty.sort( (a, b) => a.name > b.name ? 1 : -1).map( (item, idx) => (
+                <div 
+                key={idx} 
+                className="form-group-list-item" 
+                onClick={(e) => (stateMethod(caseType, 'leader', item), setInputDropdown(''))}>
+                  {item.name}
+                </div>
+                ))}
+              </div>
+            }
+          </div>
+          <div className="form-group">
+            <input
+            onClick={() => setInputDropdown('component_active_state')} 
+            value={stateData.active} 
+            onChange={(e) => (setInputDropdown(''), stateMethod(caseType, 'active', e.target.value))}/>
+            <label 
+            className={`input-label ` + (
+              stateData.active.length > 0 || 
+              typeof stateData.active == 'object' 
+              ? ' labelHover' 
+              : ''
+            )}
+            htmlFor="active">
+              Active State
+            </label>
+            <div 
+            onClick={() => setInputDropdown('component_active_state')}><SVG svg={'dropdown'}></SVG>
+            </div>
+            { input_dropdown == 'component_active_state' &&
+              <div 
+              className="form-group-list" 
+              ref={myRefs}>
+                <div 
+                className="form-group-list-item" 
+                onClick={(e) => (setInputDropdown(''), stateMethod(caseType, 'active', e.target.innerText))}>
+                  Activated
+                </div>
+                <div 
+                className="form-group-list-item" 
+                onClick={(e) => (setInputDropdown(''), stateMethod(caseType, 'active', e.target.innerText))}>
+                  Deactivated
+                </div>
+              </div>
+            }
+          </div>
+          <div className="form-group-textarea">
+            <label 
+            className={stateData.shortDescription.length > 0 ? ' labelHover' : ''}>
+              Short Description
+            </label>
+            <textarea 
+              id="shortDescription" 
+              rows="5" 
+              wrap="hard" 
+              maxLength="400"
+              name="shortDescription" 
+              value={stateData.shortDescription} 
+              onChange={(e) => stateMethod(caseType, 'shortDescription', e.target.value)} 
+            />
+          </div>
+          <div className="form-group-textarea">
+            <label 
+            className={stateData.longDescription.length > 0 ? ' labelHover' : ''}>
+              Long Description
+            </label>
+            <textarea 
+              id="longDescription" 
+              rows="5" 
+              wrap="hard" 
+              maxLength="400"
+              name="longDescription" 
+              value={stateData.longDescription} 
+              onChange={(e) => stateMethod(caseType, 'longDescription', e.target.value)} 
+            />
+          </div> */}
+        </div>
+        <div className="modal-box-footer">
+          {!edit && 
+          <>
+            {message.length > 0 ? <div className="form-group-message">{message}</div> : null}
+            <button 
+            className="form-group-button" 
+            onClick={(e) => submitCreate(e, stateData, setMessage, setLoading, modal, 'components', 'component/create-component', accessToken, allData, setAllData, resetMethod, resetType)}>
+              {!loading && 
+              <span>Save</span>
+              } 
+              {loading == modal && 
+              <div className="loading"><span></span><span></span><span></span></div>
               }
-              {functionType == undefined &&
-                <button 
-                className="form-group-button-100" 
-                onClick={(e) => submitFaculty(e)}>
-                  {!loading && <span>Save</span>} 
-                  {loading == 'create_faculty' && 
-                  <div className="loading"><span></span><span></span><span></span></div>
-                  }
-                </button>
+            </button>
+          </>
+          }
+          {edit == 'update_component' && 
+          <>
+            {message.length > 0 ? <div className="form-group-message">{message}</div> : null}
+            <button 
+            className="form-group-button" 
+            onClick={(e) => submitUpdate(e, stateData, setMessage, setLoading, modal, 'components', 'component/update-component', accessToken, allData, setAllData, resetMethod, resetType, setModal)}>
+              {!loading && 
+              <span>Update</span>
+              } 
+              {loading == modal && 
+              <div className="loading"><span></span><span></span><span></span></div>
               }
+            </button>
+          </>
+          }
         </div>
       </div>
+    </div>
   )
 }
 
-export default facultyForm
+export default ComponentForm

@@ -7,10 +7,7 @@ import AdminModals from '../modals/AdminModals'
 import AdminTable from '../table'
 import {nanoid} from 'nanoid'
 
-const Components = ({
-  data,
-  allData,
-  setAllData,
+const Faculty = ({
   account,
   accessToken,
   resetUI,
@@ -22,22 +19,32 @@ const Components = ({
   setView,
   loading,
   setLoading,
-  preventEvent,
   selectID,
   setSelectID,
   controls,
   setControls,
-  setElementText,
-  setModalData,
-  validateIsEmail,
   resetCheckboxes,
-  
-  //// REDUX
-  faculty,
-  resetFaculty
-  }) => {
+  edit,
+  setEdit,
+  editType,
 
-  const sortOrder = ['componentThree', 'componentTwo', 'componentOne', 'researchInterests', 'officeLocation', 'centerAssociation', 'website', 'officePhone', 'profileImage', 'department', 'email', 'profession', 'name', 'title']
+  //// DATA
+  data,
+  allData,
+  setAllData,
+  setModalData,
+  sortOrder,
+
+  //// REDUX
+  stateData,
+  stateMethod,
+  resetMethod,
+
+  //// CRUD
+  submitCreate,
+  submitUpdate,
+  submitDeleteRow
+  }) => {
 
   const [allFaculty, setAllFaculty] = useState(data ? data : [])
 
@@ -151,7 +158,7 @@ const Components = ({
           <SVG svg={'list'}></SVG>
           <span>View Faculty</span>
         </div>
-        <div className="account-dashboard-item" onClick={() => (resetUI(), resetFaculty(), setModal('create_faculty'))}>
+        <div className="account-dashboard-item" onClick={() => (resetUI(), setModal('create_faculty'))}>
           <SVG svg={'add-staff'}></SVG>
           <span>Create Faculty Member</span>
         </div>
@@ -179,43 +186,28 @@ const Components = ({
       >
       </AdminTable>
       }
-      {modal == 'create_faculty' &&
       <AdminModals
-        type={'create_faculty'}
-        title={'Create Faculty Member'}
-        data={allData}
-        submitFaculty={createFaculty}
+        accessToken={accessToken}
+        allData={allData}
+        setAllData={setAllData}
         resetUI={resetUI}
+        modal={modal}
         setModal={setModal}
         setMessage={setMessage}
         message={message}
         loading={loading}
         setLoading={setLoading}
-        setElementText={setElementText}
-        preventEvent={preventEvent}
-        resetFaculty={resetFaculty}
+        stateData={stateData}
+        stateMethod={stateMethod}
+        caseType={'CREATE_FACULTY'}
+        resetMethod={resetMethod}
+        resetType={'RESET_FACULTY'}
+        submitCreate={submitCreate}
+        submitUpdate={submitUpdate}
+        edit={edit}
+        setEdit={setEdit}
       >
       </AdminModals>
-      }
-      {modal == 'update_faculty' &&
-      <AdminModals
-        type={'create_faculty'}
-        functionType={'update_faculty'}
-        title={'Update Faculty Member'}
-        data={allData}
-        updateFaculty={updateFaculty}
-        resetUI={resetUI}
-        setModal={setModal}
-        setMessage={setMessage}
-        message={message}
-        loading={loading}
-        setLoading={setLoading}
-        setElementText={setElementText}
-        preventEvent={preventEvent}
-        resetFaculty={resetFaculty}
-      >
-      </AdminModals>
-      }
     </>
   )
 }
@@ -232,4 +224,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Components)
+export default Faculty

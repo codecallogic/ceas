@@ -1,12 +1,11 @@
 import withAdmin from '../withAdmin'
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import SVG from '../../files/svg'
 import {tableData} from '../../helpers/tables'
-import {populateModal, manageFormSubmission} from '../../helpers/modals'
+import { populateModal } from '../../helpers/modals'
 import { getToken } from '../../helpers/auth'
 import _ from 'lodash'
-import {connect} from 'react-redux'
-import {useRouter} from 'next/router'
+import { connect } from 'react-redux'
 
 
 // TODO: When deleting a component remove from faculty members and vice versa
@@ -18,6 +17,15 @@ import Components from '../../components/admin/components'
 import Faculty from '../../components/admin/faculty'
 import Students from '../../components/admin/students'
 
+// CRUD
+import { submitCreate, submitUpdate, submitDeleteRow } from '../../helpers/forms'
+
+// VALIDATIONS
+import { validateIsEmail, validateIsPhoneNumber, isNumber, validateDate } from '../../helpers/validations'
+
+// TABLES
+import { adminUsersSort, componentSort, facultySort } from '../../helpers/sorting'
+
 const AdminDashboard = ({
   data, 
   originalData, 
@@ -27,17 +35,14 @@ const AdminDashboard = ({
   serverMessage,
 
   //// REDUCERS
-  createAdmin,
+  createType,
+  resetType,
   admin,
-  createComponent,
   componentData,
-  faculty,
-  createFaculty,
-  student,
-  createStudent
+  faculty
+  
 }) => {
-  // console.log(originalData)
-  const router = useRouter()
+  
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState('')
   const [modal, setModal] = useState('')
@@ -45,6 +50,7 @@ const AdminDashboard = ({
   const [view, setView] = useState('')
   const [selectID, setSelectID] = useState('')
   const [controls, setControls] = useState(false)
+  const [edit, setEdit] = useState('')
   const [allData, setAllData] = useState(originalData ? originalData : [])
 
   useEffect(() => {
@@ -52,23 +58,7 @@ const AdminDashboard = ({
     if(window.localStorage.getItem('modal')) setModal(window.localStorage.getItem('modal'))
   }, [])
 
-  useEffect(() => {
-
-    if(modal == 'update_admin'){manageFormSubmission('update_admin', admin, null, setElementText)}
-
-    if(modal == 'update_component'){
-      manageFormSubmission('update_component', componentData, allData, setElementText, selectID, createComponent)
-    }
-    
-    if(modal == 'update_faculty'){
-      manageFormSubmission('update_faculty', faculty, allData, setElementText, selectID, createFaculty)
-    }
-    
-    if(modal == 'update_student'){
-      manageFormSubmission('update_student', student, allData, setElementText, selectID, createStudent)
-    }
-
-  }, [modal])
+  useEffect(() => { setMessage('') }, [view])
 
   const resetUILocalStorage = () => {
     window.localStorage.removeItem('component')
@@ -80,34 +70,11 @@ const AdminDashboard = ({
     els.forEach( (el) => { el.checked = false })
   }
 
+  const setModalData = (keyType, caseType, account) => {
+    let stateMethods = new Object()
+    stateMethods.createType = createType
 
-  const preventEvent = (id) => {
-    if(document.getElementById(id).innerHTML.includes('<div><br></div>')){
-      document.getElementById(id).removeChild(document.getElementById(id).childNodes[1])
-    }else{
-      document.getElementById(id).addEventListener('keydown', (evt) => {
-        if (evt.keyCode === 13) {evt.preventDefault()}
-      })
-    }
-  }
-
-  const setElementText = (id, text) => {
-    if(document.getElementById(id)) document.getElementById(id).innerText = text
-  }
-
-  const validateIsEmail = (type) => {
-    const input = document.getElementById(String(type))
-    const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/g
-    return regex.test(input.innerHTML)
-  }
-
-  const setModalData = (dataType, reducerMethod) => {
-    let objectMethods = new Object()
-    objectMethods.createAdmin = createAdmin
-    objectMethods.createComponent = createComponent
-    objectMethods.createFaculty = createFaculty
-    objectMethods.createStudent = createStudent
-    populateModal(originalData, dataType, reducerMethod, objectMethods, selectID, setElementText)
+    return populateModal(allData, keyType, caseType, stateMethods, selectID, account)
   }
 
   return (
@@ -215,6 +182,10 @@ const AdminDashboard = ({
         <Account
           account={account}
           accessToken={accessToken}
+          typeOfData={'account'}
+          stateData={admin}
+          stateMethod={createType}
+          resetMethod={resetType}
           allData={allData}
           setAllData={setAllData}
           resetUI={resetUILocalStorage}
@@ -224,16 +195,18 @@ const AdminDashboard = ({
           setMessage={setMessage}
           loading={loading}
           setLoading={setLoading}
-          preventEvent={preventEvent}
           validateIsEmail={validateIsEmail}
+          submitUpdate={submitUpdate}
+          editDataType={{caseType: 'CREATE_ADMIN'}}
+          setModalData={setModalData}
         ></Account>
       }
       { component == 'admin_users' &&
         <Users
-          data={allData.adminUsers}
+          account={account}
+          data={data.adminUsers}
           allData={allData}
           setAllData={setAllData}
-          account={account}
           accessToken={accessToken}
           resetUI={resetUILocalStorage}
           modal={modal} 
@@ -244,20 +217,29 @@ const AdminDashboard = ({
           setMessage={setMessage}
           loading={loading}
           setLoading={setLoading}
-          preventEvent={preventEvent}
           selectID={selectID}
           setSelectID={setSelectID}
           controls={controls}
           setControls={setControls}
           validateIsEmail={validateIsEmail}
-          setElementText={setElementText}
-          setModalData={setModalData}
           resetCheckboxes={resetCheckboxes}
+          typeOfData={'adminUsers'}
+          stateData={admin}
+          stateMethod={createType}
+          resetMethod={resetType}
+          sortOrder={adminUsersSort}
+          submitCreate={submitCreate}
+          submitUpdate={submitUpdate}
+          setModalData={setModalData}
+          edit={edit}
+          setEdit={setEdit}
+          editType={'update_admin'}
+          submitDeleteRow={submitDeleteRow}
         ></Users>
       }
       { component == 'components' &&
         <Components
-          data={allData.components}
+          data={data.components}
           allData={allData}
           setAllData={setAllData}
           account={account}
@@ -275,15 +257,25 @@ const AdminDashboard = ({
           setSelectID={setSelectID}
           controls={controls}
           setControls={setControls}
-          preventEvent={preventEvent}
-          setElementText={setElementText}
           setModalData={setModalData}
           resetCheckboxes={resetCheckboxes}
+          typeOfData={'components'}
+          stateData={componentData}
+          stateMethod={createType}
+          resetMethod={resetType}
+          sortOrder={componentSort}
+          submitCreate={submitCreate}
+          submitUpdate={submitUpdate}
+          setModalData={setModalData}
+          edit={edit}
+          setEdit={setEdit}
+          editType={'update_component'}
+          submitDeleteRow={submitDeleteRow}
         ></Components>
       }
       { component == 'faculty' &&
         <Faculty
-          data={allData.faculty}
+          data={data.faculty}
           allData={allData}
           setAllData={setAllData}
           account={account}
@@ -301,11 +293,20 @@ const AdminDashboard = ({
           setSelectID={setSelectID}
           controls={controls}
           setControls={setControls}
-          preventEvent={preventEvent}
-          setElementText={setElementText}
           setModalData={setModalData}
-          validateIsEmail={validateIsEmail}
           resetCheckboxes={resetCheckboxes}
+          typeOfData={'faculty'}
+          stateData={faculty}
+          stateMethod={createType}
+          resetMethod={resetType}
+          sortOrder={componentSort}
+          submitCreate={submitCreate}
+          submitUpdate={submitUpdate}
+          setModalData={setModalData}
+          edit={edit}
+          setEdit={setEdit}
+          editType={'update_faculty'}
+          submitDeleteRow={submitDeleteRow}
         ></Faculty>
       }
       { component == 'students' &&
@@ -350,10 +351,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    createAdmin: (name, value) => dispatch({type: 'CREATE_ADMIN', name: name, value: value}),
-    createComponent: (name, value) => dispatch({type: 'CREATE_COMPONENT', name: name, value: value}),
-    createFaculty: (name, value) => dispatch({type: 'CREATE_FACULTY', name: name, value: value}),
-    createStudent: (name, value) => dispatch({type: 'CREATE_STUDENT', name: name, value: value}),
+    createType: (caseType, type, value) => dispatch({type: caseType, name: type, value: value}),
+    resetType: (caseType) => dispatch({type: caseType}),
   }
 }
 

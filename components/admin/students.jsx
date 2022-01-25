@@ -78,7 +78,7 @@ const Students = ({
     } catch (error) {
       console.log(error)
       setLoading('')
-      if(error) error.response ? error.response.statusText == 'Unauthorized' ? (setMessage(error.response.statusText), window.location.href = '/admin/login') : setMessage(error.response.data) : setMessage('Error ocurred creating student, please try again later')
+      if(error) error.response ? error.response.statusText == '' ? (setMessage(error.response.statusText), window.location.href = '/admin/login') : setMessage(error.response.data) : setMessage('Error ocurred creating student, please try again later')
     }
   }
 
@@ -118,7 +118,7 @@ const Students = ({
     } catch (error) {
       console.log(error)
       setLoading('')
-      if(error) error.response ? error.response.statusText == 'Unauthorized' ? (setMessage(error.response.statusText), window.location.href = '/admin/login') : setMessage(error.response.data) : setMessage('Error ocurred updating student, please try again later')
+      if(error) error.response ? error.response.statusText == '' ? (setMessage(error.response.statusText), window.location.href = '/admin/login') : setMessage(error.response.data) : setMessage('Error ocurred updating student, please try again later')
     }
   }
 

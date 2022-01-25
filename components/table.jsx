@@ -3,25 +3,39 @@ import SVG from '../files/svg'
 import {useEffect, useState, useRef} from 'react'
 
 const Table = ({
+  accessToken,
   title,
   typeOfData,
   modalType,
-  modalDataType,
-  componentData,
-  originalData,
-  account,
+  loading,
+  setLoading,
   selectID,
   setSelectID,
   controls,
   setControls,
-  deleteRow,
   setModalData,
   setModal,
-  message,
   sortOrder,
-  resetCheckboxes
+  resetCheckboxes,
+  setEdit,
+  editType,
+  submitDeleteRow,
+  setAllData,
+  message,
+  setMessage,
+
+  // DATA
+  modalDataType,
+  componentData,
+  originalData,
+  account,
+
+  // PATH
+  deletePath
 }) => {
+
   const myRefs = useRef([])
+  const [loadingColor, setLoadingColor] = useState('black')
 
   const handleClickOutside = (event) => {
     if(myRefs.current){
@@ -69,23 +83,31 @@ const Table = ({
             <div 
             id="edit" 
             className="table-header-controls-item" 
-            onClick={() => (setModal(modalType), setModalData(modalDataType.key, modalDataType.method), setControls(false), resetCheckboxes())}
+            onClick={() => (setModal(modalType), setEdit(editType), setModalData(modalDataType.key, modalDataType.caseType), setControls(false), resetCheckboxes())}
             >
               Edit
             </div>
-            {account.role == 'admin' && 
+            {account.role == 'main_admin' && 
             <div 
             id="delete" 
             className="table-header-controls-item" 
-            onClick={deleteRow}
+            onClick={ (e) => submitDeleteRow(e, setLoading, 'delete_row', deletePath, selectID, accessToken, originalData, typeOfData, setAllData, setMessage, resetCheckboxes, setControls)}
             >
-              Delete
+              { loading == 'delete_row' ?
+                <div className="loading">
+                  <span style={{backgroundColor: loadingColor}}></span>
+                  <span style={{backgroundColor: loadingColor}}></span>
+                  <span style={{backgroundColor: loadingColor}}></span>
+                </div>
+                :
+                'Delete'
+              }
             </div>
             }
           </div>
         }
         { message && 
-          <div className="table-header-error"><SVG svg={'notification'}></SVG> <span>{message.substr(0, 200)}</span></div>
+          <div className="table-header-error"><SVG svg={'notification'}></SVG> <span>{message}</span></div>
         }
       </div>
       <div className="table-headers">
@@ -112,7 +134,7 @@ const Table = ({
               ref={(el) => (myRefs.current[idx] = el)}
             >
               <label htmlFor={`checkbox`}>
-                <input id={`checkbox`} className="table-rows-checkbox-input" type="checkbox" onClick={(e) => e.target.checked == true ?  handleSelect(e, item._id) : (setControls(false), setSelectID(''))}/>
+                <input id={`checkbox`} className="table-rows-checkbox-input" type="checkbox" onClick={(e) => e.target.checked == true ?  (setMessage(''), handleSelect(e, item._id)) : (setMessage(''), setControls(false), setSelectID(''))}/>
                 <span></span>
                 <div>
                   <SVG svg={'checkmark'}></SVG>
@@ -121,7 +143,7 @@ const Table = ({
             </div>
             {Object.keys(item).sort((a, b) => sortOrder.indexOf(b) - sortOrder.indexOf(a)).map((key, idx, array) => 
               key !== '_id' && <div key={idx} className="table-rows-item">
-                {Array.isArray(item[key]) && item[key].length > 0 ? item[key][0].name : item[key]}
+                {Array.isArray(item[key]) && item[key].length > 0 ? item[key][0].name : item[key].replace('_', ' ')}
               </div>
             )}
           </div>

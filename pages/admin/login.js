@@ -13,24 +13,15 @@ const AdminLogin = ({}) => {
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
 
-  useEffect(() => {
-    let passwordElement = document.getElementById('password')
-    passwordElement.addEventListener('paste', (e) => {
-      e.preventDefault()
-      let text =  (e.originalEvent || e).clipboardData.getData('text/plain')
-      passwordElement.innerHTML = text
-      setPassword(text)
-    })
-  }, [])
-
-  const preventEvent = (id) => {
-    if(document.getElementById(id).innerHTML.includes('<div><br></div>')){
-      document.getElementById(id).removeChild(document.getElementById(id).childNodes[1])
-    }else{
-      document.getElementById(id).addEventListener('keydown', (evt) => {
-        if (evt.keyCode === 13) {evt.preventDefault()}
-      })
-    }
+  const togglePassword = () => {
+    displayPassword ? 
+      (  document.getElementById('password').setAttribute("type", 'password'),
+        setDisplayPassword(false)
+      )
+      :
+      ( document.getElementById('password').setAttribute("type", 'text'),
+        setDisplayPassword(true)
+      )
   }
 
   const login = async () => {
@@ -43,7 +34,7 @@ const AdminLogin = ({}) => {
     } catch (error) {
       console.log(error)
       setLoading(false)
-      if(error) error.response ? error.response.data.error ? setMessage(error.response.data.error) : error.response ? setMessage(error.response.data) : setMessage('Error ocurred with login, please try again later.') : setMessage('Error ocurred with login, please try again later.')
+      if(error) error.response ? error.response.data.error ? setMessage(error.response.data.error) : error.response ? setMessage(error.response.data) : setMessage('Error ocurred login you in, please try again later.') : setMessage('Error ocurred login you in, please try again later.')
     }
   }
   
@@ -57,41 +48,45 @@ const AdminLogin = ({}) => {
           <h3 className="adminLogin-right-title">Sign In</h3>
           <p className="adminLogin-right-sub_title mb4">Only authorized personal can login. If you'd like access please visit or contact our tech team for help.</p>
 
-          <form className="form-group mb2">
-            <div className="form-group-100">
-              <div className="form-group-100-field topBorders">
-                <div 
-                id="username" 
-                contentEditable="true" 
-                onInput={(e) => (preventEvent('username'), setMessage(''), setUsername(e.target.innerText))}
-                />
-                <label 
-                  className={username.length > 0 ? ' labelHover' : ''}
-                >
-                Username
-                </label>
-              </div>
-            </div>
-            <div className="form-group-100">
-              <div className="form-group-100-field bottomBorders">
-                <div 
-                id="password" 
-                className={displayPassword ? 'showPassword' : 'hidePassword'} 
-                contentEditable="true" 
-                onInput={(e) => (preventEvent('password'), setMessage(''), setPassword(e.target.innerHTML))} 
-                onKeyUp={(e) => e.keyCode == 13 ? login() : null}></div>
-                <label 
-                className={password.length > 0 ? ' labelHover' : ''}>
-                  Password
-                </label>
-                <span 
-                onClick={() => displayPassword ? setDisplayPassword(false) : setDisplayPassword(true)}>
-                  {displayPassword ? <SVG svg={'eye-closed'}></SVG> : <SVG svg={'eye'}></SVG>}
-                </span>
-              </div>
-            </div>
-          </form>
+          <div className="form-group alt-group-top">
+            <input 
+            id="username" 
+            value={username} 
+            onChange={(e) => (setMessage(''), setUsername(e.target.value))}
 
+            />
+            <label 
+            className={`input-label ` + (
+              username.length > 0
+              ? ' labelHover' 
+              : ''
+            )}
+            htmlFor="username">
+              Username
+            </label>
+          </div>
+          <div className="form-group alt-group-bottom">
+            <input 
+            id="password" 
+            type="password"
+            value={password} 
+            onChange={(e) => (setMessage(''), setPassword(e.target.value))}
+            onKeyUp={(e) => e.keyCode == 13 ? login() : null}
+            />
+            <label 
+            className={`input-label ` + (
+              password.length > 0
+              ? ' labelHover' 
+              : ''
+            )}
+            htmlFor="password">
+              Password
+            </label>
+            <span 
+            onClick={() => togglePassword()}>
+              {displayPassword ? <SVG svg={'eye-closed'}></SVG> : <SVG svg={'eye'}></SVG>}
+            </span>
+          </div>
           <div className="adminLogin-right-options mb2">
             <div className="adminLogin-right-options-rememberMe">
               <div className="form-group-checkbox" onClick={() => rememberMe ? setRememberMe(false) : setRememberMe(true)}>
@@ -101,7 +96,7 @@ const AdminLogin = ({}) => {
             <a href="#">Forgot password</a>
           </div>
           {message.length > 0 ? <div className="form-group-message">{message}</div> : null}
-          <button className="form-group-button-100 w-100" onClick={() => login()}>{!loading && <span>Log in</span>} {loading && <div className="loading"><span></span><span></span><span></span></div>}</button>
+          <button className="form-group-button" onClick={() => login()}>{!loading && <span>Log in</span>} {loading && <div className="loading"><span></span><span></span><span></span></div>}</button>
         </div>
       </div>
     </div>

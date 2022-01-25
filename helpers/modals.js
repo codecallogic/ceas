@@ -1,109 +1,36 @@
-const populateModal = (originalData, dataType, methodType, methods, selectID, setElementText) => {
-  if(methodType == 'createAdmin'){
-    for(let key in originalData[dataType]){
-      if(originalData[dataType][key]._id == selectID){
-        let object = originalData[dataType][key]
-        for(let keyOfObject in object){
-          methods.createAdmin(keyOfObject, object[keyOfObject])
-        }
-      }
-    }
-  }
-
-  if(methodType == 'createComponent'){
-    for(let key in originalData[dataType]){
-      if(originalData[dataType][key]._id == selectID){
-        let object = originalData[dataType][key]
-        for(let keyOfObject in object){
-          methods.createComponent(keyOfObject, object[keyOfObject])
-        }
-      }
-    }
-  }
-
-  if(methodType == 'createFaculty'){
-    for(let key in originalData[dataType]){
-      if(originalData[dataType][key]._id == selectID){
-        let object = originalData[dataType][key]
-        for(let keyOfObject in object){
-          methods.createFaculty(keyOfObject, object[keyOfObject])
-          if(Array.isArray(object[keyOfObject]) && object[keyOfObject].length > 0) methods.createFaculty(keyOfObject, object[keyOfObject][0].name)
-        }
-      }
-    }
-  }
-
-  if(methodType == 'createStudent'){
-    for(let key in originalData[dataType]){
-      if(originalData[dataType][key]._id == selectID){
-        let object = originalData[dataType][key]
-        for(let keyOfObject in object){
-          methods.createStudent(keyOfObject, object[keyOfObject])
-          if(Array.isArray(object[keyOfObject]) && object[keyOfObject].length > 0) methods.createStudent(keyOfObject, object[keyOfObject][0].name)
-        }
-      }
-    }
-  }
+export {
+  populateModal
 }
 
-const manageFormSubmission = (modal, data, allData, setElementText, selectID, reduxMethod) => {
-
-  if(modal == 'update_admin'){for(let key in data){setElementText(key, data[key])}}
-
-  if(modal == 'update_component'){
-    for(let key in data){
-      if(Array.isArray(data[key]) && data[key].length > 0){
-        setElementText(key, data[key][0].name)
-      }
-     
-      if(key !== 'leader') setElementText(key, data[key])
-    }
-    
-    allData.components.forEach((item) => {
-      if(item._id == selectID){
-        for(let key in item){
-          if(Array.isArray(item[key]) && item[key].length > 0) reduxMethod(key, item[key][0]._id)
-        }
-      }
-    })
+const populateModal = (originalData, keyType, caseType, stateMethods, selectID, account) => {
+  
+  if(account){
+    for(let key in account){ (stateMethods.createType(caseType, key, account[key])) }
   }
   
-  if(modal == 'update_faculty'){
+  if(selectID){
+    stateMethods.createType(caseType, '_id', selectID)
+    selectID
+    for(let key in originalData[keyType]){
+    if(originalData[keyType][key]._id == selectID){
+        // console.log(originalData[keyType][key])
+        let object = originalData[keyType][key]
 
-    for(let key in data){
-      if(Array.isArray(data[key]) && data[key].length > 0){setElementText(key, data[key][0].name)}
-      setElementText(key, data[key])
-    }
+        for(let keyOfObject in object){
+          // console.log(keyOfObject)
+          stateMethods.createType(caseType, keyOfObject, object[keyOfObject])
 
-    allData.faculty.forEach((item) => {
-      if(item._id == selectID){
-        for(let key in item){
-          if(Array.isArray(item[key]) && item[key].length > 0) reduxMethod(key, item[key][0]._id)
+          if(Array.isArray(object[keyOfObject]) && object[keyOfObject].length > 0){
+            // console.log(object[keyOfObject])
+            if(!object[keyOfObject][0]['location']) stateMethods.createType(caseType, keyOfObject, object[keyOfObject][0])
+
+            if(object[keyOfObject][0]['location']) return stateMethods.createType(caseType, keyOfObject, object[keyOfObject])
+
+          }
+
         }
+
       }
-    })
-    
-  }
-
-  if(modal == 'update_student'){
-
-    for(let key in data){
-      if(Array.isArray(data[key]) && data[key].length > 0){setElementText(key, data[key][0].name)}
-      setElementText(key, data[key])
     }
-
-    allData.students.forEach((item) => {
-      if(item._id == selectID){
-        for(let key in item){
-          if(Array.isArray(item[key]) && item[key].length > 0) reduxMethod(key, item[key][0]._id)
-        }
-      }
-    })
-    
   }
-}
-
-export {
-  populateModal,
-  manageFormSubmission
 }

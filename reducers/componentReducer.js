@@ -1,7 +1,7 @@
 const initialState = {
   name: '',
   leader: '',
-  active: false,
+  active: '',
   shortDescription: '',
   longDescription: ''
 }

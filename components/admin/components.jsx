@@ -7,9 +7,6 @@ import AdminModals from '../modals/AdminModals'
 import AdminTable from '../table'
 
 const Components = ({
-  data,
-  allData,
-  setAllData,
   account,
   accessToken,
   resetUI,
@@ -21,109 +18,35 @@ const Components = ({
   setView,
   loading,
   setLoading,
-  preventEvent,
   selectID,
   setSelectID,
   controls,
   setControls,
-  setElementText,
-  setModalData,
   resetCheckboxes,
+  edit,
+  setEdit,
+  editType,
+
+  //// DATA
+  data,
+  allData,
+  setAllData,
+  setModalData,
+  sortOrder,
 
   //// REDUX
-  component,
-  resetComponent
+  stateData,
+  stateMethod,
+  resetMethod,
+
+  //// CRUD
+  submitCreate,
+  submitUpdate,
+  submitDeleteRow
 
   }) => {
 
-  const sortOrder = ['longDescription', 'shortDescription', 'active', 'leader', 'name']
   const [allComponents, setAllComponents] = useState(data ? data : [])
-
-  const createComponent = async (e) => {
-    e.preventDefault()
-    if(!component.name) return setMessage('Please fill out name field')
-    if(!component.active) return setMessage('Please choose active setate')
-    if(!component.leader) return setMessage('Please add a leader associated')
-    if(!component.shortDescription) return setMessage('Please add a short description')
-    if(!component.longDescription) return setMessage('Please add a long description')
-    setLoading('component')
-    setMessage('')
-
-    try {
-      const responseCreate = await axios.post(`${API}/component/create-component`, component, { 
-        headers: {
-        Authorization: `Bearer ${accessToken}`,
-        contentType: `application/json`
-      }})
-      setLoading('')
-      allData.components = responseCreate.data
-      setAllData(allData)
-      setMessage('Component was created')
-      for(let key in component){setElementText(key, '')}
-      resetComponent()
-      
-    } catch (error) {
-      console.log(error)
-      // for(let key in component){setElementText(key, '')}
-      // resetComponent()
-      setLoading('')
-      if(error) error.response ? setMessage(error.response.data) : setMessage('Error ocurred creating a component, please try again later')
-      if(error){ if(error.response) error.response.status == 406 ? window.location.href = '/admin/login' : null }
-    }
-  }
-
-  const updateComponent = async (e) => {
-    e.preventDefault()
-    if(!component.name) return setMessage('Please fill out name field')
-    if(!component.active) return setMessage('Please choose active setate')
-    if(!component.shortDescription) return setMessage('Please add a short description')
-    if(!component.longDescription) return setMessage('Please add a long description')
-    setLoading('update_component')
-    setMessage('')
-
-    try {
-      const responseUpdate = await axios.post(`${API}/component/update-component`, component, { 
-        headers: {
-        Authorization: `Bearer ${accessToken}`,
-        contentType: `application/json`
-      }})
-      setLoading('')
-      allData.components = responseUpdate.data
-      setAllData(allData)
-      setModal('')
-      
-    } catch (error) {
-      console.log(error)
-      for(let key in component){setElementText(key, '')}
-      resetComponent()
-      setLoading('')
-      if(error) error.response ? setMessage(error.response.data) : setMessage('Error ocurred updating the component, please try again later')
-    }
-  }
-
-  const deleteComponent = async (e) => {
-    e.preventDefault()
-    setLoading('delete_component')
-    setMessage('')
-    
-    try {
-      const responseDelete = await axios.post(`${API}/component/delete-component`, {id: selectID}, { 
-        headers: {
-        Authorization: `Bearer ${accessToken}`,
-        contentType: `application/json`
-      }})
-      setLoading('')
-      resetCheckboxes()
-      allData.components = responseDelete.data
-      setAllData(allData)
-      setControls(false)
-
-    } catch (error) {
-      console.log(error.response)
-      setLoading('')
-      if(error) error.response ? setMessage(error.response.data.substr(0, 200)) : setMessage('Error ocurred deleting component, please try again later')
-    }
-  }
     
   return (
     <>
@@ -133,7 +56,7 @@ const Components = ({
           <SVG svg={'list'}></SVG>
           <span>View Components</span>
         </div>
-        <div className="account-dashboard-item" onClick={() => (resetUI(), resetComponent(), setModal('create_component'))}>
+        <div className="account-dashboard-item" onClick={() => (resetUI(), setModal('create_component'))}>
           <SVG svg={'item-added'}></SVG>
           <span>Create Component</span>
         </div>
@@ -141,63 +64,56 @@ const Components = ({
       }
       { view == 'all_components' &&
       <AdminTable
+        accessToken={accessToken}
         title={'Components'}
         typeOfData={'components'}
-        modalType={'update_component'}
-        modalDataType={{key: 'components', method: 'createComponent'}}
+        modalType={'create_component'}
+        modalDataType={{key: 'components', caseType: 'CREATE_COMPONENT'}}
         componentData={allComponents}
         originalData={allData}
         account={account}
+        loading={loading}
+        setLoading={setLoading}
         selectID={selectID}
         setSelectID={setSelectID}
         controls={controls}
         setControls={setControls}
-        setModal={setModal}
         setModalData={setModalData}
-        deleteRow={deleteComponent}
-        message={message}
+        setModal={setModal}
         sortOrder={sortOrder}
         resetCheckboxes={resetCheckboxes}
+        setEdit={setEdit}
+        editType={editType}
+        submitDeleteRow={submitDeleteRow}
+        message={message}
+        setMessage={setMessage}
+        setAllData={setAllData}
+        deletePath="component/delete-component"
       >
       </AdminTable>
       }
-      {modal == 'create_component' &&
       <AdminModals
-        type={'create_component'}
-        title={'Create Component'}
-        data={allData}
-        submitComponent={createComponent}
+        accessToken={accessToken}
+        allData={allData}
+        setAllData={setAllData}
         resetUI={resetUI}
+        modal={modal}
         setModal={setModal}
         setMessage={setMessage}
         message={message}
         loading={loading}
         setLoading={setLoading}
-        setElementText={setElementText}
-        preventEvent={preventEvent}
-        resetComponent={resetComponent}
+        stateData={stateData}
+        stateMethod={stateMethod}
+        caseType={'CREATE_COMPONENT'}
+        resetMethod={resetMethod}
+        resetType={'RESET_COMPONENT'}
+        submitCreate={submitCreate}
+        submitUpdate={submitUpdate}
+        edit={edit}
+        setEdit={setEdit}
       >
       </AdminModals>
-      }
-      {modal == 'update_component' &&
-      <AdminModals
-        type={'create_component'}
-        functionType={'update_component'}
-        title={'Update Component'}
-        data={allData}
-        updateComponent={updateComponent}
-        resetUI={resetUI}
-        setModal={setModal}
-        setMessage={setMessage}
-        message={message}
-        loading={loading}
-        setLoading={setLoading}
-        setElementText={setElementText}
-        preventEvent={preventEvent}
-        resetComponent={resetComponent}
-      >
-      </AdminModals>
-      }
     </>
   )
 }

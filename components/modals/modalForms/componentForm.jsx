@@ -1,175 +1,218 @@
 import SVG from '../../../files/svg'
+import { useEffect, useRef, useState } from 'react'
+import { manageFormFields } from '../../../helpers/forms'
 
-const componentForm = ({
-    data,
+const ComponentForm = ({
+    accessToken,
+    title,
     resetUI,
+    modal,
     setModal,
     setMessage,
-    title,
-    dropdown,
-    setDropdown,
-    setElementText,
-    preventEvent,
-    functionType,
     message,
     loading,
+    setLoading,
+    edit,
+    setEdit, 
 
-    //// REDUX    
-    component,
-    createComponent,
-    resetComponent,
+    // DATA
+    allData,
+    setAllData,
+    
+    // REDUX
+    stateData,
+    stateMethod,
+    caseType,
+    resetMethod,
+    resetType,
 
-    //// CRUD
-    updateComponent,
-    submitComponent
-
+    // CRUD
+    submitCreate,
+    submitUpdate
+    
   }) => {
 
+  const myRefs = useRef(null)
+  const [input_dropdown, setInputDropdown] = useState('')
+
+  const handleClickOutside = (event) => {
+    if(myRefs.current){
+      if(!myRefs.current.contains(event.target)){
+        setInputDropdown('')
+      }
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside, true);
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  }, [])
+    
   return (
-    <div className="accountUpdateProfile-modal">
-      <div className="accountUpdateProfile-modal-box">
-        <div className="accountUpdateProfile-modal-box-svg" onClick={() => (resetUI(), setModal(''), setMessage(''), resetComponent())}><SVG svg={'close'}></SVG></div>
-        <div className="accountUpdateProfile-modal-box-header">
-          <div className="accountUpdateProfile-modal-box-header-title">{title}</div>
+    <div className="modal">
+      <div className="modal-box">
+        <div className="modal-box-header">
+          <div 
+          className="modal-box-svg" 
+          onClick={() => (resetUI(), setModal(''), setMessage(''), setEdit(''), resetMethod(resetType))}
+          >
+            <SVG svg={'close'}></SVG>
+          </div>
+          <div className="modal-box-header-title">{title}</div>
         </div>
-        <div className="accountUpdateProfile-modal-box-content">
-          <form action="" className="form-group">
-            <div className="form-group-100">
-              <div className="form-group-100-field">
-                <div 
-                id="name" 
-                contentEditable="true" 
-                onInput={(e) => (preventEvent('name'), setMessage(''), createComponent('name', e.target.innerText))}
-                />
-                <label 
-                className={component.name.length > 0 ? ' labelHover' : ''}>
-                  Name
-                </label>
-              </div>
+        <div className="modal-box-content">
+          <div className="form-group">
+            <input 
+            id="name" 
+            value={stateData.name} 
+            onChange={(e) => stateMethod(caseType, 'name', e.target.value)}/>
+            <label 
+            className={`input-label ` + (
+              stateData.name.length > 0 || 
+              typeof stateData.name == 'object' 
+              ? ' labelHover' 
+              : ''
+            )}
+            htmlFor="name">
+              Name
+            </label>
+          </div>
+          <div className="form-group">
+            <input
+            onClick={() => setInputDropdown('component_leader')} 
+            value={manageFormFields(stateData.leader, 'name')} 
+            onChange={(e) => (setInputDropdown(''), stateMethod(caseType, 'leader', e.target.value))}/>
+            <label 
+            className={`input-label ` + (
+              stateData.leader.length > 0 || 
+              typeof stateData.leader == 'object' 
+              ? ' labelHover' 
+              : ''
+            )}
+            htmlFor="leader">
+              Leader
+            </label>
+            <div 
+            onClick={() => setInputDropdown('component_leader')}><SVG svg={'dropdown'}></SVG>
             </div>
-            <div className="form-group-100 mb2">
-              <div className="form-group-100-field">
+            { input_dropdown == 'component_leader' &&
+              <div 
+              className="form-group-list" 
+              ref={myRefs}>
+                {allData && allData.faculty.sort( (a, b) => a.name > b.name ? 1 : -1).map( (item, idx) => (
                 <div 
-                  id="leader" 
-                />
-                <label 
-                  className={(component.leader.length > 0 ? ' labelHover' : '') + ` form-group-100-field-label-dropdown`}
-                  onClick={() => dropdown == 'leader' ? setDropdown('') : setDropdown('leader')}
-                >
-                  Leader
-                  <SVG svg={'dropdown'}></SVG>
-                </label>
+                key={idx} 
+                className="form-group-list-item" 
+                onClick={(e) => (stateMethod(caseType, 'leader', item), setInputDropdown(''))}>
+                  {item.name}
+                </div>
+                ))}
               </div>
-              { dropdown == 'leader' &&
-              <div className="form-group-100-field-dropdown">
-                {data.faculty && data.faculty.map( (item, idx) => 
-                  <div
-                  key={idx} 
-                  className="form-group-100-field-dropdown-item" 
-                  onClick={() => (setElementText('leader', item.name), createComponent('leader', item._id), setDropdown(''))}
-                  >
-                    {item.name}
-                  </div>
-                )
-                }
-              </div>
-              }
+            }
+          </div>
+          <div className="form-group">
+            <input
+            onClick={() => setInputDropdown('component_active_state')} 
+            value={stateData.active} 
+            onChange={(e) => (setInputDropdown(''), stateMethod(caseType, 'active', e.target.value))}/>
+            <label 
+            className={`input-label ` + (
+              stateData.active.length > 0 || 
+              typeof stateData.active == 'object' 
+              ? ' labelHover' 
+              : ''
+            )}
+            htmlFor="active">
+              Active State
+            </label>
+            <div 
+            onClick={() => setInputDropdown('component_active_state')}><SVG svg={'dropdown'}></SVG>
             </div>
-            <div className="form-group-100 mb1">
-              <div className="form-group-100-field">
+            { input_dropdown == 'component_active_state' &&
+              <div 
+              className="form-group-list" 
+              ref={myRefs}>
                 <div 
-                  id="active" 
-                />
-                <label 
-                  className={(component.active.length > 0 ? ' labelHover' : '') + ` form-group-100-field-label-dropdown`}
-                  onClick={() => dropdown == 'active' ? setDropdown('') : setDropdown('active')}
-                >
-                  Active
-                  <SVG svg={'dropdown'}></SVG>
-                </label>
-              </div>
-              { dropdown == 'active' &&
-              <div className="form-group-100-field-dropdown">
-                <div 
-                className="form-group-100-field-dropdown-item" 
-                onClick={() => (setElementText('active', 'activated'), createComponent('active', 'activated'), setDropdown(''))}
-                >
-                  Activate
+                className="form-group-list-item" 
+                onClick={(e) => (setInputDropdown(''), stateMethod(caseType, 'active', e.target.innerText))}>
+                  Activated
                 </div>
                 <div 
-                className="form-group-100-field-dropdown-item"
-                onClick={() => (setElementText('active', 'deactivated'), createComponent('active', 'deactivated'), setDropdown(''))}
-                >
+                className="form-group-list-item" 
+                onClick={(e) => (setInputDropdown(''), stateMethod(caseType, 'active', e.target.innerText))}>
                   Deactivated
                 </div>
               </div>
-              }
-            </div>
-            <div className="form-group-100">
-              <div className="form-group-100-field-textarea">
-                <label 
-                className={component.shortDescription.length > 0 ? ' labelHover' : ''}>
-                  Short Description
-                </label>
-                <textarea 
-                  id="shortDescription" 
-                  rows="4" 
-                  wrap="hard" 
-                  maxLength="250"
-                  name="shortDescription" 
-                  value={component.shortDescription} 
-                  onChange={(e) => createComponent('shortDescription', e.target.value)} 
-                  onFocus={(e) => e.target.placeholder = ''} 
-                  onKeyDown={(e) => e.keyCode == 13 ? e.preventDefault() : null}
-                />
-              </div>
-            </div>
-            <div className="form-group-100">
-              <div className="form-group-100-field-textarea">
-                <label 
-                className={component.longDescription.length > 0 ? ' labelHover' : ''}>
-                  Long Description
-                </label>
-                <textarea 
-                  id="longDescription" 
-                  rows="12" 
-                  wrap="hard" 
-                  maxLength="1500"
-                  name="longDescription" 
-                  value={component.longDescription} 
-                  onChange={(e) => createComponent('longDescription', e.target.value)} 
-                  onFocus={(e) => e.target.placeholder = ''} 
-                  onKeyDown={(e) => e.keyCode == 13 ? e.preventDefault() : null}
-                />
-              </div>
-            </div>
-          </form>
+            }
+          </div>
+          <div className="form-group-textarea">
+            <label 
+            className={stateData.shortDescription.length > 0 ? ' labelHover' : ''}>
+              Short Description
+            </label>
+            <textarea 
+              id="shortDescription" 
+              rows="5" 
+              wrap="hard" 
+              maxLength="400"
+              name="shortDescription" 
+              value={stateData.shortDescription} 
+              onChange={(e) => stateMethod(caseType, 'shortDescription', e.target.value)} 
+            />
+          </div>
+          <div className="form-group-textarea">
+            <label 
+            className={stateData.longDescription.length > 0 ? ' labelHover' : ''}>
+              Long Description
+            </label>
+            <textarea 
+              id="longDescription" 
+              rows="5" 
+              wrap="hard" 
+              maxLength="400"
+              name="longDescription" 
+              value={stateData.longDescription} 
+              onChange={(e) => stateMethod(caseType, 'longDescription', e.target.value)} 
+            />
+          </div>
         </div>
-        {message.length > 0 ? <div className="form-group-message">{message}</div> : null}
-        {functionType == 'update_component' &&
-          <button 
-          className="form-group-button-100" 
-          onClick={(e) => updateComponent(e)}
-          >
-            {!loading && <span>Update</span>} 
-            {loading == 'update_component' && 
+        <div className="modal-box-footer">
+          {!edit && 
+          <>
+            {message.length > 0 ? <div className="form-group-message">{message}</div> : null}
+            <button 
+            className="form-group-button" 
+            onClick={(e) => submitCreate(e, stateData, setMessage, setLoading, modal, 'components', 'component/create-component', accessToken, allData, setAllData, resetMethod, resetType)}>
+              {!loading && 
+              <span>Save</span>
+              } 
+              {loading == modal && 
               <div className="loading"><span></span><span></span><span></span></div>
-            }
-          </button>
-        }
-        {functionType == undefined &&
-          <button 
-          className="form-group-button-100" 
-          onClick={(e) => submitComponent(e)}>
-            {!loading && <span>Save</span>} 
-            {loading == 'component' && 
-            <div className="loading"><span></span><span></span><span></span></div>
-            }
-          </button>
-        }
+              }
+            </button>
+          </>
+          }
+          {edit == 'update_component' && 
+          <>
+            {message.length > 0 ? <div className="form-group-message">{message}</div> : null}
+            <button 
+            className="form-group-button" 
+            onClick={(e) => submitUpdate(e, stateData, setMessage, setLoading, modal, 'components', 'component/update-component', accessToken, allData, setAllData, resetMethod, resetType, setModal)}>
+              {!loading && 
+              <span>Update</span>
+              } 
+              {loading == modal && 
+              <div className="loading"><span></span><span></span><span></span></div>
+              }
+            </button>
+          </>
+          }
+        </div>
       </div>
     </div>
   )
 }
 
-export default componentForm
+export default ComponentForm
