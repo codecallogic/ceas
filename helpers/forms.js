@@ -13,8 +13,9 @@ export {
 const formFields = {
   adminUsers: ['username', 'firstName', 'lastName', 'role', 'email'],
   components: ['name', 'leader', 'active'],
-  faculty: ['title', 'name'],
-  students: ['title', 'name', 'advisor']
+  faculty: ['title', 'name', 'email'],
+  students: ['title', 'name', 'advisor', 'email'],
+  staff: ['title', 'name', 'email']
 }
 
 const manageFormFields = (data, key) => {

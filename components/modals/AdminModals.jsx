@@ -4,6 +4,7 @@ import StudentForm from '../modals/modalForms/studentForm'
 import UpdateProfileForm from '../modals/modalForms/updateAdmin'
 import ChangeProfileEmailForm from '../modals/modalForms/changeAdminEmail'
 import UserAdminForm from './modalForms/userAdminForm'
+import StaffForm from './modalForms/staffForm'
 
 const Modal = ({
   accessToken,
@@ -174,6 +175,31 @@ const Modal = ({
         setEdit={setEdit}
       >
       </StudentForm>
+    }
+    {modal == 'create_staff' &&
+      <StaffForm
+        title={edit == 'update_staff' ? 'Update Staff' : 'Create Staff'}
+        accessToken={accessToken}
+        allData={allData}
+        setAllData={setAllData}
+        stateData={stateData}
+        stateMethod={stateMethod}
+        caseType={caseType}
+        resetMethod={resetMethod}
+        resetType={resetType}
+        resetUI={resetUI}
+        modal={modal}
+        setModal={setModal}
+        message={message}
+        setMessage={setMessage}
+        loading={loading}
+        setLoading={setLoading}
+        submitCreate={submitCreate}
+        submitUpdate={submitUpdate}
+        edit={edit}
+        setEdit={setEdit}
+      >
+      </StaffForm>
     }
     </>
   )

@@ -16,6 +16,7 @@ import Users from '../../components/admin/users'
 import Components from '../../components/admin/components'
 import Faculty from '../../components/admin/faculty'
 import Students from '../../components/admin/students'
+import Staff from '../../components/admin/staff'
 
 // CRUD
 import { submitCreate, submitUpdate, submitDeleteRow } from '../../helpers/forms'
@@ -24,7 +25,7 @@ import { submitCreate, submitUpdate, submitDeleteRow } from '../../helpers/forms
 import { validateIsEmail} from '../../helpers/validations'
 
 // TABLES
-import { adminUsersSort, componentSort, facultySort, studentSort } from '../../helpers/sorting'
+import { adminUsersSort, componentSort, facultySort, studentSort, staffSort } from '../../helpers/sorting'
 
 const AdminDashboard = ({
   data, 
@@ -40,7 +41,8 @@ const AdminDashboard = ({
   admin,
   componentData,
   faculty,
-  student
+  student,
+  staff
   
 }) => {
   
@@ -140,6 +142,18 @@ const AdminDashboard = ({
             }
             </>
           }
+          { component == 'staff' &&
+            <>
+            <span className="account-breadcrumbs-item-subtitle" onClick={() => (setComponent('staff'), setView(''))}>
+              <SVG svg={'keyboard-right'}></SVG> Staff
+            </span>
+            {view == 'all_staff' && 
+            <span className="account-breadcrumbs-item-subtitle">
+              <SVG svg={'keyboard-right'}></SVG> View All
+            </span>
+            }
+            </>
+          }
         </div>
       </div>
       { component == '' &&
@@ -178,6 +192,13 @@ const AdminDashboard = ({
           >
             <SVG svg={'staff'}></SVG>
             <span>Students</span>
+          </div>
+          <div 
+          className="account-dashboard-item" 
+          onClick={() => (setComponent('staff'), setView(''))}
+          >
+            <SVG svg={'staff'}></SVG>
+            <span>Staff</span>
           </div>
         </div>
       }
@@ -348,6 +369,42 @@ const AdminDashboard = ({
           submitDeleteRow={submitDeleteRow}
         ></Students>
       }
+      { component == 'staff' &&
+        <Staff
+          data={data.staff}
+          allData={allData}
+          setAllData={setAllData}
+          account={account}
+          accessToken={accessToken}
+          resetUI={resetUILocalStorage}
+          modal={modal} 
+          setModal={setModal}
+          view={view}
+          setView={setView}
+          message={message}
+          setMessage={setMessage}
+          loading={loading}
+          setLoading={setLoading}
+          selectID={selectID}
+          setSelectID={setSelectID}
+          controls={controls}
+          setControls={setControls}
+          setModalData={setModalData}
+          resetCheckboxes={resetCheckboxes}
+          typeOfData={'staff'}
+          stateData={staff}
+          stateMethod={createType}
+          resetMethod={resetType}
+          sortOrder={staffSort}
+          submitCreate={submitCreate}
+          submitUpdate={submitUpdate}
+          setModalData={setModalData}
+          edit={edit}
+          setEdit={setEdit}
+          editType={'update_staff'}
+          submitDeleteRow={submitDeleteRow}
+        ></Staff>
+      }
     </div>
   )
 }
@@ -357,7 +414,8 @@ const mapStateToProps = state => {
     admin: state.admin,
     componentData: state.component,
     faculty: state.faculty,
-    student: state.student
+    student: state.student,
+    staff: state.staff
   }
 }
 
@@ -381,6 +439,7 @@ AdminDashboard.getInitialProps = async (context) => {
   data.components         = await tableData(accessToken, 'component/all-components')
   data.faculty            = await tableData(accessToken, 'faculty/get-all-faculty')
   data.students           = await tableData(accessToken, 'student/get-all-students')
+  data.staff              = await tableData(accessToken, 'staff/all-staff')
   deepClone= _.cloneDeep(data)
   
   return {
