@@ -21,10 +21,10 @@ import Students from '../../components/admin/students'
 import { submitCreate, submitUpdate, submitDeleteRow } from '../../helpers/forms'
 
 // VALIDATIONS
-import { validateIsEmail, validateIsPhoneNumber, isNumber, validateDate } from '../../helpers/validations'
+import { validateIsEmail} from '../../helpers/validations'
 
 // TABLES
-import { adminUsersSort, componentSort, facultySort } from '../../helpers/sorting'
+import { adminUsersSort, componentSort, facultySort, studentSort } from '../../helpers/sorting'
 
 const AdminDashboard = ({
   data, 
@@ -39,7 +39,8 @@ const AdminDashboard = ({
   resetType,
   admin,
   componentData,
-  faculty
+  faculty,
+  student
   
 }) => {
   
@@ -53,12 +54,14 @@ const AdminDashboard = ({
   const [edit, setEdit] = useState('')
   const [allData, setAllData] = useState(originalData ? originalData : [])
 
+  console.log(allData)
+  
   useEffect(() => {
     if(window.localStorage.getItem('component')) setComponent(window.localStorage.getItem('component'))
     if(window.localStorage.getItem('modal')) setModal(window.localStorage.getItem('modal'))
   }, [])
 
-  useEffect(() => { setMessage('') }, [view])
+  useEffect(() => { setMessage(''), setEdit('')}, [view])
 
   const resetUILocalStorage = () => {
     window.localStorage.removeItem('component')
@@ -299,7 +302,7 @@ const AdminDashboard = ({
           stateData={faculty}
           stateMethod={createType}
           resetMethod={resetType}
-          sortOrder={componentSort}
+          sortOrder={facultySort}
           submitCreate={submitCreate}
           submitUpdate={submitUpdate}
           setModalData={setModalData}
@@ -311,7 +314,7 @@ const AdminDashboard = ({
       }
       { component == 'students' &&
         <Students
-          data={allData.students}
+          data={data.students}
           allData={allData}
           setAllData={setAllData}
           account={account}
@@ -329,11 +332,20 @@ const AdminDashboard = ({
           setSelectID={setSelectID}
           controls={controls}
           setControls={setControls}
-          preventEvent={preventEvent}
-          setElementText={setElementText}
           setModalData={setModalData}
-          validateIsEmail={validateIsEmail}
           resetCheckboxes={resetCheckboxes}
+          typeOfData={'students'}
+          stateData={student}
+          stateMethod={createType}
+          resetMethod={resetType}
+          sortOrder={studentSort}
+          submitCreate={submitCreate}
+          submitUpdate={submitUpdate}
+          setModalData={setModalData}
+          edit={edit}
+          setEdit={setEdit}
+          editType={'update_student'}
+          submitDeleteRow={submitDeleteRow}
         ></Students>
       }
     </div>
@@ -365,10 +377,10 @@ AdminDashboard.getInitialProps = async (context) => {
   let accessToken = null
   if(token){accessToken = token.split('=')[1]}
 
-  data.adminUsers = await tableData(accessToken, 'admin_users')
-  data.components = await tableData(accessToken, 'components')
-  data.faculty = await tableData(accessToken, 'faculty')
-  data.students = await tableData(accessToken, 'students')
+  data.adminUsers         = await tableData(accessToken, 'auth/all-admin')
+  data.components         = await tableData(accessToken, 'component/all-components')
+  data.faculty            = await tableData(accessToken, 'faculty/get-all-faculty')
+  data.students           = await tableData(accessToken, 'student/get-all-students')
   deepClone= _.cloneDeep(data)
   
   return {

@@ -152,25 +152,26 @@ const Modal = ({
     }
     {modal == 'create_student' &&
       <StudentForm
-        data={data}
+        title={edit == 'update_student' ? 'Update Student' : 'Create Student'}
+        accessToken={accessToken}
+        allData={allData}
+        setAllData={setAllData}
+        stateData={stateData}
+        stateMethod={stateMethod}
+        caseType={caseType}
+        resetMethod={resetMethod}
+        resetType={resetType}
         resetUI={resetUI}
+        modal={modal}
         setModal={setModal}
-        setMessage={setMessage}
-        resetStudent={resetStudent}
-        title={title}
-        student={student}
-        createStudent={createStudent}
-        dropdown={dropdown}
-        setDropdown={setDropdown}
-        setElementText={setElementText}
-        preventEvent={preventEvent}
-        isNumber={isNumber}
-        validateIsPhoneNumber={validateIsPhoneNumber}
-        updateStudent={updateStudent}
-        submitStudent={submitStudent}
-        functionType={functionType}
         message={message}
+        setMessage={setMessage}
         loading={loading}
+        setLoading={setLoading}
+        submitCreate={submitCreate}
+        submitUpdate={submitUpdate}
+        edit={edit}
+        setEdit={setEdit}
       >
       </StudentForm>
     }

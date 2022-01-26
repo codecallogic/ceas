@@ -12,7 +12,9 @@ export {
 //// FORM FIELDS
 const formFields = {
   adminUsers: ['username', 'firstName', 'lastName', 'role', 'email'],
-  components: ['name', 'leader', 'active']
+  components: ['name', 'leader', 'active'],
+  faculty: ['title', 'name'],
+  students: ['title', 'name', 'advisor']
 }
 
 const manageFormFields = (data, key) => {
@@ -35,15 +37,10 @@ const submitCreate = async (e, stateData, setMessage, setLoading, loadingType, t
   setMessage('')
 
   let data      = new FormData()
+  let fileID    = nanoid()
 
-  if(stateData.images && stateData.images.length > 0){
-    stateData.images.forEach((item) => {
-      let fileID = nanoid()
-      data.append('file', item, `${type}-${fileID}.${item.name.split('.'[1])}`)
-    })
-  }
-  
-  if(stateData){ for(let key in stateData){ if(key !== 'images') data.append(key, JSON.stringify(stateData[key])) } }
+  if(stateData){ for(let key in stateData){ if(key == 'image') stateData.image ? data.append('file', stateData.image, `${type}-${fileID}.${stateData.image.name.split('.'[1])}`)  : null  }}
+  if(stateData){ for(let key in stateData){ if(key !== 'image') data.append(key, JSON.stringify(stateData[key])) } }
 
   try {
     const responseCreate = await axios.post(`${API}/${path}`, data, {
@@ -59,7 +56,7 @@ const submitCreate = async (e, stateData, setMessage, setLoading, loadingType, t
     resetMethod(resetType)
     
   } catch (error) {
-    console.log(error)
+    console.log(error.response)
     setLoading('')
     if(error)  error.response ? error.response.statusText == 'Unauthorized' ? (setMessage(error.response.statusText), window.location.href = 'admin/login') : (setMessage(error.response.data)) : (setMessage('Error ocurred with creating item'))
   }
@@ -76,19 +73,18 @@ const submitUpdate = async (e, stateData, setMessage, setLoading, loadingType, t
   setLoading(loadingType)
   setMessage('')
 
-  let data = new FormData()
-
-  // if(stateData.images && stateData.images.length > 0){
-  //   stateData.images.forEach((item) => {
-
-  //     let fileID = nanoid()
-  //     if(typeof item !== 'object' && item !== null) data.append('file', item, `${type}-${fileID}.${item.name.split('.'[1])}`)
-      
-
-  //   })
-  // }
+  console.log(stateData)
   
-  if(stateData){ for(let key in stateData){ if(key !== 'images') data.append(key, JSON.stringify(stateData[key])) } }
+  let data = new FormData()
+  let fileID    = nanoid()
+
+  for(let key in stateData){
+    if(stateData){  if(key !== 'image') data.append(key, JSON.stringify(stateData[key])) }
+
+    if(key == 'image' && typeof stateData.image === 'object' && stateData.image !== null) data.append('file', stateData.image, `${type}-${fileID}.${stateData.image.name.split('.'[1])}`) 
+
+    if(key == 'image' && typeof stateData.image !== 'object' && stateData.image !== null) data.append(key, JSON.stringify(stateData[key]))
+  }
 
   try {
     const responseCreate = await axios.post(`${API}/${path}`, data, {

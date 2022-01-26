@@ -5,7 +5,7 @@ import {facultyTitles, centerAssociation} from '../../../utilities/dropdowns'
 import {PUBLIC_FILES} from '../../../config'
 import { isNumber, validateIsPhoneNumber } from '../../../helpers/validations'
 
-const ComponentForm = ({
+const FacultyForm = ({
     accessToken,
     title,
     resetUI,
@@ -86,33 +86,212 @@ const ComponentForm = ({
               )}
             />
           </div>
-          {/* <div className="form-group">
+          <div className="form-group">
             <input
-            onClick={() => setInputDropdown('component_leader')} 
-            value={manageFormFields(stateData.leader, 'name')} 
-            onChange={(e) => (setInputDropdown(''), stateMethod(caseType, 'leader', e.target.value))}/>
+            onClick={() => setInputDropdown('faculty_title')} 
+            value={stateData.title} 
+            onChange={(e) => (setInputDropdown(''), stateMethod(caseType, 'title', e.target.value))}/>
             <label 
             className={`input-label ` + (
-              stateData.leader.length > 0 || 
-              typeof stateData.leader == 'object' 
+              stateData.title.length > 0 || 
+              typeof stateData.title == 'object' 
               ? ' labelHover' 
               : ''
             )}
-            htmlFor="leader">
-              Leader
+            htmlFor="title">
+              Title
             </label>
             <div 
-            onClick={() => setInputDropdown('component_leader')}><SVG svg={'dropdown'}></SVG>
+            onClick={() => setInputDropdown('faculty_title')}><SVG svg={'dropdown'}></SVG>
             </div>
-            { input_dropdown == 'component_leader' &&
+            { input_dropdown == 'faculty_title' &&
               <div 
               className="form-group-list" 
               ref={myRefs}>
-                {allData && allData.faculty.sort( (a, b) => a.name > b.name ? 1 : -1).map( (item, idx) => (
+                {facultyTitles && facultyTitles.map( (item, idx) => (
                 <div 
                 key={idx} 
                 className="form-group-list-item" 
-                onClick={(e) => (stateMethod(caseType, 'leader', item), setInputDropdown(''))}>
+                onClick={(e) => (stateMethod(caseType, 'title', item.title), setInputDropdown(''))}>
+                  {item.title}
+                </div>
+                ))}
+              </div>
+            }
+          </div>
+          <div className="form-group">
+            <input 
+            id="name" 
+            value={stateData.name} 
+            onChange={(e) => stateMethod(caseType, 'name', e.target.value)}/>
+            <label 
+            className={`input-label ` + (
+              stateData.name.length > 0 || 
+              typeof stateData.name == 'object' 
+              ? ' labelHover' 
+              : ''
+            )}
+            htmlFor="name">
+              Name
+            </label>
+          </div>
+          <div className="form-group">
+            <input 
+            id="profession" 
+            value={stateData.profession} 
+            onChange={(e) => stateMethod(caseType, 'profession', e.target.value)}/>
+            <label 
+            className={`input-label ` + (
+              stateData.profession.length > 0 || 
+              typeof stateData.profession == 'object' 
+              ? ' labelHover' 
+              : ''
+            )}
+            htmlFor="profession">
+              Profession
+            </label>
+          </div>
+          <div className="form-group">
+            <input 
+            id="department" 
+            value={stateData.department} 
+            onChange={(e) => stateMethod(caseType, 'department', e.target.value)}/>
+            <label 
+            className={`input-label ` + (
+              stateData.department.length > 0 || 
+              typeof stateData.department == 'object' 
+              ? ' labelHover' 
+              : ''
+            )}
+            htmlFor="department">
+              Department
+            </label>
+          </div>
+          <div className="form-group">
+            <input 
+            id="email" 
+            value={stateData.email} 
+            onChange={(e) => stateMethod(caseType, 'email', e.target.value)}/>
+            <label 
+            className={`input-label ` + (
+              stateData.email.length > 0 || 
+              typeof stateData.email == 'object' 
+              ? ' labelHover' 
+              : ''
+            )}
+            htmlFor="email">
+              Email
+            </label>
+          </div>
+          <div className="form-group">
+            <input 
+            id="website" 
+            value={stateData.website} 
+            onChange={(e) => stateMethod(caseType, 'website', e.target.value)}/>
+            <label 
+            className={`input-label ` + (
+              stateData.website.length > 0 || 
+              typeof stateData.website == 'object' 
+              ? ' labelHover' 
+              : ''
+            )}
+            htmlFor="website">
+              Website
+            </label>
+          </div>
+          <div className="form-group">
+            <input 
+            id="officePhone" 
+            value={stateData.officePhone} 
+            onChange={(e) =>  e.target.value.length < 15 ? isNumber(e.target.value) ? (stateMethod(caseType, 'officePhone', e.target.value), validateIsPhoneNumber('officePhone', caseType, 'officePhone', stateMethod)): null : null
+            }/>
+            <label 
+            className={`input-label ` + (
+              stateData.officePhone.length > 0 || 
+              typeof stateData.officePhone == 'object' 
+              ? ' labelHover' 
+              : ''
+            )}
+            htmlFor="officePhone">
+              Office Phone
+            </label>
+          </div>
+          <div className="form-group">
+            <input 
+            id="officeLocation" 
+            value={stateData.officeLocation} 
+            onChange={(e) => stateMethod(caseType, 'officeLocation', e.target.value)}/>
+            <label 
+            className={`input-label ` + (
+              stateData.officeLocation.length > 0 || 
+              typeof stateData.officeLocation == 'object' 
+              ? ' labelHover' 
+              : ''
+            )}
+            htmlFor="officeLocation">
+              Office Location
+            </label>
+          </div>
+          <div className="form-group">
+            <input
+            onClick={() => setInputDropdown('faculty_association')} 
+            value={stateData.centerAssociation} 
+            onChange={(e) => (setInputDropdown(''), stateMethod(caseType, 'centerAssociation', e.target.value))}/>
+            <label 
+            className={`input-label ` + (
+              stateData.centerAssociation.length > 0 || 
+              typeof stateData.centerAssociation == 'object' 
+              ? ' labelHover' 
+              : ''
+            )}
+            htmlFor="centerAssociation">
+              Center Association
+            </label>
+            <div 
+            onClick={() => setInputDropdown('faculty_association')}><SVG svg={'dropdown'}></SVG>
+            </div>
+            { input_dropdown == 'faculty_association' &&
+              <div 
+              className="form-group-list" 
+              ref={myRefs}>
+                {centerAssociation && centerAssociation.map( (item, idx) => (
+                <div 
+                key={idx} 
+                className="form-group-list-item" 
+                onClick={(e) => (stateMethod(caseType, 'centerAssociation', item.association), setInputDropdown(''))}>
+                  {item.association}
+                </div>
+                ))}
+              </div>
+            }
+          </div>
+          <div className="form-group">
+            <input
+            onClick={() => setInputDropdown('faculty_componentOne')} 
+            value={manageFormFields(stateData.componentOne, 'name')} 
+            onChange={(e) => (setInputDropdown(''), stateMethod(caseType, 'componentOne', e.target.value))}/>
+            <label 
+            className={`input-label ` + (
+              stateData.componentOne.length > 0 || 
+              typeof stateData.componentOne == 'object' 
+              ? ' labelHover' 
+              : ''
+            )}
+            htmlFor="componentOne">
+              Component One
+            </label>
+            <div 
+            onClick={() => setInputDropdown('faculty_componentOne')}><SVG svg={'dropdown'}></SVG>
+            </div>
+            { input_dropdown == 'faculty_componentOne' &&
+              <div 
+              className="form-group-list" 
+              ref={myRefs}>
+                {allData && allData.components.map( (item, idx) => (
+                <div 
+                key={idx} 
+                className="form-group-list-item" 
+                onClick={(e) => (stateMethod(caseType, 'componentOne', item), setInputDropdown(''))}>
                   {item.name}
                 </div>
                 ))}
@@ -121,69 +300,85 @@ const ComponentForm = ({
           </div>
           <div className="form-group">
             <input
-            onClick={() => setInputDropdown('component_active_state')} 
-            value={stateData.active} 
-            onChange={(e) => (setInputDropdown(''), stateMethod(caseType, 'active', e.target.value))}/>
+            onClick={() => setInputDropdown('faculty_componentTwo')} 
+            value={manageFormFields(stateData.componentTwo, 'name')} 
+            onChange={(e) => (setInputDropdown(''), stateMethod(caseType, 'componentTwo', e.target.value))}/>
             <label 
             className={`input-label ` + (
-              stateData.active.length > 0 || 
-              typeof stateData.active == 'object' 
+              stateData.componentTwo.length > 0 || 
+              typeof stateData.componentTwo == 'object' 
               ? ' labelHover' 
               : ''
             )}
-            htmlFor="active">
-              Active State
+            htmlFor="componentTwo">
+              Component Two
             </label>
             <div 
-            onClick={() => setInputDropdown('component_active_state')}><SVG svg={'dropdown'}></SVG>
+            onClick={() => setInputDropdown('faculty_componentTwo')}><SVG svg={'dropdown'}></SVG>
             </div>
-            { input_dropdown == 'component_active_state' &&
+            { input_dropdown == 'faculty_componentTwo' &&
               <div 
               className="form-group-list" 
               ref={myRefs}>
+                {allData && allData.components.map( (item, idx) => (
                 <div 
+                key={idx} 
                 className="form-group-list-item" 
-                onClick={(e) => (setInputDropdown(''), stateMethod(caseType, 'active', e.target.innerText))}>
-                  Activated
+                onClick={(e) => (stateMethod(caseType, 'componentTwo', item), setInputDropdown(''))}>
+                  {item.name}
                 </div>
+                ))}
+              </div>
+            }
+          </div>
+          <div className="form-group">
+            <input
+            onClick={() => setInputDropdown('faculty_componentThree')} 
+            value={manageFormFields(stateData.componentThree, 'name')} 
+            onChange={(e) => (setInputDropdown(''), stateMethod(caseType, 'componentThree', e.target.value))}/>
+            <label 
+            className={`input-label ` + (
+              stateData.componentThree.length > 0 || 
+              typeof stateData.componentThree == 'object' 
+              ? ' labelHover' 
+              : ''
+            )}
+            htmlFor="componentThree">
+              Component Three
+            </label>
+            <div 
+            onClick={() => setInputDropdown('faculty_componentThree')}><SVG svg={'dropdown'}></SVG>
+            </div>
+            { input_dropdown == 'faculty_componentThree' &&
+              <div 
+              className="form-group-list" 
+              ref={myRefs}>
+                {allData && allData.components.map( (item, idx) => (
                 <div 
+                key={idx} 
                 className="form-group-list-item" 
-                onClick={(e) => (setInputDropdown(''), stateMethod(caseType, 'active', e.target.innerText))}>
-                  Deactivated
+                onClick={(e) => (stateMethod(caseType, 'componentThree', item), setInputDropdown(''))}>
+                  {item.name}
                 </div>
+                ))}
               </div>
             }
           </div>
           <div className="form-group-textarea">
             <label 
-            className={stateData.shortDescription.length > 0 ? ' labelHover' : ''}>
-              Short Description
+            className={stateData.researchInterests.length > 0 ? ' labelHover' : ''}>
+              Research Interests
             </label>
             <textarea 
-              id="shortDescription" 
-              rows="5" 
-              wrap="hard" 
-              maxLength="400"
-              name="shortDescription" 
-              value={stateData.shortDescription} 
-              onChange={(e) => stateMethod(caseType, 'shortDescription', e.target.value)} 
-            />
-          </div>
-          <div className="form-group-textarea">
-            <label 
-            className={stateData.longDescription.length > 0 ? ' labelHover' : ''}>
-              Long Description
-            </label>
-            <textarea 
-              id="longDescription" 
+              id="researchInterests" 
               rows="5" 
               wrap="hard" 
               maxLength="400"
               name="longDescription" 
-              value={stateData.longDescription} 
-              onChange={(e) => stateMethod(caseType, 'longDescription', e.target.value)} 
+              value={stateData.researchInterests} 
+              onChange={(e) => stateMethod(caseType, 'researchInterests', e.target.value)} 
             />
-          </div> */}
+          </div>
         </div>
         <div className="modal-box-footer">
           {!edit && 
@@ -191,7 +386,7 @@ const ComponentForm = ({
             {message.length > 0 ? <div className="form-group-message">{message}</div> : null}
             <button 
             className="form-group-button" 
-            onClick={(e) => submitCreate(e, stateData, setMessage, setLoading, modal, 'components', 'component/create-component', accessToken, allData, setAllData, resetMethod, resetType)}>
+            onClick={(e) => submitCreate(e, stateData, setMessage, setLoading, modal, 'faculty', 'faculty/create-faculty', accessToken, allData, setAllData, resetMethod, resetType)}>
               {!loading && 
               <span>Save</span>
               } 
@@ -201,12 +396,12 @@ const ComponentForm = ({
             </button>
           </>
           }
-          {edit == 'update_component' && 
+          {edit == 'update_faculty' && 
           <>
             {message.length > 0 ? <div className="form-group-message">{message}</div> : null}
             <button 
             className="form-group-button" 
-            onClick={(e) => submitUpdate(e, stateData, setMessage, setLoading, modal, 'components', 'component/update-component', accessToken, allData, setAllData, resetMethod, resetType, setModal)}>
+            onClick={(e) => submitUpdate(e, stateData, setMessage, setLoading, modal, 'faculty', 'faculty/update-faculty', accessToken, allData, setAllData, resetMethod, resetType, setModal)}>
               {!loading && 
               <span>Update</span>
               } 
@@ -222,4 +417,4 @@ const ComponentForm = ({
   )
 }
 
-export default ComponentForm
+export default FacultyForm

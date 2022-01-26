@@ -37,6 +37,8 @@ const Table = ({
   const myRefs = useRef([])
   const [loadingColor, setLoadingColor] = useState('black')
 
+  console.log(originalData)
+  
   const handleClickOutside = (event) => {
     if(myRefs.current){
       myRefs.current.forEach((item) => {
@@ -143,7 +145,7 @@ const Table = ({
             </div>
             {Object.keys(item).sort((a, b) => sortOrder.indexOf(b) - sortOrder.indexOf(a)).map((key, idx, array) => 
               key !== '_id' && <div key={idx} className="table-rows-item">
-                {Array.isArray(item[key]) && item[key].length > 0 ? item[key][0].name : item[key].replace('_', ' ')}
+                {Array.isArray(item[key]) && item[key].length > 0 ? item[key][0].name : item[key]}
               </div>
             )}
           </div>
