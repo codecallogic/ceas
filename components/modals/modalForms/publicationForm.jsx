@@ -231,7 +231,12 @@ const StaffForm = ({
                 key={idx} 
                 className="form-group-list-item" 
                 onClick={(e) => (stateMethod(addItem, 'components', item._id), setInputDropdown(''))}>
-                  {item.name} <div className="form-group-list-item-svg">{stateData.components.includes(item._id) ? <SVG svg={'checkmark'}></SVG> : ''}</div>
+                  {item.name} <div className="form-group-list-item-svg">{
+                  typeof stateData.components[idx] == 'object' ? 
+                    stateData.components[idx] && stateData.components[idx]['_id'] == item._id ? <SVG svg={'checkmark'}></SVG> : ''
+                    : stateData.components.includes(item._id) ? <SVG svg={'checkmark'}></SVG> : ''
+                  }
+                </div>
                 </div>
                 ))}
               </div>
@@ -241,7 +246,7 @@ const StaffForm = ({
             <div className="form-group-tags">
               {stateData.components && stateData.components.map((item, idx) => 
                 <div key={idx}>
-                  {allData.components[allData.components.findIndex((index) => { return index._id == item})].name}
+                  {allData.components[allData.components.findIndex((index) => { return index._id == (typeof item == 'object' ? item._id : item)})].name}
                   <span onClick={(e) => stateMethod(deleteItem, 'components', idx)}>X</span>
                 </div>
               )}
@@ -283,7 +288,7 @@ const StaffForm = ({
             <div className="form-group-tags">
               {stateData.faculty && stateData.faculty.map((item, idx) => 
                 <div key={idx}>
-                  {allData.faculty[allData.faculty.findIndex((index) => { return index._id == item})].name}
+                  {allData.faculty[allData.faculty.findIndex((index) => { return index._id == (typeof item == 'object' ? item._id : item)})].name}
                   <span onClick={(e) => stateMethod(deleteItem, 'faculty', idx)}>X</span>
                 </div>
               )}

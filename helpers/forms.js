@@ -16,12 +16,13 @@ const formFields = {
   faculty: ['title', 'name', 'email'],
   students: ['title', 'name', 'advisor', 'email'],
   staff: ['title', 'name', 'email'],
-  publications: ['title', 'file', 'authors', 'date']
+  publications: ['title', 'authors', 'date']
 }
 
 const manageFormFields = (data, key) => {
 
-  if(typeof data == 'object'){ return data[key] }
+  if(typeof data == 'object' && Array.isArray(data)){ if(data[0]) return data[0][key] }
+  if(typeof data == 'object' && !Array.isArray(data)){ return data[key] }
   if(typeof data == 'string'){ return data }
   
 }
