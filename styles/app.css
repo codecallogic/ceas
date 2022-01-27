@@ -221,10 +221,11 @@ button {
     .form-group-list-item {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       padding: 0.8rem 2rem;
       font-size: inherit;
-      background-color: white;
-      text-transform: lowercase; }
+      text-transform: lowercase;
+      background-color: white; }
       .form-group-list-item:last-child {
         border-bottom-right-radius: 0.5rem;
         border-bottom-left-radius: 0.5rem;
@@ -234,6 +235,18 @@ button {
         height: 2rem;
         fill: #f1faee;
         margin-right: 1rem; }
+      .form-group-list-item-svg {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 3rem;
+        height: 3rem;
+        position: relative; }
+        .form-group-list-item-svg svg {
+          position: absolute;
+          width: 2rem;
+          height: 2rem;
+          fill: #e63946; }
       .form-group-list-item:hover {
         cursor: pointer;
         background-color: #edf2f5; }
@@ -343,6 +356,38 @@ button {
       margin-right: 1rem; }
     .form-group-file label:hover {
       cursor: pointer; }
+  .form-group-tags {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 0.5rem 2rem;
+    height: auto; }
+    .form-group-tags div {
+      background-color: #e63946;
+      border-radius: 1.2rem;
+      color: white;
+      font-size: 1.2rem;
+      padding: 0.5rem 1rem;
+      margin-right: 1.5rem;
+      margin-bottom: 1rem;
+      position: relative; }
+      .form-group-tags div span {
+        position: absolute;
+        top: -0.8rem;
+        right: -1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 2rem;
+        height: 2rem;
+        background-color: #272727;
+        border-radius: 50%;
+        font-size: 1rem;
+        transition: all 0.3s ease-in-out; }
+        .form-group-tags div span:hover {
+          cursor: pointer;
+          background-color: #383b3b; }
 
 .alt-group-top {
   background-color: #edf2f5;

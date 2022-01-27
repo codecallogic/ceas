@@ -9,7 +9,6 @@ const StaffForm = ({
     accessToken,
     title,
     resetUI,
-    modal,
     setModal,
     setMessage,
     message,
@@ -174,11 +173,11 @@ const StaffForm = ({
             {message.length > 0 ? <div className="form-group-message">{message}</div> : null}
             <button 
             className="form-group-button" 
-            onClick={(e) => submitCreate(e, stateData, setMessage, setLoading, modal, 'staff', 'staff/create-staff', accessToken, allData, setAllData, resetMethod, resetType)}>
+            onClick={(e) => submitCreate(e, stateData, setMessage, setLoading, 'create_staff', 'staff', 'staff/create-staff', accessToken, allData, setAllData, resetMethod, resetType, 'image')}>
               {!loading && 
               <span>Save</span>
               } 
-              {loading == modal && 
+              {loading == 'create_staff' && 
               <div className="loading"><span></span><span></span><span></span></div>
               }
             </button>
@@ -189,11 +188,11 @@ const StaffForm = ({
             {message.length > 0 ? <div className="form-group-message">{message}</div> : null}
             <button 
             className="form-group-button" 
-            onClick={(e) => submitUpdate(e, stateData, setMessage, setLoading, modal, 'staff', 'staff/update-staff', accessToken, allData, setAllData, resetMethod, resetType, setModal)}>
+            onClick={(e) => submitUpdate(e, stateData, setMessage, setLoading, 'update_staff', 'staff', 'staff/update-staff', accessToken, allData, setAllData, resetMethod, resetType, setModal, 'image')}>
               {!loading && 
               <span>Update</span>
               } 
-              {loading == modal && 
+              {loading == 'update_staff' && 
               <div className="loading"><span></span><span></span><span></span></div>
               }
             </button>

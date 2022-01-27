@@ -6,7 +6,6 @@ const ComponentForm = ({
     accessToken,
     title,
     resetUI,
-    modal,
     setModal,
     setMessage,
     message,
@@ -184,11 +183,11 @@ const ComponentForm = ({
             {message.length > 0 ? <div className="form-group-message">{message}</div> : null}
             <button 
             className="form-group-button" 
-            onClick={(e) => submitCreate(e, stateData, setMessage, setLoading, modal, 'components', 'component/create-component', accessToken, allData, setAllData, resetMethod, resetType)}>
+            onClick={(e) => submitCreate(e, stateData, setMessage, setLoading, 'create_component', 'components', 'component/create-component', accessToken, allData, setAllData, resetMethod, resetType)}>
               {!loading && 
               <span>Save</span>
               } 
-              {loading == modal && 
+              {loading == 'create_component' && 
               <div className="loading"><span></span><span></span><span></span></div>
               }
             </button>
@@ -199,11 +198,11 @@ const ComponentForm = ({
             {message.length > 0 ? <div className="form-group-message">{message}</div> : null}
             <button 
             className="form-group-button" 
-            onClick={(e) => submitUpdate(e, stateData, setMessage, setLoading, modal, 'components', 'component/update-component', accessToken, allData, setAllData, resetMethod, resetType, setModal)}>
+            onClick={(e) => submitUpdate(e, stateData, setMessage, setLoading, 'update_component', 'components', 'component/update-component', accessToken, allData, setAllData, resetMethod, resetType, setModal)}>
               {!loading && 
               <span>Update</span>
               } 
-              {loading == modal && 
+              {loading == 'update_component' && 
               <div className="loading"><span></span><span></span><span></span></div>
               }
             </button>

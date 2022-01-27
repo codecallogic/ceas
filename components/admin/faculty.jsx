@@ -89,6 +89,8 @@ const Faculty = ({
         setMessage={setMessage}
         setAllData={setAllData}
         deletePath="faculty/delete-faculty"
+        fileType="image"
+        fileLocation="faculty"
       >
       </AdminTable>
       }

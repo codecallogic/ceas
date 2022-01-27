@@ -17,6 +17,7 @@ import Components from '../../components/admin/components'
 import Faculty from '../../components/admin/faculty'
 import Students from '../../components/admin/students'
 import Staff from '../../components/admin/staff'
+import Publications from '../../components/admin/publications'
 
 // CRUD
 import { submitCreate, submitUpdate, submitDeleteRow } from '../../helpers/forms'
@@ -25,7 +26,7 @@ import { submitCreate, submitUpdate, submitDeleteRow } from '../../helpers/forms
 import { validateIsEmail} from '../../helpers/validations'
 
 // TABLES
-import { adminUsersSort, componentSort, facultySort, studentSort, staffSort } from '../../helpers/sorting'
+import { adminUsersSort, componentSort, facultySort, studentSort, staffSort, publicationSort } from '../../helpers/sorting'
 
 const AdminDashboard = ({
   data, 
@@ -42,7 +43,8 @@ const AdminDashboard = ({
   componentData,
   faculty,
   student,
-  staff
+  staff,
+  publication
   
 }) => {
   
@@ -56,7 +58,7 @@ const AdminDashboard = ({
   const [edit, setEdit] = useState('')
   const [allData, setAllData] = useState(originalData ? originalData : [])
 
-  console.log(allData)
+  // console.log(allData)
   
   useEffect(() => {
     if(window.localStorage.getItem('component')) setComponent(window.localStorage.getItem('component'))
@@ -154,6 +156,18 @@ const AdminDashboard = ({
             }
             </>
           }
+          { component == 'publications' &&
+            <>
+            <span className="account-breadcrumbs-item-subtitle" onClick={() => (setComponent('publications'), setView(''))}>
+              <SVG svg={'keyboard-right'}></SVG> Publications
+            </span>
+            {view == 'all_publications' && 
+            <span className="account-breadcrumbs-item-subtitle">
+              <SVG svg={'keyboard-right'}></SVG> View All
+            </span>
+            }
+            </>
+          }
         </div>
       </div>
       { component == '' &&
@@ -185,6 +199,13 @@ const AdminDashboard = ({
           >
             <SVG svg={'staff'}></SVG>
             <span>Faculty</span>
+          </div>
+          <div 
+          className="account-dashboard-item" 
+          onClick={() => (setComponent('publications'), setView(''))}
+          >
+            <SVG svg={'publication'}></SVG>
+            <span>Publications</span>
           </div>
           <div 
           className="account-dashboard-item" 
@@ -405,6 +426,42 @@ const AdminDashboard = ({
           submitDeleteRow={submitDeleteRow}
         ></Staff>
       }
+      { component == 'publications' &&
+        <Publications
+          data={data.publications}
+          allData={allData}
+          setAllData={setAllData}
+          account={account}
+          accessToken={accessToken}
+          resetUI={resetUILocalStorage}
+          modal={modal} 
+          setModal={setModal}
+          view={view}
+          setView={setView}
+          message={message}
+          setMessage={setMessage}
+          loading={loading}
+          setLoading={setLoading}
+          selectID={selectID}
+          setSelectID={setSelectID}
+          controls={controls}
+          setControls={setControls}
+          setModalData={setModalData}
+          resetCheckboxes={resetCheckboxes}
+          typeOfData={'publications'}
+          stateData={publication}
+          stateMethod={createType}
+          resetMethod={resetType}
+          sortOrder={publicationSort}
+          submitCreate={submitCreate}
+          submitUpdate={submitUpdate}
+          setModalData={setModalData}
+          edit={edit}
+          setEdit={setEdit}
+          editType={'update_publication'}
+          submitDeleteRow={submitDeleteRow}
+        ></Publications>
+      }
     </div>
   )
 }
@@ -415,7 +472,8 @@ const mapStateToProps = state => {
     componentData: state.component,
     faculty: state.faculty,
     student: state.student,
-    staff: state.staff
+    staff: state.staff,
+    publication: state.publication,
   }
 }
 
@@ -435,11 +493,12 @@ AdminDashboard.getInitialProps = async (context) => {
   let accessToken = null
   if(token){accessToken = token.split('=')[1]}
 
-  data.adminUsers         = await tableData(accessToken, 'auth/all-admin')
-  data.components         = await tableData(accessToken, 'component/all-components')
-  data.faculty            = await tableData(accessToken, 'faculty/get-all-faculty')
-  data.students           = await tableData(accessToken, 'student/get-all-students')
-  data.staff              = await tableData(accessToken, 'staff/all-staff')
+  data.adminUsers               = await tableData(accessToken, 'auth/all-admin')
+  data.components               = await tableData(accessToken, 'component/all-components')
+  data.faculty                  = await tableData(accessToken, 'faculty/get-all-faculty')
+  data.students                 = await tableData(accessToken, 'student/get-all-students')
+  data.staff                    = await tableData(accessToken, 'staff/all-staff')
+  data.publications             = await tableData(accessToken, 'publication/all-publications')
   deepClone= _.cloneDeep(data)
   
   return {

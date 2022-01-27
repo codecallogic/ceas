@@ -1,6 +1,7 @@
 import {filterTable} from '../helpers/tables'
 import SVG from '../files/svg'
 import {useEffect, useState, useRef} from 'react'
+import { PUBLIC_FILES} from '../config'
 
 const Table = ({
   accessToken,
@@ -29,6 +30,8 @@ const Table = ({
   componentData,
   originalData,
   account,
+  fileType,
+  fileLocation,
 
   // PATH
   deletePath
@@ -36,8 +39,6 @@ const Table = ({
 
   const myRefs = useRef([])
   const [loadingColor, setLoadingColor] = useState('black')
-
-  console.log(originalData)
   
   const handleClickOutside = (event) => {
     if(myRefs.current){
@@ -145,7 +146,8 @@ const Table = ({
             </div>
             {Object.keys(item).sort((a, b) => sortOrder.indexOf(b) - sortOrder.indexOf(a)).map((key, idx, array) => 
               key !== '_id' && <div key={idx} className="table-rows-item">
-                {Array.isArray(item[key]) && item[key].length > 0 ? item[key][0].name : item[key]}
+                {key == fileType && <a href={`${PUBLIC_FILES}/${fileLocation}/${item[key]}`} target="_blank">{item[key]}</a>}
+                {key !== fileType && Array.isArray(item[key]) && item[key].length > 0 ? item[key][0].name ? item[key][0].name :  item[key][0] : item[key]}
               </div>
             )}
           </div>

@@ -21,8 +21,8 @@ const populateModal = (originalData, keyType, caseType, stateMethods, selectID, 
           stateMethods.createType(caseType, keyOfObject, object[keyOfObject])
 
           if(Array.isArray(object[keyOfObject]) && object[keyOfObject].length > 0){
-            // console.log(object[keyOfObject])
-            if(!object[keyOfObject][0]['location']) stateMethods.createType(caseType, keyOfObject, object[keyOfObject][0])
+            console.log(object[keyOfObject])
+            if(!object[keyOfObject][0]['location']) typeof object[keyOfObject][0] == 'object' ? stateMethods.createType(caseType, keyOfObject, object[keyOfObject][0]) : stateMethods.createType(caseType, keyOfObject, object[keyOfObject])
 
             if(object[keyOfObject][0]['location']) return stateMethods.createType(caseType, keyOfObject, object[keyOfObject])
 

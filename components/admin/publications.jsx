@@ -3,7 +3,7 @@ import {useState, useEffect} from 'react'
 import AdminModals from '../modals/AdminModals'
 import AdminTable from '../table'
 
-const Students = ({
+const Staff = ({
   account,
   accessToken,
   resetUI,
@@ -43,30 +43,30 @@ const Students = ({
   
   }) => {
 
-  const [allStudents, setAllStudents] = useState(data ? data : [])
+  const [allPublications, setAllStaff] = useState(data ? data : [])
     
   return (
     <>
       { view == '' && 
       <div className="account-dashboard">
-        <div className="account-dashboard-item" onClick={() => (resetUI(), setView('all_students'))}>
+        <div className="account-dashboard-item" onClick={() => (resetUI(), setView('all_publications'))}>
           <SVG svg={'list'}></SVG>
-          <span>View Students</span>
+          <span>View Publication</span>
         </div>
-        <div className="account-dashboard-item" onClick={() => (resetUI(), setModal('create_student'))}>
-          <SVG svg={'add-staff'}></SVG>
-          <span>Create Student</span>
+        <div className="account-dashboard-item" onClick={() => (resetUI(), setModal('create_publication'))}>
+          <SVG svg={'publication'}></SVG>
+          <span>Create Publication</span>
         </div>
       </div>
       }
-      { view == 'all_students' &&
+      { view == 'all_publications' &&
       <AdminTable
         accessToken={accessToken}
-        title={'Students'}
-        typeOfData={'students'}
-        modalType={'create_student'}
-        modalDataType={{key: 'students', caseType: 'CREATE_STUDENT'}}
-        componentData={allStudents}
+        title={'Publications'}
+        typeOfData={'publications'}
+        modalType={'create_publication'}
+        modalDataType={{key: 'publications', caseType: 'CREATE_PUBLICATION'}}
+        componentData={allPublications}
         originalData={allData}
         account={account}
         loading={loading}
@@ -85,9 +85,9 @@ const Students = ({
         message={message}
         setMessage={setMessage}
         setAllData={setAllData}
-        deletePath="student/delete-student"
-        fileType="image"
-        fileLocation="student"
+        deletePath="publication/delete-publication"
+        fileType="file"
+        fileLocation="publication"
       >
       </AdminTable>
       }
@@ -104,9 +104,9 @@ const Students = ({
         setLoading={setLoading}
         stateData={stateData}
         stateMethod={stateMethod}
-        caseType={'CREATE_STUDENT'}
+        caseType={'CREATE_PUBLICATION'}
         resetMethod={resetMethod}
-        resetType={'RESET_STUDENT'}
+        resetType={'RESET_PUBLICATION'}
         submitCreate={submitCreate}
         submitUpdate={submitUpdate}
         edit={edit}
@@ -117,4 +117,4 @@ const Students = ({
   )
 }
 
-export default Students
+export default Staff

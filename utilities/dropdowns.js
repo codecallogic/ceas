@@ -26,3 +26,12 @@ export const statusStudent = [
   {status: 'Terminated'},
   {status: 'Volunteer'}
 ]
+
+export const publicationType = [
+  {type: 'Book'},
+  {type: 'Book Chapter'},
+  {type: 'Conference Paper and Presentation'},
+  {type: 'Journal and Juried Conference Paper'},
+  {type: 'Theses and Dissertations'},
+  {type: 'Other Publications'},
+]

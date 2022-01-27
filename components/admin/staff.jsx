@@ -86,6 +86,8 @@ const Staff = ({
         setMessage={setMessage}
         setAllData={setAllData}
         deletePath="staff/delete-staff"
+        fileType="image"
+        fileLocation="staff"
       >
       </AdminTable>
       }

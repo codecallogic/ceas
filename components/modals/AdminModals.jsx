@@ -5,6 +5,7 @@ import UpdateProfileForm from '../modals/modalForms/updateAdmin'
 import ChangeProfileEmailForm from '../modals/modalForms/changeAdminEmail'
 import UserAdminForm from './modalForms/userAdminForm'
 import StaffForm from './modalForms/staffForm'
+import PublicationForm from './modalForms/publicationForm'
 
 const Modal = ({
   accessToken,
@@ -200,6 +201,31 @@ const Modal = ({
         setEdit={setEdit}
       >
       </StaffForm>
+    }
+    {modal == 'create_publication' &&
+      <PublicationForm
+        title={edit == 'update_publication' ? 'Update Publication' : 'Create Publication'}
+        accessToken={accessToken}
+        allData={allData}
+        setAllData={setAllData}
+        stateData={stateData}
+        stateMethod={stateMethod}
+        caseType={caseType}
+        resetMethod={resetMethod}
+        resetType={resetType}
+        resetUI={resetUI}
+        modal={modal}
+        setModal={setModal}
+        message={message}
+        setMessage={setMessage}
+        loading={loading}
+        setLoading={setLoading}
+        submitCreate={submitCreate}
+        submitUpdate={submitUpdate}
+        edit={edit}
+        setEdit={setEdit}
+      >
+      </PublicationForm>
     }
     </>
   )

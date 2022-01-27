@@ -5,7 +5,6 @@ const AdminForm = ({
     accessToken,
     title,
     resetUI,
-    modal,
     setModal,
     setMessage,
     message,
@@ -168,11 +167,11 @@ const AdminForm = ({
             {message.length > 0 ? <div className="form-group-message">{message}</div> : null}
             <button 
             className="form-group-button" 
-            onClick={(e) => submitCreate(e, stateData, setMessage, setLoading, modal, 'adminUsers', 'auth/invite-admin', accessToken, allData, setAllData, resetMethod, resetType)}>
+            onClick={(e) => submitCreate(e, stateData, setMessage, setLoading, 'create_admin', 'adminUsers', 'auth/invite-admin', accessToken, allData, setAllData, resetMethod, resetType)}>
               {!loading && 
               <span>Save</span>
               } 
-              {loading == modal && 
+              {loading == 'create_admin' && 
               <div className="loading"><span></span><span></span><span></span></div>
               }
             </button>
@@ -183,11 +182,11 @@ const AdminForm = ({
             {message.length > 0 ? <div className="form-group-message">{message}</div> : null}
             <button 
             className="form-group-button" 
-            onClick={(e) => submitUpdate(e, stateData, setMessage, setLoading, modal, 'adminUsers', 'auth/update-admin-profile', accessToken, allData, setAllData, resetMethod, resetType, setModal)}>
+            onClick={(e) => submitUpdate(e, stateData, setMessage, setLoading, 'update_admin', 'adminUsers', 'auth/update-admin-profile', accessToken, allData, setAllData, resetMethod, resetType, setModal)}>
               {!loading && 
               <span>Update</span>
               } 
-              {loading == modal && 
+              {loading == 'update_admin' && 
               <div className="loading"><span></span><span></span><span></span></div>
               }
             </button>

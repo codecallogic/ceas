@@ -387,7 +387,7 @@ const StudentForm = ({
             {message.length > 0 ? <div className="form-group-message">{message}</div> : null}
             <button 
             className="form-group-button" 
-            onClick={(e) => submitCreate(e, stateData, setMessage, setLoading, modal, 'students', 'student/create-student', accessToken, allData, setAllData, resetMethod, resetType)}>
+            onClick={(e) => submitCreate(e, stateData, setMessage, setLoading, modal, 'students', 'student/create-student', accessToken, allData, setAllData, resetMethod, resetType, 'image')}>
               {!loading && 
               <span>Save</span>
               } 
@@ -402,7 +402,7 @@ const StudentForm = ({
             {message.length > 0 ? <div className="form-group-message">{message}</div> : null}
             <button 
             className="form-group-button" 
-            onClick={(e) => submitUpdate(e, stateData, setMessage, setLoading, modal, 'students', 'student/update-student', accessToken, allData, setAllData, resetMethod, resetType, setModal)}>
+            onClick={(e) => submitUpdate(e, stateData, setMessage, setLoading, modal, 'students', 'student/update-student', accessToken, allData, setAllData, resetMethod, resetType, setModal, 'image')}>
               {!loading && 
               <span>Update</span>
               } 
