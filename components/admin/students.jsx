@@ -86,6 +86,7 @@ const Students = ({
         setMessage={setMessage}
         setAllData={setAllData}
         deletePath="student/delete-student"
+        view={'all_students'}
         fileType="image"
         fileLocation="student"
       >

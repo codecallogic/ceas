@@ -16,7 +16,7 @@ const formFields = {
   faculty: ['title', 'name', 'email'],
   students: ['title', 'name', 'advisor', 'email'],
   staff: ['title', 'name', 'email'],
-  publications: ['title', 'authors', 'date']
+  publications: ['title', 'authors', 'file', 'date']
 }
 
 const manageFormFields = (data, key) => {
@@ -69,8 +69,7 @@ const submitUpdate = async (e, stateData, setMessage, setLoading, loadingType, t
   e.preventDefault()
   for(let i = 0; i < formFields[type].length; i++){
     if(formFields[type][i].includes('email') && !validateIsEmail(formFields[type][i])) return (setMessage('Invalid email address'))
-
-    if(!stateData[formFields[type][i]]) return (setMessage(`${formFields[type][i].replace('_', ' ')} is required`))
+    if(!stateData[formFields[type][i]] || stateData[formFields[type][i]].length == 0) return (setMessage(`${formFields[type][i].replace('_', ' ')} is required`))
   }
 
   setLoading(loadingType)
@@ -110,7 +109,7 @@ const submitUpdate = async (e, stateData, setMessage, setLoading, loadingType, t
 
 }
 
-const submitDeleteRow = async (e, setLoading, loadingType, path, selectID, token, allData, type, setAllData, setMessage, resetCheckboxes, setControls) => {
+const submitDeleteRow = async (e, setLoading, loadingType, path, selectID, token, allData, type, setAllData, setMessage, resetCheckboxes, setControls, view) => {
   e.preventDefault()
   setLoading(loadingType)
   setMessage('')
@@ -125,9 +124,13 @@ const submitDeleteRow = async (e, setLoading, loadingType, path, selectID, token
     setLoading('')
     allData[type]= responseDelete.data
     setAllData(allData)
-    setMessage('Item was deleted')
     setControls(false)
     resetCheckboxes()
+    setMessage('Item was deleted')
+    window.localStorage.setItem('component', type)
+    window.localStorage.setItem('view', view)
+    window.localStorage.setItem('message', 'Item was deleted')
+    window.location.reload()
     
   } catch (error) {
     // console.log(error.response)

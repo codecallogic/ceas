@@ -89,6 +89,7 @@ const Users = ({
           setMessage={setMessage}
           setAllData={setAllData}
           deletePath={'auth/delete-admin'}
+          view={'all_admin'}
         >
         </AdminTables>
       }

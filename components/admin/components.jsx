@@ -89,6 +89,7 @@ const Components = ({
         setMessage={setMessage}
         setAllData={setAllData}
         deletePath="component/delete-component"
+        view={'all_components'}
       >
       </AdminTable>
       }

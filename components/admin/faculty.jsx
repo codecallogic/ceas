@@ -89,6 +89,7 @@ const Faculty = ({
         setMessage={setMessage}
         setAllData={setAllData}
         deletePath="faculty/delete-faculty"
+        view={'all_faculty'}
         fileType="image"
         fileLocation="faculty"
       >

@@ -82,7 +82,9 @@ const ComponentForm = ({
             <input
             onClick={() => setInputDropdown('component_leader')} 
             value={manageFormFields(stateData.leader, 'name')} 
-            onChange={(e) => (setInputDropdown(''), stateMethod(caseType, 'leader', e.target.value))}/>
+            // onChange={(e) => (setInputDropdown(''), stateMethod(caseType, 'leader', e.target.value))}
+            readOnly
+            />
             <label 
             className={`input-label ` + (
               stateData.leader.length > 0 || 

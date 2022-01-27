@@ -86,6 +86,7 @@ const Staff = ({
         setMessage={setMessage}
         setAllData={setAllData}
         deletePath="publication/delete-publication"
+        view={'all_publications'}
         fileType="file"
         fileLocation="publication"
       >

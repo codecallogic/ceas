@@ -63,6 +63,9 @@ const AdminDashboard = ({
   useEffect(() => {
     if(window.localStorage.getItem('component')) setComponent(window.localStorage.getItem('component'))
     if(window.localStorage.getItem('modal')) setModal(window.localStorage.getItem('modal'))
+    if(window.localStorage.getItem('view')) setView(window.localStorage.getItem('view'))
+    if(window.localStorage.getItem('message')) setMessage(window.localStorage.getItem('message'))
+
   }, [])
 
   useEffect(() => { setMessage(''), setEdit('')}, [view])
@@ -70,6 +73,8 @@ const AdminDashboard = ({
   const resetUILocalStorage = () => {
     window.localStorage.removeItem('component')
     window.localStorage.removeItem('modal')
+    window.localStorage.removeItem('view')
+    window.localStorage.removeItem('message')
   }
 
   const resetCheckboxes = () => {

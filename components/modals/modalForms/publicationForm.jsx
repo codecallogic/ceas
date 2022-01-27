@@ -336,7 +336,7 @@ const StaffForm = ({
               {!loading && 
               <span>Update</span>
               } 
-              {loading == 'update_staff' && 
+              {loading == 'update_publication' && 
               <div className="loading"><span></span><span></span><span></span></div>
               }
             </button>

@@ -24,6 +24,7 @@ const Table = ({
   setAllData,
   message,
   setMessage,
+  view,
 
   // DATA
   modalDataType,
@@ -94,7 +95,7 @@ const Table = ({
             <div 
             id="delete" 
             className="table-header-controls-item" 
-            onClick={ (e) => submitDeleteRow(e, setLoading, 'delete_row', deletePath, selectID, accessToken, originalData, typeOfData, setAllData, setMessage, resetCheckboxes, setControls)}
+            onClick={ (e) => submitDeleteRow(e, setLoading, 'delete_row', deletePath, selectID, accessToken, originalData, typeOfData, setAllData, setMessage, resetCheckboxes, setControls, view)}
             >
               { loading == 'delete_row' ?
                 <div className="loading">

@@ -86,6 +86,7 @@ const Staff = ({
         setMessage={setMessage}
         setAllData={setAllData}
         deletePath="staff/delete-staff"
+        view={'all_staff'}
         fileType="image"
         fileLocation="staff"
       >
