@@ -4,7 +4,9 @@ export {
   facultySort,
   studentSort,
   staffSort,
-  publicationSort
+  publicationSort,
+  newsSort,
+  slideSort
 }
 
 const adminUsersSort = ['role', 'email', 'lastName', 'firstName', 'username']
@@ -13,3 +15,5 @@ const facultySort = ['componentThree', 'componentTwo', 'componentOne', 'research
 const studentSort = ['component', 'centerAssociation', 'location', 'department', 'profileImage', 'startDate', 'endDate', 'advisor', 'phone', 'email', 'status', 'name', 'title']
 const staffSort = ['image','email', 'position','name', 'title']
 const publicationSort = ['component', 'faculty', 'link', 'type', 'venues', 'authors', 'title', 'year', 'file']
+const newsSort = ['component', 'news', 'title', 'date', 'image']
+const slideSort = ['component', 'caption', 'image']

@@ -4,6 +4,18 @@ const SVG = ({svg, classprop, color}) => {
   const selectSVG = (svg) => {
     switch(svg){
 
+      case 'slides':
+        return <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M18.984 18.984v-13.969h-13.969v13.969h13.969zM18.984 3q0.797 0 1.406 0.609t0.609 1.406v13.969q0 0.797-0.609 1.406t-1.406 0.609h-13.969q-0.797 0-1.406-0.609t-0.609-1.406v-13.969q0-0.797 0.609-1.406t1.406-0.609h13.969zM9.984 8.016l5.016 3.984-5.016 3.984v-7.969z"></path>
+          </svg> 
+        break;
+
+      case 'news':
+        return <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+          <path d="M28 8v-4h-28v22c0 1.105 0.895 2 2 2h27c1.657 0 3-1.343 3-3v-17h-4zM26 26h-24v-20h24v20zM4 10h20v2h-20zM16 14h8v2h-8zM16 18h8v2h-8zM16 22h6v2h-6zM4 14h10v10h-10z"></path>
+          </svg> 
+        break;
+        
       case 'file':
         return <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
           <path d="M27 0h-24c-1.65 0-3 1.35-3 3v26c0 1.65 1.35 3 3 3h24c1.65 0 3-1.35 3-3v-26c0-1.65-1.35-3-3-3zM26 28h-22v-24h22v24zM8 14h14v2h-14zM8 18h14v2h-14zM8 22h14v2h-14zM8 10h14v2h-14z"></path>

@@ -6,6 +6,8 @@ import ChangeProfileEmailForm from '../modals/modalForms/changeAdminEmail'
 import UserAdminForm from './modalForms/userAdminForm'
 import StaffForm from './modalForms/staffForm'
 import PublicationForm from './modalForms/publicationForm'
+import NewsForm from './modalForms/newsForm'
+import SlideForm from './modalForms/slideForm'
 
 const Modal = ({
   accessToken,
@@ -226,6 +228,56 @@ const Modal = ({
         setEdit={setEdit}
       >
       </PublicationForm>
+    }
+    {modal == 'create_news' &&
+      <NewsForm
+        title={edit == 'update_news' ? 'Update News' : 'Create News'}
+        accessToken={accessToken}
+        allData={allData}
+        setAllData={setAllData}
+        stateData={stateData}
+        stateMethod={stateMethod}
+        caseType={caseType}
+        resetMethod={resetMethod}
+        resetType={resetType}
+        resetUI={resetUI}
+        modal={modal}
+        setModal={setModal}
+        message={message}
+        setMessage={setMessage}
+        loading={loading}
+        setLoading={setLoading}
+        submitCreate={submitCreate}
+        submitUpdate={submitUpdate}
+        edit={edit}
+        setEdit={setEdit}
+      >
+      </NewsForm>
+    }
+    {modal == 'create_slide' &&
+      <SlideForm
+        title={edit == 'update_slide' ? 'Update Slide' : 'Create Slide'}
+        accessToken={accessToken}
+        allData={allData}
+        setAllData={setAllData}
+        stateData={stateData}
+        stateMethod={stateMethod}
+        caseType={caseType}
+        resetMethod={resetMethod}
+        resetType={resetType}
+        resetUI={resetUI}
+        modal={modal}
+        setModal={setModal}
+        message={message}
+        setMessage={setMessage}
+        loading={loading}
+        setLoading={setLoading}
+        submitCreate={submitCreate}
+        submitUpdate={submitUpdate}
+        edit={edit}
+        setEdit={setEdit}
+      >
+      </SlideForm>
     }
     </>
   )

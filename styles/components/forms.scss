@@ -293,274 +293,11 @@
         }
       }
     }
+
+    &-quill {
+      width: 100%;
+    }
   }
-
-  /////////////////////////////////////////////////
-  /////////////////////////////////////////////////
-  /////////////////////////////////////////////////
-  /////////////////////////////////////////////////
-  /////////////////////////////////////////////////
-  /////////////////////////////////////////////////
-
-  // &-100 {
-  //   position: relative;
-
-  //   &-field {
-  //     display: flex;
-  //     align-items: center;
-  //     width: 100%;
-  //     resize: none;
-  //     padding: 2rem 1.5rem;
-  //     box-sizing: border-box;
-  //     outline: none;
-  //     font-size: 1.4rem;
-  //     font-family: inherit;
-  //     border: none;
-  //     background-color: $color-light-grey-2;
-  //     margin: 0.5rem 0;
-  //     color: $color-light-grey-3;
-  //     text-transform: lowercase;
-  //     position: relative;
-
-  //     // &[contenteditable='true']:empty:not(:focus):before {
-  //     //   content: attr(placeholder);
-  //     //   pointer-events: none;
-  //     //   display: block; /* For Firefox */
-  //     // }
-
-  //     label {
-  //       position: absolute;
-  //       display: flex;
-  //       top: 40%;
-  //       transition: all 0.3s ease-in-out;
-  //       font-size: 1.2rem;
-  //     }
-
-  //     &-label-dropdown {
-  //       width: 95%;
-  //       display: flex;
-  //       align-items: center;
-  //       justify-content: space-between;
-
-  //       &:hover {
-  //         cursor: pointer;
-  //       }
-
-  //       svg {
-  //         width: 2rem !important;
-  //         height: 2rem !important;
-  //         fill: $color-scheme-1 !important;
-  //       }
-  //     }
-
-  //     div {
-  //       // display: flex;
-  //       width: 100%;
-  //       z-index: 2;
-
-  //       &:focus {
-  //         outline: none;
-
-  //         ~ label {
-  //           top: 5%;
-  //         }
-  //       }
-  //     }
-
-  //     svg {
-  //       width: 2rem;
-  //       height: 2rem;
-  //       fill: $color-light-grey-1;
-
-  //       &:hover {
-  //         cursor: pointer;
-  //       }
-  //     }
-
-  //     &-dropdown {
-  //       position: absolute;
-  //       top: 100%;
-  //       max-height: 10rem;
-  //       width: 95%;
-  //       margin: 0 0 0 5%;
-  //       background-color: $color-light-grey-2;
-  //       box-shadow: 2rem 4rem 3rem 1rem rgba(0, 0, 0, 0.3);
-  //       border-bottom-left-radius: 1.2rem;
-  //       overflow-y: scroll;
-  //       z-index: 1000;
-
-  //       &::-webkit-scrollbar {
-  //         width: 0.3rem;
-  //       }
-
-  //       &::-webkit-scrollbar-thumb {
-  //         background-color: $color-scheme-1;
-  //         border-radius: 20%;
-  //       }
-
-  //       &-item {
-  //         padding: 1rem 1rem;
-  //         width: 100%;
-  //         text-align: center;
-  //         font-size: 1.4rem;
-
-  //         &:hover {
-  //           cursor: pointer;
-  //           background-color: $color-scheme-3;
-  //           color: white;
-  //           font-weight: 700;
-  //         }
-
-  //         div {
-  //           // display: flex;
-  //           width: 100%;
-  //           z-index: 2;
-
-  //           &:focus {
-  //             outline: none;
-
-  //             ~ label {
-  //               top: 5%;
-  //             }
-  //           }
-  //         }
-
-  //         svg {
-  //           width: 2rem;
-  //           height: 2rem;
-  //           fill: $color-light-grey-1;
-
-  //           &:hover {
-  //             cursor: pointer;
-  //           }
-  //         }
-  //       }
-  //     }
-
-  //     &-textarea {
-  //       color: $color-light-grey-3;
-  //       text-transform: lowercase;
-  //       padding: 0.5rem 1.5rem;
-
-  //       textarea {
-  //         overflow: hidden;
-  //         display: flex;
-  //         align-items: center;
-  //         width: 100%;
-  //         height: auto;
-  //         resize: none;
-  //         padding: 2rem 1.5rem;
-  //         outline: none;
-  //         box-sizing: border-box;
-  //         font-size: 1.4rem;
-  //         font-family: inherit;
-  //         // background-color: $color-light-grey-2;
-  //         color: $color-light-grey-3;
-  //         border: none;
-  //         border-radius: 1.2rem;
-  //         // text-transform: lowercase;
-  //         overflow-y: auto;
-
-  //         &::-webkit-scrollbar {
-  //           width: 0.2rem;
-  //           background-color: $color-scheme-1;
-  //         }
-
-  //         &::-webkit-scrollbar-thumb {
-  //           background-color: $color-scheme-1;
-  //         }
-  //       }
-
-  //       label {
-  //         position: absolute;
-  //         display: flex;
-  //         top: 15%;
-  //         transition: all 0.3s ease-in-out;
-  //         padding: 0 1rem;
-  //         font-size: 1.2rem;
-  //       }
-  //     }
-
-  //     &-input {
-  //       input {
-  //         display: flex;
-  //         align-items: center;
-  //         width: 100%;
-  //         padding: 2rem 1.5rem;
-  //         box-sizing: border-box;
-  //         outline: none;
-  //         font-weight: 300;
-  //         font-size: 1.4rem;
-  //         font-family: inherit;
-  //         border: none;
-  //         background-color: $color-light-grey-2;
-  //         margin: 0.5rem 0;
-  //         color: $color-light-grey-3;
-  //         text-transform: lowercase;
-  //         transition: all 0.5s ease-in-out;
-
-  //         &:focus + .input-label {
-  //           top: 5%;
-  //         }
-  //       }
-
-  //       label {
-  //         position: absolute;
-  //         padding: 0rem 1.5rem;
-  //         box-sizing: border-box;
-  //         outline: none;
-  //         font-size: 1.4rem;
-  //         color: $color-light-grey-3;
-  //         top: 40%;
-  //         transition: all 0.3s ease-in-out;
-  //         font-size: 1.2rem;
-  //         text-transform: lowercase;
-  //       }
-
-  //       &-file {
-  //         input {
-  //           display: none;
-  //         }
-
-  //         label {
-  //           display: flex;
-  //           align-items: center;
-  //           width: 100%;
-  //           padding: 1rem 2rem;
-  //           box-sizing: border-box;
-  //           outline: none;
-  //           font-weight: 300;
-  //           font-size: 1.4rem;
-  //           font-family: inherit;
-  //           border: 0.1rem solid $color-light-grey-2;
-  //           border-radius: 1.2rem;
-  //           background-color: $color-light-grey-2;
-  //           margin: 0.5rem 0;
-  //           color: $color-light-grey-1;
-
-  //           img {
-  //             width: 8rem;
-  //             height: 8rem;
-  //             border-radius: 50%;
-  //             object-fit: cover;
-  //             margin-right: 2rem;
-  //           }
-
-  //           svg {
-  //             width: 3rem;
-  //             height: 3rem;
-  //             fill: $color-scheme-3;
-  //             margin-right: 1rem;
-  //           }
-
-  //           &:hover {
-  //             cursor: pointer;
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
 }
 
 .alt-group {
@@ -589,4 +326,17 @@
 
 .field-red {
   border-bottom: 0.1rem solid $color-scheme-1 !important;
+}
+
+.ql-editor {
+  * {
+    color: black;
+  }
+
+  iframe {
+    width: 100%;
+    min-height: 25rem;
+    max-height: 100%;
+    pointer-events: none;
+  }
 }

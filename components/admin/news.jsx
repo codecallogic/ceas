@@ -3,7 +3,7 @@ import {useState, useEffect} from 'react'
 import AdminModals from '../modals/AdminModals'
 import AdminTable from '../table'
 
-const Publication = ({
+const News = ({
   account,
   accessToken,
   resetUI,
@@ -43,30 +43,30 @@ const Publication = ({
   
   }) => {
 
-  const [allPublications, setAllStaff] = useState(data ? data : [])
+  const [allNews, setAllNews] = useState(data ? data : [])
     
   return (
     <>
       { view == '' && 
       <div className="account-dashboard">
-        <div className="account-dashboard-item" onClick={() => (resetUI(), setView('all_publications'))}>
+        <div className="account-dashboard-item" onClick={() => (resetUI(), setView('all_news'))}>
           <SVG svg={'list'}></SVG>
-          <span>View Publication</span>
+          <span>View News</span>
         </div>
-        <div className="account-dashboard-item" onClick={() => (resetUI(), setModal('create_publication'))}>
+        <div className="account-dashboard-item" onClick={() => (resetUI(), setModal('create_news'))}>
           <SVG svg={'publication'}></SVG>
-          <span>Create Publication</span>
+          <span>Create News</span>
         </div>
       </div>
       }
-      { view == 'all_publications' &&
+      { view == 'all_news' &&
       <AdminTable
         accessToken={accessToken}
-        title={'Publications'}
-        typeOfData={'publications'}
-        modalType={'create_publication'}
-        modalDataType={{key: 'publications', caseType: 'CREATE_PUBLICATION'}}
-        componentData={allPublications}
+        title={'News'}
+        typeOfData={'news'}
+        modalType={'create_news'}
+        modalDataType={{key: 'news', caseType: 'CREATE_NEWS'}}
+        componentData={allNews}
         originalData={allData}
         account={account}
         loading={loading}
@@ -85,10 +85,10 @@ const Publication = ({
         message={message}
         setMessage={setMessage}
         setAllData={setAllData}
-        deletePath="publication/delete-publication"
-        view={'all_publications'}
-        fileType="file"
-        fileLocation="publication"
+        deletePath="news/delete-news"
+        view={'all_news'}
+        fileType="image"
+        fileLocation="news"
       >
       </AdminTable>
       }
@@ -105,9 +105,9 @@ const Publication = ({
         setLoading={setLoading}
         stateData={stateData}
         stateMethod={stateMethod}
-        caseType={'CREATE_PUBLICATION'}
+        caseType={'CREATE_NEWS'}
         resetMethod={resetMethod}
-        resetType={'RESET_PUBLICATION'}
+        resetType={'RESET_NEWS'}
         submitCreate={submitCreate}
         submitUpdate={submitUpdate}
         edit={edit}
@@ -118,4 +118,4 @@ const Publication = ({
   )
 }
 
-export default Publication
+export default News

@@ -18,6 +18,8 @@ import Faculty from '../../components/admin/faculty'
 import Students from '../../components/admin/students'
 import Staff from '../../components/admin/staff'
 import Publications from '../../components/admin/publications'
+import News from '../../components/admin/news'
+import Slides from '../../components/admin/slides'
 
 // CRUD
 import { submitCreate, submitUpdate, submitDeleteRow } from '../../helpers/forms'
@@ -26,7 +28,7 @@ import { submitCreate, submitUpdate, submitDeleteRow } from '../../helpers/forms
 import { validateIsEmail} from '../../helpers/validations'
 
 // TABLES
-import { adminUsersSort, componentSort, facultySort, studentSort, staffSort, publicationSort } from '../../helpers/sorting'
+import { adminUsersSort, componentSort, facultySort, studentSort, staffSort, publicationSort, newsSort, slideSort } from '../../helpers/sorting'
 
 const AdminDashboard = ({
   data, 
@@ -44,7 +46,9 @@ const AdminDashboard = ({
   faculty,
   student,
   staff,
-  publication
+  publication,
+  news,
+  slide
   
 }) => {
   
@@ -173,6 +177,30 @@ const AdminDashboard = ({
             }
             </>
           }
+          { component == 'news' &&
+            <>
+            <span className="account-breadcrumbs-item-subtitle" onClick={() => (setComponent('news'), setView(''))}>
+              <SVG svg={'keyboard-right'}></SVG> News
+            </span>
+            {view == 'all_news' && 
+            <span className="account-breadcrumbs-item-subtitle">
+              <SVG svg={'keyboard-right'}></SVG> View All
+            </span>
+            }
+            </>
+          }
+          { component == 'slides' &&
+            <>
+            <span className="account-breadcrumbs-item-subtitle" onClick={() => (setComponent('slides'), setView(''))}>
+              <SVG svg={'keyboard-right'}></SVG> Slides
+            </span>
+            {view == 'all_slides' && 
+            <span className="account-breadcrumbs-item-subtitle">
+              <SVG svg={'keyboard-right'}></SVG> View All
+            </span>
+            }
+            </>
+          }
         </div>
       </div>
       { component == '' &&
@@ -214,6 +242,13 @@ const AdminDashboard = ({
           </div>
           <div 
           className="account-dashboard-item" 
+          onClick={() => (setComponent('slides'), setView(''))}
+          >
+            <SVG svg={'slides'}></SVG>
+            <span>Slides</span>
+          </div>
+          <div 
+          className="account-dashboard-item" 
           onClick={() => (setComponent('students'), setView(''))}
           >
             <SVG svg={'staff'}></SVG>
@@ -225,6 +260,13 @@ const AdminDashboard = ({
           >
             <SVG svg={'staff'}></SVG>
             <span>Staff</span>
+          </div>
+          <div 
+          className="account-dashboard-item" 
+          onClick={() => (setComponent('news'), setView(''))}
+          >
+            <SVG svg={'news'}></SVG>
+            <span>News</span>
           </div>
         </div>
       }
@@ -467,6 +509,78 @@ const AdminDashboard = ({
           submitDeleteRow={submitDeleteRow}
         ></Publications>
       }
+      { component == 'news' &&
+        <News
+          data={data.news}
+          allData={allData}
+          setAllData={setAllData}
+          account={account}
+          accessToken={accessToken}
+          resetUI={resetUILocalStorage}
+          modal={modal} 
+          setModal={setModal}
+          view={view}
+          setView={setView}
+          message={message}
+          setMessage={setMessage}
+          loading={loading}
+          setLoading={setLoading}
+          selectID={selectID}
+          setSelectID={setSelectID}
+          controls={controls}
+          setControls={setControls}
+          setModalData={setModalData}
+          resetCheckboxes={resetCheckboxes}
+          typeOfData={'news'}
+          stateData={news}
+          stateMethod={createType}
+          resetMethod={resetType}
+          sortOrder={newsSort}
+          submitCreate={submitCreate}
+          submitUpdate={submitUpdate}
+          setModalData={setModalData}
+          edit={edit}
+          setEdit={setEdit}
+          editType={'update_news'}
+          submitDeleteRow={submitDeleteRow}
+        ></News>
+      }
+      { component == 'slides' &&
+        <Slides
+          data={data.slides}
+          allData={allData}
+          setAllData={setAllData}
+          account={account}
+          accessToken={accessToken}
+          resetUI={resetUILocalStorage}
+          modal={modal} 
+          setModal={setModal}
+          view={view}
+          setView={setView}
+          message={message}
+          setMessage={setMessage}
+          loading={loading}
+          setLoading={setLoading}
+          selectID={selectID}
+          setSelectID={setSelectID}
+          controls={controls}
+          setControls={setControls}
+          setModalData={setModalData}
+          resetCheckboxes={resetCheckboxes}
+          typeOfData={'slides'}
+          stateData={slide}
+          stateMethod={createType}
+          resetMethod={resetType}
+          sortOrder={slideSort}
+          submitCreate={submitCreate}
+          submitUpdate={submitUpdate}
+          setModalData={setModalData}
+          edit={edit}
+          setEdit={setEdit}
+          editType={'update_slide'}
+          submitDeleteRow={submitDeleteRow}
+        ></Slides>
+      }
     </div>
   )
 }
@@ -479,6 +593,8 @@ const mapStateToProps = state => {
     student: state.student,
     staff: state.staff,
     publication: state.publication,
+    news: state.news,
+    slide: state.slide
   }
 }
 
@@ -504,6 +620,8 @@ AdminDashboard.getInitialProps = async (context) => {
   data.students                 = await tableData(accessToken, 'student/get-all-students')
   data.staff                    = await tableData(accessToken, 'staff/all-staff')
   data.publications             = await tableData(accessToken, 'publication/all-publications')
+  data.news                     = await tableData(accessToken, 'news/all-news')
+  data.slides                   = await tableData(accessToken, 'slide/all-slides')
   deepClone= _.cloneDeep(data)
   
   return {

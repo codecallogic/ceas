@@ -16,7 +16,9 @@ const formFields = {
   faculty: ['title', 'name', 'email'],
   students: ['title', 'name', 'advisor', 'email'],
   staff: ['title', 'name', 'email'],
-  publications: ['title', 'authors', 'file', 'date']
+  publications: ['title', 'authors', 'file', 'date'],
+  news: ['date', 'title', 'component', 'news'],
+  slides: ['caption', 'component']
 }
 
 const manageFormFields = (data, key) => {
@@ -57,6 +59,7 @@ const submitCreate = async (e, stateData, setMessage, setLoading, loadingType, t
     setAllData(allData)
     setMessage(type == 'adminUsers' ? 'Invite was sent' : 'Item was created')
     resetMethod(resetType)
+
     
   } catch (error) {
     console.log(error.response)
