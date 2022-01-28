@@ -20,6 +20,9 @@ import Staff from '../../components/admin/staff'
 import Publications from '../../components/admin/publications'
 import News from '../../components/admin/news'
 import Slides from '../../components/admin/slides'
+import Labs from '../../components/admin/labs'
+import Equipment from '../../components/admin/equipment'
+import Forms from '../../components/admin/forms'
 
 // CRUD
 import { submitCreate, submitUpdate, submitDeleteRow } from '../../helpers/forms'
@@ -28,7 +31,7 @@ import { submitCreate, submitUpdate, submitDeleteRow } from '../../helpers/forms
 import { validateIsEmail} from '../../helpers/validations'
 
 // TABLES
-import { adminUsersSort, componentSort, facultySort, studentSort, staffSort, publicationSort, newsSort, slideSort } from '../../helpers/sorting'
+import { adminUsersSort, componentSort, facultySort, studentSort, staffSort, publicationSort, newsSort, slideSort, labSort, equipmentSort, formSort } from '../../helpers/sorting'
 
 const AdminDashboard = ({
   data, 
@@ -48,7 +51,10 @@ const AdminDashboard = ({
   staff,
   publication,
   news,
-  slide
+  slide,
+  lab,
+  equipment,
+  form
   
 }) => {
   
@@ -201,6 +207,42 @@ const AdminDashboard = ({
             }
             </>
           }
+          { component == 'labs' &&
+            <>
+            <span className="account-breadcrumbs-item-subtitle" onClick={() => (setComponent('labs'), setView(''))}>
+              <SVG svg={'keyboard-right'}></SVG> Labs
+            </span>
+            {view == 'all_labs' && 
+            <span className="account-breadcrumbs-item-subtitle">
+              <SVG svg={'keyboard-right'}></SVG> View All
+            </span>
+            }
+            </>
+          }
+          { component == 'equipment' &&
+            <>
+            <span className="account-breadcrumbs-item-subtitle" onClick={() => (setComponent('equipment'), setView(''))}>
+              <SVG svg={'keyboard-right'}></SVG> Equipment
+            </span>
+            {view == 'all_equipment' && 
+            <span className="account-breadcrumbs-item-subtitle">
+              <SVG svg={'keyboard-right'}></SVG> View All
+            </span>
+            }
+            </>
+          }
+          { component == 'forms' &&
+            <>
+            <span className="account-breadcrumbs-item-subtitle" onClick={() => (setComponent('forms'), setView(''))}>
+              <SVG svg={'keyboard-right'}></SVG> Forms
+            </span>
+            {view == 'all_forms' && 
+            <span className="account-breadcrumbs-item-subtitle">
+              <SVG svg={'keyboard-right'}></SVG> View All
+            </span>
+            }
+            </>
+          }
         </div>
       </div>
       { component == '' &&
@@ -228,10 +270,31 @@ const AdminDashboard = ({
           </div>
           <div 
           className="account-dashboard-item" 
+          onClick={() => (setComponent('equipment'), setView(''))}
+          >
+            <SVG svg={'equipment'}></SVG>
+            <span>Equipment</span>
+          </div>
+          <div 
+          className="account-dashboard-item" 
           onClick={() => (setComponent('faculty'), setView(''))}
           >
             <SVG svg={'staff'}></SVG>
             <span>Faculty</span>
+          </div>
+          <div 
+          className="account-dashboard-item" 
+          onClick={() => (setComponent('forms'), setView(''))}
+          >
+            <SVG svg={'forms'}></SVG>
+            <span>Forms</span>
+          </div>
+          <div 
+          className="account-dashboard-item" 
+          onClick={() => (setComponent('labs'), setView(''))}
+          >
+            <SVG svg={'lab'}></SVG>
+            <span>Labs</span>
           </div>
           <div 
           className="account-dashboard-item" 
@@ -581,6 +644,114 @@ const AdminDashboard = ({
           submitDeleteRow={submitDeleteRow}
         ></Slides>
       }
+      { component == 'labs' &&
+        <Labs
+          data={data.labs}
+          allData={allData}
+          setAllData={setAllData}
+          account={account}
+          accessToken={accessToken}
+          resetUI={resetUILocalStorage}
+          modal={modal} 
+          setModal={setModal}
+          view={view}
+          setView={setView}
+          message={message}
+          setMessage={setMessage}
+          loading={loading}
+          setLoading={setLoading}
+          selectID={selectID}
+          setSelectID={setSelectID}
+          controls={controls}
+          setControls={setControls}
+          setModalData={setModalData}
+          resetCheckboxes={resetCheckboxes}
+          typeOfData={'labs'}
+          stateData={lab}
+          stateMethod={createType}
+          resetMethod={resetType}
+          sortOrder={labSort}
+          submitCreate={submitCreate}
+          submitUpdate={submitUpdate}
+          setModalData={setModalData}
+          edit={edit}
+          setEdit={setEdit}
+          editType={'update_lab'}
+          submitDeleteRow={submitDeleteRow}
+        ></Labs>
+      }
+      { component == 'equipment' &&
+        <Equipment
+          data={data.equipment}
+          allData={allData}
+          setAllData={setAllData}
+          account={account}
+          accessToken={accessToken}
+          resetUI={resetUILocalStorage}
+          modal={modal} 
+          setModal={setModal}
+          view={view}
+          setView={setView}
+          message={message}
+          setMessage={setMessage}
+          loading={loading}
+          setLoading={setLoading}
+          selectID={selectID}
+          setSelectID={setSelectID}
+          controls={controls}
+          setControls={setControls}
+          setModalData={setModalData}
+          resetCheckboxes={resetCheckboxes}
+          typeOfData={'equipment'}
+          stateData={equipment}
+          stateMethod={createType}
+          resetMethod={resetType}
+          sortOrder={equipmentSort}
+          submitCreate={submitCreate}
+          submitUpdate={submitUpdate}
+          setModalData={setModalData}
+          edit={edit}
+          setEdit={setEdit}
+          editType={'update_equipment'}
+          submitDeleteRow={submitDeleteRow}
+        ></Equipment>
+      }
+      { component == 'forms' &&
+        <Forms
+          data={data.forms}
+          allData={allData}
+          setAllData={setAllData}
+          account={account}
+          accessToken={accessToken}
+          resetUI={resetUILocalStorage}
+          modal={modal} 
+          setModal={setModal}
+          view={view}
+          setView={setView}
+          message={message}
+          setMessage={setMessage}
+          loading={loading}
+          setLoading={setLoading}
+          selectID={selectID}
+          setSelectID={setSelectID}
+          controls={controls}
+          setControls={setControls}
+          setModalData={setModalData}
+          resetCheckboxes={resetCheckboxes}
+          typeOfData={'forms'}
+          stateData={form}
+          stateMethod={createType}
+          resetMethod={resetType}
+          sortOrder={formSort}
+          submitCreate={submitCreate}
+          submitUpdate={submitUpdate}
+          setModalData={setModalData}
+          edit={edit}
+          setEdit={setEdit}
+          editType={'update_form'}
+          submitDeleteRow={submitDeleteRow}
+        ></Forms>
+      }
     </div>
   )
 }
@@ -594,7 +765,10 @@ const mapStateToProps = state => {
     staff: state.staff,
     publication: state.publication,
     news: state.news,
-    slide: state.slide
+    slide: state.slide,
+    lab: state.lab,
+    equipment: state.equipment,
+    form: state.form
   }
 }
 
@@ -622,6 +796,9 @@ AdminDashboard.getInitialProps = async (context) => {
   data.publications             = await tableData(accessToken, 'publication/all-publications')
   data.news                     = await tableData(accessToken, 'news/all-news')
   data.slides                   = await tableData(accessToken, 'slide/all-slides')
+  data.labs                     = await tableData(accessToken, 'lab/all-labs')
+  data.equipment                = await tableData(accessToken, 'equipment/all-equipment')
+  data.forms                    = await tableData(accessToken, 'form/all-forms')
   deepClone= _.cloneDeep(data)
   
   return {

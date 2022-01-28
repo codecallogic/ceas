@@ -6,7 +6,10 @@ export {
   staffSort,
   publicationSort,
   newsSort,
-  slideSort
+  slideSort,
+  labSort,
+  equipmentSort,
+  formSort
 }
 
 const adminUsersSort = ['role', 'email', 'lastName', 'firstName', 'username']
@@ -17,3 +20,6 @@ const staffSort = ['image','email', 'position','name', 'title']
 const publicationSort = ['component', 'faculty', 'link', 'type', 'venues', 'authors', 'title', 'year', 'file']
 const newsSort = ['component', 'news', 'title', 'date', 'image']
 const slideSort = ['component', 'caption', 'image']
+const labSort = ['description', 'labLocation','name', 'faculty', 'image']
+const equipmentSort = ['description','name', 'lab', 'image']
+const formSort = ['description','name','file']

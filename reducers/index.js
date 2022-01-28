@@ -1,12 +1,15 @@
-import {combineReducers} from 'redux'
-import {adminReducer} from './adminReducer'
-import {componentReducer} from './componentReducer'
-import {facultyReducer} from './facultyReducer'
-import {studentReducer} from './studentReducer'
-import {staffReducer} from './staffReducer'
-import {publicationReducer} from './publicationReducer'
-import {newsReducer} from './newsReducer'
-import {slideReducer} from './slideShowReducer'
+import { combineReducers } from 'redux'
+import { adminReducer } from './adminReducer'
+import { componentReducer } from './componentReducer'
+import { facultyReducer } from './facultyReducer'
+import { studentReducer } from './studentReducer'
+import { staffReducer } from './staffReducer'
+import { publicationReducer } from './publicationReducer'
+import { newsReducer } from './newsReducer'
+import { slideReducer } from './slideReducer'
+import { labReducer } from './labReducer'
+import { equipmentReducer } from './equipmentReducer'
+import { formReducer } from './formsReducer'
 
 const rootReducer = combineReducers({
   admin: adminReducer,
@@ -16,7 +19,10 @@ const rootReducer = combineReducers({
   staff: staffReducer,
   publication: publicationReducer,
   news: newsReducer,
-  slide: slideReducer
+  slide: slideReducer,
+  lab: labReducer,
+  equipment: equipmentReducer,
+  form: formReducer
 })
 
 export default rootReducer

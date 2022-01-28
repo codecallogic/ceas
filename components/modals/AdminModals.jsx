@@ -8,6 +8,9 @@ import StaffForm from './modalForms/staffForm'
 import PublicationForm from './modalForms/publicationForm'
 import NewsForm from './modalForms/newsForm'
 import SlideForm from './modalForms/slideForm'
+import LabForm from './modalForms/labForm'
+import EquipmentForm from './modalForms/equipmentForm'
+import FormForm from './modalForms/formForm'
 
 const Modal = ({
   accessToken,
@@ -278,6 +281,81 @@ const Modal = ({
         setEdit={setEdit}
       >
       </SlideForm>
+    }
+    {modal == 'create_lab' &&
+      <LabForm
+        title={edit == 'update_lab' ? 'Update Lab' : 'Create Lab'}
+        accessToken={accessToken}
+        allData={allData}
+        setAllData={setAllData}
+        stateData={stateData}
+        stateMethod={stateMethod}
+        caseType={caseType}
+        resetMethod={resetMethod}
+        resetType={resetType}
+        resetUI={resetUI}
+        modal={modal}
+        setModal={setModal}
+        message={message}
+        setMessage={setMessage}
+        loading={loading}
+        setLoading={setLoading}
+        submitCreate={submitCreate}
+        submitUpdate={submitUpdate}
+        edit={edit}
+        setEdit={setEdit}
+      >
+      </LabForm>
+    }
+    {modal == 'create_equipment' &&
+      <EquipmentForm
+        title={edit == 'update_equipment' ? 'Update Equipment' : 'Create Equipment'}
+        accessToken={accessToken}
+        allData={allData}
+        setAllData={setAllData}
+        stateData={stateData}
+        stateMethod={stateMethod}
+        caseType={caseType}
+        resetMethod={resetMethod}
+        resetType={resetType}
+        resetUI={resetUI}
+        modal={modal}
+        setModal={setModal}
+        message={message}
+        setMessage={setMessage}
+        loading={loading}
+        setLoading={setLoading}
+        submitCreate={submitCreate}
+        submitUpdate={submitUpdate}
+        edit={edit}
+        setEdit={setEdit}
+      >
+      </EquipmentForm>
+    }
+    {modal == 'create_form' &&
+      <FormForm
+        title={edit == 'update_form' ? 'Update Form' : 'Create Form'}
+        accessToken={accessToken}
+        allData={allData}
+        setAllData={setAllData}
+        stateData={stateData}
+        stateMethod={stateMethod}
+        caseType={caseType}
+        resetMethod={resetMethod}
+        resetType={resetType}
+        resetUI={resetUI}
+        modal={modal}
+        setModal={setModal}
+        message={message}
+        setMessage={setMessage}
+        loading={loading}
+        setLoading={setLoading}
+        submitCreate={submitCreate}
+        submitUpdate={submitUpdate}
+        edit={edit}
+        setEdit={setEdit}
+      >
+      </FormForm>
     }
     </>
   )
