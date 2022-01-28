@@ -133,10 +133,10 @@ const submitDeleteRow = async (e, setLoading, loadingType, path, selectID, token
     setControls(false)
     resetCheckboxes()
     setMessage('Item was deleted')
-    // window.localStorage.setItem('component', type)
-    // window.localStorage.setItem('view', view)
-    // window.localStorage.setItem('message', 'Item was deleted')
-    // window.location.reload()
+    window.localStorage.setItem('component', type)
+    window.localStorage.setItem('view', view)
+    window.localStorage.setItem('message', 'Item was deleted')
+    window.location.reload()
     
   } catch (error) {
     // console.log(error.response)

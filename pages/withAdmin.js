@@ -31,14 +31,14 @@ const withAdmin = Page => {
       account = null
       serverMessage = err.response ? err.response.data : 'Error ocurred, getting account data.'
     }  
-  
+    
     if(account !== null && context.req.url === '/admin/login'){
-        context.res.writeHead(302, {
+        context.res.writeHead(301, {
           Location: '/admin'
         });
         context.res.end();
     }else if(account === null && context.req.url !== '/admin/login'){
-      context.res.writeHead(302, {
+      context.res.writeHead(301, {
         Location: '/admin/login'
       });
       context.res.end();
