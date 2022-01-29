@@ -124,7 +124,7 @@ const NewsForm = ({
               id="description" 
               rows="5" 
               wrap="hard" 
-              maxLength="400"
+              maxLength="1000"
               name="description" 
               value={stateData.description} 
               onChange={(e) => stateMethod(caseType, 'description', e.target.value)} 

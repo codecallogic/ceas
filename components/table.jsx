@@ -145,9 +145,6 @@ const Table = ({
                 </div>
               </label>
             </div>
-            {
-              console.log(item)
-            }
             {Object.keys(item).sort((a, b) => sortOrder.indexOf(b) - sortOrder.indexOf(a)).map((key, idx, array) => 
               key !== '_id' && <div key={idx} className="table-rows-item">
                 {key == fileType && <a href={`${PUBLIC_FILES}/${fileLocation}/${item[key]}`} target="_blank">{item[key]}</a>}

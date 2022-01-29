@@ -172,7 +172,7 @@ const ComponentForm = ({
               id="longDescription" 
               rows="5" 
               wrap="hard" 
-              maxLength="400"
+              maxLength="1000"
               name="longDescription" 
               value={stateData.longDescription} 
               onChange={(e) => stateMethod(caseType, 'longDescription', e.target.value)} 

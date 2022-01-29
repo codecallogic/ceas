@@ -372,7 +372,7 @@ const FacultyForm = ({
               id="researchInterests" 
               rows="5" 
               wrap="hard" 
-              maxLength="400"
+              maxLength="1000"
               name="longDescription" 
               value={stateData.researchInterests} 
               onChange={(e) => stateMethod(caseType, 'researchInterests', e.target.value)} 
