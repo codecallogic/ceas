@@ -103,4 +103,4 @@ const AdminLogin = ({}) => {
   )
 }
 
-export default withAdmin(AdminLogin)
+export default AdminLogin
