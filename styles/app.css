@@ -21,7 +21,8 @@ body {
   color: black;
   font-weight: 300;
   line-height: 1.6;
-  overflow-y: auto; }
+  overflow-y: auto;
+  background-color: white; }
   body::-webkit-scrollbar {
     width: 0.5rem;
     background-color: #e63946; }

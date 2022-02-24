@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react'
 import axios from 'axios'
 import {API} from '../../config'
 import withAdmin from '../withAdmin'
+import ForgotPassword from '../../components/modals/modalForms/forgotPassword'
 
 const AdminLogin = ({}) => {
 
@@ -12,6 +13,7 @@ const AdminLogin = ({}) => {
   const [rememberMe, setRememberMe] = useState(false)
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
+  const [modal, setModal] = useState('')
 
   const togglePassword = () => {
     displayPassword ? 
@@ -93,12 +95,20 @@ const AdminLogin = ({}) => {
                 <div className={`form-group-checkbox-box` + (rememberMe ? ' checked' : '')}>{rememberMe ? <SVG svg={'checkmark'}></SVG> : null}</div> Remember Me
               </div>
             </div>
-            <a href="#">Forgot password</a>
+            <a href="#" onClick={ () => setModal('forgot_password')}>Forgot password</a>
           </div>
           {message.length > 0 ? <div className="form-group-message">{message}</div> : null}
           <button className="form-group-button" onClick={() => login()}>{!loading && <span>Log in</span>} {loading && <div className="loading"><span></span><span></span><span></span></div>}</button>
         </div>
       </div>
+
+      { modal == 'forgot_password' &&
+        <ForgotPassword
+         setModal={setModal}
+        >
+        </ForgotPassword>
+      }
+
     </div>
   )
 }
