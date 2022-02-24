@@ -3,7 +3,7 @@ import {useState, useEffect} from 'react'
 import AdminModals from '../modals/AdminModals'
 import AdminTable from '../table'
 
-const Forms = ({
+const NavItems = ({
   account,
   accessToken,
   resetUI,
@@ -43,30 +43,30 @@ const Forms = ({
   
   }) => {
 
-  const [allForms, setAllNews] = useState(data ? data : [])
+  const [allItems, setAllNews] = useState(data ? data : [])
     
   return (
     <>
       { view == '' && 
       <div className="account-dashboard">
-        <div className="account-dashboard-item" onClick={() => (resetUI(), setView('all_forms'))}>
-          <SVG svg={'list'}></SVG>
-          <span>View Forms</span>
+        <div className="account-dashboard-item" onClick={() => (resetUI(), setView('all_nav_items'))}>
+          <SVG svg={'nav'}></SVG>
+          <span>View Nav Items</span>
         </div>
-        <div className="account-dashboard-item" onClick={() => (resetUI(), setModal('create_form'))}>
-          <SVG svg={'lab'}></SVG>
-          <span>Create Form</span>
+        <div className="account-dashboard-item" onClick={() => (resetUI(), setModal('create_nav_item'))}>
+          <SVG svg={'nav-items'}></SVG>
+          <span>Create Nav Item</span>
         </div>
       </div>
       }
-      { view == 'all_forms' &&
+      { view == 'all_nav_items' &&
       <AdminTable
         accessToken={accessToken}
-        title={'Forms'}
-        typeOfData={'forms'}
-        modalType={'create_form'}
-        modalDataType={{key: 'forms', caseType: 'CREATE_FORM'}}
-        componentData={allForms}
+        title={'Nav Items'}
+        typeOfData={'navItems'}
+        modalType={'create_nav_item'}
+        modalDataType={{key: 'navItems', caseType: 'CREATE_NAV_ITEM'}}
+        componentData={allItems}
         originalData={allData}
         account={account}
         loading={loading}
@@ -85,10 +85,10 @@ const Forms = ({
         message={message}
         setMessage={setMessage}
         setAllData={setAllData}
-        deletePath="form/delete-form"
-        view={'all_forms'}
+        deletePath="navigation/delete-nav-item"
+        view={'all_nav_items'}
         fileType="file"
-        fileLocation="forms"
+        fileLocation="navItems"
       >
       </AdminTable>
       }
@@ -105,9 +105,9 @@ const Forms = ({
         setLoading={setLoading}
         stateData={stateData}
         stateMethod={stateMethod}
-        caseType={'CREATE_FORM'}
+        caseType={'CREATE_NAV_ITEM'}
         resetMethod={resetMethod}
-        resetType={'RESET_FORM'}
+        resetType={'RESET_NAV_ITEM'}
         submitCreate={submitCreate}
         submitUpdate={submitUpdate}
         edit={edit}
@@ -118,4 +118,4 @@ const Forms = ({
   )
 }
 
-export default Forms
+export default NavItems

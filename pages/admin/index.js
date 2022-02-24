@@ -23,6 +23,8 @@ import Slides from '../../components/admin/slides'
 import Labs from '../../components/admin/labs'
 import Equipment from '../../components/admin/equipment'
 import Forms from '../../components/admin/forms'
+import NavMenus from '../../components/admin/navMenus'
+import NavItems from '../../components/admin/navItems'
 
 // CRUD
 import { submitCreate, submitUpdate, submitDeleteRow } from '../../helpers/forms'
@@ -31,7 +33,21 @@ import { submitCreate, submitUpdate, submitDeleteRow } from '../../helpers/forms
 import { validateIsEmail} from '../../helpers/validations'
 
 // TABLES
-import { adminUsersSort, componentSort, facultySort, studentSort, staffSort, publicationSort, newsSort, slideSort, labSort, equipmentSort, formSort } from '../../helpers/sorting'
+import { 
+  adminUsersSort, 
+  componentSort, 
+  facultySort, 
+  studentSort, 
+  staffSort, 
+  publicationSort, 
+  newsSort, 
+  slideSort, 
+  labSort, 
+  equipmentSort, 
+  formSort,
+  navItemSort,
+  navMenuSort
+} from '../../helpers/sorting'
 
 const AdminDashboard = ({
   data, 
@@ -54,7 +70,9 @@ const AdminDashboard = ({
   slide,
   lab,
   equipment,
-  form
+  form,
+  navItem,
+  navMenu
   
 }) => {
   
@@ -243,6 +261,30 @@ const AdminDashboard = ({
             }
             </>
           }
+          { component == 'nav' &&
+            <>
+            <span className="account-breadcrumbs-item-subtitle" onClick={() => (setComponent('nav'), setView(''))}>
+              <SVG svg={'keyboard-right'}></SVG> Menu
+            </span>
+            {view == 'all_nav_menus' && 
+            <span className="account-breadcrumbs-item-subtitle">
+              <SVG svg={'keyboard-right'}></SVG> View All Menus
+            </span>
+            }
+            </>
+          }
+          { component == 'navItems' &&
+            <>
+            <span className="account-breadcrumbs-item-subtitle" onClick={() => (setComponent('navItems'), setView(''))}>
+              <SVG svg={'keyboard-right'}></SVG> Nav Items
+            </span>
+            {view == 'all_nav_items' && 
+            <span className="account-breadcrumbs-item-subtitle">
+              <SVG svg={'keyboard-right'}></SVG> View All Nav Items
+            </span>
+            }
+            </>
+          }
         </div>
       </div>
       { component == '' &&
@@ -298,6 +340,27 @@ const AdminDashboard = ({
           </div>
           <div 
           className="account-dashboard-item" 
+          onClick={() => (setComponent('nav'), setView(''))}
+          >
+            <SVG svg={'nav'}></SVG>
+            <span>Nav</span>
+          </div>
+          <div 
+          className="account-dashboard-item" 
+          onClick={() => (setComponent('navItems'), setView(''))}
+          >
+            <SVG svg={'nav-items'}></SVG>
+            <span>Nav Items</span>
+          </div>
+          <div 
+          className="account-dashboard-item" 
+          onClick={() => (setComponent('news'), setView(''))}
+          >
+            <SVG svg={'news'}></SVG>
+            <span>News</span>
+          </div>
+          <div 
+          className="account-dashboard-item" 
           onClick={() => (setComponent('publications'), setView(''))}
           >
             <SVG svg={'publication'}></SVG>
@@ -312,13 +375,6 @@ const AdminDashboard = ({
           </div>
           <div 
           className="account-dashboard-item" 
-          onClick={() => (setComponent('students'), setView(''))}
-          >
-            <SVG svg={'staff'}></SVG>
-            <span>Students</span>
-          </div>
-          <div 
-          className="account-dashboard-item" 
           onClick={() => (setComponent('staff'), setView(''))}
           >
             <SVG svg={'staff'}></SVG>
@@ -326,10 +382,10 @@ const AdminDashboard = ({
           </div>
           <div 
           className="account-dashboard-item" 
-          onClick={() => (setComponent('news'), setView(''))}
+          onClick={() => (setComponent('students'), setView(''))}
           >
-            <SVG svg={'news'}></SVG>
-            <span>News</span>
+            <SVG svg={'staff'}></SVG>
+            <span>Students</span>
           </div>
         </div>
       }
@@ -752,6 +808,78 @@ const AdminDashboard = ({
           submitDeleteRow={submitDeleteRow}
         ></Forms>
       }
+      { component == 'nav' &&
+        <NavMenus
+          data={data.navMenus}
+          allData={allData}
+          setAllData={setAllData}
+          account={account}
+          accessToken={accessToken}
+          resetUI={resetUILocalStorage}
+          modal={modal}
+          setModal={setModal}
+          view={view}
+          setView={setView}
+          message={message}
+          setMessage={setMessage}
+          loading={loading}
+          setLoading={setLoading}
+          selectID={selectID}
+          setSelectID={setSelectID}
+          controls={controls}
+          setControls={setControls}
+          setModalData={setModalData}
+          resetCheckboxes={resetCheckboxes}
+          typeOfData={'navMenus'}
+          stateData={navMenu}
+          stateMethod={createType}
+          resetMethod={resetType}
+          sortOrder={navMenuSort}
+          submitCreate={submitCreate}
+          submitUpdate={submitUpdate}
+          setModalData={setModalData}
+          edit={edit}
+          setEdit={setEdit}
+          editType={'update_nav_menu'}
+          submitDeleteRow={submitDeleteRow}
+        ></NavMenus>
+      }
+      { component == 'navItems' &&
+        <NavItems
+          data={data.navItems}
+          allData={allData}
+          setAllData={setAllData}
+          account={account}
+          accessToken={accessToken}
+          resetUI={resetUILocalStorage}
+          modal={modal}
+          setModal={setModal}
+          view={view}
+          setView={setView}
+          message={message}
+          setMessage={setMessage}
+          loading={loading}
+          setLoading={setLoading}
+          selectID={selectID}
+          setSelectID={setSelectID}
+          controls={controls}
+          setControls={setControls}
+          setModalData={setModalData}
+          resetCheckboxes={resetCheckboxes}
+          typeOfData={'navItems'}
+          stateData={navItem}
+          stateMethod={createType}
+          resetMethod={resetType}
+          sortOrder={navItemSort}
+          submitCreate={submitCreate}
+          submitUpdate={submitUpdate}
+          setModalData={setModalData}
+          edit={edit}
+          setEdit={setEdit}
+          editType={'update_nav_item'}
+          submitDeleteRow={submitDeleteRow}
+        ></NavItems>
+      }
     </div>
   )
 }
@@ -768,7 +896,9 @@ const mapStateToProps = state => {
     slide: state.slide,
     lab: state.lab,
     equipment: state.equipment,
-    form: state.form
+    form: state.form,
+    navItem: state.navItem,
+    navMenu: state.navMenu
   }
 }
 
@@ -799,6 +929,8 @@ AdminDashboard.getInitialProps = async (context) => {
   data.labs                     = await tableData(accessToken, 'lab/all-labs')
   data.equipment                = await tableData(accessToken, 'equipment/all-equipment')
   data.forms                    = await tableData(accessToken, 'form/all-forms')
+  data.navMenus                 = await tableData(accessToken, 'navigation/all-nav-menus')
+  data.navItems                 = await tableData(accessToken, 'navigation/all-nav-items')
   deepClone= _.cloneDeep(data)
   
   return {

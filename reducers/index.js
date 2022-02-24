@@ -10,6 +10,8 @@ import { slideReducer } from './slideReducer'
 import { labReducer } from './labReducer'
 import { equipmentReducer } from './equipmentReducer'
 import { formReducer } from './formsReducer'
+import { navItemReducer } from './navItemReducer'
+import { navMenuReducer } from './navMenuReducer'
 
 const rootReducer = combineReducers({
   admin: adminReducer,
@@ -22,7 +24,9 @@ const rootReducer = combineReducers({
   slide: slideReducer,
   lab: labReducer,
   equipment: equipmentReducer,
-  form: formReducer
+  form: formReducer,
+  navItem: navItemReducer,
+  navMenu: navMenuReducer
 })
 
 export default rootReducer

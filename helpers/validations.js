@@ -2,7 +2,8 @@ export {
   validateDate,
   validateIsEmail,
   isNumber,
-  validateIsPhoneNumber
+  validateIsPhoneNumber,
+  validateLink
 }
 
 const checkValue = (str, max) => {
@@ -78,4 +79,11 @@ const validateIsPhoneNumber = (type, caseType, reducerKey, method) => {
   }
 
   return null;
+}
+
+const validateLink = (value) => {
+  const matchPattern = /https?:\/\/(www\.)?/gi;
+
+  if(matchPattern.test(value)) return true
+  return false
 }

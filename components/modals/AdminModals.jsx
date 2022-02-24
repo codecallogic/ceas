@@ -11,6 +11,8 @@ import SlideForm from './modalForms/slideForm'
 import LabForm from './modalForms/labForm'
 import EquipmentForm from './modalForms/equipmentForm'
 import FormForm from './modalForms/formForm'
+import NavItem from './modalForms/navItem'
+import NavMenu from './modalForms/navMenu'
 
 const Modal = ({
   accessToken,
@@ -356,6 +358,56 @@ const Modal = ({
         setEdit={setEdit}
       >
       </FormForm>
+    }
+    {modal == 'create_nav_item' &&
+      <NavItem
+      title={edit == 'update_nav_item' ? 'Update Nav Item' : 'Create Nav Item'}
+      accessToken={accessToken}
+      allData={allData}
+      setAllData={setAllData}
+      stateData={stateData}
+      stateMethod={stateMethod}
+      caseType={caseType}
+      resetMethod={resetMethod}
+      resetType={resetType}
+      resetUI={resetUI}
+      modal={modal}
+      setModal={setModal}
+      message={message}
+      setMessage={setMessage}
+      loading={loading}
+      setLoading={setLoading}
+      submitCreate={submitCreate}
+      submitUpdate={submitUpdate}
+      edit={edit}
+      setEdit={setEdit}
+      >
+      </NavItem>
+    }
+    {modal == 'create_nav_menu' &&
+      <NavMenu
+      title={edit == 'update_nav_menu' ? 'Update Nav Menu' : 'Create Nav Menu'}
+      accessToken={accessToken}
+      allData={allData}
+      setAllData={setAllData}
+      stateData={stateData}
+      stateMethod={stateMethod}
+      caseType={caseType}
+      resetMethod={resetMethod}
+      resetType={resetType}
+      resetUI={resetUI}
+      modal={modal}
+      setModal={setModal}
+      message={message}
+      setMessage={setMessage}
+      loading={loading}
+      setLoading={setLoading}
+      submitCreate={submitCreate}
+      submitUpdate={submitUpdate}
+      edit={edit}
+      setEdit={setEdit}
+      >
+      </NavMenu>
     }
     </>
   )

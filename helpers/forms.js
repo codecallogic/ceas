@@ -1,13 +1,13 @@
 import { API } from '../config'
 import axios from 'axios'
-import { validateIsEmail } from '../helpers/validations'
+import { validateIsEmail, validateLink } from '../helpers/validations'
 import { nanoid } from 'nanoid'
 
 export {
   manageFormFields,
   submitCreate,
   submitUpdate,
-  submitDeleteRow,
+  submitDeleteRow
 }
 //// FORM FIELDS
 const formFields = {
@@ -21,7 +21,9 @@ const formFields = {
   slides: ['caption', 'component'],
   labs: ['name', 'faculty', 'description'],
   equipment: ['lab', 'name', 'description'],
-  forms: ['file', 'name']
+  forms: ['file', 'name'],
+  navItems: ['link', 'name'],
+  navMenus: ['name']
 }
 
 const manageFormFields = (data, key) => {
@@ -36,7 +38,8 @@ const submitCreate = async (e, stateData, setMessage, setLoading, loadingType, t
   e.preventDefault()
 
   for(let i = 0; i < formFields[type].length; i++){
-    if(formFields[type][i].includes('email') && !validateIsEmail(formFields[type][i])) return (setMessage('Invalid email address'))
+    if(formFields[type][i].includes('email') && !validateIsEmail(stateData[formFields[type][i]])) return (setMessage('Invalid email address'))
+    if(formFields[type][i].includes('link') && !validateLink(stateData[formFields[type][i]])) return (setMessage('Invalid link'))
 
     if(!stateData[formFields[type][i]]) return (setMessage(`${formFields[type][i].replace('_', ' ')} is required`))
   }
@@ -62,7 +65,6 @@ const submitCreate = async (e, stateData, setMessage, setLoading, loadingType, t
     setAllData(allData)
     setMessage(type == 'adminUsers' ? 'Invite was sent' : 'Item was created')
     resetMethod(resetType)
-
     
   } catch (error) {
     console.log(error.response)
@@ -74,7 +76,9 @@ const submitCreate = async (e, stateData, setMessage, setLoading, loadingType, t
 const submitUpdate = async (e, stateData, setMessage, setLoading, loadingType, type, path, token, allData, setAllData, resetMethod, resetType, setModal, fileType) => {
   e.preventDefault()
   for(let i = 0; i < formFields[type].length; i++){
-    if(formFields[type][i].includes('email') && !validateIsEmail(formFields[type][i])) return (setMessage('Invalid email address'))
+    if(formFields[type][i].includes('email') && !validateIsEmail(stateData[formFields[type][i]])) return (setMessage('Invalid email address'))
+    if(formFields[type][i].includes('link') && !validateLink(stateData[formFields[type][i]])) return (setMessage('Invalid link'))
+    
     if(!stateData[formFields[type][i]] || stateData[formFields[type][i]].length == 0) return (setMessage(`${formFields[type][i].replace('_', ' ')} is required`))
   }
 
