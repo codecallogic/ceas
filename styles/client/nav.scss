@@ -1,0 +1,36 @@
+.nav {
+  padding: 1.5rem 0;
+  justify-content: space-between;
+
+  &-logo {
+    display: flex;
+    align-items: center;
+    width: 25rem;
+    height: 100%;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &-menu {
+    display: flex;
+    align-items: center;
+
+    &-item {
+      font-size: 1.8rem;
+      margin-right: 2rem;
+      color: white;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      svg {
+        width: 3.6rem;
+        height: 3.6rem;
+        fill: white !important;
+      }
+    }
+  }
+}

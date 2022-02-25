@@ -29,6 +29,9 @@ body {
   body::-webkit-scrollbar-thumb {
     background-color: #e63946; }
 
+.wrapper {
+  padding: 0 15rem; }
+
 h3 {
   font-size: 2rem;
   font-weight: 500;
@@ -693,14 +696,31 @@ button {
   padding: 1rem 0; }
 
 .home {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 100vh;
-  font-size: 1.8rem; }
-  .home a {
-    color: #e63946; }
+  width: 100%; }
+
+.nav {
+  padding: 1.5rem 0;
+  justify-content: space-between; }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    width: 25rem;
+    height: 100%; }
+    .nav-logo:hover {
+      cursor: pointer; }
+  .nav-menu {
+    display: flex;
+    align-items: center; }
+    .nav-menu-item {
+      font-size: 1.8rem;
+      margin-right: 2rem;
+      color: white; }
+      .nav-menu-item:hover {
+        cursor: pointer; }
+      .nav-menu-item svg {
+        width: 3.6rem;
+        height: 3.6rem;
+        fill: white !important; }
 
 .adminLogin-container {
   display: flex;
