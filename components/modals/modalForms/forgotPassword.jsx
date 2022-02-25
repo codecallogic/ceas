@@ -22,8 +22,10 @@ const NewsForm = ({
     
     try {
       const responseEmail = await axios.post(`${API}/auth/forgot-password`, {email: email})
+      setLoading('')
+      setMessage(responseEmail.data)
     } catch (error) {
-      
+      console.log(error)
       setLoading('')
       if(error) error.response ? setMessage(error.response.data) : setMessage('Error ocurred could not send email to reset password')
       
@@ -41,7 +43,7 @@ const NewsForm = ({
           >
             <SVG svg={'close'}></SVG>
           </div>
-          <div className="modal-box-header-title">Email</div>
+          <div className="modal-box-header-title">Forgot Password</div>
         </div>
         <div className="modal-box-content">
           <div className="form-group">
@@ -67,7 +69,7 @@ const NewsForm = ({
             className="form-group-button" 
             onClick={(e) => sendEmail(e)}>
               {!loading && 
-              <span>Save</span>
+              <span>Send Email</span>
               } 
               {loading == 'send_email' && 
               <div className="loading"><span></span><span></span><span></span></div>
