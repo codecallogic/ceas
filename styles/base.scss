@@ -1,9 +1,14 @@
 // COLORS
-$color-scheme-1: #e63946;
-$color-scheme-2: #f1faee;
-$color-scheme-3: #a8dadc;
-$color-scheme-4: #457b9d;
-$color-scheme-5: #1d3557;
+// $color-scheme-1: #e63946;
+// $color-scheme-2: #f1faee;
+// $color-scheme-3: #a8dadc;
+// $color-scheme-4: #457b9d;
+// $color-scheme-5: #1d3557;
+$color-scheme-1: #118add;
+$color-scheme-2: #04284d;
+$color-scheme-3: #edbd11;
+$color-scheme-4: #24942c;
+$color-scheme-5: #e23c41;
 
 // SHADES
 $color-dark-grey-1: #272727;
@@ -44,10 +49,35 @@ body {
   overflow-x: hidden;
 }
 
+@font-face {
+  font-family: 'Rubik';
+  src: url('/fonts/Rubik/Rubik-Black.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/Poppins/Poppins-Black.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins-light';
+  src: url('/fonts/Poppins/Poppins-Light.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: Poppins-light;
   font-style: normal;
   color: black;
+  min-height: 100vh;
   font-weight: 300;
   line-height: 1.6;
   overflow-y: auto;

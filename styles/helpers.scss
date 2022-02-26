@@ -1,5 +1,11 @@
 .wrapper {
-  padding: 0 15rem;
+  padding-left: 15rem !important;
+  padding-right: 15rem !important;
+
+  @media only screen and (max-width: $large) {
+    padding-left: 5rem !important;
+    padding-right: 5rem !important;
+  }
 }
 
 h3 {

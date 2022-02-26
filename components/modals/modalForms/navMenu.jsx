@@ -1,6 +1,6 @@
 import SVG from '../../../files/svg'
 import { useEffect, useRef, useState } from 'react'
-import { manageFormFields } from '../../../helpers/forms'
+import { orderList } from '../../../utilities/dropdowns'
 
 const NavMenuForm = ({
     accessToken,
@@ -144,6 +144,40 @@ const NavMenuForm = ({
             htmlFor="link">
               Link
             </label>
+          </div>
+          <div className="form-group">
+            <input
+            value={stateData.order}
+            onClick={() => setInputDropdown('navMenu_order')} 
+            onChange={(e) => (setInputDropdown('navMenu_order'), stateMethod(caseType, 'order', e.target.value))}
+            readOnly
+            />
+            <label 
+            className={`input-label ` + (
+              stateData.order.length > 0 
+              ? ' labelHover' 
+              : ''
+            )}
+            htmlFor="order">
+              Order
+            </label>
+            <div 
+            onClick={() => setInputDropdown('navMenu_order')}><SVG svg={'dropdown'}></SVG>
+            </div>
+            { input_dropdown == 'navMenu_order' &&
+              <div 
+              className="form-group-list" 
+              ref={myRefs}>
+                {orderList && orderList.map( (item, idx) => (
+                <div 
+                key={idx} 
+                className="form-group-list-item" 
+                onClick={(e) => (stateMethod(caseType, 'order', item.number), setInputDropdown(''))}>
+                  {item.number} 
+                </div>
+                ))}
+              </div>
+            }
           </div>
         </div>
         <div className="modal-box-footer">

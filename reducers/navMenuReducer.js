@@ -1,7 +1,8 @@
 const initialState = {
   name: '',
   link: '',
-  items: []
+  items: [],
+  order: ''
 }
 export const navMenuReducer = (state = initialState, action) => {
   switch (action.type) {

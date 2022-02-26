@@ -1,3 +1,17 @@
 .home {
   width: 100%;
 }
+
+.header {
+  width: 100%;
+  height: 65rem;
+  background-size: cover;
+  border: solid 0.2rem red;
+  border-bottom: solid 0.2rem blue;
+
+  &-cover {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+  }
+}
