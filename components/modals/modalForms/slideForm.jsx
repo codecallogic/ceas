@@ -87,6 +87,22 @@ const SlideForm = ({
           </div>
           <div className="form-group">
             <input 
+            id="title" 
+            value={stateData.title} 
+            onChange={(e) => stateMethod(caseType, 'title', e.target.value)}/>
+            <label 
+            className={`input-label ` + (
+              stateData.title.length > 0 || 
+              typeof stateData.title == 'object' 
+              ? ' labelHover' 
+              : ''
+            )}
+            htmlFor="title">
+              Title
+            </label>
+          </div>
+          <div className="form-group">
+            <input 
             id="caption" 
             value={stateData.caption} 
             onChange={(e) => stateMethod(caseType, 'caption', e.target.value)}/>

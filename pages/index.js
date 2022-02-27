@@ -9,18 +9,28 @@ const socket = io.connect(SOCKET, {transports: ['websocket', 'polling', 'flashso
 const Home = ({}) => {
   
   const [navMenus, setNavMenus] = useState([])
+  const [slides, setSlides] = useState([])
   
   useEffect(() => {
     
     socket.on('navigation', (data) => {
       setNavMenus(data)
     })
+
+  }, [])
+
+  useEffect(() => {
+    
+    socket.on('slides', (data) => {
+      setSlides(data)
+    })
+
   }, [])
   
   return (
     <div className="home">
       <DesktopNav navMenus={navMenus}></DesktopNav>
-      <Header></Header>
+      <Header slides={slides}></Header>
     </div>
   )
 }

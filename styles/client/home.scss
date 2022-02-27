@@ -6,12 +6,69 @@
   width: 100%;
   height: 65rem;
   background-size: cover;
-  border: solid 0.2rem red;
-  border-bottom: solid 0.2rem blue;
+  background-position: center;
+  position: relative;
 
   &-cover {
     width: 100%;
     height: 100%;
     background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    @media only screen and (min-width: $extra-large) {
+      height: 69rem;
+    }
+
+    @media only screen and (min-width: $wide) {
+      height: 100%;
+    }
+  }
+
+  &-title {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    padding: 1rem;
+    font-family: Poppins-Bold;
+    font-size: 1.8rem;
+    background-color: $color-scheme-3;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  &-subtitle {
+    position: absolute;
+    top: 59%;
+    left: 10%;
+    padding: 0.5rem 1rem;
+    background-color: white;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+  }
+
+  &-dots {
+    position: absolute;
+    top: 88%;
+    left: 50%;
+    display: flex;
+    align-items: center;
+
+    &-button {
+      border-radius: 50%;
+      border: solid 0.2rem white;
+      width: 2rem;
+      height: 2rem;
+      margin-left: 0.5rem;
+
+      &:hover {
+        cursor: pointer;
+        background-color: $color-scheme-1;
+      }
+
+      &-selected {
+        background-color: $color-scheme-1;
+      }
+    }
   }
 }

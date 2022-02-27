@@ -59,6 +59,7 @@
         visibility: hidden;
         background-color: $color-scheme-1;
         transition: all 0.5s;
+        z-index: 100;
 
         &-item {
           display: flex;

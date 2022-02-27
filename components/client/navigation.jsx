@@ -61,7 +61,6 @@ const Navigation = ({ navMenus }) => {
                 className={`nav-mobile-list-items ` + ( currentPage == `${DOMAIN}/${item.link.split("//")[1].split('/').slice(1).join('/')}` ? 'underline-mobile' : '')}
               >
                 <a href="#" className="nav-mobile-list-items-link">{item.name}</a>  
-                {/* {item.items.length > 0 ? <SVG svg={'dropdown'}></SVG> : ''} */}
                 <div 
                   key={`${item.name}-${idx}`}  
                   className="nav-mobile-list-items-dropdown"
@@ -79,12 +78,6 @@ const Navigation = ({ navMenus }) => {
                 </div>
               </li>
             )}
-            {/* <li className="nav-mobile-list-items-item"><a className="nav-mobile-list-items-link" href="/">Home</a></li>
-            <li className="nav-mobile-list-items-item"><a className="nav-mobile-list-items-link" href="/pricing">Pricing</a></li>
-            <li className="nav-mobile-list-items-item"><a className="nav-mobile-list-items-link" href="/about-us">About</a></li>
-            <li className="nav-mobile-list-items-item"><a className="nav-mobile-list-items-link" href="/faq">FAQ</a></li>
-            <li className="nav-mobile-list-items-item"><a  className="nav-mobile-list-items-link" href="#" onClick={() => null}>Account</a></li> */}
-            {/* {loggedIn && loggedIn.username && <li className="nav-mobile-list-items-item"><a  className="nav-mobile-list-items-link" href="#" onClick={() => signOut()}>Logout</a></li>} */}
           </ul>
         </div>
       </div>

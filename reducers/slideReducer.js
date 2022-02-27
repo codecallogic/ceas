@@ -1,6 +1,7 @@
 const initialState = {
   previousImage: '',
   image: '',
+  title: '',
   caption: '',
   component: ''
 }

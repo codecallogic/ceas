@@ -30,14 +30,21 @@ body {
   font-display: swap; }
 
 @font-face {
-  font-family: 'Poppins-light';
+  font-family: 'Poppins-Light';
   src: url("/fonts/Poppins/Poppins-Light.ttf") format("truetype");
   font-style: normal;
   font-weight: 400;
   font-display: swap; }
 
+@font-face {
+  font-family: 'Poppins-Bold';
+  src: url("/fonts/Poppins/Poppins-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap; }
+
 body {
-  font-family: Poppins-light;
+  font-family: Poppins-Light;
   font-style: normal;
   color: black;
   min-height: 100vh;
@@ -582,7 +589,7 @@ button {
     border-top-left-radius: 2rem; }
     .table-header-title {
       font-size: 2.2rem;
-      color: #04284d;
+      color: white;
       font-weight: 700; }
     .table-header-controls {
       display: flex;
@@ -729,12 +736,55 @@ button {
   width: 100%;
   height: 65rem;
   background-size: cover;
-  border: solid 0.2rem red;
-  border-bottom: solid 0.2rem blue; }
+  background-position: center;
+  position: relative; }
   .header-cover {
     width: 100%;
     height: 100%;
-    background-size: cover; }
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; }
+    @media only screen and (min-width: 1250px) {
+      .header-cover {
+        height: 69rem; } }
+    @media only screen and (min-width: 1500px) {
+      .header-cover {
+        height: 100%; } }
+  .header-title {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    padding: 1rem;
+    font-family: Poppins-Bold;
+    font-size: 1.8rem;
+    background-color: #edbd11;
+    font-weight: 700;
+    text-transform: uppercase; }
+  .header-subtitle {
+    position: absolute;
+    top: 59%;
+    left: 10%;
+    padding: 0.5rem 1rem;
+    background-color: white;
+    font-size: 1.4rem;
+    text-transform: uppercase; }
+  .header-dots {
+    position: absolute;
+    top: 88%;
+    left: 50%;
+    display: flex;
+    align-items: center; }
+    .header-dots-button {
+      border-radius: 50%;
+      border: solid 0.2rem white;
+      width: 2rem;
+      height: 2rem;
+      margin-left: 0.5rem; }
+      .header-dots-button:hover {
+        cursor: pointer;
+        background-color: #118add; }
+      .header-dots-button-selected {
+        background-color: #118add; }
 
 .nav {
   padding: 1.5rem 0;
@@ -782,7 +832,8 @@ button {
         font-size: 0rem;
         visibility: hidden;
         background-color: #118add;
-        transition: all 0.5s; }
+        transition: all 0.5s;
+        z-index: 100; }
         .nav-menu-item-dropdown-item {
           display: flex;
           justify-content: center;

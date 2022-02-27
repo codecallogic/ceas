@@ -18,7 +18,7 @@ const formFields = {
   staff: ['title', 'name', 'email'],
   publications: ['title', 'authors', 'file', 'date'],
   news: ['date', 'title', 'component', 'news'],
-  slides: ['caption', 'component'],
+  slides: ['title', 'caption', 'component'],
   labs: ['name', 'faculty', 'description'],
   equipment: ['lab', 'name', 'description'],
   forms: ['file', 'name'],
