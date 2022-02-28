@@ -13,11 +13,15 @@
     background-position: center;
 
     @media only screen and (min-width: $extra-large) {
-      height: 69rem;
+      height: 70rem;
     }
 
     @media only screen and (min-width: $wide) {
-      height: 65rem;
+      height: 85rem;
+    }
+
+    @media only screen and (min-width: $wide-large) {
+      height: 95rem;
     }
   }
 

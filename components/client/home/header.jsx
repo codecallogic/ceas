@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { PUBLIC_FILES } from '../../../config'
 
 const Header = ({ slides, }) => {
-  console.log(slides)
+
   const [slide, setSlide] = useState('')
   const [title, setTitle] = useState('')
   const [caption, setCaption] = useState('')
@@ -25,7 +25,7 @@ const Header = ({ slides, }) => {
       <div className="header-subtitle">{caption ? caption : 'No caption'}</div>
       
       <div className="header-dots">
-        {slides.length > 0 && slides.map((item, idx) => 
+        {slides.length > 0 && slides.slice(0, 5).map((item, idx) => 
           item.component[0] && item.component[0].name == 'homepage header carousel' && 
           <div 
             key={idx} 

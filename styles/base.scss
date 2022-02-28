@@ -61,6 +61,14 @@ body {
 }
 
 @font-face {
+  font-family: 'Rubik-Bold';
+  src: url('/fonts/Rubik/Rubik-Bold.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
   font-family: 'Poppins';
   src: url('/fonts/Poppins/Poppins-Black.ttf') format('truetype');
   font-style: normal;
