@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import SVG from '../files/svg'
 import io from 'socket.io-client'
 import { SOCKET } from '../config';
 
@@ -6,6 +7,7 @@ import { SOCKET } from '../config';
 import DesktopNav from '../components/client/navigation'
 import Header from '../components/client/home/header'
 import Carousel from '../components/client/carousel'
+import Search from '../components/client/search'
 
 const socket = io.connect(SOCKET, {transports: ['websocket', 'polling', 'flashsocket']});
 
@@ -15,6 +17,7 @@ const Home = ({}) => {
   const [slides, setSlides] = useState([])
   const [components, setComponents] = useState([])
   const [news, setNews] = useState([])
+  const [openSearch, setOpenSearch] = useState(false)
   
   useEffect(() => {
     
@@ -38,7 +41,7 @@ const Home = ({}) => {
   
   return (
     <div className="home">
-      <DesktopNav navMenus={navMenus}></DesktopNav>
+      <DesktopNav navMenus={navMenus} setOpenSearch={setOpenSearch}></DesktopNav>
       <Header slides={slides}></Header>
       
       <div className="home-section-1" style={{backgroundImage: `url('/media/home/city-welcome.png')`}}>
@@ -88,15 +91,83 @@ const Home = ({}) => {
             </div>
           </div>
         </div>
+      </div>
 
-        <div className="home-section-4">
-          <div className="home-section-4-contents wrapper">
-            <div className="home-section-4-title">Announcements</div>
-            <Carousel news={news} setNews={setNews}></Carousel>
+
+      <div className="home-section-4">
+        <div className="home-section-4-contents wrapper">
+          <div className="home-section-4-title">Announcements</div>
+          <Carousel news={news} setNews={setNews}></Carousel>
+          <div className="home-section-4-button-container">
+            <div className="home-section-4-button">
+              <span>See All Announcements</span>
+              <SVG svg={'chevron-right'}></SVG>
+            </div>
           </div>
         </div>
-        
       </div>
+
+      <div className="home-section-5">
+        <div className="home-section-5-cover" style={{backgroundImage: `url('/media/home/partners.png')`}}></div>
+        <div className="home-section-5-contents wrapper">
+          <div className="home-section-5-title">Partners</div>
+          <div className="home-section-5-items">
+              <div className="home-section-5-items-item">
+                <img src="/media/home/logo-ceas.png" alt="Logo CEAS"/>
+              </div>
+              <div className="home-section-5-items-item">
+                <img src="/media/home/logo-la.png" alt="Logo LA" />
+              </div>
+              <div className="home-section-5-items-item">
+                <img src="/media/home/logo-nsf.png" alt="Logo NSF" />
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="home-section-6">
+        <div className="home-section-6-cover" style={{backgroundImage: `url('/media/home/footer.png')`}}></div>
+        <div className="home-section-6-contents wrapper">
+          <div className="home-section-6-title">Contact</div>
+          <div className="home-section-6-columns">
+            <img src="/media/home/logo-footer.png" className="home-section-6-columns-logo"/>
+            <div className="home-section-6-columns-column">
+              <strong>Location</strong>
+              <span>TET C253</span>
+              <span>California State University Los Angeles</span>
+              <span>Los Angeles, CA 90032</span>
+              <strong>Phone</strong>
+              <span>(323) 343-5399</span>
+              <strong>Email</strong>
+              <span>ceas@calstatela.edu</span>
+              <strong>Social</strong>
+              <div className="home-section-6-columns-column-icons">
+                <img src="/media/home/icon-twitter.png" alt="Twitter"/>
+                <img src="/media/home/icon-facebook.png" alt="Facebook" />
+              </div>
+            </div>
+            <div className="home-section-6-columns-column">
+              <strong>Menu</strong>
+              <a>Home</a>
+              <a>Research</a>
+              <a>Resources</a>
+              <a>About</a>
+              <a>Apply</a>
+              <a>Annoucements</a>
+            </div>
+            <div className="home-section-6-columns-column">
+              <span>&#169; Copyright 2022. All rights reserved.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <img 
+        src="/media/home/icon-arrow-top.png" alt="" className="home-top"
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth"})}
+      />
+      
+     {openSearch && <Search setOpenSearch={setOpenSearch}></Search>}
       
     </div>
   )

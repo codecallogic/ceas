@@ -3,7 +3,7 @@ import { DOMAIN } from '../../config'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
-const Navigation = ({ navMenus }) => {
+const Navigation = ({ navMenus, setOpenSearch}) => {
   
   const router = useRouter()
   const [currentPage, setCurrentPage] = useState('')
@@ -43,7 +43,12 @@ const Navigation = ({ navMenus }) => {
             </div>
           </div>
         )}
-        <img className="nav-menu-search" src="/media/nav/magnifying-glass.png" alt="search" />
+        <img 
+          onClick={() => setOpenSearch(true)}
+          className="nav-menu-search" 
+          src="/media/nav/magnifying-glass.png" 
+          alt="search" 
+        />
       </div>
     </div>
     <div className="nav-mobile wrapper">
