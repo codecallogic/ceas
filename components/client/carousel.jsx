@@ -59,7 +59,7 @@ const Carousel = ({ news, setNews }) => {
               <img 
                 src={`${PUBLIC_FILES}/news/${item.image}`}
                 alt={item.title}
-                onError={() => e.target.src = 'https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png'}
+                onError={(e) => e.target.src = 'https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png'}
               />
             </div>
             <div className="carousel-items-item-title">{item.title.substring(0, 50)}</div>
@@ -73,7 +73,7 @@ const Carousel = ({ news, setNews }) => {
               <img 
                 src={`${PUBLIC_FILES}/news/${item.image}`}
                 alt={item.title}
-                onError={() => e.target.src = 'https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png'}
+                onError={(e) => e.target.src = 'https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png'}
               />
             </div>
             <div className="carousel-items-item-title">{item.title.substring(0, 50)}</div>
