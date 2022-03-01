@@ -39,8 +39,12 @@
           height: 24rem;
         }
 
+        @media only screen and (max-width: $large) {
+          height: 15rem;
+        }
+
         @media only screen and (max-width: $extra-medium) {
-          height: 25rem;
+          height: 15rem;
         }
 
         img {
