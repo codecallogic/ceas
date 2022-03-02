@@ -1,47 +1,41 @@
 import { useState, useEffect } from 'react'
 import SVG from '../files/svg'
-import io from 'socket.io-client'
-import { SOCKET } from '../config';
 
 //// COMPONENTS
 import DesktopNav from '../components/client/navigation'
 import Header from '../components/client/home/header'
 import Carousel from '../components/client/carousel'
-import Search from '../components/client/search'
+import Footer from '../components/client/footer'
 
-const socket = io.connect(SOCKET, {transports: ['websocket', 'polling', 'flashsocket']});
+const Home = ({
+  navMenus,
+  slides, 
+  components, 
+  news,
+  openSearch,
 
-const Home = ({}) => {
-  
-  const [navMenus, setNavMenus] = useState([])
-  const [slides, setSlides] = useState([])
-  const [components, setComponents] = useState([])
-  const [news, setNews] = useState([])
-  const [openSearch, setOpenSearch] = useState(false)
-  
+  //// METHODS
+  setNews,
+  setOpenSearch
+}) => {
+
+  const [activatedComponents, setActivatedComponents] = useState([])
+
   useEffect(() => {
     
-    socket.on('navigation', (data) => {
-      setNavMenus(data)
-    })
+    let active = components.filter((item) => item.active == 'activated')
 
-    socket.on('slides', (data) => {
-      setSlides(data)
-    })
-
-    socket.on('components', (data) => {
-      setComponents(data)
-    })
-
-    socket.on('news', (data) => {
-      setNews(data)
-    })
-
-  }, [])
+    setActivatedComponents(active)
+    
+  }, [components])
   
   return (
     <div className="home">
-      <DesktopNav navMenus={navMenus} setOpenSearch={setOpenSearch}></DesktopNav>
+      <DesktopNav 
+        navMenus={navMenus} 
+        openSearch={openSearch}
+        setOpenSearch={setOpenSearch}
+      ></DesktopNav>
       <Header slides={slides}></Header>
       
       <div className="home-section-1" style={{backgroundImage: `url('/media/home/city-welcome.png')`}}>
@@ -58,7 +52,7 @@ const Home = ({}) => {
           <div className="home-section-2-title">Research Thrust Center</div>
           <p><mark>The Center involves 27 faculty members from eight interdisciplinary departments at Cal State LA who lead efforts in 5 research thrust areas. Several projects address short-term mitigations of current energy concerns, while some projects address long-term goals of moving away from carbon-based energy dependence.</mark></p>
           <div className="home-section-2-content-items">
-            { components.length > 0 && components.slice(0, 6).map((item, idx) => 
+            { activatedComponents.length > 0 && activatedComponents.slice(0, 5).map((item, idx) => 
               item.active == 'activated' 
               ?
               <div key={idx} className="home-section-2-content-items-item">
@@ -125,49 +119,7 @@ const Home = ({}) => {
         </div>
       </div>
 
-      <div className="home-section-6">
-        <div className="home-section-6-cover" style={{backgroundImage: `url('/media/home/footer.png')`}}></div>
-        <div className="home-section-6-contents wrapper">
-          <div className="home-section-6-title">Contact</div>
-          <div className="home-section-6-columns">
-            <img src="/media/home/logo-footer.png" className="home-section-6-columns-logo"/>
-            <div className="home-section-6-columns-column">
-              <strong>Location</strong>
-              <span>TET C253</span>
-              <span>California State University Los Angeles</span>
-              <span>Los Angeles, CA 90032</span>
-              <strong>Phone</strong>
-              <span>(323) 343-5399</span>
-              <strong>Email</strong>
-              <span>ceas@calstatela.edu</span>
-              <strong>Social</strong>
-              <div className="home-section-6-columns-column-icons">
-                <img src="/media/home/icon-twitter.png" alt="Twitter"/>
-                <img src="/media/home/icon-facebook.png" alt="Facebook" />
-              </div>
-            </div>
-            <div className="home-section-6-columns-column">
-              <strong>Menu</strong>
-              <a>Home</a>
-              <a>Research</a>
-              <a>Resources</a>
-              <a>About</a>
-              <a>Apply</a>
-              <a>Annoucements</a>
-            </div>
-            <div className="home-section-6-columns-column">
-              <span>&#169; Copyright 2022. All rights reserved.</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <img 
-        src="/media/home/icon-arrow-top.png" alt="" className="home-top"
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth"})}
-      />
-      
-     {openSearch && <Search setOpenSearch={setOpenSearch}></Search>}
+      <Footer></Footer>
       
     </div>
   )

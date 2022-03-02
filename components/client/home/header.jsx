@@ -18,7 +18,7 @@ const Header = ({ slides, }) => {
   }, [slides])
   
   return (
-    <div className="header" style={{backgroundImage: slide ? `url('${PUBLIC_FILES}/slides/${slide}')` : `url('https://uploads-eu-west-1.insided.com/elementor-en/attachment/177bb2e1-30e7-47a2-b04d-ec9757ec6801.png')`}}>
+    <div className="header" style={{backgroundImage: `url('${PUBLIC_FILES}/slides/${slide}'), url('https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png')`}}>
       <div className="header-cover" style={{backgroundImage: `url('./media/home/header/home-header.png')`}}></div>
 
       <did className="header-title">{title ? title : 'No title'}</did>

@@ -234,6 +234,12 @@
       margin-bottom: 0.5rem;
       position: relative;
 
+      &-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
       &:hover > div {
         font-size: 1.4rem;
         visibility: visible;
@@ -274,15 +280,25 @@
         }
       }
 
+      &-svg {
+        display: block;
+        width: 3rem;
+        margin-left: 1rem;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
       &-dropdown {
-        position: absolute;
-        top: 100%;
+        // position: absolute;
+        // top: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 100%;
-        font-size: 0rem;
-        visibility: hidden;
+        font-size: 1.4rem;
+        visibility: visible;
         z-index: 100;
         transition: all 0.5s;
 
@@ -293,7 +309,7 @@
           height: 100%;
           width: min-content;
           color: white;
-          background-color: $color-scheme-2;
+          // background-color: $color-scheme-2;
           text-decoration: none;
           transition: background-color 0.5s;
 
