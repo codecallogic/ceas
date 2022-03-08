@@ -614,6 +614,7 @@ button {
         font-weight: 700;
         font-size: 1.4rem;
         margin-right: 1rem;
+        color: white;
         transition: all 0.3s ease-in-out; }
         .table-header-controls-item:hover {
           cursor: pointer;

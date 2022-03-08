@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import Navigation from '../components/client/navigation'
 import Footer from '../components/client/footer'
+import { PUBLIC_FILES } from '../config'
 
 const Research = ({
   navMenus,
@@ -40,7 +41,7 @@ const Research = ({
             { activatedComponents.length > 0 && activatedComponents.slice(0, 5).map((item, idx) => 
               item.active == 'activated' 
               ?
-              <div key={idx} className="research-section-1-content-items-item" onClick={() => setComponent(item.name.toLowerCase())}>
+              <div key={idx} className="research-section-1-content-items-item" onClick={() => (document.getElementById('section-2').scrollIntoView(), setComponent(item.name.toLowerCase()))}>
                 <img 
                   className="image" 
                   src={`/media/home/${item.name.toLowerCase()}.png`} 
@@ -57,7 +58,7 @@ const Research = ({
         </div>
 
         <div className="research-section-2">
-          <div className="research-section-2-content wrapper">
+          <div id="section-2" className="research-section-2-content wrapper">
 
 
             { activatedComponents.length > 0 && activatedComponents.slice(0, 5).map((item, idx) => 
@@ -67,7 +68,7 @@ const Research = ({
                 <div key={idx}className="research-section-2-title">
                   <img 
                     className="image" 
-                    src={`/media/home/${item.name.toLowerCase()} blue.png`} 
+                    src={`${PUBLIC_FILES}/component/${item.icon}`} 
                     alt={item.name}
                     onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
                   />
@@ -81,7 +82,7 @@ const Research = ({
               <div key={activatedComponents[0].name} className="research-section-2-title">
                 <img 
                   className="image" 
-                  src={`/media/home/${activatedComponents[0].name.toLowerCase()} blue.png`} 
+                  src={`${PUBLIC_FILES}/component/${activatedComponents[0].icon}`} 
                   alt={activatedComponents[0].name}
                   onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
                 />
@@ -99,7 +100,7 @@ const Research = ({
                 <div className="research-section-2-image">
                   <img 
                     className="image" 
-                    src={`/media/home/test.png`}
+                    src={`${PUBLIC_FILES}/component/${item.image}`} 
                     alt={item.name}
                     onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
                   />
@@ -112,7 +113,7 @@ const Research = ({
               <div className="research-section-2-image">
                 <img 
                   className="image" 
-                  src={`/media/home/test.png`}
+                  src={`${PUBLIC_FILES}/component/${activatedComponents[0].image}`} 
                   alt={activatedComponents[0].name}
                   onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
                 />

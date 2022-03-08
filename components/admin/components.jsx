@@ -90,6 +90,9 @@ const Components = ({
         setAllData={setAllData}
         deletePath="component/delete-component"
         view={'all_components'}
+        fileType="image"
+        fileType2="icon"
+        fileLocation="component"
       >
       </AdminTable>
       }

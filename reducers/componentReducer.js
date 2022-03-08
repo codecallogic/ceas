@@ -1,4 +1,8 @@
 const initialState = {
+  previousImage: '',
+  image: '',
+  previousIcon: '',
+  icon: '',
   name: '',
   leader: '',
   active: '',

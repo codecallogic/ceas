@@ -1,6 +1,7 @@
 import SVG from '../../../files/svg'
 import { useEffect, useRef, useState } from 'react'
 import { manageFormFields } from '../../../helpers/forms'
+import {PUBLIC_FILES} from '../../../config'
 
 const ComponentForm = ({
     accessToken,
@@ -62,6 +63,46 @@ const ComponentForm = ({
           <div className="modal-box-header-title">{title}</div>
         </div>
         <div className="modal-box-content">
+          <div className="form-group-file">
+            { edit == 'update_component' && (typeof stateData.icon !== 'object' && stateData.icon !== null) ?
+              <label htmlFor="icon">
+                {stateData.icon ? <img src={`${PUBLIC_FILES}/component/${stateData.icon}`}></img> : <SVG svg={'cloud-upload'}></SVG>} {stateData.icon ? stateData.icon : 'Upload Icon'}
+              </label>
+              :
+              <label htmlFor="icon">
+                {stateData.icon ? <img src={URL.createObjectURL(stateData.icon)}></img> : <SVG svg={'cloud-upload'}></SVG>} {stateData.icon ? stateData.icon.name : 'Upload Icon'}
+              </label>
+            }
+            <input 
+              type="file"
+              id="icon" 
+              onChange={(e) => (
+                setMessage(''), 
+                typeof stateData.icon !== 'object' && stateData.icon !== null ? stateMethod(caseType, 'previousIcon', stateData.image) : null,
+                stateMethod(caseType, 'icon', e.target.files[0])
+              )}
+            />
+          </div>
+          <div className="form-group-file">
+            { edit == 'update_component' && (typeof stateData.image !== 'object' && stateData.image !== null) ?
+              <label htmlFor="image">
+                {stateData.image ? <img src={`${PUBLIC_FILES}/component/${stateData.image}`}></img> : <SVG svg={'cloud-upload'}></SVG>} {stateData.image ? stateData.image : 'Upload Image'}
+              </label>
+              :
+              <label htmlFor="image">
+                {stateData.image ? <img src={URL.createObjectURL(stateData.image)}></img> : <SVG svg={'cloud-upload'}></SVG>} {stateData.image ? stateData.image.name : 'Upload Image'}
+              </label>
+            }
+            <input 
+              type="file"
+              id="image" 
+              onChange={(e) => (
+                setMessage(''), 
+                typeof stateData.image !== 'object' && stateData.image !== null ? stateMethod(caseType, 'previousImage', stateData.image) : null,
+                stateMethod(caseType, 'image', e.target.files[0])
+              )}
+            />
+          </div>
           <div className="form-group">
             <input 
             id="name" 
@@ -185,7 +226,7 @@ const ComponentForm = ({
             {message.length > 0 ? <div className="form-group-message">{message}</div> : null}
             <button 
             className="form-group-button" 
-            onClick={(e) => submitCreate(e, stateData, setMessage, setLoading, 'create_component', 'components', 'component/create-component', accessToken, allData, setAllData, resetMethod, resetType)}>
+            onClick={(e) => submitCreate(e, stateData, setMessage, setLoading, 'create_component', 'components', 'component/create-component', accessToken, allData, setAllData, resetMethod, resetType, 'image')}>
               {!loading && 
               <span>Save</span>
               } 
@@ -200,7 +241,7 @@ const ComponentForm = ({
             {message.length > 0 ? <div className="form-group-message">{message}</div> : null}
             <button 
             className="form-group-button" 
-            onClick={(e) => submitUpdate(e, stateData, setMessage, setLoading, 'update_component', 'components', 'component/update-component', accessToken, allData, setAllData, resetMethod, resetType, setModal)}>
+            onClick={(e) => submitUpdate(e, stateData, setMessage, setLoading, 'update_component', 'components', 'component/update-component', accessToken, allData, setAllData, resetMethod, resetType, setModal, 'image')}>
               {!loading && 
               <span>Update</span>
               } 

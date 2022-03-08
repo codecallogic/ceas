@@ -32,6 +32,7 @@ const Table = ({
   originalData,
   account,
   fileType,
+  fileType2,
   fileLocation,
 
   // PATH
@@ -59,7 +60,8 @@ const Table = ({
     }
   }
 
-  useEffect(() => {    
+  useEffect(() => {  
+    console.log(originalData[typeOfData])  
     document.addEventListener("click", handleClickOutside, true);
 
     return () => {
@@ -148,6 +150,7 @@ const Table = ({
             {Object.keys(item).sort((a, b) => sortOrder.indexOf(b) - sortOrder.indexOf(a)).map((key, idx, array) => 
               key !== '_id' && <div key={idx} className="table-rows-item">
                 {key == fileType && <a href={`${PUBLIC_FILES}/${fileLocation}/${item[key]}`} target="_blank">{item[key]}</a>}
+                {key == fileType2 && <a href={`${PUBLIC_FILES}/${fileLocation}/${item[key]}`} target="_blank">{item[key]}</a>}
                 {key !== fileType && Array.isArray(item[key]) && item[key].length > 0 ? item[key][0].name ? item[key][0].name :  item[key][0] : item[key]}
               </div>
             )}

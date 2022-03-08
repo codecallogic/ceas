@@ -50,7 +50,22 @@ const submitCreate = async (e, stateData, setMessage, setLoading, loadingType, t
   let data      = new FormData()
   let fileID    = nanoid()
   
-  if(stateData && fileType){ for(let key in stateData){ if(key == fileType) stateData[fileType] ? data.append('file', stateData[fileType], `${type}-${fileID}.${stateData[fileType].name.split('.'[1])}`)  : null  }}
+  if(stateData && fileType){ 
+    for(let key in stateData){ if(key == fileType) stateData[fileType] 
+      ? 
+      data.append('file', stateData[fileType], `${type}-${fileID}.${stateData[fileType].name.split('.'[1])}`)  
+      : null  
+    }
+  }
+
+  if(type == 'components'){
+    stateData['icon']
+    ?
+    data.append('icon', stateData['icon'], `${type}-${fileID}-icon.${stateData['icon'].name.split('.'[1])}`)
+    :
+    null  
+  }
+
   if(stateData){ for(let key in stateData){ if(key !== fileType) data.append(key, JSON.stringify(stateData[key])) } }
 
   try {
@@ -92,6 +107,15 @@ const submitUpdate = async (e, stateData, setMessage, setLoading, loadingType, t
     if(stateData){  if(key !== fileType) data.append(key, JSON.stringify(stateData[key])) }
 
     if(key == fileType && typeof stateData[fileType] === 'object' && stateData[fileType] !== null) data.append('file', stateData[fileType], `${type}-${fileID}.${stateData[fileType].name.split('.'[1])}`) 
+
+
+    if(type == 'components' && typeof stateData['icon'] === 'object' && stateData['icon'] !== null){
+      stateData['icon']
+      ?
+      data.append('icon', stateData['icon'], `${type}-${fileID}-icon.${stateData['icon'].name.split('.'[1])}`)
+      :
+      null  
+    }
 
     if(key == fileType && typeof stateData[fileType] !== 'object' && stateData[fileType] !== null) data.append(key, JSON.stringify(stateData[key]))
   }
