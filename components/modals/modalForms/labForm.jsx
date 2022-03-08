@@ -78,6 +78,26 @@ const SlideForm = ({
         </div>
         <div className="modal-box-content">
           <div className="form-group-file">
+            { edit == 'update_lab' && (typeof stateData.icon !== 'object' && stateData.icon !== null) ?
+              <label htmlFor="icon">
+                {stateData.icon ? <img src={`${PUBLIC_FILES}/labs/${stateData.icon}`}></img> : <SVG svg={'cloud-upload'}></SVG>} {stateData.icon ? stateData.icon : 'Upload Icon'}
+              </label>
+              :
+              <label htmlFor="icon">
+                {stateData.icon ? <img src={URL.createObjectURL(stateData.icon)}></img> : <SVG svg={'cloud-upload'}></SVG>} {stateData.icon ? stateData.icon.name : 'Upload Icon'}
+              </label>
+            }
+            <input 
+              type="file"
+              id="icon" 
+              onChange={(e) => (
+                setMessage(''), 
+                typeof stateData.icon !== 'object' && stateData.icon !== null ? stateMethod(caseType, 'previousIcon', stateData.icon) : null,
+                stateMethod(caseType, 'icon', e.target.files[0])
+              )}
+            />
+          </div>
+          <div className="form-group-file">
             { edit == 'update_lab' && (typeof stateData.image !== 'object' && stateData.image !== null) ?
               <label htmlFor="image">
                 {stateData.image ? <img src={`${PUBLIC_FILES}/labs/${stateData.image}`}></img> : <SVG svg={'cloud-upload'}></SVG>} {stateData.image ? stateData.image : 'Upload Image'}

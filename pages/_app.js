@@ -18,6 +18,9 @@ function MyApp({ Component, pageProps }) {
   const [slides, setSlides] = useState([])
   const [components, setComponents] = useState([])
   const [news, setNews] = useState([])
+  const [faculty, setFaculty] = useState([])
+  const [students, setStudents] = useState([])
+  const [labs, setLabs] = useState([])
   const [openSearch, setOpenSearch] = useState(false)
 
   useEffect(() => {
@@ -38,6 +41,18 @@ function MyApp({ Component, pageProps }) {
       setNews(data)
     })
 
+    socket.on('faculty', (data) => {
+      setFaculty(data)
+    })
+
+    socket.on('students', (data) => {
+      setStudents(data)
+    })
+
+    socket.on('labs', (data) => {
+      setLabs(data)
+    })
+
   }, [])
   
   return <>
@@ -55,7 +70,10 @@ function MyApp({ Component, pageProps }) {
         navMenus={navMenus} 
         slides={slides} 
         components={components} 
-        news={news} 
+        news={news}
+        faculty={faculty}
+        students={students}
+        labs={labs}
         setNews={setNews}
         openSearch={openSearch}
         setOpenSearch={setOpenSearch}

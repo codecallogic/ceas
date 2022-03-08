@@ -1,6 +1,8 @@
 const initialState = {
   previousImage: '',
   image: '',
+  previousIcon: '',
+  icon: '',
   faculty: '',
   name: '',
   labLocation: '',

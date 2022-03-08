@@ -1499,6 +1499,69 @@ button {
   line-height: 3rem;
   padding: 2rem 0; }
 
+.research-section-3 {
+  padding: 2rem 0;
+  font-family: Poppins-Bold;
+  font-size: 2rem;
+  color: #135098;
+  text-align: center; }
+  .research-section-3-members {
+    padding: 2rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%; }
+    .research-section-3-members-item {
+      display: flex;
+      flex-direction: column;
+      margin-left: 2rem;
+      margin-bottom: 2rem;
+      width: 20%;
+      height: 25rem;
+      padding: 0.5rem;
+      background-color: white;
+      box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.2); }
+      @media only screen and (max-width: 992px) {
+        .research-section-3-members-item {
+          width: 33%; } }
+      @media only screen and (max-width: 768px) {
+        .research-section-3-members-item {
+          width: 50%; } }
+      @media only screen and (max-width: 600px) {
+        .research-section-3-members-item {
+          width: 100%;
+          height: 30rem; } }
+      .research-section-3-members-item img {
+        width: 100%;
+        height: 80%;
+        object-fit: cover; }
+        @media only screen and (max-width: 600px) {
+          .research-section-3-members-item img {
+            object-position: 50% 20%; } }
+      .research-section-3-members-item-name {
+        display: flex;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+        height: 20%; }
+        .research-section-3-members-item-name span {
+          display: block;
+          width: 2rem;
+          height: 100%;
+          background-color: #f0890f; }
+        .research-section-3-members-item-name div {
+          display: flex;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+          text-align: left;
+          padding: 0 1rem;
+          font-size: 1.4rem;
+          color: #04284d;
+          background-color: #edbd11;
+          text-transform: capitalize; }
+
 .header {
   width: 100%;
   height: 100%;
@@ -1865,6 +1928,68 @@ button {
           object-fit: cover; }
           .footer-columns-column-icons img:hover {
             cursor: pointer; }
+
+.resource-section-1 {
+  margin: 3rem 0; }
+  .resource-section-1-title {
+    width: max-content;
+    font-family: Rubik;
+    color: black;
+    font-size: 3.2rem;
+    border-bottom: solid 0.1rem black;
+    text-transform: uppercase; }
+    @media only screen and (max-width: 768px) {
+      .resource-section-1-title {
+        font-size: 2.2rem; } }
+  .resource-section-1 p {
+    margin: 2rem 0;
+    width: 100%;
+    font-size: 1.4rem;
+    line-height: 200%; }
+    @media only screen and (max-width: 768px) {
+      .resource-section-1 p {
+        width: 90%; } }
+
+.resource-section-2-title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 2rem 0; }
+  .resource-section-2-title img {
+    width: 10rem;
+    height: 10rem;
+    object-fit: cover;
+    border-radius: 50%; }
+  .resource-section-2-title span {
+    font-family: Poppins-Bold;
+    font-size: 2.2rem;
+    text-transform: uppercase;
+    color: #135098;
+    margin-left: 2rem; }
+
+.resource-section-2-subtitle {
+  font-size: 1.4rem;
+  padding: 0 15rem;
+  color: #b3b3b3; }
+  .resource-section-2-subtitle span {
+    margin-right: 0.5rem;
+    font-family: Poppins-Bold;
+    font-weight: 700;
+    color: black; }
+
+.resource-section-2-image {
+  width: 100%;
+  height: max-content;
+  margin: 2rem 0; }
+  .resource-section-2-image img {
+    width: 100%;
+    height: 100%;
+    max-height: 50rem;
+    object-fit: cover; }
+
+.resource-section-2 p {
+  line-height: 3rem;
+  padding: 2rem 0; }
 
 .adminLogin-container {
   display: flex;

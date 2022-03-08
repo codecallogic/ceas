@@ -88,6 +88,7 @@ const Labs = ({
         deletePath="lab/delete-lab"
         view={'all_labs'}
         fileType="image"
+        fileType2="icon"
         fileLocation="labs"
       >
       </AdminTable>

@@ -61,7 +61,6 @@ const Table = ({
   }
 
   useEffect(() => {  
-    console.log(originalData[typeOfData])  
     document.addEventListener("click", handleClickOutside, true);
 
     return () => {

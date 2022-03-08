@@ -58,13 +58,11 @@ const submitCreate = async (e, stateData, setMessage, setLoading, loadingType, t
     }
   }
 
-  if(type == 'components'){
-    stateData['icon']
-    ?
-    data.append('icon', stateData['icon'], `${type}-${fileID}-icon.${stateData['icon'].name.split('.'[1])}`)
-    :
-    null  
-  }
+  stateData['icon']
+  ?
+  data.append('icon', stateData['icon'], `${type}-${fileID}-icon.${stateData['icon'].name.split('.'[1])}`)
+  :
+  null  
 
   if(stateData){ for(let key in stateData){ if(key !== fileType) data.append(key, JSON.stringify(stateData[key])) } }
 
@@ -109,7 +107,7 @@ const submitUpdate = async (e, stateData, setMessage, setLoading, loadingType, t
     if(key == fileType && typeof stateData[fileType] === 'object' && stateData[fileType] !== null) data.append('file', stateData[fileType], `${type}-${fileID}.${stateData[fileType].name.split('.'[1])}`) 
 
 
-    if(type == 'components' && typeof stateData['icon'] === 'object' && stateData['icon'] !== null){
+    if(typeof stateData['icon'] === 'object' && stateData['icon'] !== null){
       stateData['icon']
       ?
       data.append('icon', stateData['icon'], `${type}-${fileID}-icon.${stateData['icon'].name.split('.'[1])}`)

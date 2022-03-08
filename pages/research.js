@@ -7,11 +7,13 @@ const Research = ({
   navMenus,
   openSearch,
   components,
+  faculty,
+  students,
 
   //// METHODS
   setOpenSearch
 }) => {
-  
+  console.log(faculty)
   const [activatedComponents, setActivatedComponents] = useState([])
   const [component, setComponent] = useState('')
 
@@ -140,6 +142,48 @@ const Research = ({
             }
           </div>
         </div>
+
+        <div className="research-section-3">
+          <div className="research-section-3-content wrapper">
+            <div className="research-section-3-title">Faculty</div>
+              <div className="research-section-3-members">
+                {faculty.length > 0 && faculty.map((item, idx) => 
+                  <div className="research-section-3-members-item">
+                    <img 
+                      src={`${PUBLIC_FILES}/faculty/${item.image}`} 
+                      alt={item.name} 
+                      onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
+                    />
+                    <div className="research-section-3-members-item-name">
+                      <span></span>
+                      <div>{item.title}{item.name}</div>
+                    </div>
+                  </div>
+                )}
+              </div>
+          </div>
+        </div>
+
+        <div className="research-section-3">
+          <div className="research-section-3-content wrapper">
+            <div className="research-section-3-title">Students</div>
+              <div className="research-section-3-members">
+                {students.length > 0 && students.map((item, idx) => 
+                  <div className="research-section-3-members-item">
+                    <img 
+                      src={`${PUBLIC_FILES}/student/${item.image}`} 
+                      alt={item.name} 
+                      onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
+                    />
+                    <div className="research-section-3-members-item-name">
+                      <span></span>
+                      <div>{item.title}{item.name}</div>
+                    </div>
+                  </div>
+                )}
+              </div>
+          </div>
+        </div>     
       </div>
       <Footer></Footer>
     </>

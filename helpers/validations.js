@@ -53,7 +53,7 @@ const validateDate = (e, caseType, key, reduxMethod) => {
 const validateIsEmail = (type) => {
   const input = document.getElementById(type)
   const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/g
-  return regex.test(input.value)
+  return regex.test(type)
 }
 
 const isNumber = (data) => {
