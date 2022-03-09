@@ -1549,7 +1549,7 @@ button {
           display: block;
           width: 2rem;
           height: 100%;
-          background-color: #f0890f; }
+          background-color: #04284d; }
         .research-section-3-members-item-name div {
           display: flex;
           align-items: center;
@@ -1990,6 +1990,73 @@ button {
 .resource-section-2 p {
   line-height: 3rem;
   padding: 2rem 0; }
+
+.about {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative; }
+  .about-cover {
+    width: 100%;
+    height: 65rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; }
+    @media only screen and (min-width: 1250px) {
+      .about-cover {
+        height: 70rem; } }
+    @media only screen and (min-width: 1500px) {
+      .about-cover {
+        height: 85rem; } }
+    @media only screen and (min-width: 1800px) {
+      .about-cover {
+        height: 95rem; } }
+  .about-section-1-title {
+    width: max-content;
+    font-size: 3.2rem;
+    font-family: Rubik;
+    border-bottom: solid 0.1rem black; }
+  .about-section-2 {
+    margin: 3rem 0;
+    width: 100%;
+    display: flex; }
+    .about-section-2-paragraph {
+      width: 60%;
+      font-size: 1.4rem;
+      padding: 2rem 0;
+      line-height: 3rem; }
+    .about-section-2-paragraph-full {
+      width: 100%;
+      font-size: 1.4rem;
+      padding: 2rem 0;
+      line-height: 3rem; }
+    .about-section-2-image {
+      height: 100%;
+      position: relative; }
+      .about-section-2-image-container {
+        width: 35%;
+        height: 25rem;
+        margin: 1rem 2rem;
+        padding: 1rem;
+        box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.2); }
+        .about-section-2-image-container-full {
+          width: 100%;
+          height: 40rem;
+          margin: 1rem 0rem;
+          padding: 1rem 0; }
+      .about-section-2-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; }
+      .about-section-2-image div {
+        position: absolute;
+        bottom: 0%;
+        height: max-content;
+        padding: 0.5rem 1rem;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.9);
+        color: black; }
 
 .adminLogin-container {
   display: flex;

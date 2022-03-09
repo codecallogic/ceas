@@ -1,0 +1,96 @@
+.about {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  // height: 65rem;
+
+  &-cover {
+    width: 100%;
+    height: 65rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    @media only screen and (min-width: $extra-large) {
+      height: 70rem;
+    }
+
+    @media only screen and (min-width: $wide) {
+      height: 85rem;
+    }
+
+    @media only screen and (min-width: $wide-large) {
+      height: 95rem;
+    }
+  }
+
+  &-section-1 {
+    &-title {
+      width: max-content;
+      font-size: 3.2rem;
+      font-family: Rubik;
+      border-bottom: solid 0.1rem black;
+    }
+  }
+
+  &-section-2 {
+    margin: 3rem 0;
+    width: 100%;
+    display: flex;
+
+    &-paragraph {
+      // float: left;
+      width: 60%;
+      font-size: 1.4rem;
+      padding: 2rem 0;
+      line-height: 3rem;
+    }
+
+    &-paragraph-full {
+      // float: left;
+      width: 100%;
+      font-size: 1.4rem;
+      padding: 2rem 0;
+      line-height: 3rem;
+    }
+
+    &-image {
+      // float: right;
+      height: 100%;
+      position: relative;
+
+      &-container {
+        width: 35%;
+        height: 25rem;
+        margin: 1rem 2rem;
+        padding: 1rem;
+        box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.2);
+
+        &-full {
+          width: 100%;
+          height: 40rem;
+          margin: 1rem 0rem;
+          padding: 1rem 0;
+        }
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      div {
+        position: absolute;
+        bottom: 0%;
+        height: max-content;
+        padding: 0.5rem 1rem;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.9);
+        color: black;
+      }
+    }
+  }
+}
