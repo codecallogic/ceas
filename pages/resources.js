@@ -1,6 +1,7 @@
 import Navigation from '../components/client/navigation'
 import Footer from '../components/client/footer'
 import { PUBLIC_FILES } from '../config'
+import Toolbar from '../components/client/toolbar'
 
 const Resource = ({
   navMenus,
@@ -13,6 +14,7 @@ const Resource = ({
   console.log(labs)
   return (
     <>
+    <Toolbar></Toolbar>
     <Navigation 
       navMenus={navMenus} 
       openSearch={openSearch}

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Navigation from '../components/client/navigation'
 import Footer from '../components/client/footer'
 import { PUBLIC_FILES } from '../config'
+import Toolbar from '../components/client/toolbar'
 
 const Research = ({
   navMenus,
@@ -13,12 +14,12 @@ const Research = ({
   //// METHODS
   setOpenSearch
 }) => {
-  console.log(faculty)
+  
   const [activatedComponents, setActivatedComponents] = useState([])
   const [component, setComponent] = useState('')
 
   useEffect(() => {
-    let active = components.filter((item) => item.active == 'activated')
+    let active = components.filter((item) => item.active.toLowerCase() == 'activated')
 
     setActivatedComponents([...active])
     
@@ -26,6 +27,7 @@ const Research = ({
   
   return (
     <>
+      <Toolbar></Toolbar>
       <Navigation 
         navMenus={navMenus} 
         openSearch={openSearch}
@@ -41,7 +43,7 @@ const Research = ({
             </p>
             <div className="research-section-1-content-items">
             { activatedComponents.length > 0 && activatedComponents.slice(0, 5).map((item, idx) => 
-              item.active == 'activated' 
+              item.active.toLowerCase() == 'activated' 
               ?
               <div key={idx} className="research-section-1-content-items-item" onClick={() => (document.getElementById('section-2').scrollIntoView(), setComponent(item.name.toLowerCase()))}>
                 <img 

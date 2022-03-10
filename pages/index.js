@@ -6,6 +6,7 @@ import DesktopNav from '../components/client/navigation'
 import Header from '../components/client/home/header'
 import Carousel from '../components/client/carousel'
 import Footer from '../components/client/footer'
+import Toolbar from '../components/client/toolbar'
 
 const Home = ({
   navMenus,
@@ -23,13 +24,15 @@ const Home = ({
 
   useEffect(() => {
     
-    let active = components.filter((item) => item.active == 'activated')
+    let active = components.filter((item) => item.active.toLowerCase() == 'activated')
 
     setActivatedComponents(active)
     
   }, [components])
   
   return (
+    <>
+    <Toolbar></Toolbar>
     <div className="home">
       <DesktopNav 
         navMenus={navMenus} 
@@ -53,7 +56,7 @@ const Home = ({
           <p><mark>The Center involves 27 faculty members from eight interdisciplinary departments at Cal State LA who lead efforts in 5 research thrust areas. Several projects address short-term mitigations of current energy concerns, while some projects address long-term goals of moving away from carbon-based energy dependence.</mark></p>
           <div className="home-section-2-content-items">
             { activatedComponents.length > 0 && activatedComponents.slice(0, 5).map((item, idx) => 
-              item.active == 'activated' 
+              item.active.toLowerCase() == 'activated' 
               ?
               <div key={idx} className="home-section-2-content-items-item">
                 <img 
@@ -122,6 +125,7 @@ const Home = ({
       <Footer></Footer>
       
     </div>
+    </>
   )
 }
 

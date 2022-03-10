@@ -1,0 +1,35 @@
+.toolbar {
+  display: flex;
+  width: 100%;
+  background-color: red;
+
+  &-language {
+    width: 75%;
+    height: 5rem;
+    background-color: $color-scheme-6;
+  }
+
+  &-admin {
+    display: flex;
+    align-items: center;
+    padding: 0 2rem;
+    width: 25%;
+    background-color: $color-scheme-2;
+    color: white;
+
+    img {
+      width: 4rem;
+      height: 3.5rem;
+    }
+
+    span {
+      margin-left: 1rem;
+      font-size: 1.4rem;
+      text-transform: uppercase;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

@@ -9,7 +9,7 @@ const Header = ({ slides, }) => {
 
   useEffect(() => {
     if(slides.length > 0){
-      if(slides[0].component[0].name == 'homepage header carousel'){
+      if(slides[0].component[0].name.toLowerCase() == 'homepage header carousel'){
         setSlide(slides[0].image)
         setTitle(slides[0].title)
         setCaption(slides[0].caption)

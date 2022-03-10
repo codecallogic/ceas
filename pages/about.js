@@ -1,7 +1,7 @@
 import Navigation from '../components/client/navigation'
 import Footer from '../components/client/footer'
 import { PUBLIC_FILES } from '../config'
-import { eq } from 'lodash'
+import Toolbar from '../components/client/toolbar'
 
 const About = ({
   navMenus,
@@ -14,6 +14,7 @@ const About = ({
   
   return (
     <>
+    <Toolbar></Toolbar>
     <Navigation
       navMenus={navMenus} 
       openSearch={openSearch}

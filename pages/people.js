@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Navigation from '../components/client/navigation'
 import Footer from '../components/client/footer'
 import { PUBLIC_FILES } from '../config'
+import Toolbar from '../components/client/toolbar'
 
 const People = ({
   navMenus,
@@ -18,6 +19,7 @@ const People = ({
   
   return (
     <>
+    <Toolbar></Toolbar>
     <Navigation
       navMenus={navMenus} 
       openSearch={openSearch}
