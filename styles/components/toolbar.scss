@@ -1,12 +1,108 @@
 .toolbar {
   display: flex;
   width: 100%;
-  background-color: red;
 
   &-language {
+    display: flex;
+    align-items: center;
+    padding: 0 15rem;
     width: 75%;
     height: 5rem;
     background-color: $color-scheme-6;
+
+    &-dropdown {
+      border: solid 0.2rem white;
+      border-radius: 1.2rem;
+      display: flex;
+      align-items: center;
+      padding: 0.2rem 2rem;
+      font-size: 1.4rem;
+      color: white;
+      position: relative;
+
+      svg {
+        width: 3rem;
+        height: 3rem;
+        fill: white;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &-menu {
+        position: absolute;
+        left: 0%;
+        top: 100%;
+        box-shadow: 0.3rem 0.3rem 0.3rem 0.3rem rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 1rem 0;
+        text-align: center;
+        background-color: white;
+        color: black;
+        font-size: 1.4rem;
+        z-index: 1000;
+
+        span {
+          padding: 0.2rem 0;
+          transition: all 0.3s;
+
+          &:hover {
+            cursor: pointer;
+            background-color: $color-scheme-6;
+            color: white;
+          }
+        }
+      }
+    }
+
+    &-menu {
+      width: 3.5rem;
+      height: 3.5rem;
+      margin-right: 3rem;
+      border: solid 0.1rem white;
+      padding: 0.5rem;
+      border-radius: 1rem;
+
+      &-icon {
+        position: relative;
+
+        &,
+        &::before,
+        &::after {
+          width: 100%;
+          height: 0.2rem;
+          background-color: white;
+          display: inline-block;
+          z-index: 4500 !important;
+        }
+
+        &::before,
+        &::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          transition: all 0.2s;
+          z-index: 100 !important;
+        }
+
+        &::before {
+          top: -0.6rem;
+          z-index: 100 !important;
+        }
+
+        &::after {
+          top: 0.6rem;
+          z-index: 100 !important;
+        }
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
 
   &-admin {

@@ -907,12 +907,79 @@ button {
 
 .toolbar {
   display: flex;
-  width: 100%;
-  background-color: red; }
+  width: 100%; }
   .toolbar-language {
+    display: flex;
+    align-items: center;
+    padding: 0 15rem;
     width: 75%;
     height: 5rem;
-    background-color: #108adf; }
+    background-color: #2f8eff; }
+    .toolbar-language-dropdown {
+      border: solid 0.2rem white;
+      border-radius: 1.2rem;
+      display: flex;
+      align-items: center;
+      padding: 0.2rem 2rem;
+      font-size: 1.4rem;
+      color: white;
+      position: relative; }
+      .toolbar-language-dropdown svg {
+        width: 3rem;
+        height: 3rem;
+        fill: white; }
+      .toolbar-language-dropdown:hover {
+        cursor: pointer; }
+      .toolbar-language-dropdown-menu {
+        position: absolute;
+        left: 0%;
+        top: 100%;
+        box-shadow: 0.3rem 0.3rem 0.3rem 0.3rem rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 1rem 0;
+        text-align: center;
+        background-color: white;
+        color: black;
+        font-size: 1.4rem;
+        z-index: 1000; }
+        .toolbar-language-dropdown-menu span {
+          padding: 0.2rem 0;
+          transition: all 0.3s; }
+          .toolbar-language-dropdown-menu span:hover {
+            cursor: pointer;
+            background-color: #2f8eff;
+            color: white; }
+    .toolbar-language-menu {
+      width: 3.5rem;
+      height: 3.5rem;
+      margin-right: 3rem;
+      border: solid 0.1rem white;
+      padding: 0.5rem;
+      border-radius: 1rem; }
+      .toolbar-language-menu-icon {
+        position: relative; }
+        .toolbar-language-menu-icon, .toolbar-language-menu-icon::before, .toolbar-language-menu-icon::after {
+          width: 100%;
+          height: 0.2rem;
+          background-color: white;
+          display: inline-block;
+          z-index: 4500 !important; }
+        .toolbar-language-menu-icon::before, .toolbar-language-menu-icon::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          transition: all 0.2s;
+          z-index: 100 !important; }
+        .toolbar-language-menu-icon::before {
+          top: -0.6rem;
+          z-index: 100 !important; }
+        .toolbar-language-menu-icon::after {
+          top: 0.6rem;
+          z-index: 100 !important; }
+      .toolbar-language-menu:hover {
+        cursor: pointer; }
   .toolbar-admin {
     display: flex;
     align-items: center;
@@ -2224,31 +2291,106 @@ button {
                 font-size: 1.1rem;
                 text-decoration: none; }
 
-.adminLogin-container {
-  display: flex;
-  align-items: center;
-  margin-top: 10rem;
-  padding: 0 3rem; }
-  @media only screen and (max-width: 1050px) {
-    .adminLogin-container {
-      flex-direction: column; } }
-
-.adminLogin-left svg {
-  width: 60rem;
-  height: 60rem; }
-  @media only screen and (max-width: 1050px) {
-    .adminLogin-left svg {
-      height: 30rem; } }
-
-.adminLogin-right {
-  width: 100%;
-  align-self: flex-start;
-  margin: 8rem 0;
-  padding: 0 5rem; }
-  .adminLogin-right-options {
+.adminLogin {
+  background-color: #2f8eff;
+  max-height: max-content;
+  padding: 5rem 0; }
+  .adminLogin-breadcrumb {
     display: flex;
-    justify-content: space-between;
-    align-items: center; }
+    align-items: center;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    color: white; }
+    .adminLogin-breadcrumb:hover {
+      cursor: pointer; }
+  .adminLogin-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Rubik;
+    font-size: 2.4rem;
+    text-transform: uppercase; }
+    .adminLogin-title img {
+      width: 5.5rem;
+      height: 5rem; }
+    .adminLogin-title span {
+      margin-left: 1rem;
+      color: white; }
+  .adminLogin-container {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    width: 100%;
+    padding: 0 3rem;
+    margin: 10rem 0; }
+    @media only screen and (max-width: 1250px) {
+      .adminLogin-container {
+        flex-direction: column; } }
+  .adminLogin-left {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0 5rem; }
+    .adminLogin-left svg {
+      width: 60rem;
+      height: 60rem; }
+      @media only screen and (max-width: 1050px) {
+        .adminLogin-left svg {
+          height: 30rem; } }
+    .adminLogin-left img {
+      margin-top: -8rem;
+      width: 120%;
+      height: 100%;
+      object-fit: cover; }
+      @media only screen and (max-width: 1250px) {
+        .adminLogin-left img {
+          width: 40rem;
+          height: 100% !important; } }
+  .adminLogin-right {
+    width: 75%;
+    align-self: center;
+    padding: 5rem 2rem 2rem 2rem;
+    border: solid 0.1rem #edf2f5;
+    border-radius: 1.2rem;
+    position: relative; }
+    @media only screen and (max-width: 1250px) {
+      .adminLogin-right {
+        width: 100%;
+        margin: 8rem 0; } }
+    .adminLogin-right-svg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 10rem;
+      height: 10rem;
+      background-color: black;
+      border-radius: 50%; }
+      .adminLogin-right-svg svg {
+        width: 50%;
+        height: 50%;
+        fill: white; }
+      .adminLogin-right-svg-container {
+        position: absolute;
+        bottom: 90%;
+        left: 0%;
+        width: 100%;
+        display: flex;
+        justify-content: center; }
+    .adminLogin-right-options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white; }
+  .adminLogin-footer {
+    display: flex;
+    align-items: center;
+    flex-direction: column; }
+    .adminLogin-footer img {
+      width: 30rem;
+      height: 100%; }
+    .adminLogin-footer span {
+      margin: 1rem 0;
+      font-size: 1.4rem; }
 
 .message {
   display: flex;

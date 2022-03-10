@@ -1,16 +1,58 @@
 .adminLogin {
+  background-color: $color-scheme-6;
+  max-height: max-content;
+  padding: 5rem 0;
+
+  &-breadcrumb {
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    color: white;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Rubik;
+    font-size: 2.4rem;
+    text-transform: uppercase;
+
+    img {
+      width: 5.5rem;
+      height: 5rem;
+    }
+
+    span {
+      margin-left: 1rem;
+      color: white;
+    }
+  }
+
   &-container {
     display: flex;
     align-items: center;
-    margin-top: 10rem;
+    flex-direction: row-reverse;
+    width: 100%;
     padding: 0 3rem;
+    margin: 10rem 0;
 
-    @media only screen and (max-width: $large-medium) {
+    @media only screen and (max-width: $extra-large) {
       flex-direction: column;
     }
   }
 
   &-left {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0 5rem;
+
     svg {
       width: 60rem;
       height: 60rem;
@@ -19,18 +61,79 @@
         height: 30rem;
       }
     }
+
+    img {
+      margin-top: -8rem;
+      width: 120%;
+      height: 100%;
+      object-fit: cover;
+
+      @media only screen and (max-width: $extra-large) {
+        width: 40rem;
+        height: 100% !important;
+      }
+    }
   }
 
   &-right {
-    width: 100%;
-    align-self: flex-start;
-    margin: 8rem 0;
-    padding: 0 5rem;
+    width: 75%;
+    align-self: center;
+    padding: 5rem 2rem 2rem 2rem;
+    border: solid 0.1rem $color-light-grey-2;
+    border-radius: 1.2rem;
+    position: relative;
+
+    @media only screen and (max-width: $extra-large) {
+      width: 100%;
+      margin: 8rem 0;
+    }
+
+    &-svg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 10rem;
+      height: 10rem;
+      background-color: black;
+      border-radius: 50%;
+
+      svg {
+        width: 50%;
+        height: 50%;
+        fill: white;
+      }
+
+      &-container {
+        position: absolute;
+        bottom: 90%;
+        left: 0%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+    }
 
     &-options {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      color: white;
+    }
+  }
+
+  &-footer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    img {
+      width: 30rem;
+      height: 100%;
+    }
+
+    span {
+      margin: 1rem 0;
+      font-size: 1.4rem;
     }
   }
 }

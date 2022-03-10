@@ -41,15 +41,28 @@ const AdminLogin = ({}) => {
   }
   
   return (
-    <div className="adminLogin">
+    <div className="adminLogin wrapper">
+      <div className="adminLogin-breadcrumb" onClick={() => window.location = '/'}>
+        <img src="/media/restricted/arrow.png" alt="Go back" />
+        <span>Go back to website</span>
+      </div>
+      <div className="adminLogin-title">
+        <img src="/media/restricted/lock.png" alt="Lock" />
+        <span>Restricted Area</span>
+      </div>
       <div className="adminLogin-container">
         <div className="adminLogin-left">
-          <SVG svg={'remotely'} color={'#e63946'}></SVG>
+          <img src="/media/restricted/restricted-area-image.png" alt="Restricted Area Image" />
+          {/* <SVG svg={'remotely'} color={'#e63946'}></SVG> */}
         </div>
         <div className="adminLogin-right">
-          <h3 className="adminLogin-right-title">Sign In</h3>
-          <p className="adminLogin-right-sub_title mb4">Only authorized personal can login. If you'd like access please visit or contact our tech team for help.</p>
-
+          {/* <h3 className="adminLogin-right-title">Sign In</h3> */}
+          {/* <p className="adminLogin-right-sub_title mb4">Only authorized personal can login. If you'd like access please visit or contact our tech team for help.</p> */}
+          <div className="adminLogin-right-svg-container">
+            <div className="adminLogin-right-svg">
+              <SVG svg={'camera'} classprop={'adminLogin-right-svg'}></SVG>
+            </div>
+          </div>
           <div className="form-group alt-group-top">
             <input 
             id="username" 
@@ -89,17 +102,30 @@ const AdminLogin = ({}) => {
               {displayPassword ? <SVG svg={'eye-closed'}></SVG> : <SVG svg={'eye'}></SVG>}
             </span>
           </div>
+          {message.length > 0 ? <div className="form-group-message" style={{color: 'white'}}>{message}</div> : null}
+          <button 
+            style={{backgroundColor: 'black', margin: '1.5rem 0', textTransform: 'uppercase'}}
+            className="form-group-button" 
+            onClick={() => login()}>{!loading && <span>Log in</span>} {loading && <div className="loading"><span></span><span></span><span></span></div>}
+          </button>
           <div className="adminLogin-right-options mb2">
             <div className="adminLogin-right-options-rememberMe">
               <div className="form-group-checkbox" onClick={() => rememberMe ? setRememberMe(false) : setRememberMe(true)}>
                 <div className={`form-group-checkbox-box` + (rememberMe ? ' checked' : '')}>{rememberMe ? <SVG svg={'checkmark'}></SVG> : null}</div> Remember Me
               </div>
             </div>
-            <a href="#" onClick={ () => setModal('forgot_password')}>Forgot password</a>
+            <a 
+              style={{color: 'white'}}
+              href="#" 
+              onClick={ () => setModal('forgot_password')}>
+                Forgot password
+            </a>
           </div>
-          {message.length > 0 ? <div className="form-group-message">{message}</div> : null}
-          <button className="form-group-button" onClick={() => login()}>{!loading && <span>Log in</span>} {loading && <div className="loading"><span></span><span></span><span></span></div>}</button>
         </div>
+      </div>
+      <div className="adminLogin-footer">
+        <img src="/logo_nav.png" alt="Logo" />
+        <span>&copy; Copyright 2022. All rights reserved</span>
       </div>
 
       { modal == 'forgot_password' &&
