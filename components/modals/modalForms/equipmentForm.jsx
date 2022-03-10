@@ -1,8 +1,8 @@
 import SVG from '../../../files/svg'
 import { useEffect, useRef, useState } from 'react'
 import { manageFormFields } from '../../../helpers/forms'
-import {PUBLIC_FILES} from '../../../config'
-import { isNumber, validateIsPhoneNumber, validateDate } from '../../../helpers/validations'
+import { PUBLIC_FILES } from '../../../config'
+import { orderList } from '../../../utilities/dropdowns'
 import dynamic from 'next/dynamic'
 import 'react-quill/dist/quill.snow.css'
 const ReactQuill = dynamic(() => import('react-quill'), {ssr: false, loading: () => <p>Loading ...</p>})
@@ -127,6 +127,40 @@ const NewsForm = ({
                 className="form-group-list-item" 
                 onClick={(e) => (stateMethod(caseType, 'lab', item), setInputDropdown(''))}>
                   {item.name}
+                </div>
+                ))}
+              </div>
+            }
+          </div>
+          <div className="form-group">
+            <input
+            value={stateData.order}
+            onClick={() => setInputDropdown('equipment_order')} 
+            onChange={(e) => (setInputDropdown('equipment_order'), stateMethod(caseType, 'order', e.target.value))}
+            readOnly
+            />
+            <label 
+            className={`input-label ` + (
+              stateData.order.length > 0 
+              ? ' labelHover' 
+              : ''
+            )}
+            htmlFor="order">
+              Order
+            </label>
+            <div 
+            onClick={() => setInputDropdown('equipment_order')}><SVG svg={'dropdown'}></SVG>
+            </div>
+            { input_dropdown == 'equipment_order' &&
+              <div 
+              className="form-group-list" 
+              ref={myRefs}>
+                {orderList && orderList.map( (item, idx) => (
+                <div 
+                key={idx} 
+                className="form-group-list-item" 
+                onClick={(e) => (stateMethod(caseType, 'order', item.number), setInputDropdown(''))}>
+                  {item.number} 
                 </div>
                 ))}
               </div>

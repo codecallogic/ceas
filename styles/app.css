@@ -77,6 +77,9 @@ body {
       padding-left: 3rem !important;
       padding-right: 3rem !important; } }
 
+.color-scheme-3 {
+  background-color: #edbd11 !important; }
+
 h3 {
   font-size: 2rem;
   font-weight: 500;
@@ -230,7 +233,6 @@ button {
     font-family: inherit;
     border: none;
     margin: 0.5rem 0;
-    text-transform: lowercase;
     background-color: transparent;
     transition: all 0.5s ease-in-out; }
     .form-group input:focus + .input-label {
@@ -1673,7 +1675,7 @@ button {
         z-index: 100; }
         .nav-menu-item-dropdown-item {
           display: flex;
-          padding: 0.5rem 2rem;
+          padding: 0.5rem 1rem;
           height: 100%;
           width: 100%;
           color: black;
@@ -2017,15 +2019,25 @@ button {
     font-size: 3.2rem;
     font-family: Rubik;
     border-bottom: solid 0.1rem black; }
+    @media only screen and (max-width: 768px) {
+      .about-section-1-title {
+        font-size: 1.8rem; } }
   .about-section-2 {
     margin: 3rem 0;
     width: 100%;
     display: flex; }
+    @media only screen and (max-width: 768px) {
+      .about-section-2 {
+        display: flex;
+        flex-direction: column; } }
     .about-section-2-paragraph {
       width: 60%;
       font-size: 1.4rem;
       padding: 2rem 0;
       line-height: 3rem; }
+      @media only screen and (max-width: 768px) {
+        .about-section-2-paragraph {
+          width: 100%; } }
     .about-section-2-paragraph-full {
       width: 100%;
       font-size: 1.4rem;
@@ -2040,6 +2052,11 @@ button {
         margin: 1rem 2rem;
         padding: 1rem;
         box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.2); }
+        @media only screen and (max-width: 768px) {
+          .about-section-2-image-container {
+            width: 100%;
+            margin: 1rem 0;
+            order: -1; } }
         .about-section-2-image-container-full {
           width: 100%;
           height: 40rem;
@@ -2056,7 +2073,131 @@ button {
         padding: 0.5rem 1rem;
         width: 100%;
         background-color: rgba(255, 255, 255, 0.9);
-        color: black; }
+        color: #b3b3b3;
+        font-weight: 300;
+        font-size: 1.4rem; }
+
+.people {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative; }
+  .people-cover {
+    width: 100%;
+    height: 65rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; }
+  .people-section-1 {
+    margin: 1.5rem 0; }
+    .people-section-1-title {
+      width: max-content;
+      font-size: 3.2rem;
+      font-family: Rubik;
+      border-bottom: solid 0.1rem black; }
+      @media only screen and (max-width: 768px) {
+        .people-section-1-title {
+          font-size: 1.8rem; } }
+    .people-section-1 p {
+      margin: 3rem 0;
+      width: 100%;
+      font-size: 1.4rem;
+      line-height: 3rem; }
+  .people-section-2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; }
+    .people-section-2-item {
+      width: 32%;
+      background-color: #edf2f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2rem;
+      transition: all 0.3s; }
+      @media only screen and (max-width: 768px) {
+        .people-section-2-item {
+          width: 100%; } }
+      .people-section-2-item:hover {
+        background-color: #edbd11;
+        cursor: pointer; }
+        .people-section-2-item:hover > span {
+          color: black; }
+      .people-section-2-item img {
+        width: 8rem;
+        height: 8rem; }
+      .people-section-2-item span {
+        font-family: Poppins-Bold;
+        font-size: 1.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-left: 1rem;
+        color: #b3b3b3;
+        letter-spacing: 0.1rem; }
+  .people-section-3 {
+    margin: 4rem 0; }
+    .people-section-3-title {
+      font-family: Poppins-Bold;
+      display: flex;
+      align-items: center;
+      font-size: 2rem;
+      font-weight: 600;
+      text-transform: capitalize; }
+      .people-section-3-title img {
+        width: 8rem;
+        height: 8rem; }
+      .people-section-3-title span {
+        margin-left: 1rem; }
+    .people-section-3-items {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 2rem 0; }
+      .people-section-3-items-item {
+        display: flex;
+        align-items: center;
+        width: 45rem;
+        height: 20rem;
+        background-color: #edf2f5;
+        margin: 0 1rem 1rem 0;
+        padding: 1rem; }
+        .people-section-3-items-item-image {
+          width: 20rem;
+          height: 100%;
+          padding: 1rem;
+          background-color: white;
+          box-shadow: 0.3rem 0.3rem 0.3rem 0.3rem rgba(0, 0, 0, 0.1); }
+          .people-section-3-items-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; }
+        .people-section-3-items-item-description {
+          width: 30rem;
+          height: 100%;
+          padding: 0 1rem;
+          margin: 0 0.5rem;
+          border-left: solid 0.3rem #edbd11; }
+          .people-section-3-items-item-description h3 {
+            font-family: Poppins-Bold;
+            text-transform: uppercase;
+            font-size: 1.4rem;
+            margin: 0.5rem 0; }
+          .people-section-3-items-item-description h4 {
+            font-family: Poppins-Bold;
+            color: black; }
+          .people-section-3-items-item-description span {
+            font-size: 1.1rem;
+            color: #b3b3b3; }
+          .people-section-3-items-item-description div {
+            display: flex;
+            margin: 0.5rem 0; }
+            .people-section-3-items-item-description div span {
+              margin-left: 0.5rem; }
+              .people-section-3-items-item-description div span a {
+                font-size: 1.1rem;
+                text-decoration: none; }
 
 .adminLogin-container {
   display: flex;

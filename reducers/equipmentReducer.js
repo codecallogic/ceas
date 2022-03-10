@@ -3,7 +3,8 @@ const initialState = {
   image: '',
   lab: '',
   name: '',
-  description: ''
+  description: '',
+  order: ''
 }
 
 export const equipmentReducer = (state = initialState, action) => {
