@@ -3,9 +3,17 @@ import {API} from '../../../config'
 import { useRouter } from 'next/router'
 import {useState} from 'react'
 import SVG from '../../../files/svg'
+import Navigation from '../../../components/client/navigation'
+import Footer from '../../../components/client/footer'
 axios.defaults.withCredentials = true
 
-const ActivateAdmin = ({}) => {
+const ActivateAdmin = ({
+  navMenus,
+  openSearch,
+
+  //// METHODS
+  setOpenSearch
+}) => {
   const router = useRouter()
   const [error, setError] = useState('')
 
@@ -23,19 +31,23 @@ const ActivateAdmin = ({}) => {
   }
   
   return (
+    <>
+    <Navigation></Navigation>
     <div className="activate-admin">
       <div className="activate-admin-svg">
-        <SVG svg={'admins'} color={'#e63946'}></SVG>
+        <SVG svg={'admins'} color={'#135098'}></SVG>
       </div>
       <div className="activate-admin-title">
         <span>Activating your acount gives you access to our admin dashboard.</span>
       </div>
       {error && <div className="activate-admin-error">{error}</div>}
       <div className="activate-admin-button" onClick={activateAdmin}>
-        <SVG svg={'arrow-up'} color={'#e63946'}></SVG>
+        <SVG svg={'arrow-up'} color={'#135098'}></SVG>
         <span>Activate</span>
       </div>
     </div>
+    <Footer></Footer>
+    </>
   )
 }
 

@@ -2470,7 +2470,8 @@ button {
 .forgotPassword {
   display: flex;
   justify-content: center;
-  height: 100%; }
+  height: 100%;
+  margin: 0 0 10rem 0; }
   .forgotPassword-container {
     width: 50rem;
     display: flex;

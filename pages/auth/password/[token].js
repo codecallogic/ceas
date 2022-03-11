@@ -3,8 +3,17 @@ import axios from 'axios'
 import { API } from '../../../config'
 import SVG from '../../../files/svg'
 import lottieForgotPassword from '../../../public/media/lottie/forgotpassword.json'
+import Navigation from '../../../components/client/navigation'
+import Footer from '../../../components/client/footer'
 
-const ForgotPassword = ({ token }) => {
+const ForgotPassword = ({ 
+  token,
+  navMenus,
+  openSearch,
+
+  //// METHODS
+  setOpenSearch
+}) => {
 
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -63,6 +72,13 @@ const ForgotPassword = ({ token }) => {
   }
   
   return (
+    <>
+    <Navigation
+      navMenus={navMenus} 
+      openSearch={openSearch}
+      setOpenSearch={setOpenSearch}
+    >
+    </Navigation>
     <div className="forgotPassword">
       <div className="forgotPassword-container">
         <lottie-player 
@@ -129,6 +145,8 @@ const ForgotPassword = ({ token }) => {
       </div>
 
     </div>
+    <Footer></Footer>
+    </>
   )
 }
 

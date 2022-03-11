@@ -1,9 +1,24 @@
 import axios from 'axios'
 import {API} from '../../../config'
+import Navigation from '../../../components/client/navigation'
+import Footer from '../../../components/client/footer'
 
-const UpdateEmail = ({message}) => {
+const UpdateEmail = ({
+  message,
+  navMenus,
+  openSearch,
+
+  //// METHODS
+  setOpenSearch
+}) => {
   
   return (
+    <>
+    <Navigation
+      navMenus={navMenus} 
+      openSearch={openSearch}
+      setOpenSearch={setOpenSearch}
+    ></Navigation>
     <div className="message">
       <div className="message-container">
         <div className="message-title">{!message ? 'Your e-mail is updated!' : 'Your request has expired'}</div>
@@ -15,6 +30,8 @@ const UpdateEmail = ({message}) => {
         }
       </div>
     </div>
+    <Footer></Footer>
+    </>
   )
 }
 
