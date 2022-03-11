@@ -39,7 +39,7 @@ const Navigation = ({
               {item.items.length > 0 && item.items.map( (navItem, index) => 
                 <div 
                   key={`${navItem.name}-${index}`}
-                  onClick={(e) => (e.stopPropagation(), window.location.href = navItem.link)}
+                  onClick={(e) => (e.stopPropagation(), window.location.href = `${DOMAIN}/${navItem.link.split("//")[1].split('/').slice(1).join('/')}`)}
                   className="nav-menu-item-dropdown-item"
                   target="_blank"
                 >
@@ -105,7 +105,7 @@ const Navigation = ({
                     {item.items.length > 0 && item.items.map( (navItem, index) => 
                       <div 
                         key={`${navItem.name}-${index}`}
-                        onClick={(e) => (e.stopPropagation(), window.location.href = navItem.link)}
+                        onClick={(e) => (e.stopPropagation(), window.location.href = `${DOMAIN}/${navItem.link.split("//")[1].split('/').slice(1).join('/')}`)}
                         className="nav-mobile-list-items-dropdown-item"
                         target="_blank"
                       >

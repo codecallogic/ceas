@@ -24,7 +24,7 @@ const Resource = ({
       <div className="resource-section-1 wrapper">
         <div className="resource-section-1-title">Research Facilities</div>
         <p className="resource-section-1-description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          The Center for Energy and Sustainability research faculty and students have access to state-of-the-art facilities, laboratories and research equipment. Recently, the faculty was awarded $1.7 million through NSF ARI2 to renovate several research labs and more than $2 million through NSF MRI grants for the acquisition of new equipment, including a Scanning Electron Microscope, ICP-MS and an high-payload centrifuge. Lab renovations and equipment acquisition will support the institutionalization of the Center.
         </p>
       </div>
       {labs.length > 0 && labs.map((item, idx) => 

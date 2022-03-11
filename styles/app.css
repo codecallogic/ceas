@@ -61,9 +61,9 @@ body {
   background-color: white; }
   body::-webkit-scrollbar {
     width: 0.5rem;
-    background-color: #135098; }
+    background-color: white; }
   body::-webkit-scrollbar-thumb {
-    background-color: #135098; }
+    background-color: #04284d; }
 
 .wrapper {
   padding-left: 15rem !important;
