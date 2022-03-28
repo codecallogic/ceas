@@ -205,6 +205,10 @@
       width: 100%;
       padding: 2rem;
 
+      &:hover {
+        cursor: pointer;
+      }
+
       img {
         width: 10rem;
         height: 10rem;
@@ -226,6 +230,10 @@
       height: max-content;
       margin: 2rem 0;
 
+      &:hover {
+        cursor: pointer;
+      }
+
       img {
         width: 100%;
         height: 100%;
@@ -237,6 +245,10 @@
     p {
       line-height: 3rem;
       padding: 2rem 0;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 

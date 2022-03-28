@@ -96,7 +96,7 @@ const Home = ({
           <div className="home-section-4-title">Announcements</div>
           <Carousel news={news} setNews={setNews}></Carousel>
           <div className="home-section-4-button-container">
-            <div className="home-section-4-button">
+            <div className="home-section-4-button" onClick={() => window.location = '/news'}>
               <span>See All Announcements</span>
               <SVG svg={'chevron-right'}></SVG>
             </div>

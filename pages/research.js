@@ -69,7 +69,11 @@ const Research = ({
               item.name.toLowerCase() == component
               ?
               
-                <div key={idx}className="research-section-2-title">
+                <div 
+                  key={idx}
+                  className="research-section-2-title"
+                  onClick={() => window.open(`/component?title=${item.name}`, '_blank')}
+                >
                   <img 
                     className="image" 
                     src={`${PUBLIC_FILES}/component/${item.icon}`} 
@@ -83,7 +87,10 @@ const Research = ({
             )}
             { component == '' && activatedComponents.length > 0 && activatedComponents[0].name
               ?
-              <div key={activatedComponents[0].name} className="research-section-2-title">
+              <div 
+              key={activatedComponents[0].name} className="research-section-2-title"
+              onClick={() => window.open(`/component?title=${activatedComponents[0].name}`, '_blank')}
+              >
                 <img 
                   className="image" 
                   src={`${PUBLIC_FILES}/component/${activatedComponents[0].icon}`} 
@@ -101,7 +108,10 @@ const Research = ({
               item.name.toLowerCase() == component
               ?
               
-                <div className="research-section-2-image">
+                <div 
+                  className="research-section-2-image"
+                  onClick={() => window.open(`/component?title=${item.name}`, '_blank')}
+                >
                   <img 
                     className="image" 
                     src={`${PUBLIC_FILES}/component/${item.image}`} 
@@ -114,7 +124,10 @@ const Research = ({
             )}
             { component == '' && activatedComponents.length > 0 && activatedComponents[0].name
               ?
-              <div className="research-section-2-image">
+              <div 
+                className="research-section-2-image"
+                onClick={() => window.open(`/component?title=${activatedComponents[0].name}`, '_blank')}
+              >
                 <img 
                   className="image" 
                   src={`${PUBLIC_FILES}/component/${activatedComponents[0].image}`} 
@@ -131,14 +144,22 @@ const Research = ({
               item.name.toLowerCase() == component
               ?
               
-                <p>{item.longDescription}</p>
+                <p 
+                onClick={() => window.open(`/component?title=${activatedComponents[0].name}`, '_blank')}
+                >
+                  {item.longDescription}
+                </p>
               :
               null
             )}
             { component == '' && activatedComponents.length > 0 && activatedComponents[0].name
               ?
               
-              <p>{activatedComponents[0].longDescription}</p>
+              <p
+                onClick={() => window.open(`/component?title=${item.name}`, '_blank')}
+              >
+                {activatedComponents[0].longDescription}
+              </p>
               :
               null
             }
