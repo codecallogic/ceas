@@ -1,0 +1,60 @@
+.publication {
+  &-section-1 {
+    margin: 3rem 0;
+
+    &-title {
+      width: max-content;
+      font-family: Rubik;
+      color: black;
+      font-size: 3.2rem;
+      border-bottom: solid 0.1rem black;
+      text-transform: uppercase;
+
+      @media only screen and (max-width: $medium) {
+        font-size: 2.2rem;
+      }
+    }
+
+    p {
+      margin: 2rem 0;
+      width: 100%;
+      font-size: 1.4rem;
+      line-height: 200%;
+
+      @media only screen and (max-width: $medium) {
+        width: 90%;
+      }
+    }
+  }
+
+  &-section-2 {
+    margin: 3rem 0;
+
+    &-title {
+      width: max-content;
+      font-family: Poppins-Bold;
+      font-size: 2.2rem;
+      text-transform: uppercase;
+      color: $color-scheme-1;
+    }
+
+    &-publications {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      margin: 1rem 0;
+      padding: 0 1rem;
+
+      &-item {
+        font-size: 1.4rem;
+        color: $color-light-grey-3;
+        transition: all 0.5s;
+
+        &:hover {
+          cursor: pointer;
+          color: $color-scheme-1;
+        }
+      }
+    }
+  }
+}

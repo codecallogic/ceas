@@ -11,7 +11,7 @@ const Resource = ({
   //// METHODS
   setOpenSearch
 }) => {
-  console.log(labs)
+  
   return (
     <>
     <Toolbar></Toolbar>

@@ -23,6 +23,7 @@ function MyApp({ Component, pageProps }) {
   const [labs, setLabs] = useState([])
   const [equipment, setEquipment] = useState([])
   const [staff, setStaff] = useState([])
+  const [publications, setPublications] = useState([])
   const [openSearch, setOpenSearch] = useState(false)
 
   useEffect(() => {
@@ -63,6 +64,10 @@ function MyApp({ Component, pageProps }) {
       setStaff(data)
     })
 
+    socket.on('publication', (data) => {
+      setPublications(data)
+    })
+
   }, [])
   
   return <>
@@ -86,6 +91,7 @@ function MyApp({ Component, pageProps }) {
         labs={labs}
         equipment={equipment}
         staff={staff}
+        publications={publications}
         setNews={setNews}
         openSearch={openSearch}
         setOpenSearch={setOpenSearch}

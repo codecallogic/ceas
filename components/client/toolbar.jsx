@@ -24,7 +24,7 @@ const Toolbar = ({}) => {
           }
         </div>
       </div>
-      <div className="toolbar-admin" onClick={() => window.location = 'admin/login'}>
+      <div className="toolbar-admin" onClick={() => window.open('admin/login', '_blank')}>
         <img src="/media/restricted/lock.png" alt="Lock" />
         <span>Restricted Area</span>
       </div>

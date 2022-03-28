@@ -2291,6 +2291,49 @@ button {
                 font-size: 1.1rem;
                 text-decoration: none; }
 
+.publication-section-1 {
+  margin: 3rem 0; }
+  .publication-section-1-title {
+    width: max-content;
+    font-family: Rubik;
+    color: black;
+    font-size: 3.2rem;
+    border-bottom: solid 0.1rem black;
+    text-transform: uppercase; }
+    @media only screen and (max-width: 768px) {
+      .publication-section-1-title {
+        font-size: 2.2rem; } }
+  .publication-section-1 p {
+    margin: 2rem 0;
+    width: 100%;
+    font-size: 1.4rem;
+    line-height: 200%; }
+    @media only screen and (max-width: 768px) {
+      .publication-section-1 p {
+        width: 90%; } }
+
+.publication-section-2 {
+  margin: 3rem 0; }
+  .publication-section-2-title {
+    width: max-content;
+    font-family: Poppins-Bold;
+    font-size: 2.2rem;
+    text-transform: uppercase;
+    color: #135098; }
+  .publication-section-2-publications {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 1rem 0;
+    padding: 0 1rem; }
+    .publication-section-2-publications-item {
+      font-size: 1.4rem;
+      color: #b3b3b3;
+      transition: all 0.5s; }
+      .publication-section-2-publications-item:hover {
+        cursor: pointer;
+        color: #135098; }
+
 .adminLogin {
   background-color: #2f8eff;
   max-height: max-content;
