@@ -1,6 +1,6 @@
 .lab {
   &-section-1 {
-    margin: 2rem 0;
+    margin: 5rem 0;
 
     &-announcement {
       margin: 1rem 0;
@@ -17,6 +17,11 @@
         display: flex;
         padding: 2rem 0;
 
+        @media only screen and (max-width: $large) {
+          flex-direction: column;
+          align-items: center;
+        }
+
         &-researcher {
           display: flex;
           flex-direction: column;
@@ -24,6 +29,10 @@
           width: 30%;
           height: 100%;
           padding: 2rem 0;
+
+          @media only screen and (max-width: $large) {
+            justify-content: center;
+          }
 
           img {
             width: 16rem;
@@ -63,6 +72,10 @@
             width: 80%;
             height: 30rem;
             object-fit: cover;
+
+            @media only screen and (max-width: $large) {
+              width: 100%;
+            }
           }
 
           div {
@@ -83,7 +96,47 @@
   }
 
   &-section-2 {
-    margin: 2rem 0;
+    margin: 3rem 0;
+
+    &-researcher {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 3rem 0;
+
+      @media only screen and (max-width: $large) {
+        flex-direction: column;
+        padding: 1rem 0;
+      }
+
+      img {
+        width: 20rem;
+        height: 20rem;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+
+      &-content {
+        padding: 0 2rem;
+
+        @media only screen and (max-width: $large) {
+          text-align: center;
+          padding: 2rem 0;
+        }
+
+        h1 {
+          font-size: 2.8rem;
+        }
+
+        h2 {
+          font-size: 2rem;
+        }
+
+        h3 {
+          font-size: 1.8rem;
+        }
+      }
+    }
 
     &-announcement {
       margin: 3rem 0;
@@ -112,7 +165,7 @@
       &-paragraph {
         margin: 2rem 0;
         width: 100%;
-        font-size: 1.4rem;
+        font-size: 1.6rem;
         line-height: 200%;
       }
 

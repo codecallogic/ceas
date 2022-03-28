@@ -2549,7 +2549,7 @@ button {
         color: #04284d !important; }
 
 .lab-section-1 {
-  margin: 2rem 0; }
+  margin: 5rem 0; }
   .lab-section-1-announcement {
     margin: 1rem 0; }
     .lab-section-1-announcement-title {
@@ -2561,6 +2561,10 @@ button {
     .lab-section-1-announcement-content {
       display: flex;
       padding: 2rem 0; }
+      @media only screen and (max-width: 992px) {
+        .lab-section-1-announcement-content {
+          flex-direction: column;
+          align-items: center; } }
       .lab-section-1-announcement-content-researcher {
         display: flex;
         flex-direction: column;
@@ -2568,6 +2572,9 @@ button {
         width: 30%;
         height: 100%;
         padding: 2rem 0; }
+        @media only screen and (max-width: 992px) {
+          .lab-section-1-announcement-content-researcher {
+            justify-content: center; } }
         .lab-section-1-announcement-content-researcher img {
           width: 16rem;
           height: 15rem;
@@ -2596,6 +2603,9 @@ button {
           width: 80%;
           height: 30rem;
           object-fit: cover; }
+          @media only screen and (max-width: 992px) {
+            .lab-section-1-announcement-content-lab img {
+              width: 100%; } }
         .lab-section-1-announcement-content-lab div {
           padding: 2rem 0; }
     .lab-section-1-announcement:hover {
@@ -2605,7 +2615,33 @@ button {
         color: #04284d !important; }
 
 .lab-section-2 {
-  margin: 2rem 0; }
+  margin: 3rem 0; }
+  .lab-section-2-researcher {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 0; }
+    @media only screen and (max-width: 992px) {
+      .lab-section-2-researcher {
+        flex-direction: column;
+        padding: 1rem 0; } }
+    .lab-section-2-researcher img {
+      width: 20rem;
+      height: 20rem;
+      object-fit: cover;
+      border-radius: 50%; }
+    .lab-section-2-researcher-content {
+      padding: 0 2rem; }
+      @media only screen and (max-width: 992px) {
+        .lab-section-2-researcher-content {
+          text-align: center;
+          padding: 2rem 0; } }
+      .lab-section-2-researcher-content h1 {
+        font-size: 2.8rem; }
+      .lab-section-2-researcher-content h2 {
+        font-size: 2rem; }
+      .lab-section-2-researcher-content h3 {
+        font-size: 1.8rem; }
   .lab-section-2-announcement {
     margin: 3rem 0; }
     .lab-section-2-announcement-title {
@@ -2626,7 +2662,7 @@ button {
     .lab-section-2-announcement-paragraph {
       margin: 2rem 0;
       width: 100%;
-      font-size: 1.4rem;
+      font-size: 1.6rem;
       line-height: 200%; }
     .lab-section-2-announcement:hover {
       cursor: pointer;
