@@ -44,7 +44,8 @@ const News = ({
                   alt={item.title}
                   onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
                 />
-                <div dangerouslySetInnerHTML={{ __html: `${item.news.substring(0, 500)}...`}}></div>
+                <div dangerouslySetInnerHTML={{ __html: `${item.news.substring(0, 500)}...`}}>
+                </div>
               </div>
             </div>
           )}
