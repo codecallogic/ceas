@@ -13,6 +13,7 @@ import EquipmentForm from './modalForms/equipmentForm'
 import FormForm from './modalForms/formForm'
 import NavItem from './modalForms/navItem'
 import NavMenu from './modalForms/navMenu'
+import PageSections from './modalForms/pageSectionForm'
 
 const Modal = ({
   accessToken,
@@ -408,6 +409,31 @@ const Modal = ({
       setEdit={setEdit}
       >
       </NavMenu>
+    }
+    {modal == 'create_section' &&
+      <PageSections
+      title={edit == 'update_section' ? 'Update Section' : 'Create Section'}
+      accessToken={accessToken}
+      allData={allData}
+      setAllData={setAllData}
+      stateData={stateData}
+      stateMethod={stateMethod}
+      caseType={caseType}
+      resetMethod={resetMethod}
+      resetType={resetType}
+      resetUI={resetUI}
+      modal={modal}
+      setModal={setModal}
+      message={message}
+      setMessage={setMessage}
+      loading={loading}
+      setLoading={setLoading}
+      submitCreate={submitCreate}
+      submitUpdate={submitUpdate}
+      edit={edit}
+      setEdit={setEdit}
+      >
+      </PageSections>
     }
     </>
   )

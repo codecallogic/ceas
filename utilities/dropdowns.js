@@ -48,3 +48,8 @@ export const orderList = [
   {number: '9'},
   {number: '10'}
 ]
+
+export const sectionTypes = [
+  {type: 'title'},
+  {type: 'content'},
+]

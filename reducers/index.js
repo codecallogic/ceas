@@ -12,6 +12,7 @@ import { equipmentReducer } from './equipmentReducer'
 import { formReducer } from './formsReducer'
 import { navItemReducer } from './navItemReducer'
 import { navMenuReducer } from './navMenuReducer'
+import { pageSectionReducer } from './pageSectionReducer'
 
 const rootReducer = combineReducers({
   admin: adminReducer,
@@ -26,7 +27,8 @@ const rootReducer = combineReducers({
   equipment: equipmentReducer,
   form: formReducer,
   navItem: navItemReducer,
-  navMenu: navMenuReducer
+  navMenu: navMenuReducer,
+  pageSection: pageSectionReducer
 })
 
 export default rootReducer

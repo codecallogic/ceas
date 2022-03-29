@@ -25,6 +25,7 @@ import Equipment from '../../components/admin/equipment'
 import Forms from '../../components/admin/forms'
 import NavMenus from '../../components/admin/navMenus'
 import NavItems from '../../components/admin/navItems'
+import Sections from '../../components/admin/pageSections'
 
 // CRUD
 import { submitCreate, submitUpdate, submitDeleteRow } from '../../helpers/forms'
@@ -46,7 +47,8 @@ import {
   equipmentSort, 
   formSort,
   navItemSort,
-  navMenuSort
+  navMenuSort,
+  sectionSort
 } from '../../helpers/sorting'
 
 const AdminDashboard = ({
@@ -72,7 +74,8 @@ const AdminDashboard = ({
   equipment,
   form,
   navItem,
-  navMenu
+  navMenu,
+  pageSection
   
 }) => {
   
@@ -285,6 +288,18 @@ const AdminDashboard = ({
             }
             </>
           }
+          { component == 'sections' &&
+            <>
+            <span className="account-breadcrumbs-item-subtitle" onClick={() => (setComponent('sections'), setView(''))}>
+              <SVG svg={'keyboard-right'}></SVG> Sections
+            </span>
+            {view == 'all_sections' && 
+            <span className="account-breadcrumbs-item-subtitle">
+              <SVG svg={'keyboard-right'}></SVG> View All Sections
+            </span>
+            }
+            </>
+          }
         </div>
       </div>
       { component == '' &&
@@ -365,6 +380,13 @@ const AdminDashboard = ({
           >
             <SVG svg={'publication'}></SVG>
             <span>Publications</span>
+          </div>
+          <div 
+          className="account-dashboard-item" 
+          onClick={() => (setComponent('sections'), setView(''))}
+          >
+            <SVG svg={'page'}></SVG>
+            <span>Sections</span>
           </div>
           <div 
           className="account-dashboard-item" 
@@ -477,7 +499,6 @@ const AdminDashboard = ({
           sortOrder={componentSort}
           submitCreate={submitCreate}
           submitUpdate={submitUpdate}
-          setModalData={setModalData}
           edit={edit}
           setEdit={setEdit}
           editType={'update_component'}
@@ -513,7 +534,6 @@ const AdminDashboard = ({
           sortOrder={facultySort}
           submitCreate={submitCreate}
           submitUpdate={submitUpdate}
-          setModalData={setModalData}
           edit={edit}
           setEdit={setEdit}
           editType={'update_faculty'}
@@ -549,7 +569,6 @@ const AdminDashboard = ({
           sortOrder={studentSort}
           submitCreate={submitCreate}
           submitUpdate={submitUpdate}
-          setModalData={setModalData}
           edit={edit}
           setEdit={setEdit}
           editType={'update_student'}
@@ -585,7 +604,6 @@ const AdminDashboard = ({
           sortOrder={staffSort}
           submitCreate={submitCreate}
           submitUpdate={submitUpdate}
-          setModalData={setModalData}
           edit={edit}
           setEdit={setEdit}
           editType={'update_staff'}
@@ -621,7 +639,6 @@ const AdminDashboard = ({
           sortOrder={publicationSort}
           submitCreate={submitCreate}
           submitUpdate={submitUpdate}
-          setModalData={setModalData}
           edit={edit}
           setEdit={setEdit}
           editType={'update_publication'}
@@ -657,7 +674,6 @@ const AdminDashboard = ({
           sortOrder={newsSort}
           submitCreate={submitCreate}
           submitUpdate={submitUpdate}
-          setModalData={setModalData}
           edit={edit}
           setEdit={setEdit}
           editType={'update_news'}
@@ -693,7 +709,6 @@ const AdminDashboard = ({
           sortOrder={slideSort}
           submitCreate={submitCreate}
           submitUpdate={submitUpdate}
-          setModalData={setModalData}
           edit={edit}
           setEdit={setEdit}
           editType={'update_slide'}
@@ -729,7 +744,6 @@ const AdminDashboard = ({
           sortOrder={labSort}
           submitCreate={submitCreate}
           submitUpdate={submitUpdate}
-          setModalData={setModalData}
           edit={edit}
           setEdit={setEdit}
           editType={'update_lab'}
@@ -765,7 +779,6 @@ const AdminDashboard = ({
           sortOrder={equipmentSort}
           submitCreate={submitCreate}
           submitUpdate={submitUpdate}
-          setModalData={setModalData}
           edit={edit}
           setEdit={setEdit}
           editType={'update_equipment'}
@@ -801,7 +814,6 @@ const AdminDashboard = ({
           sortOrder={formSort}
           submitCreate={submitCreate}
           submitUpdate={submitUpdate}
-          setModalData={setModalData}
           edit={edit}
           setEdit={setEdit}
           editType={'update_form'}
@@ -837,7 +849,6 @@ const AdminDashboard = ({
           sortOrder={navMenuSort}
           submitCreate={submitCreate}
           submitUpdate={submitUpdate}
-          setModalData={setModalData}
           edit={edit}
           setEdit={setEdit}
           editType={'update_nav_menu'}
@@ -873,12 +884,46 @@ const AdminDashboard = ({
           sortOrder={navItemSort}
           submitCreate={submitCreate}
           submitUpdate={submitUpdate}
-          setModalData={setModalData}
           edit={edit}
           setEdit={setEdit}
           editType={'update_nav_item'}
           submitDeleteRow={submitDeleteRow}
         ></NavItems>
+      }
+      { component == 'sections' &&
+        <Sections
+          data={data.sections}
+          allData={allData}
+          setAllData={setAllData}
+          account={account}
+          accessToken={accessToken}
+          resetUI={resetUILocalStorage}
+          modal={modal}
+          setModal={setModal}
+          view={view}
+          setView={setView}
+          message={message}
+          setMessage={setMessage}
+          loading={loading}
+          setLoading={setLoading}
+          selectID={selectID}
+          setSelectID={setSelectID}
+          controls={controls}
+          setControls={setControls}
+          setModalData={setModalData}
+          resetCheckboxes={resetCheckboxes}
+          typeOfData={'sections'}
+          stateData={pageSection}
+          stateMethod={createType}
+          resetMethod={resetType}
+          sortOrder={sectionSort}
+          submitCreate={submitCreate}
+          submitUpdate={submitUpdate}
+          edit={edit}
+          setEdit={setEdit}
+          editType={'update_section'}
+          submitDeleteRow={submitDeleteRow}
+        ></Sections>
       }
     </div>
   )
@@ -898,7 +943,8 @@ const mapStateToProps = state => {
     equipment: state.equipment,
     form: state.form,
     navItem: state.navItem,
-    navMenu: state.navMenu
+    navMenu: state.navMenu,
+    pageSection: state.pageSection
   }
 }
 

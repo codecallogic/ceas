@@ -24,6 +24,7 @@ function MyApp({ Component, pageProps }) {
   const [equipment, setEquipment] = useState([])
   const [staff, setStaff] = useState([])
   const [publications, setPublications] = useState([])
+  const [sections, setSections] = useState([])
   const [openSearch, setOpenSearch] = useState(false)
 
   useEffect(() => {
@@ -66,6 +67,11 @@ function MyApp({ Component, pageProps }) {
 
     socket.on('publication', (data) => {
       setPublications(data)
+    })
+
+    socket.on('section', (data) => {
+      console.log(data)
+      setSections(data)
     })
 
   }, [])

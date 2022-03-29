@@ -11,7 +11,8 @@ export {
   equipmentSort,
   formSort,
   navItemSort,
-  navMenuSort
+  navMenuSort,
+  sectionSort
 }
 
 const adminUsersSort = ['role', 'email', 'lastName', 'firstName', 'username']
@@ -27,3 +28,4 @@ const equipmentSort = ['description','name', 'lab', 'image']
 const formSort = ['description','name','file']
 const navItemSort = ['link', 'name']
 const navMenuSort = ['items', 'link', 'name']
+const sectionSort = ['type']

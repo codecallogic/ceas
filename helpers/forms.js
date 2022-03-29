@@ -23,7 +23,8 @@ const formFields = {
   equipment: ['lab', 'name', 'description'],
   forms: ['file', 'name'],
   navItems: ['link', 'name'],
-  navMenus: ['name']
+  navMenus: ['name'],
+  section: ['type', 'path', 'order'],
 }
 
 const manageFormFields = (data, key) => {

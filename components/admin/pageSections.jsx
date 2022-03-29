@@ -3,7 +3,7 @@ import {useState, useEffect} from 'react'
 import AdminModals from '../modals/AdminModals'
 import AdminTable from '../table'
 
-const Equipment = ({
+const PageSections = ({
   account,
   accessToken,
   resetUI,
@@ -43,30 +43,30 @@ const Equipment = ({
   
   }) => {
 
-  const [allEquipment, setAllEquipment] = useState(data ? data : [])
+  const [allSections, setAllSections] = useState(data ? data : [])
     
   return (
     <>
       { view == '' && 
       <div className="account-dashboard">
-        <div className="account-dashboard-item" onClick={() => (resetUI(), setView('all_equipment'))}>
+        <div className="account-dashboard-item" onClick={() => (resetUI(), setView('all_sections'))}>
           <SVG svg={'list'}></SVG>
-          <span>View Equipment</span>
+          <span>View Sections</span>
         </div>
-        <div className="account-dashboard-item" onClick={() => (resetUI(), setModal('create_equipment'))}>
-          <SVG svg={'equipment'}></SVG>
-          <span>Create Equipment</span>
+        <div className="account-dashboard-item" onClick={() => (resetUI(), setModal('create_section'))}>
+          <SVG svg={'page'}></SVG>
+          <span>Create Section</span>
         </div>
       </div>
       }
-      { view == 'all_equipment' &&
+      { view == 'all_sections' &&
       <AdminTable
         accessToken={accessToken}
-        title={'Equipment'}
-        typeOfData={'equipment'}
-        modalType={'create_equipment'}
-        modalDataType={{key: 'equipment', caseType: 'CREATE_EQUIPMENT'}}
-        componentData={allEquipment}
+        title={'Page Sections'}
+        typeOfData={'sections'}
+        modalType={'create_section'}
+        modalDataType={{key: 'sections', caseType: 'CREATE_SECTION'}}
+        componentData={allSections}
         originalData={allData}
         account={account}
         loading={loading}
@@ -85,10 +85,10 @@ const Equipment = ({
         message={message}
         setMessage={setMessage}
         setAllData={setAllData}
-        deletePath="equipment/delete-equipment"
-        view={'all_equipment'}
+        deletePath="section/delete-section"
+        view={'all_sections'}
         fileType="image"
-        fileLocation="equipment"
+        fileLocation="section"
       >
       </AdminTable>
       }
@@ -105,9 +105,9 @@ const Equipment = ({
         setLoading={setLoading}
         stateData={stateData}
         stateMethod={stateMethod}
-        caseType={'CREATE_EQUIPMENT'}
+        caseType={'CREATE_SECTION'}
         resetMethod={resetMethod}
-        resetType={'RESET_EQUIPMENT'}
+        resetType={'RESET_SECTION'}
         submitCreate={submitCreate}
         submitUpdate={submitUpdate}
         edit={edit}
@@ -118,4 +118,4 @@ const Equipment = ({
   )
 }
 
-export default Equipment
+export default PageSections

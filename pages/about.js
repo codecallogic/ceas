@@ -1,16 +1,26 @@
+import { useEffect, useState } from 'react'
 import Navigation from '../components/client/navigation'
 import Footer from '../components/client/footer'
 import { PUBLIC_FILES } from '../config'
 import Toolbar from '../components/client/toolbar'
+import { useRouter } from 'next/router'
+
 
 const About = ({
   navMenus,
   openSearch,
   equipment,
 
+
   //// METHODS
   setOpenSearch
 }) => {
+  
+  const router = useRouter()
+  
+  useEffect(() => {
+    console.log(router.pathname)
+  }, [router])
   
   return (
     <>
@@ -31,7 +41,7 @@ const About = ({
         </div>
         { equipment.length > 0 && equipment.map((item, idx) => 
           item.order == '1' ?
-          <div className="about-section-2-image-container">
+          <div key={idx} className="about-section-2-image-container">
             <div className="about-section-2-image">
               <img
                 className="image" 
@@ -69,7 +79,7 @@ const About = ({
         </div>
         { equipment.length > 0 && equipment.map((item, idx) => 
         item.order == '2' ?
-        <div className="about-section-2-image-container">
+        <div key={idx} className="about-section-2-image-container">
           <div className="about-section-2-image">
             <img
               className="image" 
