@@ -70,7 +70,6 @@ function MyApp({ Component, pageProps }) {
     })
 
     socket.on('section', (data) => {
-      console.log(data)
       setSections(data)
     })
 
@@ -98,6 +97,7 @@ function MyApp({ Component, pageProps }) {
         equipment={equipment}
         staff={staff}
         publications={publications}
+        sections={sections}
         setNews={setNews}
         openSearch={openSearch}
         setOpenSearch={setOpenSearch}

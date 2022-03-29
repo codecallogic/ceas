@@ -16,21 +16,6 @@ export const pageSectionReducer = (state = initialState, action) => {
       }
     break;
 
-    case 'CREATE_SECTION_ARRAY_ITEM':
-      return {
-        ...state,
-        [action.name]: [...state[action.name], action.value]
-      }
-
-    case 'DELETE_SECTION_ARRAY_ITEM':
-      let array = [...state[action.name]]
-      let newArray = array.filter((item, idx) => idx !== action.value)
-
-      return {
-        ...state,
-        [action.name]: newArray
-      }
-
     case 'RESET_SECTION':
       return initialState
 

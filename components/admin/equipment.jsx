@@ -53,7 +53,7 @@ const Equipment = ({
           <SVG svg={'list'}></SVG>
           <span>View Equipment</span>
         </div>
-        <div className="account-dashboard-item" onClick={() => (resetUI(), setModal('create_equipment'))}>
+        <div className="account-dashboard-item" onClick={() => (resetUI(), setLoading(''), setModal('create_equipment'))}>
           <SVG svg={'equipment'}></SVG>
           <span>Create Equipment</span>
         </div>

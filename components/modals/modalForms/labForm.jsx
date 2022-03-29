@@ -46,9 +46,11 @@ const SlideForm = ({
     
   }) => {
 
+  const addItem = 'CREATE_LAB_ARRAY_ITEM'
+  const deleteItem = 'DELETE_LAB_ARRAY_ITEM'
   const myRefs = useRef(null)
   const [input_dropdown, setInputDropdown] = useState('')
-
+  console.log(allData)
   const handleClickOutside = (event) => {
     if(myRefs.current){
       if(!myRefs.current.contains(event.target)){
@@ -150,6 +152,58 @@ const SlideForm = ({
               </div>
             }
           </div>
+          <div className="form-group">
+            <input
+            onClick={() => setInputDropdown('lab_equipment')} 
+            readOnly
+            onChange={(e) => (setInputDropdown(''), stateMethod(caseType, 'equipment', e.target.value))}
+            />
+            <label 
+            className={`input-label ` + (
+              stateData.equipment.length > 0 
+              ? ' labelHover' 
+              : ''
+            )}
+            htmlFor="equipment">
+              Equipment
+            </label>
+            <div 
+            onClick={() => setInputDropdown('lab_equipment')}><SVG svg={'dropdown'}></SVG>
+            </div>
+            { input_dropdown == 'lab_equipment' &&
+              <div 
+              className="form-group-list" 
+              ref={myRefs}>
+                {allData.equipment && allData.equipment.map( (item, idx) => (
+                <div 
+                key={idx} 
+                className="form-group-list-item" 
+                onClick={(e) => (stateMethod(addItem, 'equipment', item._id), setInputDropdown(''))}>
+                  {item.name} <div className="form-group-list-item-svg">{
+                  typeof stateData.equipment[idx] == 'object' ? 
+                    stateData.equipment[idx] && stateData.equipment[idx]['_id'] == item._id 
+                    ? 
+                    <SVG svg={'checkmark'}></SVG> 
+                    : ''
+                    : stateData.equipment.includes(item._id) ? <SVG svg={'checkmark'}></SVG> 
+                    : ''
+                  }
+                </div>
+                </div>
+                ))}
+              </div>
+            }
+          </div>
+          {stateData.equipment && stateData.equipment.length > 0 &&
+            <div className="form-group-tags">
+              {stateData.equipment && stateData.equipment.map((item, idx) => 
+                <div key={idx}>
+                  {allData.equipment[allData.equipment.findIndex((index) => { return index._id == (typeof item == 'object' ? item._id : item)})].name}
+                  <span onClick={(e) => stateMethod(deleteItem, 'equipment', idx)}>X</span>
+                </div>
+              )}
+            </div>
+          }
           <div className="form-group">
             <input 
             id="name" 

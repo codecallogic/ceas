@@ -6,7 +6,8 @@ const initialState = {
   faculty: '',
   name: '',
   labLocation: '',
-  description: ''
+  description: '',
+  equipment: []
 }
 
 export const labReducer = (state = initialState, action) => {
@@ -16,6 +17,21 @@ export const labReducer = (state = initialState, action) => {
       return {
         ...state,
         [action.name]: action.value
+      }
+
+    case 'CREATE_LAB_ARRAY_ITEM':
+      return {
+        ...state,
+        [action.name]: [...state[action.name], action.value]
+      }
+
+    case 'DELETE_LAB_ARRAY_ITEM':
+      let array = [...state[action.name]]
+      let newArray = array.filter((item, idx) => idx !== action.value)
+
+      return {
+        ...state,
+        [action.name]: newArray
       }
     
     case 'RESET_LAB':

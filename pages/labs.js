@@ -17,9 +17,6 @@ const Equipment = ({
   
 }) => {
   console.log(labs)
-  useEffect(() => {
-    console.log(title)
-  }, [title])
 
   return (
     <>
@@ -94,6 +91,32 @@ const Equipment = ({
                 />
               </div>
               <div className="lab-section-2-announcement-paragraph" dangerouslySetInnerHTML={{ __html: `${item.description.substring(0, 500)}...`}}></div>
+              { item.equipment.length > 0 && item.equipment.map((item, idx) => 
+                <div className="lab-section-1-announcement-content-equipment">
+                  <div className="lab-section-1-announcement-content-equipment-title">{item.name}</div>
+                  <div className="lab-section-1-announcement-content-equipment-content">
+                    <div key={idx} className="lab-section-1-announcement-content-equipment-content-image-container">
+                      <div className="lab-section-1-announcement-content-equipment-content-image">
+                        <img 
+                          src={`${PUBLIC_FILES}/equipment/${item.image}`} 
+                          alt={`${item.name}`}
+                          onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
+                        />
+                      </div>
+                    </div>
+                    {item.description 
+                      ?  
+                      <div 
+                        className="lab-section-1-announcement-content-equipment-content-paragraph" 
+                        dangerouslySetInnerHTML={{ __html: item.description}} 
+                      />
+                      :
+                      null
+                    }
+                   
+                  </div>
+                </div>
+              )}
             </div>
             :
             null

@@ -3,6 +3,7 @@ import Navigation from '../components/client/navigation'
 import Footer from '../components/client/footer'
 import { PUBLIC_FILES } from '../config'
 import Toolbar from '../components/client/toolbar'
+import { useRouter } from 'next/router'
 
 const People = ({
   navMenus,
@@ -12,9 +13,14 @@ const People = ({
   students,
 
   //// METHODS
-  setOpenSearch
+  setOpenSearch,
+
+  //// DATA
+  sections
 }) => {
-  console.log(students)
+  
+  const router = useRouter()
+  
   const [type, setType] = useState('faculty')
   
   return (
@@ -29,8 +35,41 @@ const People = ({
     <div className="people">
       <div className="people-cover" style={{backgroundImage: `url('/media/people/header.png')`}}></div>
       <div className="people-section-1 wrapper">
-        <div className="people-section-1-title">People</div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dignissim convallis aenean et tortor at risus viverra adipiscing. Montes nascetur ridiculus mus mauris vitae ultricies. Quis varius quam quisque id diam vel. Lacus laoreet non curabitur gravida arcu ac tortor. Elit ullamcorper dignissim cras tincidunt. Massa tincidunt dui ut ornare lectus. Dignissim convallis aenean et tortor at risus viverra adipiscing. Ultrices in iaculis nunc sed augue. Blandit aliquam etiam erat velit. Id diam maecenas ultricies mi eget mauris pharetra et ultrices. Facilisis leo vel fringilla est. Diam quis enim lobortis scelerisque fermentum dui faucibus. Mauris commodo quis imperdiet massa. Id diam maecenas ultricies mi eget mauris pharetra et ultrices. Facilisis leo vel fringilla est. Diam quis enim lobortis scelerisque fermentum dui faucibus. Mauris commodo quis imperdiet massa. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dignissim convallis aenean et tortor at risus viverra adipiscing. Montes nascetur ridiculus mus mauris vitae ultricies. </p>
+        {sections.length && sections.sort((a, b) => +a.order > +b.order ? 1 : -1).map((item, idx) =>
+           item.path == router.pathname ? 
+          <div key={idx}>
+          {item.title ? <div className="about-section-2-title">{item.title}</div> : null }
+          <div className="about-section-2-content">
+            { item.description 
+              ?
+              <div 
+              className="about-section-2-content-paragraph" 
+              dangerouslySetInnerHTML={{ __html: item.description ? item.description : '' }} 
+              />
+              : 
+              null
+            }
+            { item.image ? 
+              <div key={idx} className="about-section-2-content-image-container">
+                <div className="about-section-2-content-image">
+                  <img
+                    className="image" 
+                    src={`${PUBLIC_FILES}/section/${item.image}`} 
+                    alt={ item.image ? item.image : ''}
+                    onError={(e) => e.target.src = 'https://icon-library.com/images/not-found-icon/not-found-icon-14.jpg'}
+                  >
+                  </img>
+                  <div dangerouslySetInnerHTML={{__html: item.description ? (`${item.description.substring(0, 70) + (item.description.length > 70 ? '...' : '')}`) : 'Diam quis enim lobortis scelerisque fermentum dui faucibus. Mauris commodo quis imperdiet massa.'}}></div>
+                </div>
+              </div>
+              : 
+              null
+            }
+          </div>
+          </div>
+          : 
+          null
+        )}
       </div>
 
       <div className="people-section-2 wrapper">
