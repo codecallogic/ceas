@@ -2571,7 +2571,8 @@ button {
       .news-section-1-announcement-content img {
         max-width: 30rem;
         width: 30rem;
-        height: 20rem; }
+        height: 20rem;
+        object-fit: cover; }
         @media only screen and (max-width: 992px) {
           .news-section-1-announcement-content img {
             width: 100%;
