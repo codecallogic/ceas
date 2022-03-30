@@ -915,6 +915,10 @@ button {
     width: 75%;
     height: 5rem;
     background-color: #2f8eff; }
+    @media only screen and (max-width: 992px) {
+      .toolbar-language {
+        width: 50%;
+        padding: 0 2rem; } }
     .toolbar-language-dropdown {
       border: solid 0.2rem white;
       border-radius: 1.2rem;
@@ -987,6 +991,9 @@ button {
     width: 25%;
     background-color: #04284d;
     color: white; }
+    @media only screen and (max-width: 992px) {
+      .toolbar-admin {
+        width: 50%; } }
     .toolbar-admin img {
       width: 4rem;
       height: 3.5rem; }

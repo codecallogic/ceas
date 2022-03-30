@@ -10,6 +10,11 @@
     height: 5rem;
     background-color: $color-scheme-6;
 
+    @media only screen and (max-width: $large) {
+      width: 50%;
+      padding: 0 2rem;
+    }
+
     &-dropdown {
       border: solid 0.2rem white;
       border-radius: 1.2rem;
@@ -112,6 +117,10 @@
     width: 25%;
     background-color: $color-scheme-2;
     color: white;
+
+    @media only screen and (max-width: $large) {
+      width: 50%;
+    }
 
     img {
       width: 4rem;
