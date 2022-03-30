@@ -42,7 +42,7 @@ const PageSections = ({
   submitDeleteRow
   
   }) => {
-
+  
   const [allSections, setAllSections] = useState(data ? data : [])
     
   return (

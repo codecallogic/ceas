@@ -46,7 +46,7 @@ const NewsForm = ({
     submitUpdate
     
   }) => {
-
+  console.log(stateData)
   const myRefs = useRef(null)
   const editorRef = useRef(null);
   const [input_dropdown, setInputDropdown] = useState('')
@@ -184,9 +184,9 @@ const NewsForm = ({
           { stateData.type == 'content' &&
             <>
             <div className="form-group-file">
-            { edit == 'update_equipment' && (typeof stateData.image !== 'object' && stateData.image !== null) ?
+            { edit == 'update_section' && (typeof stateData.image !== 'object' && stateData.image !== null) ?
               <label htmlFor="image">
-                {stateData.image ? <img src={`${PUBLIC_FILES}/sections/${stateData.image}`}></img> : <SVG svg={'cloud-upload'}></SVG>} {stateData.image ? stateData.image : 'Upload Image'}
+                {stateData.image ? <img src={`${PUBLIC_FILES}/section/${stateData.image}`}></img> : <SVG svg={'cloud-upload'}></SVG>} {stateData.image ? stateData.image : 'Upload Image'}
               </label>
               :
               <label htmlFor="image">
@@ -238,7 +238,7 @@ const NewsForm = ({
             {message.length > 0 ? <div className="form-group-message">{message}</div> : null}
             <button 
             className="form-group-button" 
-            onClick={(e) => submitCreate(e, stateData, setMessage, setLoading, 'create_section', 'section', 'section/create-section', accessToken, allData, setAllData, resetMethod, resetType, 'image')}>
+            onClick={(e) => submitCreate(e, stateData, setMessage, setLoading, 'create_section', 'sections', 'section/create-section', accessToken, allData, setAllData, resetMethod, resetType, 'image')}>
               {!loading && 
               <span>Save</span>
               } 
@@ -248,16 +248,16 @@ const NewsForm = ({
             </button>
           </>
           }
-          {edit == 'update_equipment' && 
+          {edit == 'update_section' && 
           <>
             {message.length > 0 ? <div className="form-group-message">{message}</div> : null}
             <button 
             className="form-group-button" 
-            onClick={(e) => submitUpdate(e, stateData, setMessage, setLoading, 'update_equipment', 'equipment', 'equipment/update-equipment', accessToken, allData, setAllData, resetMethod, resetType, setModal, 'image')}>
+            onClick={(e) => submitUpdate(e, stateData, setMessage, setLoading, 'update_section', 'sections', 'section/update-section', accessToken, allData, setAllData, resetMethod, resetType, setModal, 'image')}>
               {!loading && 
               <span>Update</span>
               } 
-              {loading == 'update_equipment' && 
+              {loading == 'update_section' && 
               <div className="loading"><span></span><span></span><span></span></div>
               }
             </button>

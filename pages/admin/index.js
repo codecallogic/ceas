@@ -977,6 +977,7 @@ AdminDashboard.getInitialProps = async (context) => {
   data.forms                    = await tableData(accessToken, 'form/all-forms')
   data.navMenus                 = await tableData(accessToken, 'navigation/all-nav-menus')
   data.navItems                 = await tableData(accessToken, 'navigation/all-nav-items')
+  data.sections                 = await tableData(accessToken, 'section/all-sections')
   deepClone= _.cloneDeep(data)
   
   return {

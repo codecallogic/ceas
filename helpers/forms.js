@@ -24,7 +24,7 @@ const formFields = {
   forms: ['file', 'name'],
   navItems: ['link', 'name'],
   navMenus: ['name'],
-  section: ['type', 'path', 'order'],
+  sections: ['type', 'path', 'order'],
 }
 
 const manageFormFields = (data, key) => {
