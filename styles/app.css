@@ -2080,6 +2080,10 @@ button {
     text-transform: uppercase;
     color: #135098;
     margin-left: 2rem; }
+    .resource-section-2-title span:hover {
+      color: #04284d; }
+  .resource-section-2-title:hover {
+    cursor: pointer; }
 
 .resource-section-2-subtitle {
   font-size: 1.4rem;
@@ -2099,11 +2103,128 @@ button {
     width: 100%;
     height: 100%;
     max-height: 50rem;
-    object-fit: cover; }
+    object-fit: cover;
+    border-radius: 1.2rem; }
 
 .resource-section-2 p {
   line-height: 3rem;
   padding: 2rem 0; }
+
+.resource-section-3 {
+  margin: 3rem 0; }
+  .resource-section-3-breadcrumb {
+    display: flex;
+    align-items: center;
+    padding: 1rem 0; }
+    .resource-section-3-breadcrumb:hover {
+      cursor: pointer; }
+    .resource-section-3-breadcrumb svg {
+      width: 2.5rem;
+      height: 2.5rem;
+      fill: #135098; }
+      .resource-section-3-breadcrumb svg:hover {
+        fill: #04284d; }
+    .resource-section-3-breadcrumb span {
+      font-size: 1.6rem;
+      padding: 0 1rem;
+      margin: 1rem 0; }
+  .resource-section-3-announcement {
+    margin: 3rem 0; }
+    .resource-section-3-announcement-title {
+      width: 100%;
+      font-family: Poppins-Bold;
+      font-size: 2.2rem;
+      text-transform: uppercase;
+      color: #135098; }
+    .resource-section-3-announcement-image {
+      width: 100%;
+      height: max-content;
+      margin: 2rem 0; }
+      .resource-section-3-announcement-image img {
+        width: 100%;
+        height: 100%;
+        max-height: 50rem;
+        object-fit: cover;
+        border-radius: 1.2rem; }
+    .resource-section-3-announcement-paragraph {
+      margin: 2rem 0;
+      width: 100%;
+      font-size: 1.6rem;
+      line-height: 200%; }
+    .resource-section-3-announcement-researcher {
+      font-family: Poppins-Bold;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #edbd11;
+      text-decoration: underline;
+      transition: all 0.5s; }
+      .resource-section-3-announcement-researcher:hover {
+        cursor: pointer;
+        color: #04284d; }
+    .resource-section-3-announcement-content {
+      display: flex;
+      padding: 2rem 0; }
+      .resource-section-3-announcement-content-equipment {
+        margin: 3rem 0; }
+        .resource-section-3-announcement-content-equipment-title {
+          width: 100%;
+          font-family: Poppins-Bold;
+          font-size: 1.8rem;
+          text-transform: uppercase;
+          color: #135098; }
+          .resource-section-3-announcement-content-equipment-title:hover {
+            cursor: pointer;
+            color: #04284d; }
+        .resource-section-3-announcement-content-equipment-content {
+          margin: 2rem 0;
+          width: 100%;
+          display: flex; }
+          @media only screen and (max-width: 768px) {
+            .resource-section-3-announcement-content-equipment-content {
+              display: flex;
+              flex-direction: column; } }
+          .resource-section-3-announcement-content-equipment-content-paragraph {
+            width: 70%;
+            font-size: 1.4rem;
+            padding: 1rem 0;
+            line-height: 3rem; }
+            @media only screen and (max-width: 768px) {
+              .resource-section-3-announcement-content-equipment-content-paragraph {
+                width: 100%; } }
+          .resource-section-3-announcement-content-equipment-content-image {
+            width: 100%;
+            height: 100%;
+            position: relative; }
+            .resource-section-3-announcement-content-equipment-content-image-container {
+              width: 30%;
+              height: 25rem;
+              margin: 1rem 2rem;
+              padding: 1rem;
+              box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.2); }
+              @media only screen and (max-width: 768px) {
+                .resource-section-3-announcement-content-equipment-content-image-container {
+                  width: 100%;
+                  margin: 1rem 0;
+                  order: -1; } }
+              .resource-section-3-announcement-content-equipment-content-image-container-full {
+                width: 100%;
+                height: 40rem;
+                margin: 1rem 0rem;
+                padding: 1rem 0; }
+            .resource-section-3-announcement-content-equipment-content-image img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover; }
+            .resource-section-3-announcement-content-equipment-content-image div {
+              position: absolute;
+              bottom: 0%;
+              height: max-content;
+              padding: 0.5rem 1rem;
+              width: 100%;
+              background-color: rgba(255, 255, 255, 0.9);
+              color: #b3b3b3;
+              font-weight: 300;
+              font-size: 1.4rem; }
 
 .about {
   width: 100%;
@@ -2688,115 +2809,140 @@ button {
       cursor: pointer;
       font-size: 1.5rem; }
 
-.lab-section-1 {
+.equipment-section-1 {
   margin: 5rem 0; }
-  .lab-section-1-announcement {
+  .equipment-section-1-announcement {
     margin: 1rem 0; }
-    .lab-section-1-announcement-title {
+    .equipment-section-1-announcement-title {
       width: 100%;
       font-family: Poppins-Bold;
       font-size: 2.2rem;
       text-transform: uppercase;
       color: #135098; }
-    .lab-section-1-announcement-content {
+    .equipment-section-1-announcement-content {
       display: flex;
       padding: 2rem 0; }
       @media only screen and (max-width: 992px) {
-        .lab-section-1-announcement-content {
+        .equipment-section-1-announcement-content {
           flex-direction: column;
           align-items: center; } }
-      .lab-section-1-announcement-content-researcher {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 30%;
-        height: 100%;
-        padding: 2rem 0; }
-        @media only screen and (max-width: 992px) {
-          .lab-section-1-announcement-content-researcher {
-            justify-content: center; } }
-        .lab-section-1-announcement-content-researcher img {
-          width: 16rem;
-          height: 15rem;
-          margin: 0 0 1rem 0;
-          border-radius: 50%;
-          object-fit: cover;
-          box-shadow: 0.2rem 0.5rem 0.5rem 0.5rem rgba(0, 0, 0, 0.1); }
-        .lab-section-1-announcement-content-researcher h1 {
-          font-family: Poppins-light;
-          font-size: 1.8rem;
-          padding: 0.3rem 0; }
-        .lab-section-1-announcement-content-researcher h2 {
-          font-family: Poppins-bold;
-          text-align: center;
-          font-size: 1.8rem; }
-        .lab-section-1-announcement-content-researcher h3 {
-          text-align: center;
-          font-size: 1.4rem;
-          margin: 0.3rem 0; }
-      .lab-section-1-announcement-content-lab {
+      .equipment-section-1-announcement-content-equipment {
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 100%; }
-        .lab-section-1-announcement-content-lab img {
-          width: 80%;
-          height: 30rem;
-          object-fit: cover; }
+        .equipment-section-1-announcement-content-equipment img {
+          width: 100%;
+          max-height: 50rem;
+          object-fit: cover;
+          border-radius: 1.2rem; }
           @media only screen and (max-width: 992px) {
-            .lab-section-1-announcement-content-lab img {
+            .equipment-section-1-announcement-content-equipment img {
               width: 100%; } }
-        .lab-section-1-announcement-content-lab div {
-          padding: 2rem 0; }
-      .lab-section-1-announcement-content-equipment {
+        .equipment-section-1-announcement-content-equipment div {
+          padding: 2rem 0;
+          line-height: 3rem; }
+          .equipment-section-1-announcement-content-equipment div p {
+            font-size: 1.4rem; }
+    .equipment-section-1-announcement:hover {
+      cursor: pointer;
+      transition: all 0.5s; }
+      .equipment-section-1-announcement:hover div {
+        color: #04284d !important; }
+
+.equipment-section-2 {
+  margin: 3rem 0; }
+  .equipment-section-2-breadcrumb {
+    display: flex;
+    align-items: center;
+    padding: 1rem 0; }
+    .equipment-section-2-breadcrumb:hover {
+      cursor: pointer; }
+    .equipment-section-2-breadcrumb svg {
+      width: 2.5rem;
+      height: 2.5rem;
+      fill: #135098; }
+      .equipment-section-2-breadcrumb svg:hover {
+        fill: #04284d; }
+    .equipment-section-2-breadcrumb span {
+      font-size: 1.6rem;
+      padding: 0 1rem;
+      margin: 1rem 0; }
+  .equipment-section-2-announcement {
+    margin: 3rem 0; }
+    .equipment-section-2-announcement-title {
+      width: 100%;
+      font-family: Poppins-Bold;
+      font-size: 2.2rem;
+      text-transform: uppercase;
+      color: #135098; }
+    .equipment-section-2-announcement-image {
+      width: 100%;
+      height: max-content;
+      margin: 2rem 0; }
+      .equipment-section-2-announcement-image img {
+        width: 100%;
+        height: 100%;
+        max-height: 50rem;
+        object-fit: cover;
+        border-radius: 1.2rem; }
+    .equipment-section-2-announcement-paragraph {
+      margin: 2rem 0;
+      width: 100%;
+      font-size: 1.6rem;
+      line-height: 200%; }
+    .equipment-section-2-announcement-content {
+      display: flex;
+      padding: 2rem 0; }
+      .equipment-section-2-announcement-content-equipment {
         margin: 3rem 0; }
-        .lab-section-1-announcement-content-equipment-title {
+        .equipment-section-2-announcement-content-equipment-title {
           width: 100%;
           font-family: Poppins-Bold;
           font-size: 1.8rem;
           text-transform: uppercase;
           color: #135098; }
-        .lab-section-1-announcement-content-equipment-content {
+        .equipment-section-2-announcement-content-equipment-content {
           margin: 2rem 0;
           width: 100%;
           display: flex; }
           @media only screen and (max-width: 768px) {
-            .lab-section-1-announcement-content-equipment-content {
+            .equipment-section-2-announcement-content-equipment-content {
               display: flex;
               flex-direction: column; } }
-          .lab-section-1-announcement-content-equipment-content-paragraph {
+          .equipment-section-2-announcement-content-equipment-content-paragraph {
             width: 70%;
             font-size: 1.4rem;
             padding: 1rem 0;
             line-height: 3rem; }
             @media only screen and (max-width: 768px) {
-              .lab-section-1-announcement-content-equipment-content-paragraph {
+              .equipment-section-2-announcement-content-equipment-content-paragraph {
                 width: 100%; } }
-          .lab-section-1-announcement-content-equipment-content-image {
+          .equipment-section-2-announcement-content-equipment-content-image {
             width: 100%;
             height: 100%;
             position: relative; }
-            .lab-section-1-announcement-content-equipment-content-image-container {
+            .equipment-section-2-announcement-content-equipment-content-image-container {
               width: 30%;
               height: 25rem;
               margin: 1rem 2rem;
               padding: 1rem;
               box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.2); }
               @media only screen and (max-width: 768px) {
-                .lab-section-1-announcement-content-equipment-content-image-container {
+                .equipment-section-2-announcement-content-equipment-content-image-container {
                   width: 100%;
                   margin: 1rem 0;
                   order: -1; } }
-              .lab-section-1-announcement-content-equipment-content-image-container-full {
+              .equipment-section-2-announcement-content-equipment-content-image-container-full {
                 width: 100%;
                 height: 40rem;
                 margin: 1rem 0rem;
                 padding: 1rem 0; }
-            .lab-section-1-announcement-content-equipment-content-image img {
+            .equipment-section-2-announcement-content-equipment-content-image img {
               width: 100%;
               height: 100%;
               object-fit: cover; }
-            .lab-section-1-announcement-content-equipment-content-image div {
+            .equipment-section-2-announcement-content-equipment-content-image div {
               position: absolute;
               bottom: 0%;
               height: max-content;
@@ -2806,67 +2952,6 @@ button {
               color: #b3b3b3;
               font-weight: 300;
               font-size: 1.4rem; }
-    .lab-section-1-announcement:hover {
-      cursor: pointer;
-      transition: all 0.5s; }
-      .lab-section-1-announcement:hover div {
-        color: #04284d !important; }
-
-.lab-section-2 {
-  margin: 3rem 0; }
-  .lab-section-2-researcher {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 3rem 0; }
-    @media only screen and (max-width: 992px) {
-      .lab-section-2-researcher {
-        flex-direction: column;
-        padding: 1rem 0; } }
-    .lab-section-2-researcher img {
-      width: 20rem;
-      height: 20rem;
-      object-fit: cover;
-      border-radius: 50%; }
-    .lab-section-2-researcher-content {
-      padding: 0 2rem; }
-      @media only screen and (max-width: 992px) {
-        .lab-section-2-researcher-content {
-          text-align: center;
-          padding: 2rem 0; } }
-      .lab-section-2-researcher-content h1 {
-        font-size: 2.8rem; }
-      .lab-section-2-researcher-content h2 {
-        font-size: 2rem; }
-      .lab-section-2-researcher-content h3 {
-        font-size: 1.8rem; }
-  .lab-section-2-announcement {
-    margin: 3rem 0; }
-    .lab-section-2-announcement-title {
-      width: 100%;
-      font-family: Poppins-Bold;
-      font-size: 2.2rem;
-      text-transform: uppercase;
-      color: #135098; }
-    .lab-section-2-announcement-image {
-      width: 100%;
-      height: max-content;
-      margin: 2rem 0; }
-      .lab-section-2-announcement-image img {
-        width: 100%;
-        height: 100%;
-        max-height: 50rem;
-        object-fit: cover; }
-    .lab-section-2-announcement-paragraph {
-      margin: 2rem 0;
-      width: 100%;
-      font-size: 1.6rem;
-      line-height: 200%; }
-    .lab-section-2-announcement:hover {
-      cursor: pointer;
-      transition: all 0.5s; }
-      .lab-section-2-announcement:hover div {
-        color: #04284d !important; }
 
 .adminLogin {
   background-color: #2f8eff;
