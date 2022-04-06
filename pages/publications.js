@@ -3,6 +3,7 @@ import Navigation from '../components/client/navigation'
 import Footer from '../components/client/footer'
 import { PUBLIC_FILES } from '../config'
 import Toolbar from '../components/client/toolbar'
+import { validatePublicationTypes } from '../helpers/validations'
 
 const Publications = ({
   navMenus,
@@ -29,24 +30,144 @@ const Publications = ({
         </p>
       </div>
       <div className="publication-section-2 wrapper">
-        <div className="publication-section-2-title">Journal or Juried Conference Papers</div>
+        {validatePublicationTypes(publications, 'book') ? <div className="publication-section-2-title">Books</div> : '' }
         <div className="publication-section-2-publications">
           { publications.length > 0 && publications.map((item, idx) => 
-          <div 
-            className="publication-section-2-publications-item"
-            onClick={(e) => window.open(`${PUBLIC_FILES}/publication/${item.file}`, '_blank')}
-          >
-            {item.authors.length > 0 && item.authors.map( (i) => 
-            <span>{i ? `${i},` : ''} </span>
-            )}
+            item.type.toLowerCase() == 'book' ?
+            <div
+              key={idx} 
+              className="publication-section-2-publications-item"
+              onClick={(e) => window.open(`${PUBLIC_FILES}/publication/${item.file}`, '_blank')}
+            >
+              {item.authors.length > 0 && item.authors.map( (i) => 
+              <span>{i ? `${i},` : ''} </span>
+              )}
 
-            <span>{item.date ? `(${item.date.split('/')[2]}).` : ''} </span>
-            <span>{item.title ? `"${item.title}"` : ''} </span>
-            <span>{item.type ? `${item.type}` : ''} </span>
-            
-          </div>
+              <span>{item.date ? `(${item.date.split('/')[2]}).` : ''} </span>
+              <span>{item.title ? `"${item.title}"` : ''} </span>
+              <span>{item.type ? `${item.type}` : ''} </span>
+              
+            </div>
+            : 
+            null
           )}
         </div>
+
+        {validatePublicationTypes(publications, 'book chapter') ? <div className="publication-section-2-title">Book Chapters</div> : '' }
+        <div className="publication-section-2-publications">
+          { publications.length > 0 && publications.map((item, idx) => 
+            item.type.toLowerCase() == 'book chapter' ?
+            <div
+              key={idx} 
+              className="publication-section-2-publications-item"
+              onClick={(e) => window.open(`${PUBLIC_FILES}/publication/${item.file}`, '_blank')}
+            >
+              {item.authors.length > 0 && item.authors.map( (i) => 
+              <span>{i ? `${i},` : ''} </span>
+              )}
+
+              <span>{item.date ? `(${item.date.split('/')[2]}).` : ''} </span>
+              <span>{item.title ? `"${item.title}"` : ''} </span>
+              <span>{item.type ? `${item.type}` : ''} </span>
+              
+            </div>
+            : 
+            null
+          )}
+        </div>
+
+        {validatePublicationTypes(publications, 'conference paper and presentation') ? <div className="publication-section-2-title">Conference Papers and Presentations</div> : '' }
+        <div className="publication-section-2-publications">
+          { publications.length > 0 && publications.map((item, idx) => 
+            item.type.toLowerCase() == 'conference paper and presentation' ?
+            <div
+              key={idx} 
+              className="publication-section-2-publications-item"
+              onClick={(e) => window.open(`${PUBLIC_FILES}/publication/${item.file}`, '_blank')}
+            >
+              {item.authors.length > 0 && item.authors.map( (i) => 
+              <span>{i ? `${i},` : ''} </span>
+              )}
+
+              <span>{item.date ? `(${item.date.split('/')[2]}).` : ''} </span>
+              <span>{item.title ? `"${item.title}"` : ''} </span>
+              <span>{item.type ? `${item.type}` : ''} </span>
+              
+            </div>
+            : 
+            null
+          )}
+        </div>
+
+        {validatePublicationTypes(publications, 'journal and juried conference paper') ? <div className="publication-section-2-title">Journal and Juried Conference Paper</div> : '' }
+        <div className="publication-section-2-publications">
+          { publications.length > 0 && publications.map((item, idx) => 
+            item.type.toLowerCase() == 'journal and juried conference paper' ?
+            <div
+              key={idx} 
+              className="publication-section-2-publications-item"
+              onClick={(e) => window.open(`${PUBLIC_FILES}/publication/${item.file}`, '_blank')}
+            >
+              {item.authors.length > 0 && item.authors.map( (i) => 
+              <span>{i ? `${i},` : ''} </span>
+              )}
+
+              <span>{item.date ? `(${item.date.split('/')[2]}).` : ''} </span>
+              <span>{item.title ? `"${item.title}"` : ''} </span>
+              <span>{item.type ? `${item.type}` : ''} </span>
+              
+            </div>
+            : 
+            null
+          )}
+        </div>
+
+        {validatePublicationTypes(publications, 'theses and dissertations') ? <div className="publication-section-2-title">Theses and Dissertations</div> : '' }
+        <div className="publication-section-2-publications">
+          { publications.length > 0 && publications.map((item, idx) => 
+            item.type.toLowerCase() == 'theses and dissertations' ?
+            <div
+              key={idx} 
+              className="publication-section-2-publications-item"
+              onClick={(e) => window.open(`${PUBLIC_FILES}/publication/${item.file}`, '_blank')}
+            >
+              {item.authors.length > 0 && item.authors.map( (i) => 
+              <span>{i ? `${i},` : ''} </span>
+              )}
+
+              <span>{item.date ? `(${item.date.split('/')[2]}).` : ''} </span>
+              <span>{item.title ? `"${item.title}"` : ''} </span>
+              <span>{item.type ? `${item.type}` : ''} </span>
+              
+            </div>
+            : 
+            null
+          )}
+        </div>
+
+        {validatePublicationTypes(publications, 'other publications') ? <div className="publication-section-2-title">Other Publications</div> : '' }
+        <div className="publication-section-2-publications">
+          { publications.length > 0 && publications.map((item, idx) => 
+            item.type.toLowerCase() == 'other publications' ?
+            <div
+              key={idx} 
+              className="publication-section-2-publications-item"
+              onClick={(e) => window.open(`${PUBLIC_FILES}/publication/${item.file}`, '_blank')}
+            >
+              {item.authors.length > 0 && item.authors.map( (i) => 
+              <span>{i ? `${i},` : ''} </span>
+              )}
+
+              <span>{item.date ? `(${item.date.split('/')[2]}).` : ''} </span>
+              <span>{item.title ? `"${item.title}"` : ''} </span>
+              <span>{item.type ? `${item.type}` : ''} </span>
+              
+            </div>
+            : 
+            null
+          )}
+        </div>
+        
       </div>
     </div>
     <Footer></Footer>

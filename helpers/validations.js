@@ -3,7 +3,8 @@ export {
   validateIsEmail,
   isNumber,
   validateIsPhoneNumber,
-  validateLink
+  validateLink,
+  validatePublicationTypes
 }
 
 const checkValue = (str, max) => {
@@ -86,4 +87,26 @@ const validateLink = (value) => {
 
   if(matchPattern.test(value)) return true
   return false
+}
+
+const publicationType = [
+  {type: 'book'},
+  {type: 'book chapter'},
+  {type: 'conference paper and presentation'},
+  {type: 'journal and juried conference paper'},
+  {type: 'theses and dissertations'},
+  {type: 'other publications'},
+]
+
+const validatePublicationTypes = (data, checkType) => {
+
+  let array = []
+  
+  data.forEach((item, idx) => {
+    array.push(item.type.toLowerCase())
+  })
+
+  if(array.includes(checkType)) return true
+  return false
+  
 }

@@ -2400,7 +2400,8 @@ button {
     .publication-section-2-publications-item {
       font-size: 1.4rem;
       color: #b3b3b3;
-      transition: all 0.5s; }
+      transition: all 0.5s;
+      margin: 0 0 1rem 0; }
       .publication-section-2-publications-item:hover {
         cursor: pointer;
         color: #135098; }
