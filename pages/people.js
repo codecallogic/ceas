@@ -19,10 +19,12 @@ const People = ({
   //// DATA
   sections
 }) => {
-  
+  // console.log(faculty)
   const router = useRouter()
   
   const [type, setType] = useState('faculty')
+
+  const facultySort = ['director (pi)', 'associate director (co-pi)', 'center faculty (co-pi)', 'center faculty']
 
   useEffect(() => {
     
@@ -110,9 +112,9 @@ const People = ({
           <img src={`/media/people/${type}-blue.png`} alt={type} />
           <span>{type}</span>
         </div>
-
+        {/* console.log(facultySort.indexOf(a.centerAssociation.toLowerCase() - facultySort.indexOf(b.centerAssociation.toLowerCase()))) */}
         <div className="people-section-3-items">
-          {type == 'faculty' && faculty.length > 0 && faculty.map((item, idx) => 
+          {type == 'faculty' && faculty.length > 0 && faculty.sort((a, b) => facultySort.indexOf(a.centerAssociation.toLowerCase()) > facultySort.indexOf(b.centerAssociation.toLowerCase()) ? 1 : -1).map((item, idx) => 
             <div key={idx} id={item.name} className="people-section-3-items-item">
               <div className="people-section-3-items-item-image">
                 <img 
@@ -123,10 +125,10 @@ const People = ({
               </div>
               <div className="people-section-3-items-item-description">
                 <h3>{item.name ? item.name : 'No name'}</h3>
-                {item.profession ? <span>{item.profession}</span>  : 'No profession'}
+                {item.profession ? <span>{item.profession}, {item.centerAssociation}</span>  : 'No profession'}
                 <h4>Department</h4>
                 {item.department ? <span> {item.department} </span> : 'No department'}
-                {item.officeLocation ? <div><h4>Office</h4>: <span>item.officeLocation</span></div>: ''}
+                {item.officeLocation ? <div><h4>Office</h4>: <span>{item.officeLocation}</span></div>: ''}
                 {item.email ? <div><h4>Email</h4>: <span>{item.email}</span></div> : ''}
                 {item.officePhone ? <div><h4>Phone</h4>: <span>{item.officePhone}</span></div> : ''}
                 {item.website ? <div><h4>Website</h4>: <span><a href={item.website}>{item.website}</a></span></div> : ''}

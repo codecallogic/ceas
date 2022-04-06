@@ -7,11 +7,10 @@ export const facultyTitles = [
 ]
 
 export const centerAssociation = [
-  {association: 'Directory (PI)'},
+  {association: 'Director (PI)'},
   {association: 'Associate Director (Co-PI)'},
   {association: 'Center Faculty (Co-PI)'},
-  {association: 'Center Faculty'},
-  {association: 'Affiliated Faculty'},
+  {association: 'Center Faculty'}
 ]
 
 export const studentTitles = [

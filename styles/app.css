@@ -2322,7 +2322,7 @@ button {
         display: flex;
         align-items: center;
         width: 45rem;
-        height: 20rem;
+        height: 25rem;
         background-color: #edf2f5;
         margin: 0 1rem 1rem 0;
         padding: 1rem; }
@@ -2351,7 +2351,7 @@ button {
             font-family: Poppins-Bold;
             color: black; }
           .people-section-3-items-item-description span {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: #b3b3b3; }
           .people-section-3-items-item-description div {
             display: flex;
