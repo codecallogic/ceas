@@ -11,6 +11,7 @@ const People = ({
   faculty,
   staff,
   students,
+  title,
 
   //// METHODS
   setOpenSearch,
@@ -22,10 +23,17 @@ const People = ({
   const router = useRouter()
   
   const [type, setType] = useState('faculty')
+
+  useEffect(() => {
+    
+    let element = document.getElementById(router.query.faculty)
+    if(element) element.scrollIntoView({ block: 'end',  behavior: 'smooth' })
+    
+  })
   
   return (
     <>
-    <Toolbar></Toolbar>
+    {/* <Toolbar></Toolbar> */}
     <Navigation
       navMenus={navMenus} 
       openSearch={openSearch}
@@ -104,8 +112,8 @@ const People = ({
         </div>
 
         <div className="people-section-3-items">
-          {type == 'faculty' && faculty.length > 0 && faculty.map((item, idk) => 
-            <div className="people-section-3-items-item">
+          {type == 'faculty' && faculty.length > 0 && faculty.map((item, idx) => 
+            <div key={idx} id={item.name} className="people-section-3-items-item">
               <div className="people-section-3-items-item-image">
                 <img 
                   src={`${PUBLIC_FILES}/faculty/${item.image}`} 
@@ -126,8 +134,8 @@ const People = ({
             </div>
           )}
 
-          {type == 'staff' && staff.length > 0 && staff.map((item, idk) => 
-            <div className="people-section-3-items-item">
+          {type == 'staff' && staff.length > 0 && staff.map((item, idx) => 
+            <div key={idx} className="people-section-3-items-item">
               <div className="people-section-3-items-item-image">
                 <img 
                   src={`${PUBLIC_FILES}/staff/${item.image}`} 
@@ -138,15 +146,15 @@ const People = ({
               <div className="people-section-3-items-item-description">
                 <h3>{item.name ? item.name : 'No name'}</h3>
                 {item.title ? <span>{item.title}</span>  : 'No title'}
-                <h4>Postion</h4>
+                <h4>Position</h4>
                 {item.position ? <span> {item.position} </span> : 'No position'}
                 {item.email ? <div><h4>Email</h4>: <span>{item.email}</span></div> : ''}
               </div>
             </div>
           )}
 
-          {type == 'students' && students.length > 0 && students.map((item, idk) => 
-            <div className="people-section-3-items-item">
+          {type == 'students' && students.length > 0 && students.map((item, idx) => 
+            <div key={idx} className="people-section-3-items-item">
               <div className="people-section-3-items-item-image">
                 <img 
                   src={`${PUBLIC_FILES}/staff/${item.image}`} 
@@ -172,6 +180,18 @@ const People = ({
     <Footer></Footer>
     </>
   )
+}
+
+People.getInitialProps = ({query}) => {
+
+  let title
+
+  if(query) title = query.faculty
+  
+  return {
+    title: title ? title : ''
+  }
+  
 }
 
 export default People

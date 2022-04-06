@@ -32,7 +32,7 @@ const Home = ({
   
   return (
     <>
-    <Toolbar></Toolbar>
+    {/* <Toolbar></Toolbar> */}
     <div className="home">
       <DesktopNav 
         navMenus={navMenus} 
@@ -58,7 +58,10 @@ const Home = ({
             { activatedComponents.length > 0 && activatedComponents.slice(0, 5).map((item, idx) => 
               item.active.toLowerCase() == 'activated' 
               ?
-              <div key={idx} className="home-section-2-content-items-item">
+              <div 
+                key={idx} className="home-section-2-content-items-item"
+                onClick={() => window.open(`/component?title=${item.name}`, '_blank')}
+              >
                 <img 
                   className="image" 
                   src={`/media/home/${item.name.toLowerCase()}.png`} 

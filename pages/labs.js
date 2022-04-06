@@ -16,11 +16,10 @@ const Equipment = ({
   title
   
 }) => {
-  console.log(labs)
 
   return (
     <>
-      <Toolbar></Toolbar>
+      {/* <Toolbar></Toolbar> */}
       <Navigation 
         navMenus={navMenus} 
         openSearch={openSearch}

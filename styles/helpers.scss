@@ -97,3 +97,11 @@ button {
     fill: white !important;
   }
 }
+
+.clickable {
+  text-decoration: underline;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

@@ -14,7 +14,7 @@ const Resource = ({
   
   return (
     <>
-    <Toolbar></Toolbar>
+    {/* <Toolbar></Toolbar> */}
     <Navigation 
       navMenus={navMenus} 
       openSearch={openSearch}
@@ -40,7 +40,10 @@ const Resource = ({
             <span>{item.name}</span>
           </div>
           <div className="resource-section-2-subtitle">
-            <div><span>Lead Researcher: </span> {item.faculty[0] ? item.faculty[0].title : ''} {item.faculty[0] ? item.faculty[0].name : ''}</div>
+            <div 
+              className="clickable"
+              onClick={() => window.location.href = `/people?faculty=${item.faculty[0].name}`}
+            ><span>Lead Researcher: </span> {item.faculty[0] ? item.faculty[0].title : ''} {item.faculty[0] ? item.faculty[0].name : ''}</div>
             <div><span>Lab Resources: </span> {item.labLocation ? item.labLocation : ''}</div>
           </div>
           <div className="resource-section-2-image">

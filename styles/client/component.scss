@@ -29,6 +29,32 @@
       font-size: 1.4rem;
       line-height: 200%;
     }
+
+    &-breadcrumb {
+      display: flex;
+      align-items: center;
+      padding: 1rem 0;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      svg {
+        width: 2.5rem;
+        height: 2.5rem;
+        fill: $color-scheme-1;
+
+        &:hover {
+          fill: $color-scheme-2;
+        }
+      }
+
+      span {
+        font-size: 1.6rem;
+        padding: 0 1rem;
+        margin: 1rem 0;
+      }
+    }
   }
 
   &-section-2 {

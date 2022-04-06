@@ -11,6 +11,10 @@
         font-size: 2.2rem;
         text-transform: uppercase;
         color: $color-scheme-1;
+
+        span {
+          color: $color-scheme-3;
+        }
       }
 
       &-content {
@@ -54,6 +58,32 @@
         }
       }
     }
+
+    &-breadcrumb {
+      display: flex;
+      align-items: center;
+      padding: 1rem 0;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      svg {
+        width: 2.5rem;
+        height: 2.5rem;
+        fill: $color-scheme-1;
+
+        &:hover {
+          fill: $color-scheme-2;
+        }
+      }
+
+      span {
+        font-size: 1.6rem;
+        padding: 0 1rem;
+        margin: 1rem 0;
+      }
+    }
   }
 
   &-section-2 {
@@ -68,6 +98,10 @@
         font-size: 2.2rem;
         text-transform: uppercase;
         color: $color-scheme-1;
+
+        span {
+          color: $color-scheme-3;
+        }
       }
 
       &-image {
@@ -97,6 +131,39 @@
         div {
           color: $color-scheme-2 !important;
         }
+      }
+    }
+  }
+
+  &-section-3 {
+    margin: 3rem 0;
+
+    &-title {
+      width: 100%;
+      font-family: Poppins-Bold;
+      font-size: 2.2rem;
+      text-transform: uppercase;
+      text-decoration: underline;
+      color: $color-scheme-1;
+    }
+
+    &-index {
+      width: 100%;
+      font-family: Poppins-Bold;
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      color: $color-scheme-3;
+      margin: 1rem 0;
+      transition: all 1s;
+      height: 3rem;
+
+      span {
+        color: $color-scheme-1;
+      }
+
+      &:hover {
+        cursor: pointer;
+        font-size: 1.5rem;
       }
     }
   }

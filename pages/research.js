@@ -17,17 +17,55 @@ const Research = ({
   
   const [activatedComponents, setActivatedComponents] = useState([])
   const [component, setComponent] = useState('')
+  const [facultyItems, setFacultyItems] = useState([])
+  const [studentItems, setStudentItems] = useState([])
 
   useEffect(() => {
     let active = components.filter((item) => item.active.toLowerCase() == 'activated')
 
+    // if(!component && active[0]) setComponent(active[0].name.toLowerCase())
+    
     setActivatedComponents([...active])
     
   }, [components])
+
+  useEffect(() => {
+
+    setFacultyItems([])
+    
+    faculty.forEach((item) => {
+      if(item.componentOne[0]){
+        if(item.componentOne[0].name.toLowerCase() == component)
+        return setFacultyItems( (oldArray) => [...oldArray, item])
+      }
+
+      if(item.componentTwo[0]){
+        if(item.componentTwo[0].name.toLowerCase() == component)
+        return setFacultyItems( (oldArray) => [...oldArray, item])
+      }
+
+      if(item.componentThree[0]){
+        if(item.componentThree[0].name.toLowerCase() == component)
+        return setFacultyItems( (oldArray) => [...oldArray, item])
+      }
+    })
+  }, [faculty, component])
+
+  useEffect(() => {
+
+    setStudentItems([])
+    
+    students.forEach((item) => {
+      if(item.component[0]){
+        if(item.component[0].name.toLowerCase() == component)
+        return setStudentItems( (oldArray) => [...oldArray, item])
+      }
+    })
+  }, [students, component])
   
   return (
     <>
-      <Toolbar></Toolbar>
+      {/* <Toolbar></Toolbar> */}
       <Navigation 
         navMenus={navMenus} 
         openSearch={openSearch}
@@ -85,7 +123,7 @@ const Research = ({
               :
               null
             )}
-            { component == '' && activatedComponents.length > 0 && activatedComponents[0].name
+            {/* { component == '' && activatedComponents.length > 0 && activatedComponents[0].name
               ?
               <div 
               key={activatedComponents[0].name} className="research-section-2-title"
@@ -101,7 +139,7 @@ const Research = ({
               </div>
               :
               null
-            }
+            } */}
 
 
             { activatedComponents.length > 0 && activatedComponents.slice(0, 5).map((item, idx) => 
@@ -109,6 +147,7 @@ const Research = ({
               ?
               
                 <div 
+                  key={idx}
                   className="research-section-2-image"
                   onClick={() => window.open(`/component?title=${item.name}`, '_blank')}
                 >
@@ -122,7 +161,7 @@ const Research = ({
               :
               null
             )}
-            { component == '' && activatedComponents.length > 0 && activatedComponents[0].name
+            {/* { component == '' && activatedComponents.length > 0 && activatedComponents[0].name
               ?
               <div 
                 className="research-section-2-image"
@@ -137,7 +176,7 @@ const Research = ({
               </div>
               :
               null
-            }
+            } */}
 
 
             { activatedComponents.length > 0 && activatedComponents.slice(0, 5).map((item, idx) => 
@@ -145,6 +184,7 @@ const Research = ({
               ?
               
                 <p 
+                key={idx}
                 onClick={() => window.open(`/component?title=${activatedComponents[0].name}`, '_blank')}
                 >
                   {item.longDescription}
@@ -152,7 +192,7 @@ const Research = ({
               :
               null
             )}
-            { component == '' && activatedComponents.length > 0 && activatedComponents[0].name
+            {/* { component == '' && activatedComponents.length > 0 && activatedComponents[0].name
               ?
               
               <p
@@ -162,16 +202,16 @@ const Research = ({
               </p>
               :
               null
-            }
+            } */}
           </div>
         </div>
 
         <div className="research-section-3">
           <div className="research-section-3-content wrapper">
-            <div className="research-section-3-title">Faculty</div>
+            <div className="research-section-3-title">{ facultyItems.length > 0 ? 'Faculty' : ''}</div>
               <div className="research-section-3-members">
-                {faculty.length > 0 && faculty.map((item, idx) => 
-                  <div className="research-section-3-members-item">
+                {facultyItems.length > 0 && facultyItems.map((item, idx) => 
+                  <div key={idx} className="research-section-3-members-item">
                     <img 
                       src={`${PUBLIC_FILES}/faculty/${item.image}`} 
                       alt={item.name} 
@@ -189,10 +229,10 @@ const Research = ({
 
         <div className="research-section-3">
           <div className="research-section-3-content wrapper">
-            <div className="research-section-3-title">Students</div>
+            <div className="research-section-3-title">{ studentItems.length > 0 ? 'Students' : '' }</div>
               <div className="research-section-3-members">
-                {students.length > 0 && students.map((item, idx) => 
-                  <div className="research-section-3-members-item">
+                {studentItems.length > 0 && studentItems.map((item, idx) => 
+                  <div key={idx} className="research-section-3-members-item">
                     <img 
                       src={`${PUBLIC_FILES}/student/${item.image}`} 
                       alt={item.name} 

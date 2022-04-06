@@ -3,6 +3,7 @@ import Navigation from '../components/client/navigation'
 import Footer from '../components/client/footer'
 import { PUBLIC_FILES } from '../config'
 import Toolbar from '../components/client/toolbar'
+import SVG from '../files/svg'
 
 const Component = ({
   navMenus,
@@ -61,7 +62,7 @@ const Component = ({
   
   return (
     <>
-      <Toolbar></Toolbar>
+      {/* <Toolbar></Toolbar> */}
       <Navigation 
         navMenus={navMenus} 
         openSearch={openSearch}
@@ -70,6 +71,13 @@ const Component = ({
       {component && 
       <div className="component">
         <div className="component-section-1 wrapper">
+          <div 
+            className="component-section-1-breadcrumb"
+            onClick={() => window.location.href = '/research'}
+          >
+            <SVG svg={'arrow-left'}></SVG>
+            <span>Back to all</span>
+          </div>
           <div className="component-section-1-title">{component.name}</div>
           <img 
             src={`${PUBLIC_FILES}/component/${component.image}`} className="component-section-1-image"
@@ -80,7 +88,7 @@ const Component = ({
         </div>
         
         <div className="component-section-2 wrapper">
-          <div className="component-section-2-title">Faculty</div>
+          <div className="component-section-2-title">{ facultyItems.length > 0 ? 'Faculty' : '' }</div>
           <div className="component-section-2-members">
             {facultyItems.length > 0 && facultyItems.map((item, idx) => 
               <div className="component-section-2-members-item">
@@ -99,7 +107,7 @@ const Component = ({
         </div>
 
         <div className="component-section-3 wrapper">
-          <div className="component-section-3-title">Students</div>
+          <div className="component-section-3-title">{ studentItems.length > 0 ? 'Students' : ''}</div>
           <div className="component-section-3-members">
             {studentItems.length > 0 && studentItems.map((item, idx) => 
               <div className="component-section-3-members-item">

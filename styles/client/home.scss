@@ -152,6 +152,10 @@
           text-transform: capitalize;
           background-color: rgba(255, 254, 254, 0.6);
 
+          &:hover {
+            cursor: pointer;
+          }
+
           @media only screen and (min-width: $wide) {
             width: 21rem;
             height: 24rem;

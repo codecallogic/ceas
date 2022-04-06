@@ -132,6 +132,11 @@ button {
   .checked svg {
     fill: white !important; }
 
+.clickable {
+  text-decoration: underline; }
+  .clickable:hover {
+    cursor: pointer; }
+
 .account {
   width: 100%;
   padding: 8rem; }
@@ -1124,6 +1129,8 @@ button {
         margin-left: 1rem;
         text-transform: capitalize;
         background-color: rgba(255, 254, 254, 0.6); }
+        .home-section-2-content-items-item:hover {
+          cursor: pointer; }
         @media only screen and (min-width: 1500px) {
           .home-section-2-content-items-item {
             width: 21rem;
@@ -1730,7 +1737,7 @@ button {
         background-color: #135098; }
 
 .nav {
-  padding: 1.5rem 0;
+  padding: 2rem 0;
   display: flex;
   justify-content: space-between; }
   @media only screen and (max-width: 992px) {
@@ -2420,6 +2427,22 @@ button {
     width: 100%;
     font-size: 1.4rem;
     line-height: 200%; }
+  .component-section-1-breadcrumb {
+    display: flex;
+    align-items: center;
+    padding: 1rem 0; }
+    .component-section-1-breadcrumb:hover {
+      cursor: pointer; }
+    .component-section-1-breadcrumb svg {
+      width: 2.5rem;
+      height: 2.5rem;
+      fill: #135098; }
+      .component-section-1-breadcrumb svg:hover {
+        fill: #04284d; }
+    .component-section-1-breadcrumb span {
+      font-size: 1.6rem;
+      padding: 0 1rem;
+      margin: 1rem 0; }
 
 .component-section-2 {
   margin: 3rem 0; }
@@ -2561,6 +2584,8 @@ button {
       font-size: 2.2rem;
       text-transform: uppercase;
       color: #135098; }
+      .news-section-1-announcement-title span {
+        color: #edbd11; }
     .news-section-1-announcement-content {
       display: flex;
       width: 100%;
@@ -2589,6 +2614,22 @@ button {
       transition: all 0.5s; }
       .news-section-1-announcement:hover div {
         color: #04284d !important; }
+  .news-section-1-breadcrumb {
+    display: flex;
+    align-items: center;
+    padding: 1rem 0; }
+    .news-section-1-breadcrumb:hover {
+      cursor: pointer; }
+    .news-section-1-breadcrumb svg {
+      width: 2.5rem;
+      height: 2.5rem;
+      fill: #135098; }
+      .news-section-1-breadcrumb svg:hover {
+        fill: #04284d; }
+    .news-section-1-breadcrumb span {
+      font-size: 1.6rem;
+      padding: 0 1rem;
+      margin: 1rem 0; }
 
 .news-section-2 {
   margin: 2rem 0; }
@@ -2600,6 +2641,8 @@ button {
       font-size: 2.2rem;
       text-transform: uppercase;
       color: #135098; }
+      .news-section-2-announcement-title span {
+        color: #edbd11; }
     .news-section-2-announcement-image {
       width: 100%;
       height: max-content;
@@ -2619,6 +2662,30 @@ button {
       transition: all 0.5s; }
       .news-section-2-announcement:hover div {
         color: #04284d !important; }
+
+.news-section-3 {
+  margin: 3rem 0; }
+  .news-section-3-title {
+    width: 100%;
+    font-family: Poppins-Bold;
+    font-size: 2.2rem;
+    text-transform: uppercase;
+    text-decoration: underline;
+    color: #135098; }
+  .news-section-3-index {
+    width: 100%;
+    font-family: Poppins-Bold;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    color: #edbd11;
+    margin: 1rem 0;
+    transition: all 1s;
+    height: 3rem; }
+    .news-section-3-index span {
+      color: #135098; }
+    .news-section-3-index:hover {
+      cursor: pointer;
+      font-size: 1.5rem; }
 
 .lab-section-1 {
   margin: 5rem 0; }

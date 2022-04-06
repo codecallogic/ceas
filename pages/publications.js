@@ -12,10 +12,10 @@ const Publications = ({
   //// METHODS
   setOpenSearch
 }) => {
-  console.log(publications)
+  // console.log(publications)
   return (
    <>
-   <Toolbar></Toolbar>
+   {/* <Toolbar></Toolbar> */}
    <Navigation 
       navMenus={navMenus} 
       openSearch={openSearch}

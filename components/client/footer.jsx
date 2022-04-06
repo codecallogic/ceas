@@ -7,7 +7,7 @@ const Footer = ({}) => {
       <div className="footer-contents wrapper">
         <div className="footer-title">Contact</div>
         <div className="footer-columns">
-          <img src="/media/home/logo-footer.png" className="footer-columns-logo"/>
+          <img src="/media/home/logo-ceas-v2.png" alt="Logo CEAS" className="footer-columns-logo"/>
           <div className="footer-columns-column">
             <strong>Location</strong>
             <span>TET C253</span>
@@ -29,7 +29,7 @@ const Footer = ({}) => {
             <a href="/research" >Research</a>
             <a href="/resources" >Resources</a>
             <a href="/about" >About</a>
-            <a href="/apply" >Apply</a>
+            {/* <a href="/apply" >Apply</a> */}
             <a href="/announcements" >Annoucements</a>
           </div>
           <div className="footer-columns-column">

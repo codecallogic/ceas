@@ -21,7 +21,7 @@ const About = ({
   
   return (
     <>
-    <Toolbar></Toolbar>
+    {/* <Toolbar></Toolbar> */}
     <Navigation
       navMenus={navMenus} 
       openSearch={openSearch}
