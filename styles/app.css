@@ -157,6 +157,13 @@ button {
       width: 4rem;
       height: 4rem;
       margin-right: 1rem; }
+    .account-user span {
+      margin-left: 1rem;
+      color: #e23c41;
+      transition: all 0.5s; }
+      .account-user span:hover {
+        cursor: pointer;
+        color: #04284d; }
   .account-breadcrumbs {
     display: flex;
     align-items: center; }
@@ -3048,10 +3055,10 @@ button {
     align-items: center;
     flex-direction: column; }
     .adminLogin-footer img {
-      width: 30rem;
+      width: 8rem;
       height: 100%; }
     .adminLogin-footer span {
-      margin: 1rem 0;
+      margin: 3rem 0;
       font-size: 1.4rem; }
 
 .message {

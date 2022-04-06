@@ -50,7 +50,7 @@ const SlideForm = ({
   const deleteItem = 'DELETE_LAB_ARRAY_ITEM'
   const myRefs = useRef(null)
   const [input_dropdown, setInputDropdown] = useState('')
-  console.log(allData)
+  
   const handleClickOutside = (event) => {
     if(myRefs.current){
       if(!myRefs.current.contains(event.target)){

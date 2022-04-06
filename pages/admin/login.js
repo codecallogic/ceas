@@ -124,7 +124,7 @@ const AdminLogin = ({}) => {
         </div>
       </div>
       <div className="adminLogin-footer">
-        <img src="/logo_nav.png" alt="Logo" />
+        <img src="/media/home/logo-ceas-white.png" alt="Logo CEAS" />
         <span>&copy; Copyright 2022. All rights reserved</span>
       </div>
 

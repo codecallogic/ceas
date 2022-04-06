@@ -2,6 +2,7 @@ import { API } from '../config'
 import axios from 'axios'
 import { validateIsEmail, validateLink } from '../helpers/validations'
 import { nanoid } from 'nanoid'
+axios.defaults.withCredentials = true
 
 export {
   manageFormFields,

@@ -23,6 +23,17 @@
       height: 4rem;
       margin-right: 1rem;
     }
+
+    span {
+      margin-left: 1rem;
+      color: $color-scheme-5;
+      transition: all 0.5s;
+
+      &:hover {
+        cursor: pointer;
+        color: $color-scheme-2;
+      }
+    }
   }
 
   &-breadcrumbs {

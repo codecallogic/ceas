@@ -6,6 +6,9 @@ import { populateModal } from '../../helpers/modals'
 import { getToken } from '../../helpers/auth'
 import _ from 'lodash'
 import { connect } from 'react-redux'
+import axios from 'axios'
+import { API } from '../../config'
+axios.defaults.withCredentials = true
 
 
 // TODO: When deleting a component remove from faculty members and vice versa
@@ -120,9 +123,26 @@ const AdminDashboard = ({
     return populateModal(allData, keyType, caseType, stateMethods, selectID, account)
   }
 
+  const logout = async () => {
+    try {
+      
+      const response = await axios.post(`${API}/auth/logout`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          contentType: 'multipart/form-data'
+        }
+      })
+      window.location.reload()
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+      if(error)  error.response ? error.response.statusText == 'Unauthorized' ? (window.location.href = 'admin/login') : (console.log(error.response)) : (console.log(error.response))
+    }
+  }
+
   return (
     <div className="account">
-      <div className="account-user"><SVG svg={'user_2'} color={'#e63946'}></SVG> Welcome, {account ? account.username : null}</div>
+      <div className="account-user"><SVG svg={'user_2'} color={'#e63946'}></SVG> Welcome, {account ? account.username : null} <span onClick={() => logout()}>Logout</span></div>
       <div className="account-breadcrumbs">
         <div className="account-breadcrumbs-item">
           <span className="account-breadcrumbs-item-title" onClick={() => ( resetUILocalStorage(), setComponent(''), setModal(''), setView(''))}>Dashboard</span>
