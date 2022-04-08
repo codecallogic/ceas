@@ -6,7 +6,7 @@ const Search = ({ setOpenSearch }) => {
   const [search, setSearch] = useState('')
   
   const searchGoogle = (e) => {
-    window.open(`https://www.google.com/search?q=${search}&as_sitesearch=https://www.calstatela.edu/`, '_blank')
+    window.open(`https://www.google.com/search?q=${search}&as_sitesearch=https://ceas.calstatela.edu/`, '_blank')
   }
   
   return (

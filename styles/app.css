@@ -1130,7 +1130,6 @@ button {
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 1rem 0;
         width: 18rem;
         height: 21rem;
         margin-left: 1rem;
@@ -1138,6 +1137,10 @@ button {
         background-color: rgba(255, 254, 254, 0.6); }
         .home-section-2-content-items-item:hover {
           cursor: pointer; }
+          .home-section-2-content-items-item:hover > div {
+            background-color: #135098; }
+          .home-section-2-content-items-item:hover > span {
+            background-color: #edbd11; }
         @media only screen and (min-width: 1500px) {
           .home-section-2-content-items-item {
             width: 21rem;
@@ -1160,6 +1163,12 @@ button {
             height: 12rem; } }
         .home-section-2-content-items-item:first-child {
           margin-left: 0rem; }
+        .home-section-2-content-items-item-image {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+          padding: 1rem 0;
+          transition: all .5s; }
         .home-section-2-content-items-item img {
           width: 10rem;
           height: 10rem;
@@ -1185,12 +1194,13 @@ button {
           justify-content: center;
           align-items: center;
           width: 100%;
+          height: 100%;
           text-align: center;
-          padding: 1rem 0;
           font-family: Poppins;
           color: #04284d;
           font-size: 1.2rem;
-          font-weight: 700; }
+          font-weight: 700;
+          transition: all .5s; }
           @media only screen and (max-width: 992px) {
             .home-section-2-content-items-item span {
               font-size: 1rem; } }

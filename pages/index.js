@@ -62,12 +62,14 @@ const Home = ({
                 key={idx} className="home-section-2-content-items-item"
                 onClick={() => window.open(`/component?title=${item.name}`, '_blank')}
               >
-                <img 
-                  className="image" 
-                  src={`/media/home/${item.name.toLowerCase()}.png`} 
-                  alt={item.name}
-                  onError={(e) => e.target.src = 'https://icon-library.com/images/not-found-icon/not-found-icon-14.jpg'}
-                />
+                <div className="home-section-2-content-items-item-image">
+                  <img 
+                    className="image" 
+                    src={`/media/home/${item.name.toLowerCase()}.png`} 
+                    alt={item.name}
+                    onError={(e) => e.target.src = 'https://icon-library.com/images/not-found-icon/not-found-icon-14.jpg'}
+                  />
+                </div>
                 <span>{item.name}</span>
               </div>
               :
