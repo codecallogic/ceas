@@ -10,7 +10,7 @@ const Footer = ({}) => {
           <img src="/media/home/logo-ceas-v2.png" alt="Logo CEAS" className="footer-columns-logo"/>
           <div className="footer-columns-column">
             <strong>Location</strong>
-            <span>TET C253</span>
+            <span>E&T C253A</span>
             <span>California State University Los Angeles</span>
             <span>Los Angeles, CA 90032</span>
             <strong>Phone</strong>
@@ -19,7 +19,7 @@ const Footer = ({}) => {
             <span>ceas@calstatela.edu</span>
             <strong>Social</strong>
             <div className="footer-columns-column-icons">
-              <img src="/media/home/icon-twitter.png" alt="Twitter"/>
+              {/* <img src="/media/home/icon-twitter.png" alt="Twitter"/> */}
               <img src="/media/home/icon-facebook.png" alt="Facebook" />
             </div>
           </div>

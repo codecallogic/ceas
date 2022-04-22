@@ -6,16 +6,46 @@ const Header = ({ slides, }) => {
   const [slide, setSlide] = useState('')
   const [title, setTitle] = useState('')
   const [caption, setCaption] = useState('')
+  const [counter, setCounter] = useState(0)
+  const [slideDirection, setSlideDirection] = useState('right')
 
   useEffect(() => {
     if(slides.length > 0){
       if(slides[0].component[0].name.toLowerCase() == 'homepage header carousel'){
-        setSlide(slides[0].image)
-        setTitle(slides[0].title)
-        setCaption(slides[0].caption)
+        setSlide(slides[counter].image)
+        setTitle(slides[counter].title)
+        setCaption(slides[counter].caption)
       }
     }    
-  }, [slides])
+
+    let delay = 5000
+    let timer = setInterval(() => {
+      
+      if(slideDirection == 'right'){
+        console.log(counter + 1)
+        setCounter(counter + 1)
+        setSlide(slides[counter + 1].image)
+        setTitle(slides[counter + 1].title)
+        setCaption(slides[counter + 1].caption)
+        counter + 1 == slides.length - 1 ? setSlideDirection('left') : null
+      }
+
+      if(slideDirection == 'left'){
+        console.log(counter - 1)
+        setCounter(counter - 1)
+        setSlide(slides[counter - 1].image)
+        setTitle(slides[counter - 1].title)
+        setCaption(slides[counter - 1].caption)
+        counter - 1 == 0 ? setSlideDirection('right') : null
+      }
+      
+    }, delay)
+
+    return () => {
+      clearInterval(timer)
+    }
+    
+  }, [slides, counter, slideDirection])
   
   return (
     <div className="header" style={{backgroundImage: `url('${PUBLIC_FILES}/slides/${slide}'), url('https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png')`}}>
