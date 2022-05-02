@@ -20,7 +20,7 @@ const Footer = ({}) => {
             <strong>Social</strong>
             <div className="footer-columns-column-icons">
               {/* <img src="/media/home/icon-twitter.png" alt="Twitter"/> */}
-              <img src="/media/home/icon-facebook.png" alt="Facebook" />
+              <img src="/media/home/icon-facebook.png" alt="Facebook" onClick={ () => window.location = 'https://www.facebook.com/CSULACEAS'}/>
             </div>
           </div>
           <div className="footer-columns-column">
