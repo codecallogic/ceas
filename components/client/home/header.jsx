@@ -31,7 +31,7 @@ const Header = ({ slides, }) => {
       }
 
       if(slideDirection == 'left'){
-        console.log(counter - 1)
+        // console.log(counter - 1)
         setCounter(counter - 1)
         setSlide(slides[counter - 1].image)
         setTitle(slides[counter - 1].title)

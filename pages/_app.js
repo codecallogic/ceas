@@ -5,14 +5,19 @@ import rootReducer from '../reducers/index'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import io from 'socket.io-client'
-import { SOCKET } from '../config';
+import axios from 'axios'
+import {API} from '../config'
+// import io from 'socket.io-client'
+// import { SOCKET } from '../config';
+import { clientData, tableData } from '../helpers/tables'
+import { getToken } from '../helpers/auth'
+import _ from 'lodash'
 
-const socket = io.connect(SOCKET, {transports: ['websocket', 'polling', 'flashsocket']});
+// const socket = io.connect(SOCKET, {transports: ['websocket', 'polling', 'flashsocket']});
 
 const store = createStore(rootReducer, composeWithDevTools())
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps, client, account, accessToken, data, originalData, pathname }) {
 
   const [navMenus, setNavMenus] = useState([])
   const [slides, setSlides] = useState([])
@@ -28,50 +33,53 @@ function MyApp({ Component, pageProps }) {
   const [openSearch, setOpenSearch] = useState(false)
 
   useEffect(() => {
-    
-    socket.on('navigation', (data) => {
-      setNavMenus(data)
-    })
 
-    socket.on('slides', (data) => {
-      setSlides(data)
-    })
+    if(pathname !== '/admin/login'){
+      if(pathname !== '/admin'){
+      // socket.on('navigation', (client) => {
+      setNavMenus(client.navMenus)
+      // })
 
-    socket.on('components', (data) => {
-      setComponents(data)
-    })
+      // socket.on('slides', (client) => {
+      setSlides(client.slides)
+      // })
 
-    socket.on('news', (data) => {
-      setNews(data)
-    })
+      // socket.on('components', (client) => {
+      setComponents(client.components)
+      // })
 
-    socket.on('faculty', (data) => {
-      setFaculty(data)
-    })
+      // socket.on('news', (client) => {
+      setNews(client.news)
+      // })
 
-    socket.on('students', (data) => {
-      setStudents(data)
-    })
+      // socket.on('faculty', (client) => {
+      setFaculty(client.faculty)
+      // })
 
-    socket.on('labs', (data) => {
-      setLabs(data)
-    })
+      // socket.on('students', (client) => {
+      setStudents(client.students)
+      // }
 
-    socket.on('equipment', (data) => {
-      setEquipment(data)
-    })
+      // socket.on('labs', (client) => {
+      setLabs(client.labs)
+      // })
 
-    socket.on('staff', (data) => {
-      setStaff(data)
-    })
+      // socket.on('equipment', (client) => {
+      setEquipment(client.equipment)
+      // })
 
-    socket.on('publication', (data) => {
-      setPublications(data)
-    })
+      // socket.on('staff', (client) => {
+      setStaff(client.staff)
+      // })
 
-    socket.on('section', (data) => {
-      setSections(data)
-    })
+      // socket.on('publication', (client) => {
+      setPublications(client.publications)
+      // })
+
+      // socket.on('section', (client) => {
+      setSections(client.sections)
+      // })
+    }}
 
   }, [])
   
@@ -86,7 +94,13 @@ function MyApp({ Component, pageProps }) {
       </>
     </Head>
     <Provider store={store}>
-      <Component {...pageProps} 
+      <Component 
+        {...pageProps}
+        client={client}
+        data={data}
+        originalData={originalData}
+        accessToken={accessToken}
+        account={account}
         navMenus={navMenus} 
         slides={slides} 
         components={components} 
@@ -104,6 +118,83 @@ function MyApp({ Component, pageProps }) {
       />
     </Provider>    
   </>
+}
+
+MyApp.getInitialProps = async ( {ctx}) => {
+  let client = new Object()
+
+  if(ctx.pathname !== '/admin/login'){
+    if(ctx.pathname !== '/admin'){
+      client.components               = await clientData('component/all-components-public')
+      client.faculty                  = await clientData('faculty/get-all-faculty-public')
+      client.students                 = await clientData('student/get-all-students-public')
+      client.staff                    = await clientData('staff/all-staff-public')
+      client.publications             = await clientData('publication/all-publications-public')
+      client.news                     = await clientData('news/all-news-public')
+      client.slides                   = await clientData('slide/all-slides-public')
+      client.labs                     = await clientData('lab/all-labs-public')
+      client.equipment                = await clientData('equipment/all-equipment-public')
+      client.navMenus                 = await clientData('navigation/all-nav-menus-public')
+      client.sections                 = await clientData('section/all-sections-public')
+    }
+  }
+
+  let data = new Object()
+  let deepClone
+
+  const token = getToken('accessTokenAdmin', ctx.req)
+  let accessToken = null
+  if(token){accessToken = token.split('=')[1]}
+  
+  if(token){
+    data.adminUsers               = await tableData(accessToken, 'auth/all-admin')
+    data.components               = await tableData(accessToken, 'component/all-components')
+    data.faculty                  = await tableData(accessToken, 'faculty/get-all-faculty')
+    data.students                 = await tableData(accessToken, 'student/get-all-students')
+    data.staff                    = await tableData(accessToken, 'staff/all-staff')
+    data.publications             = await tableData(accessToken, 'publication/all-publications')
+    data.news                     = await tableData(accessToken, 'news/all-news')
+    data.slides                   = await tableData(accessToken, 'slide/all-slides')
+    data.labs                     = await tableData(accessToken, 'lab/all-labs')
+    data.equipment                = await tableData(accessToken, 'equipment/all-equipment')
+    data.forms                    = await tableData(accessToken, 'form/all-forms')
+    data.navMenus                 = await tableData(accessToken, 'navigation/all-nav-menus')
+    data.navItems                 = await tableData(accessToken, 'navigation/all-nav-items')
+    data.sections                 = await tableData(accessToken, 'section/all-sections')
+  }
+
+  deepClone= _.cloneDeep(data)
+
+  let account = null
+  let serverMessage = null
+  
+  if(token){
+    try {
+      const responseRead = await axios.get(`${API}/auth/admin`, {
+          headers: {
+              Authorization: `Bearer ${accessToken}`,
+              contentType: `application/json`
+          },
+          withCredentials: true
+      })
+      
+      account = responseRead.data
+  
+    } catch(err){
+      // console.log('ERROR', err)
+      account = null
+      serverMessage = err.response ? err.response.data : 'Error ocurred, getting account data.'
+    }
+  }
+  
+  return {
+    client: Object.keys(client).length > 0 ? client : null,
+    data: Object.keys(data).length > 0 ? data : null,
+    originalData: Object.keys(deepClone).length > 0 ? deepClone : null,
+    account: account ? account : null,
+    accessToken: accessToken ? accessToken : null,
+    pathname: ctx.pathname ? ctx.pathname : '/'
+  }
 }
 
 export default MyApp

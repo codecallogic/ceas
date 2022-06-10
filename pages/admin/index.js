@@ -56,7 +56,7 @@ import {
 
 const AdminDashboard = ({
   data, 
-  originalData, 
+  originalData,
   account, 
   accessToken, 
   params, 
@@ -81,7 +81,7 @@ const AdminDashboard = ({
   pageSection
   
 }) => {
-  
+  // console.log(accessToken)
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState('')
   const [modal, setModal] = useState('')
@@ -91,10 +91,9 @@ const AdminDashboard = ({
   const [controls, setControls] = useState(false)
   const [edit, setEdit] = useState('')
   const [allData, setAllData] = useState(originalData ? originalData : [])
-
-  // console.log(allData)
   
   useEffect(() => {
+    if(!account) window.location.href = '/admin/login'
     if(window.localStorage.getItem('component')) setComponent(window.localStorage.getItem('component'))
     if(window.localStorage.getItem('modal')) setModal(window.localStorage.getItem('modal'))
     if(window.localStorage.getItem('view')) setView(window.localStorage.getItem('view'))
@@ -126,13 +125,8 @@ const AdminDashboard = ({
   const logout = async () => {
     try {
       
-      const response = await axios.post(`${API}/auth/logout`, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          contentType: 'multipart/form-data'
-        }
-      })
-      window.location.reload()
+      const response = await axios.post(`${API}/auth/logout`)
+      window.location.href = '/admin/login'
       console.log(response)
     } catch (error) {
       console.log(error)
@@ -975,35 +969,35 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-AdminDashboard.getInitialProps = async (context) => {
+// AdminDashboard.getInitialProps = async (context) => {
 
-  let data = new Object()
-  let deepClone
-   
-  const token = getToken('accessTokenAdmin', context.req)
-  let accessToken = null
-  if(token){accessToken = token.split('=')[1]}
+//   let data = new Object()
+//   let deepClone
 
-  data.adminUsers               = await tableData(accessToken, 'auth/all-admin')
-  data.components               = await tableData(accessToken, 'component/all-components')
-  data.faculty                  = await tableData(accessToken, 'faculty/get-all-faculty')
-  data.students                 = await tableData(accessToken, 'student/get-all-students')
-  data.staff                    = await tableData(accessToken, 'staff/all-staff')
-  data.publications             = await tableData(accessToken, 'publication/all-publications')
-  data.news                     = await tableData(accessToken, 'news/all-news')
-  data.slides                   = await tableData(accessToken, 'slide/all-slides')
-  data.labs                     = await tableData(accessToken, 'lab/all-labs')
-  data.equipment                = await tableData(accessToken, 'equipment/all-equipment')
-  data.forms                    = await tableData(accessToken, 'form/all-forms')
-  data.navMenus                 = await tableData(accessToken, 'navigation/all-nav-menus')
-  data.navItems                 = await tableData(accessToken, 'navigation/all-nav-items')
-  data.sections                 = await tableData(accessToken, 'section/all-sections')
-  deepClone= _.cloneDeep(data)
-  
-  return {
-    data: Object.keys(data).length > 0 ? data : null,
-    originalData: Object.keys(deepClone).length > 0 ? deepClone : null
-  }
-}
+//   const token = getToken('accessTokenAdmin', context.req)
+//   let accessToken = null
+//   if(token){accessToken = token.split('=')[1]}
 
-export default connect(mapStateToProps, mapDispatchToProps)(withAdmin(AdminDashboard))
+//   data.adminUsers               = await tableData(accessToken, 'auth/all-admin')
+//   data.components               = await tableData(accessToken, 'component/all-components')
+//   data.faculty                  = await tableData(accessToken, 'faculty/get-all-faculty')
+//   data.students                 = await tableData(accessToken, 'student/get-all-students')
+//   data.staff                    = await tableData(accessToken, 'staff/all-staff')
+//   data.publications             = await tableData(accessToken, 'publication/all-publications')
+//   data.news                     = await tableData(accessToken, 'news/all-news')
+//   data.slides                   = await tableData(accessToken, 'slide/all-slides')
+//   data.labs                     = await tableData(accessToken, 'lab/all-labs')
+//   data.equipment                = await tableData(accessToken, 'equipment/all-equipment')
+//   data.forms                    = await tableData(accessToken, 'form/all-forms')
+//   data.navMenus                 = await tableData(accessToken, 'navigation/all-nav-menus')
+//   data.navItems                 = await tableData(accessToken, 'navigation/all-nav-items')
+//   data.sections                 = await tableData(accessToken, 'section/all-sections')
+//   deepClone= _.cloneDeep(data)
+
+//   return {
+//     data: Object.keys(data).length > 0 ? data : null,
+//     originalData: Object.keys(deepClone).length > 0 ? deepClone : null
+//   }
+// }
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdminDashboard)

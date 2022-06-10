@@ -19,7 +19,7 @@ const People = ({
   //// DATA
   sections
 }) => {
-  // console.log(faculty)
+
   const router = useRouter()
   
   const [type, setType] = useState('faculty')

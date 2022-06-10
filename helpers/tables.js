@@ -34,7 +34,22 @@ const tableData = async (accessToken, path) => {
 
 }
 
+const clientData = async (path) => {
+
+  try {
+    const responseItems = await axios.get(`${API}/${path}`)
+
+    return responseItems.data
+    
+  } catch (error) {
+    console.log(error)
+    if(error) return error
+  }
+
+}
+
 export {
   filterTable,
-  tableData
+  tableData,
+  clientData
 }
