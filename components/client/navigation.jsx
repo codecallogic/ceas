@@ -61,7 +61,7 @@ const Navigation = ({
     </div>
     <div className="nav-mobile wrapper">
       <a href="#">
-        <img className="nav-mobile-logo" src="./logo_nav.png" alt="ceas-logo" />
+        <img className="nav-mobile-logo" src="/media/home/logo-ceas.png" alt="ceas-logo" />
       </a>
       <div className="nav-mobile-menu">
         <input 
