@@ -22,7 +22,8 @@ const tableData = async (accessToken, path) => {
       headers: {
         Authorization: `Bearer ${accessToken}`,
         contentType: `application/json`
-      }
+      },
+      withCredentials: true
     })
 
     return responseItems.data
