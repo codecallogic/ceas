@@ -30,7 +30,7 @@ const Footer = ({}) => {
             <a href="/resources" >Resources</a>
             <a href="/about" >About</a>
             {/* <a href="/apply" >Apply</a> */}
-            <a href="/announcements" >Annoucements</a>
+            <a href="/news" >Annoucements</a>
           </div>
           <div className="footer-columns-column">
             <span>&#169; Copyright 2022. All rights reserved.</span>

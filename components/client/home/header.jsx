@@ -21,7 +21,7 @@ const Header = ({ slides, }) => {
     let delay = 5000
     let timer = setInterval(() => {
       
-      if(slideDirection == 'right'){
+      if(slides.length > 0 && slideDirection == 'right'){
         // console.log(counter + 1)
         setCounter(counter + 1)
         setSlide(slides[counter + 1].image)
@@ -30,7 +30,7 @@ const Header = ({ slides, }) => {
         counter + 1 == slides.length - 1 ? setSlideDirection('left') : null
       }
 
-      if(slideDirection == 'left'){
+      if(slides.length > 0 && slideDirection == 'left'){
         // console.log(counter - 1)
         setCounter(counter - 1)
         setSlide(slides[counter - 1].image)

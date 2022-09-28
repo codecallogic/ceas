@@ -24,7 +24,11 @@ const Home = ({
 
   useEffect(() => {
     
-    let active = components.filter((item) => item.active.toLowerCase() == 'activated')
+    let active
+    
+    if(components.length > 0 ){
+      active = components.filter((item) => item.active.toLowerCase() == 'activated')
+    }
 
     setActivatedComponents(active)
     
@@ -55,7 +59,7 @@ const Home = ({
           <div className="home-section-2-title">Research Thrust Center</div>
           <p><mark>The Center involves 27 faculty members from eight interdisciplinary departments at Cal State LA who lead efforts in 5 research thrust areas. Several projects address short-term mitigations of current energy concerns, while some projects address long-term goals of moving away from carbon-based energy dependence.</mark></p>
           <div className="home-section-2-content-items">
-            { activatedComponents.length > 0 && activatedComponents.slice(0, 5).map((item, idx) => 
+            { activatedComponents && activatedComponents.slice(0, 5).map((item, idx) => 
               item.active.toLowerCase() == 'activated' 
               ?
               <div 

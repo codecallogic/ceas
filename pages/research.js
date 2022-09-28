@@ -21,46 +21,59 @@ const Research = ({
   const [studentItems, setStudentItems] = useState([])
 
   useEffect(() => {
-    let active = components.filter((item) => item.active.toLowerCase() == 'activated')
+
+    let active
+    
+    if(components.length > 0 ){
+    
+      active = components.filter((item) => item.active.toLowerCase() == 'activated')
+
+    }
 
     // if(!component && active[0]) setComponent(active[0].name.toLowerCase())
     
-    setActivatedComponents([...active])
+    if(active) setActivatedComponents([...active])
     
   }, [components])
 
   useEffect(() => {
 
     setFacultyItems([])
-    
-    faculty.forEach((item) => {
-      if(item.componentOne[0]){
-        if(item.componentOne[0].name.toLowerCase() == component)
-        return setFacultyItems( (oldArray) => [...oldArray, item])
-      }
 
-      if(item.componentTwo[0]){
-        if(item.componentTwo[0].name.toLowerCase() == component)
-        return setFacultyItems( (oldArray) => [...oldArray, item])
-      }
+    if(faculty.length > 0){
+      faculty.forEach((item) => {
+        if(item.componentOne[0]){
+          if(item.componentOne[0].name.toLowerCase() == component)
+          return setFacultyItems( (oldArray) => [...oldArray, item])
+        }
 
-      if(item.componentThree[0]){
-        if(item.componentThree[0].name.toLowerCase() == component)
-        return setFacultyItems( (oldArray) => [...oldArray, item])
-      }
-    })
+        if(item.componentTwo[0]){
+          if(item.componentTwo[0].name.toLowerCase() == component)
+          return setFacultyItems( (oldArray) => [...oldArray, item])
+        }
+
+        if(item.componentThree[0]){
+          if(item.componentThree[0].name.toLowerCase() == component)
+          return setFacultyItems( (oldArray) => [...oldArray, item])
+        }
+      })
+    }
+
   }, [faculty, component])
 
   useEffect(() => {
 
     setStudentItems([])
     
-    students.forEach((item) => {
-      if(item.component[0]){
-        if(item.component[0].name.toLowerCase() == component)
-        return setStudentItems( (oldArray) => [...oldArray, item])
-      }
-    })
+    if(students.length > 0){
+      students.forEach((item) => {
+        if(item.component[0]){
+          if(item.component[0].name.toLowerCase() == component)
+          return setStudentItems( (oldArray) => [...oldArray, item])
+        }
+      })
+    }
+
   }, [students, component])
   
   return (
