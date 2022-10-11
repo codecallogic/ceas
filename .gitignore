@@ -6,6 +6,7 @@
 .pnp.js
 next.config.js
 config.js
+.env.local
 
 # testing
 /coverage
