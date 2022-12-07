@@ -969,35 +969,35 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-// AdminDashboard.getInitialProps = async (context) => {
+AdminDashboard.getInitialProps = async (context) => {
 
-//   let data = new Object()
-//   let deepClone
+  let data = new Object()
+  let deepClone
 
-//   const token = getToken('accessTokenAdmin', context.req)
-//   let accessToken = null
-//   if(token){accessToken = token.split('=')[1]}
+  const token = getToken('accessTokenAdmin', context.req)
+  let accessToken = null
+  if(token){accessToken = token.split('=')[1]}
 
-//   data.adminUsers               = await tableData(accessToken, 'auth/all-admin')
-//   data.components               = await tableData(accessToken, 'component/all-components')
-//   data.faculty                  = await tableData(accessToken, 'faculty/get-all-faculty')
-//   data.students                 = await tableData(accessToken, 'student/get-all-students')
-//   data.staff                    = await tableData(accessToken, 'staff/all-staff')
-//   data.publications             = await tableData(accessToken, 'publication/all-publications')
-//   data.news                     = await tableData(accessToken, 'news/all-news')
-//   data.slides                   = await tableData(accessToken, 'slide/all-slides')
-//   data.labs                     = await tableData(accessToken, 'lab/all-labs')
-//   data.equipment                = await tableData(accessToken, 'equipment/all-equipment')
-//   data.forms                    = await tableData(accessToken, 'form/all-forms')
-//   data.navMenus                 = await tableData(accessToken, 'navigation/all-nav-menus')
-//   data.navItems                 = await tableData(accessToken, 'navigation/all-nav-items')
-//   data.sections                 = await tableData(accessToken, 'section/all-sections')
-//   deepClone= _.cloneDeep(data)
+  data.adminUsers               = await tableData(accessToken, 'auth/all-admin')
+  data.components               = await tableData(accessToken, 'component/all-components')
+  data.faculty                  = await tableData(accessToken, 'faculty/get-all-faculty')
+  data.students                 = await tableData(accessToken, 'student/get-all-students')
+  data.staff                    = await tableData(accessToken, 'staff/all-staff')
+  data.publications             = await tableData(accessToken, 'publication/all-publications')
+  data.news                     = await tableData(accessToken, 'news/all-news')
+  data.slides                   = await tableData(accessToken, 'slide/all-slides')
+  data.labs                     = await tableData(accessToken, 'lab/all-labs')
+  data.equipment                = await tableData(accessToken, 'equipment/all-equipment')
+  data.forms                    = await tableData(accessToken, 'form/all-forms')
+  data.navMenus                 = await tableData(accessToken, 'navigation/all-nav-menus')
+  data.navItems                 = await tableData(accessToken, 'navigation/all-nav-items')
+  data.sections                 = await tableData(accessToken, 'section/all-sections')
+  deepClone= _.cloneDeep(data)
 
-//   return {
-//     data: Object.keys(data).length > 0 ? data : null,
-//     originalData: Object.keys(deepClone).length > 0 ? deepClone : null
-//   }
-// }
+  return {
+    data: Object.keys(data).length > 0 ? data : null,
+    originalData: Object.keys(deepClone).length > 0 ? deepClone : null
+  }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminDashboard)

@@ -6,7 +6,7 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import axios from 'axios'
-import {API} from '../config'
+import { API } from '../config'
 // import io from 'socket.io-client'
 // import { SOCKET } from '../config';
 import { clientData, tableData } from '../helpers/tables'

@@ -39,18 +39,14 @@ UpdateEmail.getInitialProps = async ({res, query}) => {
   let message = ''
   
   try {
-    const responseUpdate = await axios.post(`${API}/auth/update-admin-email`, {token: query.token})
-    res.setHeader("Set-Cookie", 'userAdmin=deleted; path=/; Max-Age=0');
-    res.setHeader("Set-Cookie", 'accessTokenAdmin=deleted; path=/; Max-Age=0');
 
-    // res.writeHead(302, {
-    //   Location: '/admin/login'
-    // });
-    // res.end();
+    const responseUpdate = await axios.post(`${API}/auth/update-email`, {token: query.token})
 
   } catch (err) {
     console.log(err)
+
     if(err) err.response ? (message = err.response.data) : (message = 'Error ocurred updating your email, please try again later.')
+    
   }
   
   return {
