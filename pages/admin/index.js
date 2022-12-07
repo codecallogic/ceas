@@ -10,7 +10,6 @@ import axios from 'axios'
 import { API } from '../../config'
 axios.defaults.withCredentials = true
 
-
 // TODO: When deleting a component remove from faculty members and vice versa
 
 // COMPONENTS
@@ -1000,4 +999,4 @@ AdminDashboard.getInitialProps = async (context) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AdminDashboard)
+export default connect(mapStateToProps, mapDispatchToProps)(withAdmin(AdminDashboard))
