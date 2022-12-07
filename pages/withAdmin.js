@@ -7,16 +7,16 @@ const withAdmin = Page => {
   const WithAdminUser = props => <Page {...props} />
   console.log(WithAdminUser())
   WithAdminUser.getInitialProps = async (ctx) => {
-    console.log('PROPS', props)
-    console.log('CONTEXT', ctx)
-    console.log('HI')
+    // console.log('PROPS', props)
+    // console.log('CONTEXT', ctx)
+    // console.log('HI')
 
-    ctx.res.writeHead(302, {
-      Location: '/admin/login'
-    });
-    ctx.res.end();
+    // ctx.res.writeHead(302, {
+    //   Location: '/admin/login'
+    // });
+    // ctx.res.end();
     const token = getToken('accessTokenAdmin', ctx.req)
-    console.log('TOKEN', token)
+    // console.log('TOKEN', token)
     let account = null
     let accessToken = null
     let serverMessage = null
