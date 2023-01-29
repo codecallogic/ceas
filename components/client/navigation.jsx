@@ -23,7 +23,7 @@ const Navigation = ({
     <>
     <div className="nav wrapper">
       <a href="/">
-        <img className="nav-logo" src="/media/home/logo-ceas.png" alt="Logo CEAS" />
+        <img className="nav-logo" src="/logo_nav.png" alt="Logo CATSUS" />
       </a>
       <div className="nav-menu">
         {navMenus && navMenus.length > 0 && navMenus.sort((a, b) => +a.order > +b.order ? 1 : -1).map((item, idx) => 
@@ -61,7 +61,7 @@ const Navigation = ({
     </div>
     <div className="nav-mobile wrapper">
       <a href="#">
-        <img className="nav-mobile-logo" src="/media/home/logo-ceas.png" alt="ceas-logo" />
+        <img className="nav-mobile-logo" src="/logo_nav.png" alt="ceas-logo" />
       </a>
       <div className="nav-mobile-menu">
         <input 
