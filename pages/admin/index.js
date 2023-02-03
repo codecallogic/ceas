@@ -92,7 +92,7 @@ const AdminDashboard = ({
   const [allData, setAllData] = useState(originalData ? originalData : [])
   
   useEffect(() => {
-    if(!account) window.location.href = '/admin/login'
+
     if(window.localStorage.getItem('component')) setComponent(window.localStorage.getItem('component'))
     if(window.localStorage.getItem('modal')) setModal(window.localStorage.getItem('modal'))
     if(window.localStorage.getItem('view')) setView(window.localStorage.getItem('view'))
