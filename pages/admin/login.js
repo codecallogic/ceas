@@ -33,7 +33,6 @@ const AdminLogin = ({}) => {
     try {
       const responseLogin = await axios.post(`${API}/auth/login`, {username, password})
       setLoading(false)
-      console.log(responseLogin)
       window.location.href = '/admin'
     } catch (error) {
       console.log(error)
