@@ -4,6 +4,7 @@ import axios from 'axios'
 import {API} from '../../config'
 import withAdmin from '../withAdmin'
 import ForgotPassword from '../../components/modals/modalForms/forgotPassword'
+axios.defaults.withCredentials = true
 
 const AdminLogin = ({}) => {
 
@@ -30,8 +31,9 @@ const AdminLogin = ({}) => {
     setLoading(true)
     setMessage('')
     try {
-      const responseLogin = await axios.post(`${API}/auth/login`, {username, password}, {withCredentials: true})
+      const responseLogin = await axios.post(`${API}/auth/login`, {username, password})
       setLoading(false)
+      console.log(responseLogin)
       window.location.href = '/admin'
     } catch (error) {
       console.log(error)
