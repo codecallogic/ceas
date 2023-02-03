@@ -1,7 +1,7 @@
 import withAdmin from '../withAdmin'
 import { useState, useEffect } from 'react'
 import SVG from '../../files/svg'
-import {tableData} from '../../helpers/tables'
+import { tableData } from '../../helpers/tables'
 import { populateModal } from '../../helpers/modals'
 import { getToken } from '../../helpers/auth'
 import _ from 'lodash'
@@ -80,7 +80,7 @@ const AdminDashboard = ({
   pageSection
   
 }) => {
-  // console.log(accessToken)
+  console.log(account)
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState('')
   const [modal, setModal] = useState('')
@@ -92,7 +92,7 @@ const AdminDashboard = ({
   const [allData, setAllData] = useState(originalData ? originalData : [])
   
   useEffect(() => {
-
+    if(!account) window.location.href = '/admin/login'
     if(window.localStorage.getItem('component')) setComponent(window.localStorage.getItem('component'))
     if(window.localStorage.getItem('modal')) setModal(window.localStorage.getItem('modal'))
     if(window.localStorage.getItem('view')) setView(window.localStorage.getItem('view'))
@@ -134,6 +134,7 @@ const AdminDashboard = ({
   }
 
   return (
+    <>
     <div className="account">
       <div className="account-user"><SVG svg={'user_2'} color={'#e63946'}></SVG> Welcome, {account ? account.username : null} <span onClick={() => logout()}>Logout</span></div>
       <div className="account-breadcrumbs">
@@ -939,6 +940,7 @@ const AdminDashboard = ({
         ></Sections>
       }
     </div>
+    </>
   )
 }
 
@@ -1000,3 +1002,4 @@ AdminDashboard.getInitialProps = async (context) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(withAdmin(AdminDashboard))
+
