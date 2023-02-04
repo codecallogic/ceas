@@ -1,7 +1,7 @@
 import SVG from '../../../files/svg'
 import { useEffect, useRef, useState } from 'react'
 import { manageFormFields } from '../../../helpers/forms'
-import {studentTitles, centerAssociation, statusStudent} from '../../../utilities/dropdowns'
+import {studentTitles, centerAssociationStudent, statusStudent} from '../../../utilities/dropdowns'
 import {PUBLIC_FILES} from '../../../config'
 import { isNumber, validateIsPhoneNumber, validateDate } from '../../../helpers/validations'
 
@@ -222,7 +222,7 @@ const StudentForm = ({
               <div 
               className="form-group-list" 
               ref={myRefs}>
-                {centerAssociation && centerAssociation.map( (item, idx) => (
+                {centerAssociationStudent && centerAssociationStudent.map( (item, idx) => (
                 <div 
                 key={idx} 
                 className="form-group-list-item" 
