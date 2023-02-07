@@ -7,7 +7,7 @@ const Footer = ({}) => {
       <div className="footer-contents wrapper">
         <div className="footer-title">Contact</div>
         <div className="footer-columns">
-          <img src="/media/home/logo-ceas-v2.png" alt="Logo CEAS" className="footer-columns-logo"/>
+          <img src="/logo_nav.png" alt="Logo CEAS" className="footer-columns-logo"/>
           <div className="footer-columns-column">
             <strong>Location</strong>
             <span>E&T C253A</span>

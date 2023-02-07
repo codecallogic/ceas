@@ -119,7 +119,7 @@ const Home = ({
           <div className="home-section-5-title">Partners</div>
           <div className="home-section-5-items">
               <div className="home-section-5-items-item">
-                <img src="/media/home/logo-ceas.png" alt="Logo CEAS"/>
+                <img src="/logo_nav.png" alt="Logo CATSUS"/>
               </div>
               <div className="home-section-5-items-item">
                 <img src="/media/home/logo-la.png" alt="Logo LA" />
