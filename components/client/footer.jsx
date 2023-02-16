@@ -16,7 +16,7 @@ const Footer = ({}) => {
             <strong>Phone</strong>
             <span>(323) 343-5399</span>
             <strong>Email</strong>
-            <span>ceas@calstatela.edu</span>
+            <span>catsus@calstatela.edu</span>
             <strong>Social</strong>
             <div className="footer-columns-column-icons">
               {/* <img src="/media/home/icon-twitter.png" alt="Twitter"/> */}

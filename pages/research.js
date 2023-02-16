@@ -89,8 +89,8 @@ const Research = ({
         <div className="research-section-1">
           <div className="research-section-1-cover" style={{backgroundImage: `url('/media/home/research.png')`}}></div>
           <div className="research-section-1-content wrapper">
-            <div className="research-section-1-title">CEAS Research</div>
-            <p><mark>The overarching goal of the Center for Energy and Sustainability is to research and develop new technologies that can potentially help the world meet its growing energy demand while considering the sustainability of these technologies and their impact to environmental systems. Faculty specialty areas at California State University Los Angeles has led to the development of the research components shown below. Click here for a complete list of publications developed at CEaS</mark>
+            <div className="research-section-1-title">CATSUS Research</div>
+            <p><mark>The vision of the proposed CREST Center for Advancement toward Sustainable Urban Systems (CATSUS) is to become a leader in conducting transformative research on the challenges involving energy and water sustainability in urban settings, by promoting faculty engagement in high-level research, and further enhancing the research capability of Cal State LA, while training diverse and talented students who will become the engineers and scientists that will catalyze change in this field. Faculty specialty areas at California State University Los Angeles has led to the development of the research components shown below.</mark>
             </p>
             <div className="research-section-1-content-items">
             { activatedComponents.length > 0 && activatedComponents.slice(0, 5).map((item, idx) => 

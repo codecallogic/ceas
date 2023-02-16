@@ -27,6 +27,10 @@ const About = ({
       openSearch={openSearch}
       setOpenSearch={setOpenSearch}
     ></Navigation>
+    <br />
+    <br />
+    <br />
+    <br />
     <div className="about">
       <div className="about-cover" style={{backgroundImage: `url('/media/about/header.png')`}}></div>
       <div className="about-section-2 wrapper">
@@ -65,7 +69,10 @@ const About = ({
           : 
           null
         )}
-        
+        <br />
+        <br />
+        <br />
+        <br />
       </div>
     </div>
     <Footer></Footer>

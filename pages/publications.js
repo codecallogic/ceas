@@ -26,7 +26,7 @@ const Publications = ({
       <div className="publication-section-1 wrapper">
         <div className="publication-section-1-title">Publications</div>
         <p className="publication-section-1-description">
-          The Center for Energy and Sustainability is committed to dissiminating its findings with the scientific community, adademia, students and federal, state and local agencies, through various venues, including peer-reviewed journal publications, conference papers and presentations, books and technical reports. A comprehensive list of publications authored and co-authored by CEaS faculty and students presenting results and findings of research developed at CEaS are presented available in this page.
+          The Center for Advancement toward Sustainable Urban Systems (CATSUS) is committed to disseminating its findings with the scientific community, academia, students and federal, state and local agencies, through various venues, including peer-reviewed journal publications, conference papers and presentations, books and technical reports. A comprehensive list of publications authored and co-authored by CATSUS faculty and students presenting results and findings of research developed at CATSUS are presented available in this page
         </p>
       </div>
       <div className="publication-section-2 wrapper">
