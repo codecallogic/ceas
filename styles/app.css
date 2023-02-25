@@ -3099,11 +3099,12 @@ button {
   width: 45rem;
   height: 25rem;
   background-color: #edf2f5;
-  margin: 0 1rem 1rem 0;
+  margin: 0 1rem 3rem 0;
   padding: 1rem;
 }
 .people-section-3-items-item-image {
   width: 20rem;
+  height: 100%;
   padding: 1rem;
   background-color: white;
   box-shadow: 0.3rem 0.3rem 0.3rem 0.3rem rgba(0, 0, 0, 0.1);
@@ -3111,6 +3112,7 @@ button {
 .people-section-3-items-item-image img {
   max-width: 20rem !important;
   min-width: 20rem !important;
+  height: 100%;
   object-fit: cover;
 }
 .people-section-3-items-item-description {
