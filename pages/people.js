@@ -159,7 +159,7 @@ const People = ({
             <div key={idx} className="people-section-3-items-item">
               <div className="people-section-3-items-item-image">
                 <img 
-                  src={`${PUBLIC_FILES}/students/${item.image}`} 
+                  src={`${PUBLIC_FILES}/student/${item.image}`} 
                   alt={item.name ? item.name : ''}
                   onError={(e) => e.target.src = 'https://icon-library.com/images/not-found-icon/not-found-icon-14.jpg'}
                 />
