@@ -129,9 +129,9 @@ const People = ({
                 <h4>Department</h4>
                 {item.department ? <span> {item.department} </span> : 'No department'}
                 {item.officeLocation ? <div><h4>Office</h4>: <span>{item.officeLocation}</span></div>: ''}
-                {item.email ? <div><h4>Email</h4>: <span>{item.email}</span></div> : ''}
+                {item.email ? <div><h4>Email</h4>: <span>{item.email.substring(0, 30)}</span></div> : ''}
                 {item.officePhone ? <div><h4>Phone</h4>: <span>{item.officePhone}</span></div> : ''}
-                {item.website ? <div><h4>Website</h4>: <span><a href={item.website}>{item.website}</a></span></div> : ''}
+                {item.website ? <div><h4>Visit</h4>: <span><a href={item.website}>{item.website.substring(0,30)}</a></span></div> : ''}
               </div>
             </div>
           )}
@@ -159,7 +159,7 @@ const People = ({
             <div key={idx} className="people-section-3-items-item">
               <div className="people-section-3-items-item-image">
                 <img 
-                  src={`${PUBLIC_FILES}/staff/${item.image}`} 
+                  src={`${PUBLIC_FILES}/students/${item.image}`} 
                   alt={item.name ? item.name : ''}
                   onError={(e) => e.target.src = 'https://icon-library.com/images/not-found-icon/not-found-icon-14.jpg'}
                 />

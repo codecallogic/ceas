@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "watch:css": "node-sass styles/main.scss styles/app.css -w"
+    "watch:css": "sass styles/main.scss styles/app.css -w"
   },
   "dependencies": {
     "axios": "^0.24.0",
@@ -21,6 +21,7 @@
     "react-redux": "^7.2.6",
     "redux": "^4.1.2",
     "redux-devtools-extension": "^2.13.9",
+    "sass": "^1.58.3",
     "socket.io-client": "^4.4.1"
   },
   "devDependencies": {
