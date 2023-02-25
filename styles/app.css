@@ -3103,8 +3103,11 @@ button {
   padding: 1rem;
 }
 .people-section-3-items-item-image {
-  width: 20rem;
+  max-width: 20rem !important;
+  min-width: 20rem !important;
   height: 100%;
+  display: flex;
+  justify-content: center;
   padding: 1rem;
   background-color: white;
   box-shadow: 0.3rem 0.3rem 0.3rem 0.3rem rgba(0, 0, 0, 0.1);
@@ -3116,7 +3119,7 @@ button {
   object-fit: cover;
 }
 .people-section-3-items-item-description {
-  width: 30rem;
+  width: 25rem;
   height: 100%;
   padding: 0 1rem;
   margin: 0 0.5rem;
