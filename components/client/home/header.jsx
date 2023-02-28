@@ -55,7 +55,7 @@ const Header = ({ slides, }) => {
   }, [slides, counter, slideDirection])
   
   return (
-    <div className="header" style={{backgroundImage: `url('${PUBLIC_FILES}/slides/${slide[0].image}'), url('https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png')`}}>
+    <div className="header" style={{backgroundImage: `url('${PUBLIC_FILES}/slides/${slide.image}'), url('https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png')`}}>
       <div className="header-cover" style={{backgroundImage: `url('./media/home/header/home-header.png')`}}></div>
 
       <did className="header-title">{title ? title : 'No title'}</did>
