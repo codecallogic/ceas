@@ -57,7 +57,7 @@ const Home = ({
         <div className="home-section-2-cover" style={{backgroundImage: `url('/media/home/research.png')`}}></div>
         <div className="home-section-2-content wrapper">
           <div className="home-section-2-title">Research Thrust Areas</div>
-          <p><mark>The Center involves 27 faculty members from eight interdisciplinary departments at Cal State LA who lead efforts in 5 research thrust areas. Several projects address short-term mitigations of current energy concerns, while some projects address long-term goals of moving away from carbon-based energy dependence.</mark></p>
+          <p><mark>CATSUS involves 22 faculty members from six interdisciplinary departments at Cal State LA who lead efforts in 4 research thrust areas. It is expected to provide research training to more than 200 students at Cal State LA over its funding period. Several projects address issues of energy and water sustainability in urban areas. CATSUS provides funding for faculty and student fellows to develop novel and transformative research related to energy systems and management in buildings, advanced materials for energy and water applications, and resilience of urban water bodies, to attain urban sustainability.</mark></p>
           <div className="home-section-2-content-items">
             { activatedComponents && activatedComponents.slice(0, 5).map((item, idx) => 
               item.active.toLowerCase() == 'activated' 
