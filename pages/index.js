@@ -56,7 +56,7 @@ const Home = ({
       <div className="home-section-2">
         <div className="home-section-2-cover" style={{backgroundImage: `url('/media/home/research.png')`}}></div>
         <div className="home-section-2-content wrapper">
-          <div className="home-section-2-title">Research Thrust Center</div>
+          <div className="home-section-2-title">Research Thrust Areas</div>
           <p><mark>The Center involves 27 faculty members from eight interdisciplinary departments at Cal State LA who lead efforts in 5 research thrust areas. Several projects address short-term mitigations of current energy concerns, while some projects address long-term goals of moving away from carbon-based energy dependence.</mark></p>
           <div className="home-section-2-content-items">
             { activatedComponents && activatedComponents.slice(0, 5).map((item, idx) => 
