@@ -120,7 +120,7 @@ const People = ({
                 <img 
                   src={`${PUBLIC_FILES}/faculty/${item.image}`} 
                   alt={item.name ? item.name : ''}
-                  onError={(e) => e.target.src = 'https://icon-library.com/images/not-found-icon/not-found-icon-14.jpg'}
+                  onError={(e) => e.target.src = 'https://secure.gravatar.com/avatar/9cd4b9709939e0ce4b8645e55e96c8d0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-0.png'}
                 />
               </div>
               <div className="people-section-3-items-item-description">

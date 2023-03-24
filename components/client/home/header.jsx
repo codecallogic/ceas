@@ -10,7 +10,7 @@ const Header = ({ slides, }) => {
   const [slideDirection, setSlideDirection] = useState('right')
 
   useEffect(() => {
-    console.log(slides)
+    // console.log(slides)
     
     if(slides.length > 0){
       if(slides[0].component[0].name.toLowerCase() == 'homepage header carousel'){
@@ -57,7 +57,9 @@ const Header = ({ slides, }) => {
   return (
     <div className="header" style={{backgroundImage: `url('${PUBLIC_FILES}/slides/${slide.image}'), url('https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png')`}}>
       <div className="header-cover" style={{backgroundImage: `url('./media/home/header/home-header.png')`}}></div>
-
+      {
+        console.log(slide.image)
+      }
       <did className="header-title">{title ? title : 'No title'}</did>
       <div className="header-subtitle">{caption ? caption : 'No caption'}</div>
       
