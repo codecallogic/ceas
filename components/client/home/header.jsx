@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { PUBLIC_FILES } from '../../../config'
 
-const Header = ({ slides, }) => {
+const Header = ({ slides }) => {
 
   const [slide, setSlide] = useState('')
   const [title, setTitle] = useState('')
@@ -10,13 +10,16 @@ const Header = ({ slides, }) => {
   const [slideDirection, setSlideDirection] = useState('right')
 
   useEffect(() => {
-    
+
     if(slides.length > 0){
-      if(slides[0].component[0].name.toLowerCase() == 'homepage header carousel'){
-        setSlide(slides[counter].image)
-        setTitle(slides[counter].title)
-        setCaption(slides[counter].caption)
-      }
+      setSlide(slides[counter].image)
+      setTitle(slides[counter].title)
+      setCaption(slides[counter].caption)
+      // if(slides[0].component[0].name.toLowerCase() == 'homepage header carousel'){
+      //   setSlide(slides[counter].image)
+      //   setTitle(slides[counter].title)
+      //   setCaption(slides[counter].caption)
+      // }
     }    
 
     let delay = 5000
@@ -52,6 +55,9 @@ const Header = ({ slides, }) => {
   
   return (
     <div className="header" style={{backgroundImage: `url('${PUBLIC_FILES}/slides/${slide}'), url('https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png')`}}>
+      {
+        console.log(title)
+      }
       <div className="header-cover" style={{backgroundImage: `url('./media/home/header/home-header.png')`}}></div>
       <did className="header-title">{title ? title : 'No title'}</did>
       <div className="header-subtitle">{caption ? caption : 'No caption'}</div>
