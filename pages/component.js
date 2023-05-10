@@ -4,6 +4,8 @@ import Footer from '../components/client/footer'
 import { PUBLIC_FILES } from '../config'
 import Toolbar from '../components/client/toolbar'
 import SVG from '../files/svg'
+import { useRouter } from 'next/router'
+
 
 const Component = ({
   navMenus,
@@ -15,20 +17,26 @@ const Component = ({
   //// DATA
   components,
   faculty,
-  students,
-
-  //// SERVER PROPS,
-  title
+  students
   
 }) => {
-
+  
   const [component, setComponent] = useState('')
   const [facultyItems, setFacultyItems] = useState([])
   const [studentItems, setStudentItems] = useState([])
+  const [title, setTitle] = useState('')
+  const router = useRouter();
 
   useEffect(() => {
-
-    components.forEach((item) => { if(item.name == title) setComponent(item) })    
+   
+    if(router.query){
+      if(router.query.title) setTitle(router.query.title)
+    }
+  }, [])
+  
+  useEffect(() => {
+    console.log(components)
+    components.forEach((item) => { if(item.name.trim().toLowerCase() == title.trim().toLowerCase() ) setComponent(item) })    
     
   }, [components])
 
@@ -131,16 +139,6 @@ const Component = ({
       <Footer></Footer>
     </>
   )
-}
-
-Component.getInitialProps = ({query}) => {
-  let title = null
-
-  if(query.title) title = query.title
-
-  return {
-    title: title ? title : null
-  }
 }
 
 export default Component
