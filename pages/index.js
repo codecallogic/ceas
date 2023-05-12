@@ -88,7 +88,7 @@ const Home = ({
         <div className="home-section-3-cover" style={{backgroundImage: `url('/media/home/application.png')`}}></div>
         <div className="home-section-3-contents wrapper">
           <div className="home-section-3-title">Application Resource Center</div>
-          <p>Our programs at California State University, Los Angeles for graduate and undergraduate students in the sciences and engineering fields are offered to students who are interested in research in the broad field of energy and sustainability. Students will work with faculty in various fields, including chemistry, biology, geography, physics, civil, mechanical, and electrical engineering, computer science and technology to conduct research on topics related to photovoltaics (solar cells), fuel cells, combustion, biofuels creation and characterization, carbon sequestration, and others. The research spans the range from computational to wet chemistry to field research, all under the direct mentorship of faculty.</p>
+          <p>Our programs at California State University, Los Angeles for graduate and undergraduate students in the sciences and engineering fields are offered to students who are interested in research in the broad field of energy and sustainability. Students will work with faculty in various fields, including chemistry, biology, geography, physics, civil, mechanical, and electrical engineering, computer science and technology to conduct research on topics related urban sustainability.</p>
           <div className="home-section-3-items">
             <div className="home-section-3-items-item">
               <div className="home-section-3-items-item-image"><img src="/media/home/icon-undergraduate.png" alt="Undergraduate Student Fellowship"/></div>
