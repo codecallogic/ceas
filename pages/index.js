@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import SVG from '../files/svg'
+import { PUBLIC_FILES } from '../config'
 
 //// COMPONENTS
 import DesktopNav from '../components/client/navigation'
@@ -69,7 +70,7 @@ const Home = ({
                 <div className="home-section-2-content-items-item-image">
                   <img 
                     className="image" 
-                    src={`/media/home/${item.name.toLowerCase()}.png`} 
+                    src={`${PUBLIC_FILES}/component/${item.icon}.png`} 
                     alt={item.name}
                     onError={(e) => e.target.src = 'https://icon-library.com/images/not-found-icon/not-found-icon-14.jpg'}
                   />
