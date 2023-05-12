@@ -70,7 +70,7 @@ const Home = ({
                 <div className="home-section-2-content-items-item-image">
                   <img 
                     className="image" 
-                    src={`${PUBLIC_FILES}/component/${item.icon}.png`} 
+                    src={`${PUBLIC_FILES}/component/${item.icon}`} 
                     alt={item.name}
                     onError={(e) => e.target.src = 'https://icon-library.com/images/not-found-icon/not-found-icon-14.jpg'}
                   />
