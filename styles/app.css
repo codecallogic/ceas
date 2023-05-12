@@ -1389,7 +1389,7 @@ button {
   cursor: pointer;
 }
 .home-section-2-content-items-item:hover > div {
-  background-color: #135098;
+  background-color: white;
 }
 .home-section-2-content-items-item:hover > span {
   background-color: #edbd11;
