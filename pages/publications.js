@@ -13,7 +13,7 @@ const Publications = ({
   //// METHODS
   setOpenSearch
 }) => {
-  // console.log(publications)
+  console.log(publications)
   return (
    <>
    {/* <Toolbar></Toolbar> */}
@@ -45,7 +45,10 @@ const Publications = ({
 
               <span>{item.date ? `(${item.date.split('/')[2]}).` : ''} </span>
               <span>{item.title ? `"${item.title}"` : ''} </span>
-              <span>{item.type ? `${item.type}` : ''} </span>
+              {item.venues.length > 0 && item.venues.map( (i) => 
+                <span>{i ? `${i},` : ''} </span>
+              )}
+              {/* <span>{item.type ? `${item.type}` : ''} </span> */}
               
             </div>
             : 
@@ -68,7 +71,10 @@ const Publications = ({
 
               <span>{item.date ? `(${item.date.split('/')[2]}).` : ''} </span>
               <span>{item.title ? `"${item.title}"` : ''} </span>
-              <span>{item.type ? `${item.type}` : ''} </span>
+              {item.venues.length > 0 && item.venues.map( (i) => 
+                <span>{i ? `${i},` : ''} </span>
+              )}
+              {/* <span>{item.type ? `${item.type}` : ''} </span> */}
               
             </div>
             : 
@@ -91,7 +97,10 @@ const Publications = ({
 
               <span>{item.date ? `(${item.date.split('/')[2]}).` : ''} </span>
               <span>{item.title ? `"${item.title}"` : ''} </span>
-              <span>{item.type ? `${item.type}` : ''} </span>
+              {item.venues.length > 0 && item.venues.map( (i) => 
+                <span>{i ? `${i},` : ''} </span>
+              )}
+              {/* <span>{item.type ? `${item.type}` : ''} </span> */}
               
             </div>
             : 
@@ -114,7 +123,10 @@ const Publications = ({
 
               <span>{item.date ? `(${item.date.split('/')[2]}).` : ''} </span>
               <span>{item.title ? `"${item.title}"` : ''} </span>
-              <span>{item.type ? `${item.type}` : ''} </span>
+              {item.venues.length > 0 && item.venues.map( (i) => 
+                <span>{i ? `${i},` : ''} </span>
+              )}
+              {/* <span>{item.type ? `${item.type}` : ''} </span> */}
               
             </div>
             : 
@@ -137,7 +149,10 @@ const Publications = ({
 
               <span>{item.date ? `(${item.date.split('/')[2]}).` : ''} </span>
               <span>{item.title ? `"${item.title}"` : ''} </span>
-              <span>{item.type ? `${item.type}` : ''} </span>
+              {item.venues.length > 0 && item.venues.map( (i) => 
+                <span>{i ? `${i},` : ''} </span>
+              )}
+              {/* <span>{item.type ? `${item.type}` : ''} </span> */}
               
             </div>
             : 
@@ -160,7 +175,10 @@ const Publications = ({
 
               <span>{item.date ? `(${item.date.split('/')[2]}).` : ''} </span>
               <span>{item.title ? `"${item.title}"` : ''} </span>
-              <span>{item.type ? `${item.type}` : ''} </span>
+              {item.venues.length > 0 && item.venues.map( (i) => 
+                <span>{i ? `${i},` : ''} </span>
+              )}
+              {/* <span>{item.type ? `${item.type}` : ''} </span> */}
               
             </div>
             : 

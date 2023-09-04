@@ -101,7 +101,7 @@ const Component = ({
             {facultyItems.length > 0 && facultyItems.map((item, idx) => 
               <div className="component-section-2-members-item">
                 <img 
-                  src={`${PUBLIC_FILES}/student/${item.image}`} 
+                  src={`${PUBLIC_FILES}/faculty/${item.image}`} 
                   alt={item.name} 
                   onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
                 />
