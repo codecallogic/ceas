@@ -99,7 +99,7 @@ const Research = ({
               <div key={idx} className="research-section-1-content-items-item" onClick={() => (document.getElementById('section-2').scrollIntoView(), setComponent(item.name.toLowerCase()))}>
                 <img 
                   className="image" 
-                  src={`${PUBLIC_FILES}/component/${item.name.toLowerCase()}`} 
+                  src={`${PUBLIC_FILES}/component/${item.icon}`} 
                   // src={`/media/home/${item.name.toLowerCase()}.png`} 
                   alt={item.name}
                   onError={(e) => e.target.src = 'https://icon-library.com/images/not-found-icon/not-found-icon-14.jpg'}
