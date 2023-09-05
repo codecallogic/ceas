@@ -4,6 +4,7 @@ import Footer from '../components/client/footer'
 import { PUBLIC_FILES } from '../config'
 import Toolbar from '../components/client/toolbar'
 import SVG from '../files/svg'
+import { useRouter } from 'next/router'
 
 const News = ({
   navMenus,
@@ -13,11 +14,21 @@ const News = ({
   setOpenSearch,
 
   //// DATA
-  news,
-  title
+  news
   
 }) => {
 
+  const [title, setTitle] = useState('')
+  const router = useRouter();
+
+  useEffect(() => {
+    console.log(news)
+    if(router.query){
+      console.log(router.query.title)
+      if(router.query.title) setTitle(router.query.title.trim())
+    }
+  }, [])
+  
   return (
     <>
       {/* <Toolbar></Toolbar> */}
@@ -59,7 +70,7 @@ const News = ({
           )}
 
           {title && news.length > 0 && news.map((item, idx) => 
-            item.title == title 
+            item.title.trim() == title 
             ?
             <div 
               key={idx} 
@@ -73,7 +84,7 @@ const News = ({
                   onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
                 />
               </div>
-              <div className="news-section-2-announcement-paragraph" dangerouslySetInnerHTML={{ __html: `${item.news.substring(0, 500)}...`}}></div>
+              <div className="news-section-2-announcement-paragraph" dangerouslySetInnerHTML={{ __html: `${item.news}`}}></div>
             </div>
             :
             null
@@ -84,6 +95,7 @@ const News = ({
           <div className="news-section-3-title">All News</div>
           { news.length > 0 && news.sort((a, b) => new Date(a.date) > new Date(b.date) ? -1 : 1).slice(0, 50).map((item, idx) => 
             <div 
+              key={idx}
               onClick={() => window.location = `/news?title=${item.title}`}
               className="news-section-3-index"
             >
@@ -95,17 +107,6 @@ const News = ({
       <Footer></Footer>
     </>
   )
-}
-
-News.getInitialProps = ({query}) => {
-  
-  let title = null
-
-  if(query.title) title = query.title
-
-  return {
-    title: title ? title : null
-  }
 }
 
 export default News
