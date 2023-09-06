@@ -2165,8 +2165,8 @@ button {
 }
 .header-title {
   position: absolute;
-  top: 50%;
-  left: 10%;
+  top: 55%;
+  right: 10%;
   padding: 1rem;
   font-family: Poppins-Bold;
   font-size: 1.8rem;
@@ -2176,8 +2176,8 @@ button {
 }
 .header-subtitle {
   position: absolute;
-  top: 59%;
-  left: 10%;
+  top: 64%;
+  right: 10%;
   padding: 0.5rem 1rem;
   background-color: white;
   font-size: 1.4rem;
@@ -3204,6 +3204,33 @@ button {
 .publication-section-2-publications-item:hover {
   cursor: pointer;
   color: #135098;
+}
+.publication-section-2-contents {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+.publication-section-2-contents span:hover {
+  cursor: pointer;
+  font-weight: 600;
+}
+.publication-section-2-sort {
+  width: max-content;
+  font-family: Poppins-Bold;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  text-decoration: underline;
+  color: #135098;
+}
+.publication-section-2-sort span {
+  transition: all 0.3s;
+}
+.publication-section-2-sort span:hover {
+  cursor: pointer;
+  font-size: 1.3rem;
+  font-weight: 400;
 }
 
 .component-section-1 {

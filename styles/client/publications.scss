@@ -56,6 +56,44 @@
           color: $color-scheme-1;
         }
       }
+
+    }
+
+    &-contents {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      font-size: 1.4rem;
+      font-weight: 500;
+
+      span {
+        &:hover {
+          cursor: pointer;
+          font-weight: 600;
+        }
+      }
+
+    }
+
+    &-sort {
+      // margin-bottom: -2rem;
+      width: max-content;
+      font-family: Poppins-Bold;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      text-decoration: underline;
+      color: $color-scheme-1;
+
+      span {
+        transition: all .3s;
+        
+        &:hover {
+          cursor: pointer;
+          font-size: 1.3rem;
+          font-weight: 400;
+        }
+      }
+      
     }
   }
 }
