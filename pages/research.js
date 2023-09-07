@@ -261,7 +261,7 @@ const Research = ({
                   <div key={idx} className="research-section-3-members-item">
                     <div className="research-section-3-members-item-image">
                       <img 
-                        src={`${PUBLIC_FILES}/students/${item.image}`} 
+                        src={`${PUBLIC_FILES}/student/${item.image}`} 
                         alt={item.name} 
                         onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
                       />
