@@ -221,20 +221,32 @@ const Research = ({
         </div>
 
         <div className="research-section-3">
-          <div className="research-section-3-content wrapper">
+          <div className="research-section-3-content wrapper-2">
             <div className="research-section-3-title">{ facultyItems.length > 0 ? 'Faculty' : ''}</div>
               <div className="research-section-3-members">
                 {facultyItems.length > 0 && facultyItems.map((item, idx) => 
                   <div key={idx} className="research-section-3-members-item">
-                    <img 
-                      src={`${PUBLIC_FILES}/faculty/${item.image}`} 
-                      alt={item.name} 
-                      onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
-                    />
-                    <div className="research-section-3-members-item-name">
+                    <div className="research-section-3-members-item-image">
+                      <img 
+                        src={`${PUBLIC_FILES}/faculty/${item.image}`} 
+                        alt={item.name} 
+                        onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
+                      />
+                    </div>
+                    <div className="research-section-3-members-item-description">
+                      <h3>{item.name ? item.name : 'No name'}</h3>
+                      {item.profession ? <span>{item.profession.substring(0, 15)}, {item.centerAssociation.substring(0, 15)}</span>  : 'No profession'}
+                      <h4>Department</h4>
+                      {item.department ? <span> {item.department} </span> : 'No department'}
+                      {item.officeLocation ? <div><h4>Office</h4>: <span>{item.officeLocation}</span></div>: ''}
+                      {item.email ? <div><h4>Email</h4>: <span>{item.email.substring(0, 30)}</span></div> : ''}
+                      {item.officePhone ? <div><h4>Phone</h4>: <span>{item.officePhone}</span></div> : ''}
+                      {item.website ? <div><h4>Visit</h4>: <span><a href={item.website}>{item.website.substring(0,30)}</a></span></div> : ''}
+                    </div>
+                    {/* <div className="research-section-3-members-item-name">
                       <span></span>
                       <div>{item.title}{item.name}</div>
-                    </div>
+                    </div> */}
                   </div>
                 )}
               </div>
@@ -247,14 +259,21 @@ const Research = ({
               <div className="research-section-3-members">
                 {studentItems.length > 0 && studentItems.map((item, idx) => 
                   <div key={idx} className="research-section-3-members-item">
-                    <img 
-                      src={`${PUBLIC_FILES}/student/${item.image}`} 
-                      alt={item.name} 
-                      onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
-                    />
-                    <div className="research-section-3-members-item-name">
-                      <span></span>
-                      <div>{item.title}{item.name}</div>
+                    <div className="research-section-3-members-item-image">
+                      <img 
+                        src={`${PUBLIC_FILES}/faculty/${item.image}`} 
+                        alt={item.name} 
+                        onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
+                      />
+                    </div>
+                    <div className="research-section-3-members-item-description">
+                      <h3>{item.name ? item.name : 'No name'}</h3>
+                      <h4>Department</h4>
+                      {item.department ? <span> {item.department} </span> : 'No department'}
+                      {item.officeLocation ? <div><h4>Office</h4>: <span>{item.officeLocation}</span></div>: ''}
+                      {item.email ? <div><h4>Email</h4>: <span>{item.email.substring(0, 30)}</span></div> : ''}
+                      {item.officePhone ? <div><h4>Phone</h4>: <span>{item.officePhone}</span></div> : ''}
+                      {item.website ? <div><h4>Visit</h4>: <span><a href={item.website}>{item.website.substring(0,30)}</a></span></div> : ''}
                     </div>
                   </div>
                 )}
