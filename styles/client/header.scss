@@ -27,7 +27,7 @@
 
   &-title {
     position: absolute;
-    top: 55%;
+    top: 75%;
     right: 10%;
     padding: 1rem;
     font-family: Poppins-Bold;
@@ -39,10 +39,10 @@
 
   &-subtitle {
     position: absolute;
-    top: 64%;
+    top: 85%;
     right: 10%;
     padding: 0.5rem 1rem;
-    background-color: white;
+    background-color: $color-light-grey-1;
     font-size: 1.4rem;
     text-transform: uppercase;
 

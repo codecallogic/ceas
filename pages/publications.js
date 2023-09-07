@@ -80,16 +80,16 @@ const Publications = ({
                 key={idx} 
                 id="book"
                 className="publication-section-2-publications-item"
-                onClick={(e) => window.open(`${PUBLIC_FILES}/publication/${item.file}`, '_blank')}
+                onClick={(e) => item.file ? window.open(`${PUBLIC_FILES}/publication/${item.file}`, '_blank') : window.location.href = item.link }
               >
                 {item.authors.length > 0 && item.authors.map( (i) => 
-                <span>{i ? `${i},` : ''} </span>
+                  <span>{i ? `${i},` : ''} </span>
                 )}
 
                 <span>{item.date ? `(${item.date.split('/')[2]}).` : ''} </span>
-                <span>{item.title ? `"${item.title}"` : ''} </span>
-                {item.venues.length > 0 && item.venues.map( (i) => 
-                  <span>{i ? `${i},` : ''} </span>
+                <span>{item.title ? `"${item.title}".` : ''} </span>
+                {item.venues.length > 0 && item.venues.map( (i, idx) => 
+                  item.venues.length === idx + 1 ? <span>{i ? `${i}` : ''} </span> : <span>{i ? `${i},` : ''} </span>
                 )}
                 {/* <span>{item.type ? `${item.type}` : ''} </span> */}
                 
@@ -107,16 +107,16 @@ const Publications = ({
                 key={idx} 
                 id="book chapter"
                 className="publication-section-2-publications-item"
-                onClick={(e) => window.open(`${PUBLIC_FILES}/publication/${item.file}`, '_blank')}
+                onClick={(e) => item.file ? window.open(`${PUBLIC_FILES}/publication/${item.file}`, '_blank') : window.location.href = item.link }
               >
                 {item.authors.length > 0 && item.authors.map( (i) => 
                 <span>{i ? `${i},` : ''} </span>
                 )}
 
                 <span>{item.date ? `(${item.date.split('/')[2]}).` : ''} </span>
-                <span>{item.title ? `"${item.title}"` : ''} </span>
-                {item.venues.length > 0 && item.venues.map( (i) => 
-                  <span>{i ? `${i},` : ''} </span>
+                <span>{item.title ? `"${item.title}".` : ''} </span>
+                {item.venues.length > 0 && item.venues.map( (i, idx) => 
+                  item.venues.length === idx + 1 ? <span>{i ? `${i}` : ''} </span> : <span>{i ? `${i},` : ''} </span>
                 )}
                 {/* <span>{item.type ? `${item.type}` : ''} </span> */}
                 
@@ -134,16 +134,16 @@ const Publications = ({
                 key={idx} 
                 className="publication-section-2-publications-item"
                 id="conference paper and presentation"
-                onClick={(e) => window.open(`${PUBLIC_FILES}/publication/${item.file}`, '_blank')}
+                onClick={(e) => item.file ? window.open(`${PUBLIC_FILES}/publication/${item.file}`, '_blank') : window.location.href = item.link }
               >
                 {item.authors.length > 0 && item.authors.map( (i) => 
-                <span>{i ? `${i},` : ''} </span>
+                  <span>{i ? `${i},` : ''} </span>
                 )}
 
                 <span>{item.date ? `(${item.date.split('/')[2]}).` : ''} </span>
-                <span>{item.title ? `"${item.title}"` : ''} </span>
-                {item.venues.length > 0 && item.venues.map( (i) => 
-                  <span>{i ? `${i},` : ''} </span>
+                <span>{item.title ? `"${item.title}".` : ''} </span>
+                {item.venues.length > 0 && item.venues.map( (i, idx) => 
+                  item.venues.length === idx + 1 ? <span>{i ? `${i}` : ''} </span> : <span>{i ? `${i},` : ''} </span>
                 )}
                 {/* <span>{item.type ? `${item.type}` : ''} </span> */}
                 
@@ -161,16 +161,16 @@ const Publications = ({
                 key={idx} 
                 className="publication-section-2-publications-item"
                 id="journal and juried conference paper"
-                onClick={(e) => window.open(`${PUBLIC_FILES}/publication/${item.file}`, '_blank')}
+                onClick={(e) => item.file ? window.open(`${PUBLIC_FILES}/publication/${item.file}`, '_blank') : window.location.href = item.link }
               >
                 {item.authors.length > 0 && item.authors.map( (i) => 
-                <span>{i ? `${i},` : ''} </span>
+                  <span>{i ? `${i},` : ''} </span>
                 )}
 
                 <span>{item.date ? `(${item.date.split('/')[2]}).` : ''} </span>
-                <span>{item.title ? `"${item.title}"` : ''} </span>
-                {item.venues.length > 0 && item.venues.map( (i) => 
-                  <span>{i ? `${i},` : ''} </span>
+                <span>{item.title ? `"${item.title}".` : ''} </span>
+                {item.venues.length > 0 && item.venues.map( (i, idx) => 
+                  item.venues.length === idx + 1 ? <span>{i ? `${i}` : ''} </span> : <span>{i ? `${i},` : ''} </span>
                 )}
                 {/* <span>{item.type ? `${item.type}` : ''} </span> */}
                 
@@ -188,16 +188,16 @@ const Publications = ({
                 key={idx} 
                 className="publication-section-2-publications-item"
                 id="theses and dissertations"
-                onClick={(e) => window.open(`${PUBLIC_FILES}/publication/${item.file}`, '_blank')}
+                onClick={(e) => item.file ? window.open(`${PUBLIC_FILES}/publication/${item.file}`, '_blank') : window.location.href = item.link }
               >
                 {item.authors.length > 0 && item.authors.map( (i) => 
                 <span>{i ? `${i},` : ''} </span>
                 )}
 
                 <span>{item.date ? `(${item.date.split('/')[2]}).` : ''} </span>
-                <span>{item.title ? `"${item.title}"` : ''} </span>
-                {item.venues.length > 0 && item.venues.map( (i) => 
-                  <span>{i ? `${i},` : ''} </span>
+                <span>{item.title ? `"${item.title}".` : ''} </span>
+                {item.venues.length > 0 && item.venues.map( (i, idx) => 
+                  item.venues.length === idx + 1 ? <span>{i ? `${i}` : ''} </span> : <span>{i ? `${i},` : ''} </span>
                 )}
                 {/* <span>{item.type ? `${item.type}` : ''} </span> */}
                 
@@ -215,16 +215,16 @@ const Publications = ({
                 key={idx} 
                 id="other publications"
                 className="publication-section-2-publications-item"
-                onClick={(e) => window.open(`${PUBLIC_FILES}/publication/${item.file}`, '_blank')}
+                onClick={(e) => item.file ? window.open(`${PUBLIC_FILES}/publication/${item.file}`, '_blank') : window.location.href = item.link }
               >
                 {item.authors.length > 0 && item.authors.map( (i) => 
-                <span>{i ? `${i},` : ''} </span>
+                  <span>{i ? `${i},` : ''} </span>
                 )}
 
                 <span>{item.date ? `(${item.date.split('/')[2]}).` : ''} </span>
-                <span>{item.title ? `"${item.title}"` : ''} </span>
-                {item.venues.length > 0 && item.venues.map( (i) => 
-                  <span>{i ? `${i},` : ''} </span>
+                <span>{item.title ? `"${item.title}".` : ''} </span>
+                {item.venues.length > 0 && item.venues.map( (i, idx) => 
+                  item.venues.length === idx + 1 ? <span>{i ? `${i}` : ''} </span> : <span>{i ? `${i},` : ''} </span>
                 )}
                 {/* <span>{item.type ? `${item.type}` : ''} </span> */}
                 
@@ -256,16 +256,16 @@ const Publications = ({
                 key={idx} 
                 id="book"
                 className="publication-section-2-publications-item"
-                onClick={(e) => window.open(`${PUBLIC_FILES}/publication/${item.file}`, '_blank')}
+                onClick={(e) => item.file ? window.open(`${PUBLIC_FILES}/publication/${item.file}`, '_blank') : window.location.href = item.link }
               >
                 {item.authors.length > 0 && item.authors.map( (i) => 
-                <span>{i ? `${i},` : ''} </span>
+                  <span>{i ? `${i},` : ''} </span>
                 )}
 
                 <span>{item.date ? `(${item.date.split('/')[2]}).` : ''} </span>
-                <span>{item.title ? `"${item.title}"` : ''} </span>
-                {item.venues.length > 0 && item.venues.map( (i) => 
-                  <span>{i ? `${i},` : ''} </span>
+                <span>{item.title ? `"${item.title}".` : ''} </span>
+                {item.venues.length > 0 && item.venues.map( (i, idx) => 
+                  item.venues.length === idx ? <span>{i ? `${i}` : ''} </span> : <span>{i ? `${i},` : ''} </span>
                 )}
                 
               </div>

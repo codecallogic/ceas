@@ -2165,7 +2165,7 @@ button {
 }
 .header-title {
   position: absolute;
-  top: 55%;
+  top: 75%;
   right: 10%;
   padding: 1rem;
   font-family: Poppins-Bold;
@@ -2176,10 +2176,10 @@ button {
 }
 .header-subtitle {
   position: absolute;
-  top: 64%;
+  top: 85%;
   right: 10%;
   padding: 0.5rem 1rem;
-  background-color: white;
+  background-color: #b3b3b3;
   font-size: 1.4rem;
   text-transform: uppercase;
 }
