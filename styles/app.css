@@ -1609,6 +1609,9 @@ button {
   background-color: white !important;
   border: solid 0.2rem #b3b3b3;
 }
+.home-section-3-items-item-image:hover {
+  cursor: pointer;
+}
 @media only screen and (max-width: 600px) {
   .home-section-3-items-item-image {
     width: 7rem;

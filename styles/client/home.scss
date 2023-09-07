@@ -352,6 +352,10 @@
           background-color: white !important;
           border: solid 0.2rem $color-light-grey-1;
 
+          &:hover {
+            cursor: pointer;
+          }
+
           @media only screen and (max-width: $small) {
             width: 7rem;
             height: 6rem;
