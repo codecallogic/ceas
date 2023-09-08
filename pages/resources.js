@@ -120,7 +120,7 @@ const Resource = ({
                 className="resource-section-3-announcement-content-equipment"
                 onClick={() => window.location.href = `/equipment?title=${item.name}`}
               >
-                <div className="resource-section-3-announcement-content-equipment-title">{item.name}</div>
+                <h1 className="resource-section-3-announcement-content-equipment-title">{item.name}</h1>
                 <div className="resource-section-3-announcement-content-equipment-content">
                   <div key={idx} className="resource-section-3-announcement-content-equipment-content-image-container">
                     <div className="resource-section-3-announcement-content-equipment-content-image">
