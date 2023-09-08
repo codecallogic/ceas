@@ -97,7 +97,7 @@ const Home = ({
                 role="button"
                 onClick={ () => window.open("https://csula-my.sharepoint.com/personal/rrosell_calstatela_edu/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Frrosell%5Fcalstatela%5Fedu%2FDocuments%2FCATSUS%20March2023%2FCREST%2DCATSUS%20Information%2FForms%2FCATSUS%20Application1%5F9%2E01%2E22%5Fupdated%2Epdf&parent=%2Fpersonal%2Frrosell%5Fcalstatela%5Fedu%2FDocuments%2FCATSUS%20March2023%2FCREST%2DCATSUS%20Information%2FForms&ct=1694113050455&or=OWA%2DNT&cid=0f8751d2%2D5215%2Db215%2Dcbf3%2D1c70a8193c53&ga=1&WSL=1", "_blank")}
               >
-                <img src="/media/home/icon-undergraduate.png" alt="Undergraduate Student Fellowship"/>
+                <img src="/media/home/icon-undergraduate.png" alt="Undergraduate"/>
               </div>
               <span>Undergraduate Student Fellowship</span>
               <div 
@@ -105,7 +105,7 @@ const Home = ({
                 role="button"
                 onClick={ () => window.open("https://csula-my.sharepoint.com/personal/rrosell_calstatela_edu/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Frrosell%5Fcalstatela%5Fedu%2FDocuments%2FCATSUS%20March2023%2FCREST%2DCATSUS%20Information%2FForms%2FCATSUS%20Undergraduate%20Research%20Fellow%202022%20%281%29%2Epdf&parent=%2Fpersonal%2Frrosell%5Fcalstatela%5Fedu%2FDocuments%2FCATSUS%20March2023%2FCREST%2DCATSUS%20Information%2FForms&ct=1694113452341&or=OWA%2DNT&cid=062f3015%2Dbcb0%2D2f38%2Dae14%2Dee6fdb7342ad&ga=1&WSL=1", "_blank")}
               >
-                <img src="/media/home/icon-graduate.png" alt="Graduate Student Fellowship"/></div>
+                <img src="/media/home/icon-graduate.png" alt="Graduate"/></div>
               <span>Graduate Student Fellowship</span>
             </div>
           </div>

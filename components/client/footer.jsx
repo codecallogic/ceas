@@ -5,7 +5,7 @@ const Footer = ({}) => {
     <div className="footer">
       <div className="footer-cover" style={{backgroundImage: `url('/media/home/footer.png')`}}></div>
       <div className="footer-contents wrapper">
-        <div className="footer-title">Contact</div>
+        <h1 className="footer-title">Contact</h1>
         <div className="footer-columns">
           <img src="/logo_nav.png" alt="Logo CEAS" className="footer-columns-logo"/>
           <div className="footer-columns-column">
@@ -25,12 +25,11 @@ const Footer = ({}) => {
           </div>
           <div className="footer-columns-column">
             <strong>Menu</strong>
-            <a href="/" >Home</a>
             <a href="/research" >Research</a>
             <a href="/resources" >Resources</a>
             <a href="/about" >About</a>
             {/* <a href="/apply" >Apply</a> */}
-            <a href="/news" >Annoucements</a>
+            <a href="/news" >Announcements</a>
           </div>
           <div className="footer-columns-column">
             <span>&#169; Copyright 2022. All rights reserved.</span>

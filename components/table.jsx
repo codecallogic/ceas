@@ -82,7 +82,7 @@ const Table = ({
   return (
     <div className="table">
       <div className="table-header">
-        <div className="table-header-title">{title}</div>
+        <h1 className="table-header-title">{title}</h1>
         {controls &&
           <div className="table-header-controls">
             <div 

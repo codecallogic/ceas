@@ -59,7 +59,7 @@ const Header = ({ slides }) => {
         console.log(title)
       }
       <div className="header-cover" style={{backgroundImage: `url('./media/home/header/home-header.png')`}}></div>
-      <did className="header-title">{title ? title : 'No title'}</did>
+      <h1 className="header-title">{title ? title : 'No title'}</h1>
       <div className="header-subtitle">{caption ? caption : 'No caption'}</div>
       
       <div className="header-dots">
