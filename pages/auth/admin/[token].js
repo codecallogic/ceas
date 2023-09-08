@@ -37,9 +37,9 @@ const ActivateAdmin = ({
       <div className="activate-admin-svg">
         <SVG svg={'admins'} color={'#135098'}></SVG>
       </div>
-      <div className="activate-admin-title">
+      <h1 className="activate-admin-title">
         <span>Activating your acount gives you access to our admin dashboard.</span>
-      </div>
+      </h1>
       {error && <div className="activate-admin-error">{error}</div>}
       <div className="activate-admin-button" onClick={activateAdmin}>
         <SVG svg={'arrow-up'} color={'#135098'}></SVG>

@@ -47,10 +47,10 @@ const AdminLogin = ({}) => {
         <img src="/media/restricted/arrow.png" alt="Go back" />
         <span>Go back to website</span>
       </div>
-      <div className="adminLogin-title">
+      <h1 className="adminLogin-title">
         <img src="/media/restricted/lock.png" alt="Lock" />
         <span>Restricted Area</span>
-      </div>
+      </h1>
       <div className="adminLogin-container">
         <div className="adminLogin-left">
           <img src="/media/restricted/restricted-area-image.png" alt="Restricted Area Image" />

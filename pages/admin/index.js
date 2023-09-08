@@ -139,7 +139,7 @@ const AdminDashboard = ({
       <div className="account-user"><SVG svg={'user_2'} color={'#e63946'}></SVG> Welcome, {account ? account.username : null} <span onClick={() => logout()}>Logout</span></div>
       <div className="account-breadcrumbs">
         <div className="account-breadcrumbs-item">
-          <span className="account-breadcrumbs-item-title" onClick={() => ( resetUILocalStorage(), setComponent(''), setModal(''), setView(''))}>Dashboard</span>
+          <h1 className="account-breadcrumbs-item-title" onClick={() => ( resetUILocalStorage(), setComponent(''), setModal(''), setView(''))}>Dashboard</h1>
           { component == 'account' &&
             <span className="account-breadcrumbs-item-subtitle">
               <SVG svg={'keyboard-right'}></SVG> Account

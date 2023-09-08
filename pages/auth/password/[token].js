@@ -89,7 +89,7 @@ const ForgotPassword = ({
           loop  
           autoplay
         ></lottie-player>
-        <h3 className="forgotPassword-container-title">Reset Password</h3>
+        <h1 className="forgotPassword-container-title">Reset Password</h1>
         <div className="form-group alt-group-top">
           <input 
           id="password" 

@@ -21,7 +21,7 @@ const UpdateEmail = ({
     ></Navigation>
     <div className="message">
       <div className="message-container">
-        <div className="message-title">{!message ? 'Your e-mail is updated!' : 'Your request has expired'}</div>
+        <h1 className="message-title">{!message ? 'Your e-mail is updated!' : 'Your request has expired'}</h1>
         { !message &&
           <span className="message-subtitle">Log in with new email. <a href="/admin/login">Login</a></span>
         }
