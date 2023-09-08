@@ -43,11 +43,13 @@ const Carousel = ({ news, setNews }) => {
   return (
     <div className="carousel">
       <img 
+        alt="carousel move left"
         src="/media/home/carousel/icon-left-arrow.png" 
         className="carousel-arrow-left"
         onClick={() => rotate('left')}
       />
       <img 
+        alt="carousel move right"
         src="/media/home/carousel/icon-right-arrow.png" 
         className="carousel-arrow-right"
         onClick={() => rotate('right')}
