@@ -89,7 +89,7 @@ const Research = ({
         <div className="research-section-1">
           <div className="research-section-1-cover" style={{backgroundImage: `url('/media/home/research.png')`}}></div>
           <div className="research-section-1-content wrapper">
-            <div className="research-section-1-title">CATSUS Research</div>
+            <h1 className="research-section-1-title">CATSUS Research</h1>
             <p><mark>The vision of the proposed CREST Center for Advancement toward Sustainable Urban Systems (CATSUS) is to become a leader in conducting transformative research on the challenges involving energy and water sustainability in urban settings, by promoting faculty engagement in high-level research, and further enhancing the research capability of Cal State LA, while training diverse and talented students who will become the engineers and scientists that will catalyze change in this field. Faculty specialty areas at California State University Los Angeles has led to the development of the research components shown below.</mark>
             </p>
             <div className="research-section-1-content-items">
@@ -121,7 +121,7 @@ const Research = ({
               item.name.toLowerCase() == component
               ?
               
-                <div 
+                <h1 
                   key={idx}
                   className="research-section-2-title"
                   onClick={() => window.open(`/component?title=${item.name}`, '_blank')}
@@ -133,7 +133,7 @@ const Research = ({
                     onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
                   />
                   <span>{item.name}</span>
-                </div>
+                </h1>
               :
               null
             )}
@@ -222,7 +222,7 @@ const Research = ({
 
         <div className="research-section-3">
           <div className="research-section-3-content wrapper-2">
-            <div className="research-section-3-title">{ facultyItems.length > 0 ? 'Faculty' : ''}</div>
+            <h1 className="research-section-3-title">{ facultyItems.length > 0 ? 'Faculty' : ''}</h1>
               <div className="research-section-3-members">
                 {facultyItems.length > 0 && facultyItems.map((item, idx) => 
                   <div key={idx} className="research-section-3-members-item">
@@ -255,7 +255,7 @@ const Research = ({
 
         <div className="research-section-3">
           <div className="research-section-3-content wrapper">
-            <div className="research-section-3-title">{ studentItems.length > 0 ? 'Students' : '' }</div>
+            <h1 className="research-section-3-title">{ studentItems.length > 0 ? 'Students' : '' }</h1>
               <div className="research-section-3-members">
                 {studentItems.length > 0 && studentItems.map((item, idx) => 
                   <div key={idx} className="research-section-3-members-item">

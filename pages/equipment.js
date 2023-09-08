@@ -36,7 +36,7 @@ const Equipment = ({
               className="equipment-section-1-announcement "
               onClick={() => setSelected(item.name)}
             >
-              <div className="equipment-section-1-announcement-title">{item.name}</div>
+              <h1 className="equipment-section-1-announcement-title">{item.name}</h1>
               <div className="equipment-section-1-announcement-content">
                 <div className="equipment-section-1-announcement-content-equipment">
                   <img 
@@ -72,7 +72,7 @@ const Equipment = ({
               key={idx} 
               className="equipment-section-2-announcement"
             >
-              <div className="equipment-section-2-announcement-title">{item.name}</div>
+              <h1 className="equipment-section-2-announcement-title">{item.name}</h1>
               <div className="equipment-section-2-announcement-image">              
                 <img 
                   src={`${PUBLIC_FILES}/equipment/${item.image}`} 

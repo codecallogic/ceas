@@ -27,7 +27,7 @@ const Resource = ({
     ></Navigation>
     <div className="resource">
       <div className="resource-section-1 wrapper">
-        <div className="resource-section-1-title">Research Facilities</div>
+        <h1 className="resource-section-1-title">Research Facilities</h1>
         <p className="resource-section-1-description">
           CATSUS research faculty and students have access to state-of-the-art facilities, laboratories and research equipment. Recently, the faculty was awarded $1.7 million through NSF ARI2 to renovate several research labs and more than $2 million through NSF MRI grants for the acquisition of new equipment, including a Scanning Electron Microscope, ICP-MS and an high-payload centrifuge. Lab renovations and equipment acquisition will support the institutionalization of the Center.
         </p>
@@ -37,7 +37,7 @@ const Resource = ({
           key={idx} 
           className="resource-section-2 wrapper"
         >
-          <div 
+          <h1 
             className="resource-section-2-title"
             onClick={() => (
               setLab(item.name),
@@ -52,7 +52,7 @@ const Resource = ({
             >
             </img>
             <span>{item.name}</span>
-          </div>
+          </h1>
           <div className="resource-section-2-subtitle">
             <div 
               className="clickable"
@@ -100,7 +100,7 @@ const Resource = ({
                 <h3>{item.faculty[0] ? item.faculty[0].officePhone : ''}</h3>
               </div>
             </div> */}
-            <div className="resource-section-3-announcement-title">{item.name} - {item.labLocation}</div>
+            <h1 className="resource-section-3-announcement-title">{item.name} - {item.labLocation}</h1>
             <div className="resource-section-3-announcement-image">              
               <img 
                 src={`${PUBLIC_FILES}/labs/${item.image}`} 

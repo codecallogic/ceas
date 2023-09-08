@@ -48,7 +48,7 @@ const People = ({
         {sections.length && sections.sort((a, b) => +a.order > +b.order ? 1 : -1).map((item, idx) =>
            item.path == router.pathname ? 
           <div key={idx}>
-          {item.title ? <div className="about-section-2-title">{item.title}</div> : null }
+          {item.title ? <h1 className="about-section-2-title">{item.title}</h1> : null }
           <div className="about-section-2-content">
             { item.description 
               ?
@@ -108,10 +108,10 @@ const People = ({
       </div>
 
       <div className="people-section-3 wrapper">
-        <div className="people-section-3-title">
+        <h1 className="people-section-3-title">
           <img src={`/media/people/${type}-blue.png`} alt={type} />
           <span>{type}</span>
-        </div>
+        </h1>
         {/* console.log(facultySort.indexOf(a.centerAssociation.toLowerCase() - facultySort.indexOf(b.centerAssociation.toLowerCase()))) */}
         <div className="people-section-3-items">
           {type == 'faculty' && faculty.length > 0 && faculty.sort((a, b) => facultySort.indexOf(a.centerAssociation.toLowerCase()) > facultySort.indexOf(b.centerAssociation.toLowerCase()) ? 1 : -1).map((item, idx) => 

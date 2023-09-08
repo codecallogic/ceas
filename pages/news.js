@@ -56,7 +56,7 @@ const News = ({
               className="news-section-1-announcement"
               onClick={() => window.location = `/news?title=${item.title}`}
             >
-              <div className="news-section-1-announcement-title">{item.title} - <span>{item.date}</span></div>
+              <h1 className="news-section-1-announcement-title">{item.title} - <span>{item.date}</span></h1>
               <div className="news-section-1-announcement-content">
                 <img 
                   src={`${PUBLIC_FILES}/news/${item.image}`}
@@ -76,7 +76,7 @@ const News = ({
               key={idx} 
               className="news-section-2-announcement"
             >
-              <div className="news-section-2-announcement-title">{item.title} - <span>{item.date}</span></div>
+              <h1 className="news-section-2-announcement-title">{item.title} - <span>{item.date}</span></h1>
               <div className="news-section-2-announcement-image">              
                 <img 
                   src={`${PUBLIC_FILES}/news/${item.image}`} 
@@ -92,7 +92,7 @@ const News = ({
         </div>
 
         <div className="news-section-3 wrapper">
-          <div className="news-section-3-title">All News</div>
+          <h1 className="news-section-3-title">All News</h1>
           { news.length > 0 && news.sort((a, b) => new Date(a.date) > new Date(b.date) ? -1 : 1).slice(0, 50).map((item, idx) => 
             <div 
               key={idx}

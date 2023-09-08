@@ -56,7 +56,7 @@ const Publications = ({
     ></Navigation>
     <div className="publication">
       <div className="publication-section-1 wrapper">
-        <div className="publication-section-1-title">Publications</div>
+        <h1 className="publication-section-1-title">Publications</h1>
         <p className="publication-section-1-description">
           The Center for Advancement toward Sustainable Urban Systems (CATSUS) is committed to disseminating its findings with the scientific community, academia, students and federal, state and local agencies, through various venues, including peer-reviewed journal publications, conference papers and presentations, books and technical reports. A comprehensive list of publications authored and co-authored by CATSUS faculty and students presenting results and findings of research developed at CATSUS are presented available in this page
         </p>

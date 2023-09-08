@@ -96,7 +96,7 @@ const Component = ({
         </div>
         
         <div className="component-section-2 wrapper">
-          <div className="component-section-2-title">{ facultyItems.length > 0 ? 'Faculty' : '' }</div>
+          <h1 className="component-section-2-title">{ facultyItems.length > 0 ? 'Faculty' : '' }</h1>
           <div className="component-section-2-members">
             {facultyItems.length > 0 && facultyItems.map((item, idx) => 
               <div className="component-section-2-members-item">
@@ -115,7 +115,7 @@ const Component = ({
         </div>
 
         <div className="component-section-3 wrapper">
-          <div className="component-section-3-title">{ studentItems.length > 0 ? 'Students' : ''}</div>
+          <h1 className="component-section-3-title">{ studentItems.length > 0 ? 'Students' : ''}</h1>
           <div className="component-section-3-members">
             {studentItems.length > 0 && studentItems.map((item, idx) => 
               <div className="component-section-3-members-item">
