@@ -95,9 +95,9 @@
       top: 18%;
       width: max-content;
       font-family: Rubik;
-      color: white;
+      color: black;
       font-size: 3.2rem;
-      border-bottom: solid 0.1rem white;
+      border-bottom: solid 0.1rem black;
       text-transform: uppercase;
 
       @media only screen and (max-width: $medium) {
@@ -117,9 +117,10 @@
       }
 
       mark {
-        color: white;
-        background-color: $color-scheme-2;
+        color: black;
+        background-color: transparent;
         padding: 0 0.5rem;
+        font-weight: 700;
       }
     }
 

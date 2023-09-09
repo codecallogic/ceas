@@ -55,7 +55,7 @@ const Home = ({
       </div>
 
       <div className="home-section-2">
-        <div className="home-section-2-cover" style={{backgroundImage: `url('/media/home/research.png')`}}></div>
+        <div className="home-section-2-cover" style={{backgroundImage: `url('/media/home/research-light.png')`}}></div>
         <div className="home-section-2-content wrapper">
           <h1 className="home-section-2-title">Research Thrust Areas</h1>
           <p><mark>CATSUS involves 22 faculty members from six interdisciplinary departments at Cal State LA who lead efforts in 4 research thrust areas. It is expected to provide research training to more than 200 students at Cal State LA over its funding period. Several projects address issues of energy and water sustainability in urban areas. CATSUS provides funding for faculty and student fellows to develop novel and transformative research related to energy systems and management in buildings, advanced materials for energy and water applications, and resilience of urban water bodies, to attain urban sustainability.</mark></p>
