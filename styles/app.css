@@ -1484,10 +1484,10 @@ button {
 .home-section-2-content-items-item span {
   display: flex;
   justify-content: center;
-  align-items: center;
   width: 100%;
   height: 100%;
   text-align: center;
+  padding: 1rem 0;
   font-family: Poppins;
   color: #04284d;
   font-size: 1.2rem;
@@ -1880,9 +1880,9 @@ button {
   top: 18%;
   width: max-content;
   font-family: Rubik;
-  color: white;
+  color: black;
   font-size: 3.2rem;
-  border-bottom: solid 0.1rem white;
+  border-bottom: solid 0.1rem black;
   text-transform: uppercase;
 }
 @media only screen and (max-width: 768px) {
@@ -1903,8 +1903,9 @@ button {
   }
 }
 .research-section-1 p mark {
-  color: white;
-  background-color: #04284d;
+  color: black;
+  background-color: transparent;
+  font-weight: 700;
   padding: 0 0.5rem;
 }
 .research-section-1-content-items {
@@ -2013,11 +2014,10 @@ button {
 .research-section-1-content-items-item span {
   display: flex;
   justify-content: center;
-  align-items: center;
   width: 100%;
   height: 100%;
   text-align: center;
-  padding: 1rem 0 0 0;
+  padding: 1.5rem 0 0 0;
   font-family: Poppins;
   color: #04284d;
   font-size: 1.2rem;
@@ -3095,6 +3095,7 @@ button {
   font-size: 2rem;
   font-weight: 600;
   text-transform: capitalize;
+  padding: 2rem 1rem;
 }
 .people-section-3-title img {
   width: 8rem;
@@ -3102,6 +3103,16 @@ button {
 }
 .people-section-3-title span {
   margin-left: 1rem;
+}
+.people-section-3-subtitle {
+  font-family: Poppins-Bold;
+  display: flex;
+  align-items: center;
+  font-size: 1.8rem;
+  font-weight: 400;
+  text-transform: capitalize;
+  padding: 1rem 3rem;
+  text-decoration: underline;
 }
 .people-section-3-items {
   display: flex;

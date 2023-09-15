@@ -23,6 +23,9 @@ const People = ({
   const router = useRouter()
   
   const [type, setType] = useState('faculty')
+  const [graduated, setGraduated] = useState([])
+  const [active, setActive] = useState([])
+  const [terminated, setTerminated] = useState([])
 
   const facultySort = ['director (pi)', 'associate director (co-pi)', 'center faculty (co-pi)', 'center faculty']
 
@@ -31,7 +34,29 @@ const People = ({
     let element = document.getElementById(router.query.faculty)
     if(element) element.scrollIntoView({ block: 'end',  behavior: 'smooth' })
     
-  })
+  }, [])
+
+  useEffect(() => {
+    if(students.length > 0){
+
+      students.map((item) => {
+
+        if(item.status == 'Graduated'){
+          setGraduated( oldArray => [...oldArray, item])
+        }
+
+        if(item.status == 'Active'){
+          setActive( oldArray => [...oldArray, item])
+        }
+
+        if(item.status == 'Terminated'){
+          setTerminated( oldArray => [...oldArray, item])
+        }
+        
+      })
+      
+    }
+  }, [students])
   
   return (
     <>
@@ -112,7 +137,7 @@ const People = ({
           <img src={`/media/people/${type}-blue.png`} alt={type} />
           <span>{type}</span>
         </h1>
-        {/* console.log(facultySort.indexOf(a.centerAssociation.toLowerCase() - facultySort.indexOf(b.centerAssociation.toLowerCase()))) */}
+        
         <div className="people-section-3-items">
           {type == 'faculty' && faculty.length > 0 && faculty.sort((a, b) => facultySort.indexOf(a.centerAssociation.toLowerCase()) > facultySort.indexOf(b.centerAssociation.toLowerCase()) ? 1 : -1).map((item, idx) => 
             <div key={idx} id={item.name} className="people-section-3-items-item">
@@ -155,7 +180,13 @@ const People = ({
             </div>
           )}
 
+        </div>
+
+        {active.length > 0 && type == 'students' && <div className="people-section-3-subtitle">Active</div>}
+
+        <div className="people-section-3-items">
           {type == 'students' && students.length > 0 && students.map((item, idx) => 
+            item.status == 'Active' &&
             <div key={idx} className="people-section-3-items-item">
               <div className="people-section-3-items-item-image">
                 <img 
@@ -174,6 +205,56 @@ const People = ({
               </div>
             </div>
           )}
+
+        </div>
+        
+        {graduated.length > 0 && type == 'students' && <div className="people-section-3-subtitle">Graduated</div>}
+
+        <div className="people-section-3-items">
+          {type == 'students' && students.length > 0 && students.map((item, idx) => 
+            item.status == 'Graduated' &&
+            <div key={idx} className="people-section-3-items-item">
+              <div className="people-section-3-items-item-image">
+                <img 
+                  src={`${PUBLIC_FILES}/student/${item.image}`} 
+                  alt={item.name ? item.name : ''}
+                  onError={(e) => e.target.src = 'https://secure.gravatar.com/avatar/9cd4b9709939e0ce4b8645e55e96c8d0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-0.png'}
+                />
+              </div>
+              <div className="people-section-3-items-item-description">
+                <h3>{item.name ? item.name : 'No name'}</h3>
+                <h4>Department</h4>
+                {item.department ? <span> {item.department} </span> : 'No department'}
+                {item.location ? <div><h4>Location</h4>: <span>{item.location}</span></div>: ''}
+                {item.email ? <div><h4>Email</h4>: <span>{item.email}</span></div> : ''}
+              </div>
+            </div>
+          )}
+        </div>
+        
+        {terminated.length > 0 && type == 'students' && <div className="people-section-3-subtitle">Terminated</div>}
+
+        <div className="people-section-3-items">
+          {type == 'students' && students.length > 0 && students.map((item, idx) => 
+            item.status == 'Terminated' &&
+            <div key={idx} className="people-section-3-items-item">
+              <div className="people-section-3-items-item-image">
+                <img 
+                  src={`${PUBLIC_FILES}/student/${item.image}`} 
+                  alt={item.name ? item.name : ''}
+                  onError={(e) => e.target.src = 'https://secure.gravatar.com/avatar/9cd4b9709939e0ce4b8645e55e96c8d0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-0.png'}
+                />
+              </div>
+              <div className="people-section-3-items-item-description">
+                <h3>{item.name ? item.name : 'No name'}</h3>
+                <h4>Department</h4>
+                {item.department ? <span> {item.department} </span> : 'No department'}
+                {item.location ? <div><h4>Location</h4>: <span>{item.location}</span></div>: ''}
+                {item.email ? <div><h4>Email</h4>: <span>{item.email}</span></div> : ''}
+              </div>
+            </div>
+          )}
+
         </div>
         
       </div>

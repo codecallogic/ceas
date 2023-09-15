@@ -74,7 +74,7 @@ const Publications = ({
           </div>
           {validatePublicationTypes(publications, 'book') ? <div className="publication-section-2-title">Books</div> : '' }
           <div className="publication-section-2-publications">
-            { publications.length > 0 && publications.map((item, idx) => 
+            { publications.length > 0 && publications.sort( (a, b) => new Date(b.date) - new Date(a.date) ).map((item, idx) => 
               item.type.toLowerCase() == 'book' ?
               <div
                 key={idx} 
@@ -101,7 +101,7 @@ const Publications = ({
 
           {validatePublicationTypes(publications, 'book chapter') ? <div className="publication-section-2-title">Book Chapters</div> : '' }
           <div className="publication-section-2-publications">
-            { publications.length > 0 && publications.map((item, idx) => 
+            { publications.length > 0 && publications.sort( (a, b) => new Date(b.date) - new Date(a.date) ).map((item, idx) => 
               item.type.toLowerCase() == 'book chapter' ?
               <div
                 key={idx} 
@@ -128,7 +128,7 @@ const Publications = ({
 
           {validatePublicationTypes(publications, 'conference paper and presentation') ? <div className="publication-section-2-title">Conference Papers and Presentations</div> : '' }
           <div className="publication-section-2-publications">
-            { publications.length > 0 && publications.map((item, idx) => 
+            { publications.length > 0 && publications.sort( (a, b) => new Date(b.date) - new Date(a.date) ).map((item, idx) => 
               item.type.toLowerCase() == 'conference paper and presentation' ?
               <div
                 key={idx} 
@@ -155,7 +155,7 @@ const Publications = ({
 
           {validatePublicationTypes(publications, 'journal and juried conference paper') ? <div className="publication-section-2-title">Journal and Juried Conference Paper</div> : '' }
           <div className="publication-section-2-publications">
-            { publications.length > 0 && publications.map((item, idx) => 
+            { publications.length > 0 && publications.sort( (a, b) => new Date(b.date) - new Date(a.date) ).map((item, idx) => 
               item.type.toLowerCase() == 'journal and juried conference paper' ?
               <div
                 key={idx} 
@@ -182,7 +182,7 @@ const Publications = ({
 
           {validatePublicationTypes(publications, 'theses and dissertations') ? <div className="publication-section-2-title">Theses and Dissertations</div> : '' }
           <div className="publication-section-2-publications">
-            { publications.length > 0 && publications.map((item, idx) => 
+            { publications.length > 0 && publications.sort( (a, b) => new Date(b.date) - new Date(a.date) ).map((item, idx) => 
               item.type.toLowerCase() == 'theses and dissertations' ?
               <div
                 key={idx} 
@@ -209,7 +209,7 @@ const Publications = ({
 
           {validatePublicationTypes(publications, 'other publications') ? <div className="publication-section-2-title">Other Publications</div> : '' }
           <div className="publication-section-2-publications">
-            { publications.length > 0 && publications.map((item, idx) => 
+            { publications.length > 0 && publications.sort( (a, b) => new Date(b.date) - new Date(a.date) ).map((item, idx) => 
               item.type.toLowerCase() == 'other publications' ?
               <div
                 key={idx} 

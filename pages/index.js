@@ -76,7 +76,9 @@ const Home = ({
                     onError={(e) => e.target.src = 'https://icon-library.com/images/not-found-icon/not-found-icon-14.jpg'}
                   />
                 </div>
-                <span>{item.name}</span>
+                <div className="home-section-2-content-items-item-box">
+                  <span>{item.name}</span>
+                </div>
               </div>
               :
               null
