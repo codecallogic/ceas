@@ -182,7 +182,7 @@ const People = ({
 
         </div>
 
-        {active.length > 0 && type == 'students' && <div className="people-section-3-subtitle">Active</div>}
+        {active.length > 0 && type == 'students' && <div className="people-section-3-subtitle">Current Students</div>}
 
         <div className="people-section-3-items">
           {type == 'students' && students.length > 0 && students.map((item, idx) => 
@@ -208,7 +208,7 @@ const People = ({
 
         </div>
         
-        {graduated.length > 0 && type == 'students' && <div className="people-section-3-subtitle">Graduated</div>}
+        {graduated.length > 0 && type == 'students' && <div className="people-section-3-subtitle">Graduated Students</div>}
 
         <div className="people-section-3-items">
           {type == 'students' && students.length > 0 && students.map((item, idx) => 
@@ -232,7 +232,7 @@ const People = ({
           )}
         </div>
         
-        {terminated.length > 0 && type == 'students' && <div className="people-section-3-subtitle">Terminated</div>}
+        {terminated.length > 0 && type == 'students' && <div className="people-section-3-subtitle">Terminated Students</div>}
 
         <div className="people-section-3-items">
           {type == 'students' && students.length > 0 && students.map((item, idx) => 
