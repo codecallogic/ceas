@@ -232,7 +232,7 @@ const People = ({
           )}
         </div>
         
-        {terminated.length > 0 && type == 'students' && <div className="people-section-3-subtitle">Terminated Students</div>}
+        {/* {terminated.length > 0 && type == 'students' && <div className="people-section-3-subtitle">Terminated Students</div>}
 
         <div className="people-section-3-items">
           {type == 'students' && students.length > 0 && students.map((item, idx) => 
@@ -255,7 +255,7 @@ const People = ({
             </div>
           )}
 
-        </div>
+        </div> */}
         
       </div>
       
