@@ -54,7 +54,7 @@ const Header = ({ slides }) => {
   }, [slides, counter, slideDirection])
   
   return (
-    <div className="header" style={{backgroundImage: `url('${PUBLIC_FILES}/slides/${slide}'), url('https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png')`}}>
+    <div className="header" style={{ backgroundImage: `url('${slide}')`}}>
       {
         console.log(title)
       }

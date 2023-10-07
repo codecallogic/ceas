@@ -20,7 +20,7 @@ const Home = ({
   setNews,
   setOpenSearch
 }) => {
-
+  
   const [activatedComponents, setActivatedComponents] = useState([])
 
   useEffect(() => {
