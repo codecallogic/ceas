@@ -9,7 +9,34 @@ const Header = ({ slides }) => {
   const [counter, setCounter] = useState(0)
   const [slideDirection, setSlideDirection] = useState('right')
 
+  function preloadImages(images) {
+    return new Promise((resolve, reject) => {
+      const promises = images.map((src) => {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.src = src;
+          img.onload = resolve;
+          img.onerror = reject;
+        });
+      });
+  
+      Promise.all(promises)
+        .then(() => resolve())
+        .catch((error) => reject(error));
+    });
+  }
+  
   useEffect(() => {
+
+    // Call this function before setting your slide images
+    preloadImages(slides.map((slide) => slide.image))
+    .then(() => {
+      // Set the initial state and start the timer here
+    })
+    .catch((error) => {
+      console.error('Image preload error:', error);
+    });
+    
 
     if(slides.length > 0){
       setSlide(slides[counter].image)
