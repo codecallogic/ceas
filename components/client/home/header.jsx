@@ -54,7 +54,7 @@ const Header = ({ slides }) => {
   }, [slides, counter, slideDirection])
   
   return (
-    <div className="header" style={{ backgroundImage: `url('${slide}')`}}>
+    <div className="header" style={{ backgroundImage: `url('${PUBLIC_FILES}/slides/${slide}')`}}>
       {
         console.log(title)
       }
