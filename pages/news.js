@@ -37,7 +37,7 @@ const News = ({
         openSearch={openSearch}
         setOpenSearch={setOpenSearch}
       ></Navigation>
-      <div className="news">
+      <div className="news wrapper">
         <div className="news-section-1 wrapper">
           {title ? 
             <div 

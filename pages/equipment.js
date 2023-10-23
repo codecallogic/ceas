@@ -28,7 +28,7 @@ const Equipment = ({
         openSearch={openSearch}
         setOpenSearch={setOpenSearch}
       ></Navigation>
-      <div className="equipment">
+      <div className="equipment wrapper">
         <div className="equipment-section-1 wrapper">
           {!selected && equipment.length > 0 && equipment.map((item, idx) => 
             <div 
@@ -39,11 +39,13 @@ const Equipment = ({
               <h1 className="equipment-section-1-announcement-title">{item.name}</h1>
               <div className="equipment-section-1-announcement-content">
                 <div className="equipment-section-1-announcement-content-equipment">
+                  {item.image && 
                   <img 
                     src={`${PUBLIC_FILES}/equipment/${item.image}`} 
                     alt={item.name}
                     onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
                   />
+                  }
                   <div dangerouslySetInnerHTML={{ __html: `${item.description.substring(0, 500)}...`}}>
                   </div>
                 </div>

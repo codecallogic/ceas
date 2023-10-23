@@ -54,7 +54,7 @@ const Publications = ({
       openSearch={openSearch}
       setOpenSearch={setOpenSearch}
     ></Navigation>
-    <div className="publication">
+    <div className="publication wrapper">
       <div className="publication-section-1 wrapper">
         <h1 className="publication-section-1-title">Publications</h1>
         <p className="publication-section-1-description">

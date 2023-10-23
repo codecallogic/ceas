@@ -67,7 +67,7 @@ const People = ({
       setOpenSearch={setOpenSearch}
     >
     </Navigation>
-    <div className="people">
+    <div className="people wrapper">
       <div className="people-cover" style={{backgroundImage: `url('/media/people/header.png')`}}></div>
       <div className="people-section-1 wrapper">
         {sections.length && sections.sort((a, b) => +a.order > +b.order ? 1 : -1).map((item, idx) =>
@@ -182,7 +182,7 @@ const People = ({
 
         </div>
 
-        {active.length > 0 && type == 'students' && <div className="people-section-3-subtitle">Current Students</div>}
+        {active.length > 0 && type == 'students' && <div className="people-section-3-subtitle">U-Research Students</div>}
 
         <div className="people-section-3-items">
           {type == 'students' && students.length > 0 && students.map((item, idx) => 

@@ -25,7 +25,7 @@ const Resource = ({
       openSearch={openSearch}
       setOpenSearch={setOpenSearch}
     ></Navigation>
-    <div className="resource">
+    <div className="resource wrapper">
       <div className="resource-section-1 wrapper">
         <h1 className="resource-section-1-title">Research Facilities</h1>
         <p className="resource-section-1-description">
@@ -44,6 +44,7 @@ const Resource = ({
               window.scrollTo(0, 0)
             )}
           >
+            {item.icon &&
             <img 
                className="image" 
                src={`${PUBLIC_FILES}/labs/${item.icon}`} 
@@ -51,6 +52,7 @@ const Resource = ({
                onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
             >
             </img>
+            }
             <span>{item.name}</span>
           </h1>
           <div className="resource-section-2-subtitle">
@@ -60,6 +62,7 @@ const Resource = ({
             ><span>Lead Researcher: </span> {item.faculty[0] ? item.faculty[0].title : ''} {item.faculty[0] ? item.faculty[0].name : ''}</div>
             <div><span>Lab Resources: </span> {item.labLocation ? item.labLocation : ''}</div>
           </div>
+          {item.image &&
           <div className="resource-section-2-image">
             <img 
               className="image" 
@@ -68,6 +71,7 @@ const Resource = ({
               onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
             />
           </div>
+          }
           <div className="resource-section-2-image" dangerouslySetInnerHTML={{__html: item.description ? item.description : ''}}></div>
         </div>
       )}
@@ -108,7 +112,7 @@ const Resource = ({
                 onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
               />
             </div>
-            <div className="resource-section-3-announcement-paragraph" dangerouslySetInnerHTML={{ __html: `${item.description.substring(0, 500)}...`}}></div>
+            <div className="resource-section-3-announcement-paragraph" dangerouslySetInnerHTML={{ __html: `${item.description}`}}></div>
             <div 
               className="resource-section-3-announcement-researcher"
               onClick={() => window.location.href = `people?faculty=${item.faculty[0] ? item.faculty[0].name : ''}`}
