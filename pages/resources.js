@@ -3,19 +3,23 @@ import Navigation from '../components/client/navigation'
 import Footer from '../components/client/footer'
 import { PUBLIC_FILES } from '../config'
 import SVG from '../files/svg'
-import Toolbar from '../components/client/toolbar'
+import { useRouter } from 'next/router';
 
 const Resource = ({
   navMenus,
   openSearch,
   labs,
-  title,
 
   //// METHODS
   setOpenSearch
 }) => {
-  
-  const [lab, setLab] = useState(title)
+  const router = useRouter();
+  const { query } = router;
+  const [lab, setLab] = useState('');
+
+  useEffect(() => {
+    if(query.lab) setLab(query.lab)
+  }, [query])
   
   return (
     <>
@@ -40,7 +44,7 @@ const Resource = ({
           <h1 
             className="resource-section-2-title"
             onClick={() => (
-              setLab(item.name),
+              setLab(item._id),
               window.scrollTo(0, 0)
             )}
           >
@@ -89,7 +93,7 @@ const Resource = ({
       }
 
       {lab && labs.length > 0 && labs.map((item, idx) => 
-        item.name == lab
+        item._id == lab
         ?
         <div className="resource-section-3 wrapper">
           <div 
@@ -163,12 +167,12 @@ const Resource = ({
 
 Resource.getInitialProps = ({query}) => {
   
-  let title = null
+  let id = null
 
-  if(query.title) title = query.title
+  if(query.lab) id = query.id
 
   return {
-    title: title ? title : null
+    labID: id ? id : null
   }
 }
 

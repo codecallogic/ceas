@@ -94,7 +94,7 @@ const Equipment = ({
             item.lab.map((lab) => 
             <div 
               className="resource-section-3-announcement-content-equipment wrapper"
-              onClick={() => window.location.href = `/resources?title=${lab.name}`}
+              onClick={() => window.location.href = `/resources?lab=${lab._id}`}
             >
               <h1 className="resource-section-3-announcement-content-equipment-title">{lab.name}</h1>
               <div className="resource-section-3-announcement-content-equipment-content">
