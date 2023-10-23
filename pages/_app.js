@@ -91,6 +91,7 @@ function MyApp({ Component, pageProps, client, account, accessToken, data, origi
       {/* <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/> */}
       {/* <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/> */}
       <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet" />
+      <link rel="icon" href="/catsusfav.jpeg" sizes="any" />
       <script src="https://unpkg.com/@lottiefiles/lottie-player@0.4.0/dist/lottie-player.js"></script>
       </>
     </Head>

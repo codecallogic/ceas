@@ -17,7 +17,7 @@ const Equipment = ({
   title
   
 }) => {
-
+  
   const [selected, setSelected] = useState(title)
 
   return (
@@ -80,12 +80,46 @@ const Equipment = ({
                   onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
                 />
               </div>
-              <div className="equipment-section-2-announcement-paragraph" dangerouslySetInnerHTML={{ __html: `${item.description.substring(0, 500)}...`}}></div>
+              <div className="equipment-section-2-announcement-paragraph" dangerouslySetInnerHTML={{ __html: `${item.description}`}}></div>
             </div>
           </div>
           :
           null
         )}
+
+        {selected && equipment.length > 0 && equipment.map( (item, idx) => 
+            item.name == selected ?
+            item.lab.map((lab) => 
+            <div 
+              className="resource-section-3-announcement-content-equipment wrapper"
+              onClick={() => window.location.href = `/resources?title=${lab.name}`}
+            >
+              <h1 className="resource-section-3-announcement-content-equipment-title">{lab.name}</h1>
+              <div className="resource-section-3-announcement-content-equipment-content">
+                <div key={idx} className="resource-section-3-announcement-content-equipment-content-image-container">
+                  <div className="resource-section-3-announcement-content-equipment-content-image">
+                    <img 
+                      src={`${PUBLIC_FILES}/equipment/${item.image}`} 
+                      alt={`${item.name}`}
+                      onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
+                    />
+                  </div>
+                </div>
+                {item.description 
+                  ?  
+                  <div 
+                    className="resource-section-3-announcement-content-equipment-content-paragraph" 
+                    dangerouslySetInnerHTML={{ __html: item.description}} 
+                  />
+                  :
+                  null
+                }
+              </div>
+            </div>
+            )
+            :
+            null
+          )}
 
       </div>
       <Footer></Footer>
