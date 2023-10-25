@@ -188,7 +188,7 @@ const People = ({
 
         </div>
         
-        {Object.keys(studentsCategorized).length > 0 && Object.keys(studentsCategorized).map((item) => 
+        {type == 'students' && Object.keys(studentsCategorized).length > 0 && Object.keys(studentsCategorized).map((item) => 
           <>
           <div className="people-section-3-subtitle">{item}</div>
           <div className="people-section-3-items">
