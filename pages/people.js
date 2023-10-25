@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import Navigation from '../components/client/navigation'
 import Footer from '../components/client/footer'
 import { PUBLIC_FILES } from '../config'
-import Toolbar from '../components/client/toolbar'
+import { groupBy } from '../helpers/tables'
 import { useRouter } from 'next/router'
 
 const People = ({
@@ -19,13 +19,14 @@ const People = ({
   //// DATA
   sections
 }) => {
-
+  
   const router = useRouter()
   
   const [type, setType] = useState('faculty')
   const [graduated, setGraduated] = useState([])
   const [active, setActive] = useState([])
   const [terminated, setTerminated] = useState([])
+  const [studentsCategorized, setStudentsCategorized] = useState([])
 
   const facultySort = ['director (pi)', 'associate director (co-pi)', 'center faculty (co-pi)', 'center faculty']
 
@@ -56,6 +57,11 @@ const People = ({
       })
       
     }
+
+    const centerAssociation = groupBy(students, 'centerAssociation')
+
+    setStudentsCategorized(centerAssociation)
+    
   }, [students])
   
   return (
@@ -181,81 +187,32 @@ const People = ({
           )}
 
         </div>
-
-        {active.length > 0 && type == 'students' && <div className="people-section-3-subtitle">U-Research Students</div>}
-
-        <div className="people-section-3-items">
-          {type == 'students' && students.length > 0 && students.map((item, idx) => 
-            item.status == 'Active' &&
-            <div key={idx} className="people-section-3-items-item">
-              <div className="people-section-3-items-item-image">
-                <img 
-                  src={`${PUBLIC_FILES}/student/${item.image}`} 
-                  alt={item.name ? item.name : ''}
-                  onError={(e) => e.target.src = 'https://secure.gravatar.com/avatar/9cd4b9709939e0ce4b8645e55e96c8d0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-0.png'}
-                />
-              </div>
-              <div className="people-section-3-items-item-description">
-                <h3>{item.name ? item.name : 'No name'}</h3>
-                <h4>Department</h4>
-                {item.department ? <span> {item.department} </span> : 'No department'}
-                {item.location ? <div><h4>Location</h4>: <span>{item.location}</span></div>: ''}
-                {item.email ? <div><h4>Email</h4>: <span>{item.email}</span></div> : ''}
-                {item.advisor[0] ? <div><h4>Advisor</h4>: <span>{item.advisor[0].title} {item.advisor[0].name}</span></div> : ''}
-              </div>
-            </div>
-          )}
-
-        </div>
         
-        {graduated.length > 0 && type == 'students' && <div className="people-section-3-subtitle">Graduated Students</div>}
-
-        <div className="people-section-3-items">
-          {type == 'students' && students.length > 0 && students.map((item, idx) => 
-            item.status == 'Graduated' &&
-            <div key={idx} className="people-section-3-items-item">
-              <div className="people-section-3-items-item-image">
-                <img 
-                  src={`${PUBLIC_FILES}/student/${item.image}`} 
-                  alt={item.name ? item.name : ''}
-                  onError={(e) => e.target.src = 'https://secure.gravatar.com/avatar/9cd4b9709939e0ce4b8645e55e96c8d0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-0.png'}
-                />
+        {Object.keys(studentsCategorized).length > 0 && Object.keys(studentsCategorized).map((item) => 
+          <>
+          <div className="people-section-3-subtitle">{item}</div>
+          <div className="people-section-3-items">
+            {studentsCategorized[item].map((student, idx) =>             
+              <div key={idx} className="people-section-3-items-item">
+                <div className="people-section-3-items-item-image">
+                  <img 
+                    src={`${PUBLIC_FILES}/student/${student.image}`} 
+                    alt={student.name ? student.name : ''}
+                    onError={(e) => e.target.src = 'https://secure.gravatar.com/avatar/9cd4b9709939e0ce4b8645e55e96c8d0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-0.png'}
+                  />
+                </div>
+                <div className="people-section-3-items-item-description">
+                  <h3>{student.name ? student.name : 'No name'}</h3>
+                  <h4>Department</h4>
+                  {student.department ? <span> {student.department} </span> : 'No department'}
+                  {student.location ? <div><h4>Location</h4>: <span>{student.location}</span></div>: ''}
+                  {student.email ? <div><h4>Email</h4>: <span>{student.email}</span></div> : ''}
+                </div>
               </div>
-              <div className="people-section-3-items-item-description">
-                <h3>{item.name ? item.name : 'No name'}</h3>
-                <h4>Department</h4>
-                {item.department ? <span> {item.department} </span> : 'No department'}
-                {item.location ? <div><h4>Location</h4>: <span>{item.location}</span></div>: ''}
-                {item.email ? <div><h4>Email</h4>: <span>{item.email}</span></div> : ''}
-              </div>
-            </div>
-          )}
-        </div>
-        
-        {/* {terminated.length > 0 && type == 'students' && <div className="people-section-3-subtitle">Terminated Students</div>}
-
-        <div className="people-section-3-items">
-          {type == 'students' && students.length > 0 && students.map((item, idx) => 
-            item.status == 'Terminated' &&
-            <div key={idx} className="people-section-3-items-item">
-              <div className="people-section-3-items-item-image">
-                <img 
-                  src={`${PUBLIC_FILES}/student/${item.image}`} 
-                  alt={item.name ? item.name : ''}
-                  onError={(e) => e.target.src = 'https://secure.gravatar.com/avatar/9cd4b9709939e0ce4b8645e55e96c8d0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-0.png'}
-                />
-              </div>
-              <div className="people-section-3-items-item-description">
-                <h3>{item.name ? item.name : 'No name'}</h3>
-                <h4>Department</h4>
-                {item.department ? <span> {item.department} </span> : 'No department'}
-                {item.location ? <div><h4>Location</h4>: <span>{item.location}</span></div>: ''}
-                {item.email ? <div><h4>Email</h4>: <span>{item.email}</span></div> : ''}
-              </div>
-            </div>
-          )}
-
-        </div> */}
+            )}
+          </div>
+          </>
+        )}
         
       </div>
       

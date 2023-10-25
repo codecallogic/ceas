@@ -14,10 +14,10 @@ export const centerAssociation = [
 ]
 
 export const centerAssociationStudent = [
-  {association: 'U-Research'},
-  {association: 'Graduate Research Assistant'},
-  {association: 'Undergraduate Research Assistant'},
-  {association: 'Administrative Assistant'}
+  {association: 'Undergraduate Fellow'},
+  {association: 'Graduate Fellow'},
+  {association: 'U-Research Student'},
+  {association: 'Past Student'}
 ]
 
 export const studentTitles = [
