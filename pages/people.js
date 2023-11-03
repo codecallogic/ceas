@@ -28,6 +28,7 @@ const People = ({
   const [terminated, setTerminated] = useState([])
   const [studentsCategorized, setStudentsCategorized] = useState([])
 
+  const studentsSortOrder = ['Graduate Fellows', 'Undergraduate Fellows', 'U-Research Students', 'Past Students']
   const facultySort = ['director (pi)', 'associate director (co-pi)', 'center faculty (co-pi)', 'center faculty']
 
   useEffect(() => {
@@ -188,7 +189,7 @@ const People = ({
 
         </div>
         
-        {type == 'students' && Object.keys(studentsCategorized).length > 0 && Object.keys(studentsCategorized).map((item) => 
+        {type == 'students' && Object.keys(studentsCategorized).length > 0 && Object.keys(studentsCategorized).sort((a, b) => studentsSortOrder.indexOf(a) - studentsSortOrder.indexOf(b)).map((item) => 
           <>
           <div className="people-section-3-subtitle">{item}</div>
           <div className="people-section-3-items">

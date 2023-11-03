@@ -28,9 +28,7 @@ export const studentTitles = [
 
 export const statusStudent = [
   {status: 'Active'},
-  {status: 'Graduated'},
-  {status: 'Terminated'},
-  {status: 'Volunteer'}
+  {status: 'Not Active'}
 ]
 
 export const publicationType = [
