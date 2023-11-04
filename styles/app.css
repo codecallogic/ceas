@@ -1003,7 +1003,18 @@ button {
   text-align: left;
   font-family: Poppins-Light;
   text-transform: uppercase;
+  font-size: 1.2rem;
   background-color: #edbd11;
+}
+@media only screen and (max-width: 1250px) {
+  .carousel-items-item-title {
+    font-size: 1rem;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .carousel-items-item-title {
+    font-size: 1rem;
+  }
 }
 @media only screen and (min-width: 1500px) {
   .carousel-items-item-title {
@@ -1317,6 +1328,11 @@ button {
   font-size: 1.4rem;
   line-height: 200%;
 }
+@media only screen and (max-width: 992px) {
+  .home-section-1 {
+    height: 95rem;
+  }
+}
 .home-section-2 {
   width: 100%;
   height: 100%;
@@ -1410,14 +1426,24 @@ button {
   align-items: center;
   width: 100%;
 }
+@media only screen and (max-width: 1250px) {
+  .home-section-2-content-items {
+    top: 60%;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .home-section-2-content-items {
+    top: 70%;
+  }
+}
 @media only screen and (max-width: 768px) {
   .home-section-2-content-items {
-    top: 55%;
+    top: 70%;
   }
 }
 @media only screen and (max-width: 600px) {
   .home-section-2-content-items {
-    top: 60%;
+    top: 90%;
   }
 }
 .home-section-2-content-items-item {

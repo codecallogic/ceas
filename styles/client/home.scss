@@ -58,6 +58,11 @@
       font-size: 1.4rem;
       line-height: 200%;
     }
+
+    @media only screen and (max-width: $large) {
+      height: 95rem;
+    }
+    
   }
 
   &-section-2 {
@@ -153,12 +158,20 @@
         align-items: center;
         width: 100%;
 
+        @media only screen and (max-width: $extra-large){
+          top: 60%;
+        }
+
+        @media only screen and (max-width: $large){
+          top: 70%;
+        }
+
         @media only screen and (max-width: $medium) {
-          top: 55%;
+          top: 70%;
         }
 
         @media only screen and (max-width: $small) {
-          top: 60%;
+          top: 90%;
         }
 
         &-item {

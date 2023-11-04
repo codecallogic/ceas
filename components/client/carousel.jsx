@@ -68,7 +68,7 @@ const Carousel = ({ news, setNews }) => {
                 onError={(e) => e.target.src = 'https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png'}
               />
             </div>
-            <h1 className="carousel-items-item-title">{item.title.substring(0, 50)}</h1>
+            <h1 className="carousel-items-item-title">{item.title.substring(0, 30)}..</h1>
           </div>
         )}
       </div>
@@ -83,7 +83,7 @@ const Carousel = ({ news, setNews }) => {
                 onError={(e) => e.target.src = 'https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png'}
               />
             </div>
-            <div className="carousel-items-item-title">{item.title.substring(0, 50)}</div>
+            <div className="carousel-items-item-title">{item.title.substring(0, 30)}..</div>
           </div>
         )}
       </div>
