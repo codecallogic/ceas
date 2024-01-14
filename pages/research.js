@@ -3,6 +3,7 @@ import Navigation from '../components/client/navigation'
 import Footer from '../components/client/footer'
 import { PUBLIC_FILES } from '../config'
 import Toolbar from '../components/client/toolbar'
+import { useRouter } from 'next/router'
 
 const Research = ({
   navMenus,
@@ -10,11 +11,13 @@ const Research = ({
   components,
   faculty,
   students,
+  sections,
 
   //// METHODS
   setOpenSearch
 }) => {
   
+  const router = useRouter()
   const [activatedComponents, setActivatedComponents] = useState([])
   const [component, setComponent] = useState('')
   const [facultyItems, setFacultyItems] = useState([])
@@ -89,9 +92,15 @@ const Research = ({
         <div className="research-section-1 wrapper">
           <div className="research-section-1-cover" style={{backgroundImage: `url('/media/home/research-light.png')`}}></div>
           <div className="research-section-1-content">
-            <h1 className="research-section-1-title">CATSUS Research</h1>
-            <p><mark>The vision of the proposed CREST Center for Advancement toward Sustainable Urban Systems (CATSUS) is to become a leader in conducting transformative research on the challenges involving energy and water sustainability in urban settings, by promoting faculty engagement in high-level research, and further enhancing the research capability of Cal State LA, while training diverse and talented students who will become the engineers and scientists that will catalyze change in this field. Faculty specialty areas at California State University Los Angeles has led to the development of the research components shown below.</mark>
-            </p>
+            {sections.length && sections.sort((a, b) => +a.order > +b.order ? 1 : -1).map((item, idx) =>
+              item.path == router.pathname && item.order == 1 ? 
+              <div key={idx}>
+                <h1 className="research-section-1-title">{item.title}</h1>
+                <div dangerouslySetInnerHTML={{ __html: item.description }}></div>
+              </div>
+              : 
+              null
+            )}
             <div className="research-section-1-content-items">
             { activatedComponents.length > 0 && activatedComponents.slice(0, 5).map((item, idx) => 
               item.active.toLowerCase() == 'activated' 

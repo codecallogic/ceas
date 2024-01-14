@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import SVG from '../files/svg'
 import { PUBLIC_FILES } from '../config'
+import { useRouter } from 'next/router'
 
 //// COMPONENTS
 import DesktopNav from '../components/client/navigation'
@@ -15,12 +16,15 @@ const Home = ({
   components, 
   news,
   openSearch,
+  sections,
 
   //// METHODS
   setNews,
   setOpenSearch
 }) => {
   
+  const router = useRouter()
+
   const [activatedComponents, setActivatedComponents] = useState([])
 
   useEffect(() => {
@@ -49,16 +53,30 @@ const Home = ({
       <div className="home-section-1 wrapper" style={{backgroundImage: `url('/media/home/city-welcome.png')`}}>
         <div className="home-section-1-cover" style={{backgroundImage: `url('./media/home/city-welcome-backdrop.png')`}}></div>
         <div className="home-section-1-content">
-          <h1 className="home-section-1-title">Welcome</h1>
-          <p>The concept of sustainable energy research, as realized by CATSUS, involves a multi-disciplinary effort to address issues of making existing energy technologies more efficient while pursuing emerging alternate energy technologies that are not reliant on fossil fules. We conduct transformative research to promote energy diversity, efficiency, and sustainability while training diverse and talented engineers and scientists to catalyze change in this field. We also engage policymakers, schools, and the public to ensure that the technological advances are robust, widely understood and adopted</p>
+        {sections.length && sections.sort((a, b) => +a.order > +b.order ? 1 : -1).map((item, idx) =>
+          item.path == router.pathname && item.order == 1 ? 
+          <div key={idx}>
+            <h1 className="home-section-1-title">{item.title}</h1>
+            <div dangerouslySetInnerHTML={{ __html: item.description }}></div>
+          </div>
+          : 
+          null
+        )}
         </div>
       </div>
 
       <div className="home-section-2 wrapper">
         <div className="home-section-2-cover" style={{backgroundImage: `url('/media/home/research-light.png')`}}></div>
         <div className="home-section-2-content">
-          <h1 className="home-section-2-title">Research Thrust Areas</h1>
-          <p><mark>CATSUS involves 22 faculty members from six interdisciplinary departments at Cal State LA who lead efforts in 4 research thrust areas. It is expected to provide research training to more than 200 students at Cal State LA over its funding period. Several projects address issues of energy and water sustainability in urban areas. CATSUS provides funding for faculty and student fellows to develop novel and transformative research related to energy systems and management in buildings, advanced materials for energy and water applications, and resilience of urban water bodies, to attain urban sustainability.</mark></p>
+          {sections.length && sections.sort((a, b) => +a.order > +b.order ? 1 : -1).map((item, idx) =>
+            item.path == router.pathname && item.order == 2 ? 
+            <div key={idx}>
+              <h1 className="home-section-2-title">{item.title}</h1>
+              <div dangerouslySetInnerHTML={{ __html: item.description }}></div>
+            </div>
+            : 
+            null
+          )}
           <div className="home-section-2-content-items">
             { activatedComponents && activatedComponents.slice(0, 5).map((item, idx) => 
               item.active.toLowerCase() == 'activated' 
@@ -90,8 +108,17 @@ const Home = ({
       <div className="home-section-3 wrapper">
         <div className="home-section-3-cover" style={{backgroundImage: `url('/media/home/application.png')`}}></div>
         <div className="home-section-3-contents">
-          <h1 className="home-section-3-title">Application Resource Center</h1>
-          <p>Our programs at California State University, Los Angeles for graduate and undergraduate students in the sciences and engineering fields are offered to students who are interested in research in the broad field of energy and sustainability. Students will work with faculty in various fields, including chemistry, biology, geography, physics, civil, mechanical, and electrical engineering, computer science and technology to conduct research on topics related to urban sustainability.</p>
+          {sections.length && sections.sort((a, b) => +a.order > +b.order ? 1 : -1).map((item, idx) =>
+            item.path == router.pathname && item.order == 3 ? 
+            <div key={idx}>
+              <h1 className="home-section-3-title">{item.title}</h1>
+              <div dangerouslySetInnerHTML={{ __html: item.description }}></div>
+            </div>
+            : 
+            null
+          )}
+          {/* <h1 className="home-section-3-title">Application Resource Center</h1>
+          <p>Our programs at California State University, Los Angeles for graduate and undergraduate students in the sciences and engineering fields are offered to students who are interested in research in the broad field of energy and sustainability. Students will work with faculty in various fields, including chemistry, biology, geography, physics, civil, mechanical, and electrical engineering, computer science and technology to conduct research on topics related to urban sustainability.</p> */}
           <div className="home-section-3-items">
             <div className="home-section-3-items-item">
               <div 

@@ -65,8 +65,11 @@
       justify-content: center;
       font-size: 1.4rem;
       font-weight: 500;
+      margin-bottom: 15px;
 
       span {
+        text-align: center;
+        
         &:hover {
           cursor: pointer;
           font-weight: 600;

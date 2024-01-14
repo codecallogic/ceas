@@ -550,6 +550,7 @@
 
     &-items {
       display: flex;
+      align-items: center;
       justify-content: center;
       position: absolute;
       left: 20%;
@@ -557,11 +558,12 @@
       background-color: $color-light-contrast;
       border-radius: 1.2rem;
 
-      @media only screen and (max-width: $large-medium) {
-        width: 100%;
+      @media only screen and (max-width: 1375px) {
+        // width: 100%;
         flex-direction: column;
         align-items: center;
-        left: 0%;
+        left: 10%;
+        width: 80%;
       }
 
       &-item {

@@ -34,6 +34,7 @@ const About = ({
     <div className="about wrapper">
       <div className="about-cover" style={{backgroundImage: `url('/media/about/header.png')`}}></div>
       <div className="about-section-2 wrapper">
+        {/* <h1 className="about-section-2-title">About</h1> */}
         {sections.length && sections.sort((a, b) => +a.order > +b.order ? 1 : -1).map((item, idx) =>
            item.path == router.pathname ? 
           <div key={idx}>

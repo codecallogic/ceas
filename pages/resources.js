@@ -9,6 +9,7 @@ const Resource = ({
   navMenus,
   openSearch,
   labs,
+  sections,
 
   //// METHODS
   setOpenSearch
@@ -31,10 +32,15 @@ const Resource = ({
     ></Navigation>
     <div className="resource wrapper">
       <div className="resource-section-1 wrapper">
-        <h1 className="resource-section-1-title">Research Facilities</h1>
-        <p className="resource-section-1-description">
-          CATSUS research faculty and students have access to state-of-the-art facilities, laboratories and research equipment. Recently, the faculty was awarded $1.7 million through NSF ARI2 to renovate several research labs and more than $2 million through NSF MRI grants for the acquisition of new equipment, including a Scanning Electron Microscope, ICP-MS and an high-payload centrifuge. Lab renovations and equipment acquisition will support the institutionalization of the Center.
-        </p>
+        {sections.length && sections.sort((a, b) => +a.order > +b.order ? 1 : -1).map((item, idx) =>
+          item.path == router.pathname && item.order == 1 ? 
+          <div key={idx}>
+            <h1 className="resource-section-1-title">{item.title}</h1>
+            <div className="resource-section-1-description" dangerouslySetInnerHTML={{ __html: item.description }}></div>
+          </div>
+          : 
+          null
+        )}
       </div>
       {!lab && labs.length > 0 && labs.map((item, idx) => 
         <div 

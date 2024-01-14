@@ -1812,6 +1812,7 @@ button {
 }
 .home-section-5-items {
   display: flex;
+  align-items: center;
   justify-content: center;
   position: absolute;
   left: 20%;
@@ -1819,12 +1820,12 @@ button {
   background-color: white;
   border-radius: 1.2rem;
 }
-@media only screen and (max-width: 1050px) {
+@media only screen and (max-width: 1375px) {
   .home-section-5-items {
-    width: 100%;
     flex-direction: column;
     align-items: center;
-    left: 0%;
+    left: 10%;
+    width: 80%;
   }
 }
 .home-section-5-items-item {
@@ -3311,6 +3312,10 @@ button {
   justify-content: center;
   font-size: 1.4rem;
   font-weight: 500;
+  margin-bottom: 15px;
+}
+.publication-section-2-contents span {
+  text-align: center;
 }
 .publication-section-2-contents span:hover {
   cursor: pointer;

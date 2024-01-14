@@ -4,16 +4,19 @@ import Footer from '../components/client/footer'
 import { PUBLIC_FILES } from '../config'
 import Toolbar from '../components/client/toolbar'
 import { validatePublicationTypes } from '../helpers/validations'
+import { useRouter } from 'next/router'
 
 const Publications = ({
   navMenus,
   openSearch,
   publications,
+  sections,
 
   //// METHODS
   setOpenSearch
 }) => {
   
+  const router = useRouter()
   const [publicationTypes, setPublicationTypes] = useState([])
   const [filter, setFilter] = useState('type')
 
@@ -56,10 +59,19 @@ const Publications = ({
     ></Navigation>
     <div className="publication wrapper">
       <div className="publication-section-1 wrapper">
-        <h1 className="publication-section-1-title">Publications</h1>
+        {sections.length && sections.sort((a, b) => +a.order > +b.order ? 1 : -1).map((item, idx) =>
+          item.path == router.pathname && item.order == 1 ? 
+          <div key={idx}>
+            <h1 className="publication-section-1-title">{item.title}</h1>
+            <div className="publication-section-1-description" dangerouslySetInnerHTML={{ __html: item.description }}></div>
+          </div>
+          : 
+          null
+        )}
+        {/* <h1 className="publication-section-1-title">Publications</h1>
         <p className="publication-section-1-description">
           The Center for Advancement toward Sustainable Urban Systems (CATSUS) is committed to disseminating its findings with the scientific community, academia, students and federal, state and local agencies, through various venues, including peer-reviewed journal publications, conference papers and presentations, books and technical reports. A comprehensive list of publications authored and co-authored by CATSUS faculty and students presenting results and findings of research developed at CATSUS are presented available in this page
-        </p>
+        </p> */}
       </div>
       { filter == 'type' &&
         <div className="publication-section-2 wrapper">
