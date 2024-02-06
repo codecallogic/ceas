@@ -156,9 +156,9 @@ const Home = ({
       </div>
 
       <div className="home-section-5 wrapper">
-        <div className="home-section-5-cover" style={{backgroundImage: `url('/media/home/partners.png')`}}></div>
+        {/* <div className="home-section-5-cover"></div> */}
         <div className="home-section-5-contents">
-          <h1 className="home-section-5-title">Partners</h1>
+          {/* <h1 className="home-section-5-title">Partners</h1> */}
           <div className="home-section-5-items">
               <div className="home-section-5-items-item">
                 <img src="/logo_nav.png" alt="Logo CATSUS"/>

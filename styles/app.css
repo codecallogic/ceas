@@ -997,9 +997,9 @@ button {
   display: flex;
   align-items: center;
   width: 100%;
-  height: 6rem;
+  height: 8rem;
   margin: 0;
-  padding: 0 2rem;
+  padding: 0 1rem;
   text-align: left;
   font-family: Poppins-Light;
   text-transform: uppercase;
@@ -1790,7 +1790,7 @@ button {
 }
 .home-section-5-cover {
   width: 100%;
-  height: 80rem;
+  height: 100%;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -1814,8 +1814,8 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  left: 20%;
+  height: 30rem;
+  left: 5%;
   top: 40%;
   background-color: white;
   border-radius: 1.2rem;
