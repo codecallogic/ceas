@@ -82,7 +82,7 @@ const Header = ({ slides }) => {
   
   return (
     <div loading="lazy" className="header" style={{ backgroundImage: `url('${PUBLIC_FILES}/slides/${slide}')`}}>
-      <div className="header-cover" style={{backgroundImage: `url('./media/home/header/home-header.png')`}}></div>
+      <div className="header-cover" style={{ backgroundImage: `url('./media/home/header/home-header.png')` }}></div>
       <h1 className="header-title">{title ? title : 'No title'}</h1>
       <div className="header-subtitle">{caption ? caption : 'No caption'}</div>
       
