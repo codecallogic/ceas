@@ -80,7 +80,7 @@ const AdminDashboard = ({
   pageSection
   
 }) => {
-  console.log(account)
+  
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState('')
   const [modal, setModal] = useState('')
