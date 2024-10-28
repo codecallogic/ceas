@@ -82,7 +82,7 @@ const NewsForm = ({
           <div className="form-group-file">
             { edit == 'update_equipment' && (typeof stateData.image !== 'object' && stateData.image !== null) ?
               <label htmlFor="image">
-                {stateData.image ? <img src={`${PUBLIC_FILES}/equipment/${stateData.image}`}></img> : <SVG svg={'cloud-upload'}></SVG>} {stateData.image ? stateData.image : 'Upload Image'}
+                {stateData.image ? <img src={`${stateData.image}`}></img> : <SVG svg={'cloud-upload'}></SVG>} {stateData.image ? stateData.image : 'Upload Image'}
               </label>
               :
               <label htmlFor="image">

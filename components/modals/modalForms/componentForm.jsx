@@ -66,7 +66,7 @@ const ComponentForm = ({
           <div className="form-group-file">
             { edit == 'update_component' && (typeof stateData.icon !== 'object' && stateData.icon !== null) ?
               <label htmlFor="icon">
-                {stateData.icon ? <img src={`${PUBLIC_FILES}/component/${stateData.icon}`}></img> : <SVG svg={'cloud-upload'}></SVG>} {stateData.icon ? stateData.icon : 'Upload Icon'}
+                {stateData.icon ? <img src={`${stateData.icon}`}></img> : <SVG svg={'cloud-upload'}></SVG>} {stateData.icon ? stateData.icon : 'Upload Icon'}
               </label>
               :
               <label htmlFor="icon">
@@ -78,7 +78,7 @@ const ComponentForm = ({
               id="icon" 
               onChange={(e) => (
                 setMessage(''), 
-                typeof stateData.icon !== 'object' && stateData.icon !== null ? stateMethod(caseType, 'previousIcon', stateData.image) : null,
+                typeof stateData.icon !== 'object' && stateData.icon !== null ? stateMethod(caseType, 'previousIcon', stateData.icon) : null,
                 stateMethod(caseType, 'icon', e.target.files[0])
               )}
             />
@@ -86,7 +86,7 @@ const ComponentForm = ({
           <div className="form-group-file">
             { edit == 'update_component' && (typeof stateData.image !== 'object' && stateData.image !== null) ?
               <label htmlFor="image">
-                {stateData.image ? <img src={`${PUBLIC_FILES}/component/${stateData.image}`}></img> : <SVG svg={'cloud-upload'}></SVG>} {stateData.image ? stateData.image : 'Upload Image'}
+                {stateData.image ? <img src={`${stateData.image}`}></img> : <SVG svg={'cloud-upload'}></SVG>} {stateData.image ? stateData.image : 'Upload Image'}
               </label>
               :
               <label htmlFor="image">

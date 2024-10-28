@@ -108,7 +108,7 @@ const Research = ({
               <div key={idx} className="research-section-1-content-items-item" onClick={() => (document.getElementById('section-2').scrollIntoView(), setComponent(item.name.toLowerCase()))}>
                 <img 
                   className="image" 
-                  src={`${PUBLIC_FILES}/component/${item.icon}`} 
+                  src={`${item.icon}`} 
                   // src={`/media/home/${item.name.toLowerCase()}.png`} 
                   alt={item.name}
                   onError={(e) => e.target.src = 'https://icon-library.com/images/not-found-icon/not-found-icon-14.jpg'}
@@ -133,11 +133,11 @@ const Research = ({
                 <h1 
                   key={idx}
                   className="research-section-2-title"
-                  onClick={() => window.open(`/component?title=${item.name}`, '_blank')}
+                  onClick={() => window.open(`${item.icon}`, '_blank')}
                 >
                   <img 
                     className="image" 
-                    src={`${PUBLIC_FILES}/component/${item.icon}`} 
+                    src={`${item.icon}`} 
                     alt={item.name}
                     onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
                   />
@@ -172,11 +172,11 @@ const Research = ({
                 <div 
                   key={idx}
                   className="research-section-2-image"
-                  onClick={() => window.open(`/component?title=${item.name}`, '_blank')}
+                  onClick={() => window.open(`${item.image}`, '_blank')}
                 >
                   <img 
                     className="image" 
-                    src={`${PUBLIC_FILES}/component/${item.image}`} 
+                    src={`${item.image}`} 
                     alt={item.name}
                     onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
                   />

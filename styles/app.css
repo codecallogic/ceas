@@ -661,7 +661,6 @@ button {
 .modal-box {
   background-color: #edf2f5;
   width: 40%;
-  min-height: min-content;
   max-height: 85%;
   height: max-content;
   padding: 0 0 2rem 0;

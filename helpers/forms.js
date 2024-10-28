@@ -90,47 +90,52 @@ const submitCreate = async (e, stateData, setMessage, setLoading, loadingType, t
 
 const submitUpdate = async (e, stateData, setMessage, setLoading, loadingType, type, path, token, allData, setAllData, resetMethod, resetType, setModal, fileType) => {
   e.preventDefault()
-  for(let i = 0; i < formFields[type].length; i++){
-    if(formFields[type][i].includes('email') && !validateIsEmail(stateData[formFields[type][i]])) return (setMessage('Invalid email address'))
-    if(formFields[type][i].includes('link') && !validateLink(stateData[formFields[type][i]])) return (setMessage('Invalid link'))
-    
-    if(!stateData[formFields[type][i]] || stateData[formFields[type][i]].length == 0) return (setMessage(`${formFields[type][i].replace('_', ' ')} is required`))
+  
+  // Field validation
+  for (let i = 0; i < formFields[type].length; i++) {
+    if (formFields[type][i].includes('email') && !validateIsEmail(stateData[formFields[type][i]])) return setMessage('Invalid email address')
+    if (formFields[type][i].includes('link') && !validateLink(stateData[formFields[type][i]])) return setMessage('Invalid link')
+    if (!stateData[formFields[type][i]] || stateData[formFields[type][i]].length === 0) return setMessage(`${formFields[type][i].replace('_', ' ')} is required`)
   }
 
   setLoading(loadingType)
   setMessage('')
   
   let data = new FormData()
-  let fileID    = nanoid()
+  let fileID = nanoid()
 
-  for(let key in stateData){
-    if(stateData){  if(key !== fileType) data.append(key, JSON.stringify(stateData[key])) }
-
-    if(key == fileType && typeof stateData[fileType] === 'object' && stateData[fileType] !== null) data.append('file', stateData[fileType], `${type}-${fileID}.${stateData[fileType].name.split('.'[1])}`) 
-
-
-    if(typeof stateData['icon'] === 'object' && stateData['icon'] !== null){
-      stateData['icon']
-      ?
-      data.append('icon', stateData['icon'], `${type}-${fileID}-icon.${stateData['icon'].name.split('.'[1])}`)
-      :
-      null  
+  // Append non-file fields that are non-empty
+  for (let key in stateData) {
+    if (stateData[key] && key !== fileType && key !== 'icon') {  // Avoids empty/null values and skips file fields
+      data.append(key, JSON.stringify(stateData[key]))
     }
+  }
 
-    if(key == fileType && typeof stateData[fileType] !== 'object' && stateData[fileType] !== null) data.append(key, JSON.stringify(stateData[key]))
+  // Append file if it exists and is an object
+  if (stateData[fileType] && typeof stateData[fileType] === 'object') {
+    data.append('file', stateData[fileType], `${type}-${fileID}.${stateData[fileType].name.split('.')[1]}`)
+  } else if (stateData[fileType]) {
+    data.append(fileType, JSON.stringify(stateData[fileType]))  // Append URL if it's a non-empty string
+  }
+
+  // Append icon if it exists and is an object
+  if (stateData.icon && typeof stateData.icon === 'object') {
+    data.append('icon', stateData.icon, `${type}-${fileID}-icon.${stateData.icon.name.split('.')[1]}`)
+  } else if (stateData.icon) {
+    data.append('icon', JSON.stringify(stateData.icon))  // Append URL if it's a non-empty string
   }
 
   try {
     const responseCreate = await axios.post(`${API}/${path}`, data, {
       headers: {
         Authorization: `Bearer ${token}`,
-        contentType: 'multipart/form-data'
-      }
+        contentType: 'multipart/form-data',
+      },
     })
 
     setLoading('')
     setModal('')
-    allData[type]= responseCreate.data
+    allData[type] = responseCreate.data
     setAllData(allData)
     setMessage('Item was updated')
     resetMethod(resetType)
@@ -138,10 +143,10 @@ const submitUpdate = async (e, stateData, setMessage, setLoading, loadingType, t
   } catch (error) {
     console.log(error)
     setLoading('')
-    if(error)  error.response ? error.response.statusText == 'Unauthorized' ? (setMessage(error.response.statusText), window.location.href = 'admin/login') : (setMessage(error.response.data)) : (setMessage('Error ocurred updating item'))
+    if (error) error.response ? error.response.statusText === 'Unauthorized' ? (setMessage(error.response.statusText), window.location.href = 'admin/login') : (setMessage(error.response.data)) : setMessage('Error occurred updating item')
   }
-
 }
+
 
 const submitDeleteRow = async (e, setLoading, loadingType, path, selectID, token, allData, type, setAllData, setMessage, resetCheckboxes, setControls, view) => {
   e.preventDefault()
