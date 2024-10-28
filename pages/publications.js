@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import Navigation from '../components/client/navigation'
 import Footer from '../components/client/footer'
-import { PUBLIC_FILES } from '../config'
 import Toolbar from '../components/client/toolbar'
 import { validatePublicationTypes } from '../helpers/validations'
 import { useRouter } from 'next/router'
@@ -92,7 +91,7 @@ const Publications = ({
                 key={idx} 
                 id="book"
                 className="publication-section-2-publications-item"
-                onClick={(e) => item.file ? window.open(`${PUBLIC_FILES}/publication/${item.file}`, '_blank') : window.location.href = item.link }
+                onClick={(e) => item.file ? window.open(`${item.file}`, '_blank') : window.location.href = item.link }
               >
                 {item.authors.length > 0 && item.authors.map( (i) => 
                   <span>{i ? `${i},` : ''} </span>
@@ -119,7 +118,7 @@ const Publications = ({
                 key={idx} 
                 id="book chapter"
                 className="publication-section-2-publications-item"
-                onClick={(e) => item.file ? window.open(`${PUBLIC_FILES}/publication/${item.file}`, '_blank') : window.location.href = item.link }
+                onClick={(e) => item.file ? window.open(`${item.file}`, '_blank') : window.location.href = item.link }
               >
                 {item.authors.length > 0 && item.authors.map( (i) => 
                 <span>{i ? `${i},` : ''} </span>
@@ -146,7 +145,7 @@ const Publications = ({
                 key={idx} 
                 className="publication-section-2-publications-item"
                 id="conference paper and presentation"
-                onClick={(e) => item.file ? window.open(`${PUBLIC_FILES}/publication/${item.file}`, '_blank') : window.location.href = item.link }
+                onClick={(e) => item.file ? window.open(`${item.file}`, '_blank') : window.location.href = item.link }
               >
                 {item.authors.length > 0 && item.authors.map( (i) => 
                   <span>{i ? `${i},` : ''} </span>
@@ -173,7 +172,7 @@ const Publications = ({
                 key={idx} 
                 className="publication-section-2-publications-item"
                 id="journal and juried conference paper"
-                onClick={(e) => item.file ? window.open(`${PUBLIC_FILES}/publication/${item.file}`, '_blank') : window.location.href = item.link }
+                onClick={(e) => item.file ? window.open(`${item.file}`, '_blank') : window.location.href = item.link }
               >
                 {item.authors.length > 0 && item.authors.map( (i) => 
                   <span>{i ? `${i},` : ''} </span>
@@ -200,7 +199,7 @@ const Publications = ({
                 key={idx} 
                 className="publication-section-2-publications-item"
                 id="theses and dissertations"
-                onClick={(e) => item.file ? window.open(`${PUBLIC_FILES}/publication/${item.file}`, '_blank') : window.location.href = item.link }
+                onClick={(e) => item.file ? window.open(`${item.file}`, '_blank') : window.location.href = item.link }
               >
                 {item.authors.length > 0 && item.authors.map( (i) => 
                 <span>{i ? `${i},` : ''} </span>
@@ -227,7 +226,7 @@ const Publications = ({
                 key={idx} 
                 id="other publications"
                 className="publication-section-2-publications-item"
-                onClick={(e) => item.file ? window.open(`${PUBLIC_FILES}/publication/${item.file}`, '_blank') : window.location.href = item.link }
+                onClick={(e) => item.file ? window.open(`${item.file}`, '_blank') : window.location.href = item.link }
               >
                 {item.authors.length > 0 && item.authors.map( (i) => 
                   <span>{i ? `${i},` : ''} </span>
@@ -268,7 +267,7 @@ const Publications = ({
                 key={idx} 
                 id="book"
                 className="publication-section-2-publications-item"
-                onClick={(e) => item.file ? window.open(`${PUBLIC_FILES}/publication/${item.file}`, '_blank') : window.location.href = item.link }
+                onClick={(e) => item.file ? window.open(`${item.file}`, '_blank') : window.location.href = item.link }
               >
                 {item.authors.length > 0 && item.authors.map( (i) => 
                   <span>{i ? `${i},` : ''} </span>

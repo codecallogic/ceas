@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import Navigation from '../components/client/navigation'
 import Footer from '../components/client/footer'
-import { PUBLIC_FILES } from '../config'
 import { groupBy } from '../helpers/tables'
 import { useRouter } from 'next/router'
 
@@ -96,7 +95,7 @@ const People = ({
                 <div className="about-section-2-content-image">
                   <img
                     className="image" 
-                    src={`${PUBLIC_FILES}/section/${item.image}`} 
+                    src={`${item.image}`} 
                     alt={ item.image ? item.image : ''}
                     onError={(e) => e.target.src = 'https://icon-library.com/images/not-found-icon/not-found-icon-14.jpg'}
                   >
@@ -150,7 +149,7 @@ const People = ({
             <div key={idx} id={item.name} className="people-section-3-items-item">
               <div className="people-section-3-items-item-image">
                 <img 
-                  src={`${PUBLIC_FILES}/faculty/${item.image}`} 
+                  src={`${item.image}`} 
                   alt={item.name ? item.name : ''}
                   onError={(e) => e.target.src = 'https://secure.gravatar.com/avatar/9cd4b9709939e0ce4b8645e55e96c8d0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-0.png'}
                 />
@@ -172,7 +171,7 @@ const People = ({
             <div key={idx} className="people-section-3-items-item">
               <div className="people-section-3-items-item-image">
                 <img 
-                  src={`${PUBLIC_FILES}/staff/${item.image}`} 
+                  src={`${item.image}`} 
                   alt={item.name ? item.name : ''}
                   onError={(e) => e.target.src = 'https://secure.gravatar.com/avatar/9cd4b9709939e0ce4b8645e55e96c8d0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-0.png'}
                 />
@@ -197,7 +196,7 @@ const People = ({
               <div key={idx} className="people-section-3-items-item">
                 <div className="people-section-3-items-item-image">
                   <img 
-                    src={`${PUBLIC_FILES}/student/${student.image}`} 
+                    src={`${student.image}`} 
                     alt={student.name ? student.name : ''}
                     onError={(e) => e.target.src = 'https://secure.gravatar.com/avatar/9cd4b9709939e0ce4b8645e55e96c8d0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-0.png'}
                   />

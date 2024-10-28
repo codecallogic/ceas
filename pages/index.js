@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import SVG from '../files/svg'
-import { PUBLIC_FILES } from '../config'
 import { useRouter } from 'next/router'
 
 //// COMPONENTS
@@ -89,7 +88,7 @@ const Home = ({
                 <div className="home-section-2-content-items-item-image">
                   <img 
                     className="image" 
-                    src={`${PUBLIC_FILES}/component/${item.icon}`} 
+                    src={`${item.icon}`} 
                     alt={item.name}
                     onError={(e) => e.target.src = 'https://icon-library.com/images/not-found-icon/not-found-icon-14.jpg'}
                   />

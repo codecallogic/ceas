@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import Navigation from '../components/client/navigation'
 import Footer from '../components/client/footer'
-import { PUBLIC_FILES } from '../config'
 import SVG from '../files/svg'
 import { useRouter } from 'next/router';
 
@@ -57,7 +56,7 @@ const Resource = ({
             {item.icon &&
             <img 
                className="image" 
-               src={`${PUBLIC_FILES}/labs/${item.icon}`} 
+               src={`${item.icon}`} 
                alt={item.name}
                onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
             >
@@ -76,7 +75,7 @@ const Resource = ({
           <div className="resource-section-2-image">
             <img 
               className="image" 
-              src={`${PUBLIC_FILES}/labs/${item.image}`} 
+              src={`${item.image}`} 
               alt={item.name}
               onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
             />
@@ -117,7 +116,7 @@ const Resource = ({
             <h1 className="resource-section-3-announcement-title">{item.name} - {item.labLocation}</h1>
             <div className="resource-section-3-announcement-image">              
               <img 
-                src={`${PUBLIC_FILES}/labs/${item.image}`} 
+                src={`${item.image}`} 
                 alt={item.name}
                 onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
               />
@@ -139,7 +138,7 @@ const Resource = ({
                   <div key={idx} className="resource-section-3-announcement-content-equipment-content-image-container">
                     <div className="resource-section-3-announcement-content-equipment-content-image">
                       <img 
-                        src={`${PUBLIC_FILES}/equipment/${item.image}`} 
+                        src={`${item.image}`} 
                         alt={`${item.name}`}
                         onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
                       />

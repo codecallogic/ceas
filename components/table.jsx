@@ -1,7 +1,6 @@
 import {filterTable} from '../helpers/tables'
 import SVG from '../files/svg'
 import {useEffect, useState, useRef} from 'react'
-import { PUBLIC_FILES } from '../config'
 
 const Table = ({
   accessToken,

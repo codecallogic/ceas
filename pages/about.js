@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import Navigation from '../components/client/navigation'
 import Footer from '../components/client/footer'
-import { PUBLIC_FILES } from '../config'
 import Toolbar from '../components/client/toolbar'
 import { useRouter } from 'next/router'
 
@@ -53,7 +52,7 @@ const About = ({
                 <div className="about-section-2-content-image">
                   <img
                     className="image" 
-                    src={`${PUBLIC_FILES}/section/${item.image}`} 
+                    src={`${item.image}`} 
                     alt={ item.image ? item.image : ''}
                     onError={(e) => e.target.src = 'https://icon-library.com/images/not-found-icon/not-found-icon-14.jpg'}
                   >

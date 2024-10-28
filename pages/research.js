@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import Navigation from '../components/client/navigation'
 import Footer from '../components/client/footer'
-import { PUBLIC_FILES } from '../config'
 import Toolbar from '../components/client/toolbar'
 import { useRouter } from 'next/router'
 
@@ -237,7 +236,7 @@ const Research = ({
                   <div key={idx} className="research-section-3-members-item">
                     <div className="research-section-3-members-item-image">
                       <img 
-                        src={`${PUBLIC_FILES}/faculty/${item.image}`} 
+                        src={`${item.image}`} 
                         alt={item.name} 
                         onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
                       />
@@ -270,7 +269,7 @@ const Research = ({
                   <div key={idx} className="research-section-3-members-item">
                     <div className="research-section-3-members-item-image">
                       <img 
-                        src={`${PUBLIC_FILES}/student/${item.image}`} 
+                        src={`${item.image}`} 
                         alt={item.name} 
                         onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
                       />

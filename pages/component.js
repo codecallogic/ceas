@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import Navigation from '../components/client/navigation'
 import Footer from '../components/client/footer'
-import { PUBLIC_FILES } from '../config'
 import Toolbar from '../components/client/toolbar'
 import SVG from '../files/svg'
 import { useRouter } from 'next/router'
@@ -88,7 +87,7 @@ const Component = ({
           </div>
           <div className="component-section-1-title">{component.name}</div>
           <img 
-            src={`${PUBLIC_FILES}/component/${component.image}`} className="component-section-1-image"
+            src={`${component.image}`} className="component-section-1-image"
             alt={component.name}
             onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
           />
@@ -101,7 +100,7 @@ const Component = ({
             {facultyItems.length > 0 && facultyItems.map((item, idx) => 
               <div className="component-section-2-members-item">
                 <img 
-                  src={`${PUBLIC_FILES}/faculty/${item.image}`} 
+                  src={`${item.image}`} 
                   alt={item.name} 
                   onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
                 />
@@ -120,7 +119,7 @@ const Component = ({
             {studentItems.length > 0 && studentItems.map((item, idx) => 
               <div className="component-section-3-members-item">
                 <img 
-                  src={`${PUBLIC_FILES}/student/${item.image}`} 
+                  src={`${item.image}`} 
                   alt={item.name} 
                   onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
                 />

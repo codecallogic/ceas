@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import Navigation from '../components/client/navigation'
 import Footer from '../components/client/footer'
-import { PUBLIC_FILES } from '../config'
 import Toolbar from '../components/client/toolbar'
 import SVG from '../files/svg'
 import { useRouter } from 'next/router'
@@ -59,7 +58,7 @@ const News = ({
               <h1 className="news-section-1-announcement-title">{item.title} - <span>{item.date}</span></h1>
               <div className="news-section-1-announcement-content">
                 <img 
-                  src={`${PUBLIC_FILES}/news/${item.image}`}
+                  src={`${item.image}`}
                   alt={item.title}
                   onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
                 />
@@ -79,7 +78,7 @@ const News = ({
               <h1 className="news-section-2-announcement-title">{item.title} - <span>{item.date}</span></h1>
               <div className="news-section-2-announcement-image">              
                 <img 
-                  src={`${PUBLIC_FILES}/news/${item.image}`} 
+                  src={`${item.image}`} 
                   alt={item.title}
                   onError={(e) => e.target.src = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png'}
                 />
