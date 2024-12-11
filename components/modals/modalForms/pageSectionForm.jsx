@@ -184,24 +184,24 @@ const NewsForm = ({
           { stateData.type == 'content' &&
             <>
             <div className="form-group-file">
-            { edit == 'update_section' && (typeof stateData.image !== 'object' && stateData.image !== null) ?
-              <label htmlFor="image">
-                {stateData.image ? <img src={`${PUBLIC_FILES}/section/${stateData.image}`}></img> : <SVG svg={'cloud-upload'}></SVG>} {stateData.image ? stateData.image : 'Upload Image'}
-              </label>
-              :
-              <label htmlFor="image">
-                {stateData.image ? <img src={URL.createObjectURL(stateData.image)}></img> : <SVG svg={'cloud-upload'}></SVG>} {stateData.image ? stateData.image.name : 'Upload Image'}
-              </label>
-            }
-            <input 
-              type="file"
-              id="image" 
-              onChange={(e) => (
-                setMessage(''), 
-                typeof stateData.image !== 'object' && stateData.image !== null ? stateMethod(caseType, 'previousImage', stateData.image) : null,
-                stateMethod(caseType, 'image', e.target.files[0])
-              )}
-            />
+              { edit == 'update_section' && (typeof stateData.image !== 'object' && stateData.image !== null) ?
+                <label htmlFor="image">
+                  {stateData.image ? <img src={stateData.image}></img> : <SVG svg={'cloud-upload'}></SVG>} {stateData.image ? stateData.image : 'Upload Image'}
+                </label>
+                :
+                <label htmlFor="image">
+                  {stateData.image ? <img src={URL.createObjectURL(stateData.image)}></img> : <SVG svg={'cloud-upload'}></SVG>} {stateData.image ? stateData.image.name : 'Upload Image'}
+                </label>
+              }
+              <input 
+                type="file"
+                id="image" 
+                onChange={(e) => (
+                  setMessage(''), 
+                  typeof stateData.image !== 'object' && stateData.image !== null ? stateMethod(caseType, 'previousImage', stateData.image) : null,
+                  stateMethod(caseType, 'image', e.target.files[0])
+                )}
+              />
             </div>
             <div className="form-group">
             <input 
